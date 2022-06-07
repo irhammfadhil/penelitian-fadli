@@ -16,7 +16,9 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', [HomeController::class,'index']);
+Route::get('/cara-penggunaan', [HomeController::class,'getCaraPenggunaan']);
 Route::get('/artikel', [HomeController::class,'getArtikel']);
 
 #auth
 Route::get('/login', [UserController::class,'getLogin']);
+Route::get('/register', [UserController::class,'getRegister']);

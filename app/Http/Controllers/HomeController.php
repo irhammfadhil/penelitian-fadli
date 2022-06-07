@@ -12,4 +12,7 @@ class HomeController extends Controller
     public function getArtikel() {
         return view('artikel');
     }
+    public function getCaraPenggunaan() {
+        return view('cara-penggunaan');
+    }
 }
