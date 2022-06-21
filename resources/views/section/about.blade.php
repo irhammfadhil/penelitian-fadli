@@ -3,7 +3,7 @@
 
         <div class="row">
           <div class="col-xl-5 col-lg-6 justify-content-center align-items-stretch position-relative" data-aos="fade-right">
-            <img src="dokter-spesialis-gigi-anak.jpg" class="img-fluid" style="margin-top: 100px;">
+            <img src="periksa gigi.jpg" class="img-fluid" style="margin-top: 100px;">
           </div>
 
           <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
