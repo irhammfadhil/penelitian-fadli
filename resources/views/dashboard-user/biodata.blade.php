@@ -39,8 +39,14 @@
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                         </div>
-                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
+						<div class="md-step col-lg-1 col-md-1" onclick="location.href='/informed-consent';" style="cursor: pointer;">
                         <div class="md-step-circle"><span>2</span></div>
+                        <div class="md-step-title">Informed Consent</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                        </div>
+                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
+                        <div class="md-step-circle"><span>3</span></div>
                         <div class="md-step-title">Foto Gigi</div>
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
@@ -65,7 +71,7 @@
 										<select class="form-select" name="gender" id="gender" aria-label="Default select example">
 											<option selected>Pilih...</option>
 											<option value="pria">Laki-laki</option>
-											<option value="wanita">Wanita</option>
+											<option value="wanita">Perempuan</option>
 										</select>
 									</div>
 								</div>
