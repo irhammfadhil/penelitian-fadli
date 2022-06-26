@@ -4,7 +4,7 @@
           <div class="text-center">
             <h3>Registrasi</h3>
             <p> Untuk bergabung dengan aplikasi SERAT, Silahkan klik tombol berikut.</p>
-            <a class="btn btn-primary" href="#">Daftar</a>
+            <a class="btn btn-primary" href="/register">Daftar</a>
           </div>
 
       </div>

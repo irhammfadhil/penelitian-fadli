@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2022 at 02:48 AM
+-- Generation Time: Jun 27, 2022 at 01:34 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -7939,6 +7939,57 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Irham Fadhil', 'jokotole12345', 'irham.mfadhil@gmail.com', NULL, '$2y$10$O6aMveacsUgJzpev1aJgjuwnB0/C1CrBR8ZmsGTIdBli7PTTL0zXu', 0, NULL, '2022-06-11 20:06:44', '2022-06-11 20:06:44'),
 (2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, NULL, '2022-06-18 19:01:55', '2022-06-18 19:01:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_biodata`
+--
+
+CREATE TABLE `users_biodata` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `users_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `gender` varchar(30) DEFAULT NULL,
+  `birth_place` varchar(100) DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
+  `id_sekolah` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users_biodata`
+--
+
+INSERT INTO `users_biodata` (`id`, `users_id`, `gender`, `birth_place`, `birth_date`, `id_sekolah`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Laki-laki', 'Surabaya', '2003-01-01', 1, '2022-06-24 19:19:13', '2022-06-24 20:33:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_ortu`
+--
+
+CREATE TABLE `users_ortu` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `users_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `name_ortu` varchar(100) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `kecamatan` varchar(100) DEFAULT NULL,
+  `desa` varchar(100) DEFAULT NULL,
+  `rt` int(11) DEFAULT NULL,
+  `rw` int(11) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users_ortu`
+--
+
+INSERT INTO `users_ortu` (`id`, `users_id`, `name_ortu`, `address`, `kecamatan`, `desa`, `rt`, `rw`, `phone`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Irham M Fadhil', 'Villa Galaxi D 2/7', 'RAMBIPUJI', 'RAMBIPUJI', 32, 23, '081283902244', '2022-06-24 19:19:58', '2022-06-24 19:34:53');
 
 -- --------------------------------------------------------
 
@@ -88614,6 +88665,20 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `username` (`username`);
 
 --
+-- Indexes for table `users_biodata`
+--
+ALTER TABLE `users_biodata`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_id` (`users_id`);
+
+--
+-- Indexes for table `users_ortu`
+--
+ALTER TABLE `users_ortu`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_id` (`users_id`);
+
+--
 -- Indexes for table `villages`
 --
 ALTER TABLE `villages`
@@ -88649,6 +88714,18 @@ ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `users_biodata`
+--
+ALTER TABLE `users_biodata`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `users_ortu`
+--
+ALTER TABLE `users_ortu`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -88663,6 +88740,18 @@ ALTER TABLE `districts`
 --
 ALTER TABLE `regencies`
   ADD CONSTRAINT `regencies_province_id_foreign` FOREIGN KEY (`province_id`) REFERENCES `provinces` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `users_biodata`
+--
+ALTER TABLE `users_biodata`
+  ADD CONSTRAINT `users_biodata_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `users_ortu`
+--
+ALTER TABLE `users_ortu`
+  ADD CONSTRAINT `users_ortu_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `villages`

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardUserController;
 
@@ -28,7 +29,12 @@ Route::get('/register', [UserController::class,'getRegister']);
 Route::post('/register', [UserController::class,'submitRegister']);
 Route::get('/logout', [UserController::class,'doLogout']);
 
+#ajax
+Route::post('/getDesa', [AjaxController::class,'getKelurahan']);
+
 #dashboard
 Route::get('/dashboard/admin', [DashboardAdminController::class,'index']);
 Route::get('/dashboard/user', [DashboardUserController::class,'index']);
 Route::get('/biodata', [DashboardUserController::class,'getBiodata']);
+Route::post('/biodata', [DashboardUserController::class,'submitBiodata']);
+Route::get('/informed-consent', [DashboardUserController::class,'getConsent']);

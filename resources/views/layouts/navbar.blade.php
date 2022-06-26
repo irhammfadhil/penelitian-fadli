@@ -3,9 +3,8 @@
     <div class="container d-flex align-items-center justify-content-between"> 
 
       <div class="logo">
-        <h1><a href="/" style="color: #f7eb3a;">SERAT</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+       <a href="/"><img src="{{asset('logo.png')}}" alt="" class="img-fluid"><h1 style="color: #f7eb3a;">SERAT</h1></a>
       </div>
 
       <nav id="navbar" class="navbar">

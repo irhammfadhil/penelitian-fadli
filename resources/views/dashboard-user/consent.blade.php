@@ -20,9 +20,62 @@
 	<link href="{{asset('static/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet"> 
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{asset('script.js')}}"></script>
+	<style>
+        /* Styles for signature plugin v1.2.0. */
+        .kbw-signature {
+            display: inline-block;
+            border: 1px solid #a0a0a0;
+            -ms-touch-action: none;
+        }
+        .kbw-signature-disabled {
+            opacity: 0.35;
+        }
+    </style>
+  
+    <style>
+        .kbw-signature { width: 30%; height: 200px;}
+        #sig canvas{
+            width: 100% !important;
+            height: auto;
+        }
+        @media screen and (max-width: 400px) {
+            .kbw-signature { width: 100%; height: 200px;}
+        }
+        @media only screen and (max-width: 600px) and (min-width: 400px) {
+            .kbw-signature { width: 70%; height: 200px;}
+        }
+    </style>
 </head>
 
 <body>
+	@php
+		function tgl_indo($tanggal){
+		$bulan = array (
+		1 =>   'Januari',
+		'Februari',
+		'Maret',
+		'April',
+		'Mei',
+		'Juni',
+		'Juli',
+		'Agustus',
+		'September',
+		'Oktober',
+		'November',
+		'Desember'
+		);
+		$pecahkan = explode('-', $tanggal);
+		
+		// variabel pecahkan 0 = tanggal
+		// variabel pecahkan 1 = bulan
+		// variabel pecahkan 2 = tahun
+	
+		return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+	}
+	@endphp
 	<div class="wrapper">
 		@include('layouts.sidebar')
 
@@ -32,7 +85,7 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Biodata dan Foto Gigi</h1>
+					<h1 class="h3 mb-3">Informed Consent</h1>
 					
                     <div class="md-stepper-horizontal orange">
                         <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/biodata';" style="cursor: pointer;">
@@ -41,7 +94,7 @@
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                         </div>
-						<div class="md-step col-lg-1 col-md-1" onclick="location.href='/informed-consent';" style="cursor: pointer;">
+						<div class="md-step active col-lg-1 col-md-1" onclick="location.href='/informed-consent';" style="cursor: pointer;">
                         <div class="md-step-circle"><span>2</span></div>
                         <div class="md-step-title">Informed Consent</div>
                         <div class="md-step-bar-left"></div>
@@ -57,156 +110,162 @@
 					<br>
 					<div class="card">
 						<div class="card-body">
-							<h3 class="card-title mb-0">Biodata Diri</h3>
+							<h3 class="card-title mb-0">Informed Consent</h3>
 							<br>
-							<form action="/biodata" method="post">
-								@csrf
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="form-group">
-											<label for="exampleInputEmail1">Nama</label>
-											<input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" value="{{Auth::user()->name}}" placeholder="Nama anak" disabled>
-										</div>
-									</div>
-									@if(!$biodata)
-									<div class="col-lg-6">
-										<label for="exampleInputEmail1">Jenis Kelamin</label>
-										<select class="form-select" name="gender" id="gender" aria-label="Default select example">
-											<option selected>Pilih...</option>
-											<option value="Laki-laki">Laki-laki</option>
-											<option value="Perempuan">Perempuan</option>
-										</select>
-									</div>
-									@else
-									<div class="col-lg-6">
-										<label for="exampleInputEmail1">Jenis Kelamin</label>
-										<select class="form-select" name="gender" id="gender" aria-label="Default select example">
-											@foreach($gender as $g)
-											@if($g == $biodata->gender)
-											<option value="{{$g}}"selected>{{$g}}</option>
-											@else
-											<option value="{{$g}}">{{$g}}</option>
-											@endif
-											@endforeach
-										</select>
-									</div>
-									@endif
+							<h3 class="text-center">LEMBAR PERSETUJUAN SUBJEK PENELITIAN</h3>
+							<br>
+							<br>
+							<b>Saya yang bertandatangan di bawah ini, </b>
+							<div class="row">
+								<div class="col-1">
+
 								</div>
-								<br>
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="form-group">
-											<label for="exampleInputEmail1">Tempat Lahir</label>
-											<input type="text" class="form-control" id="birthplace" name="birthplace" aria-describedby="emailHelp" value="{{$biodata->birth_place}}" placeholder="Tempat lahir">
-										</div>
-									</div>
-									<div class="col-lg-6">
-										<div class="form-group">
-											<label for="exampleInputEmail1">Tanggal Lahir</label>
-											<input type="date" class="form-control" id="birthdate" name="birthdate" aria-describedby="emailHelp" value="{{$biodata->birth_date}}" placeholder="Tanggal lahir">
-										</div>
-									</div>
+								<div class="col-3">
+									Nama
 								</div>
-								{{--<div class="form-group">
-									<label for="exampleInputEmail1">Nama</label>
-									<input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Nama anak">
-								</div>--}}
-								<br>
-								<label for="exampleInputEmail1">Sekolah</label>
-								<select class="form-select" name="sekolah" id="sekolah" aria-label="Default select example">
-									<option selected>Pilih...</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-								</select>
-								<hr>
-								<h3 class="card-title mb-0">Biodata Orang Tua</h3>
-								<br>
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="form-group">
-											<label for="exampleInputEmail1">Nama Orang Tua</label>
-											<input type="text" class="form-control" id="name_ortu" name="name_ortu" value="{{$ortu->name_ortu}}" aria-describedby="emailHelp" placeholder="Nama orang tua">
-										</div>
-									</div>
-									<div class="col-lg-6">
-										<div class="form-group">
-											<label for="exampleInputEmail1">Alamat</label>
-											<input type="text" class="form-control" id="address" name="address" value="{{$ortu->address}}" aria-describedby="emailHelp" placeholder="Alamat">
-										</div>
-									</div>
+								<div class="col-8">
+									: {{$ortu->name_ortu}}
 								</div>
-								<br>
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="form-group">
-											<label for="exampleInputEmail1">Provinsi</label>
-											<input type="text" class="form-control" id="provinsi" name="provinsi" aria-describedby="emailHelp" placeholder="Provinsi" value="Jawa Timur" disabled>
-										</div>
-									</div>
-									<div class="col-lg-6">
-										<div class="form-group">
-											<label for="exampleInputEmail1">Kabupaten/Kota</label>
-											<input type="text" class="form-control" id="kab" name="kab" aria-describedby="emailHelp" placeholder="Kabupaten/Kota" value="Kabupaten Jember" disabled>
-										</div>
-									</div>
+							</div>
+							{{--<div class="row">
+								<div class="col-3">
+									Umur
 								</div>
-								<br>
-								<div class="row">
-									<div class="col-lg-6">
-										<label for="exampleInputEmail1">Kecamatan</label>
-										@if(!$ortu)
-										<select class="form-select" name="kecamatan" id="kecamatan" aria-label="Default select example">
-											<option value="" selected>Pilih...</option>
-											@foreach($kecamatan as $k)
-											<option value="{{$k->id}}">{{$k->name}}</option>
-											@endforeach
-										</select>
-										@else
-										<select class="form-select" name="kecamatan" id="kecamatan" aria-label="Default select example">
-											<option value="" selected>{{$ortu->kecamatan}}</option>
-											@foreach($kecamatan as $k)
-											<option value="{{$k->id}}">{{$k->name}}</option>
-											@endforeach
-										</select>
-										@endif
-									</div>
-									<div class="col-lg-6">
-										<label for="exampleInputEmail1">Desa/Kelurahan</label>
-										@if(!$ortu)
-										<select class="form-select" name="desa" id="desa" aria-label="Default select example">
-											<option value="" selected>Pilih...</option>
-										</select>
-										@else
-										<select class="form-select" name="desa" id="desa" aria-label="Default select example">
-											<option value="" selected>{{$ortu->desa}}</option>
-										</select>
-										@endif
-									</div>
+								<div class="col-9">
+									: 
 								</div>
-								<br>
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="form-group">
-											<label for="exampleInputEmail1">RT</label>
-											<input type="text" class="form-control" id="rt" name="rt" value="{{$ortu->rt}}" aria-describedby="emailHelp" placeholder="RT">
-										</div>
-									</div>
-									<div class="col-lg-6">
-										<div class="form-group">
-											<label for="exampleInputEmail1">RW</label>
-											<input type="text" class="form-control" id="rw" name="rw" value="{{$ortu->rw}}" aria-describedby="emailHelp" placeholder="RW">
-										</div>
-									</div>
+							</div>--}}
+							<div class="row">
+								<div class="col-1">
+									
 								</div>
-								<br>
-								<div class="form-group">
-									<label for="exampleInputEmail1">No. HP</label>
-									<input type="text" class="form-control" id="phone" name="phone" value="{{$ortu->phone}}" aria-describedby="emailHelp" placeholder="Nomor HP">
+								<div class="col-3">
+									Alamat
 								</div>
-								<br>
-								<button type="submit" class="btn btn-primary">Lanjut</button>
-							</form>
+								<div class="col-8">
+									: {{$ortu->address}}
+								</div>
+							</div>
+							<br>
+							<b>Sebagai orang tua dari:</b>
+							<div class="row">
+								<div class="col-1">
+									
+								</div>
+								<div class="col-3">
+									Nama
+								</div>
+								<div class="col-8">
+									: {{Auth::user()->name}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-1">
+									
+								</div>
+								<div class="col-3">
+									Umur
+								</div>
+								<div class="col-8">
+									: {{$age}} tahun
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-1">
+									
+								</div>
+								<div class="col-3">
+									Alamat
+								</div>
+								<div class="col-8">
+									: {{$ortu->address}}
+								</div>
+							</div>
+							<br>
+							Setelah mendapatkan penjelasan dan keterangan secara lengkap, menyatakan bersedia dan mengizinkan anak saya untuk melakukan pemeriksaan gigi demi kepentingan penelitian dari :
+							<div class="row">
+								<div class="col-1">
+									
+								</div>
+								<div class="col-3">
+									Nama
+								</div>
+								<div class="col-8">
+									: <b>Fadli Muhammad Fathoni</b>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-1">
+									
+								</div>
+								<div class="col-3">
+									NIM
+								</div>
+								<div class="col-8">
+									: <b>191610101125</b>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-1">
+									
+								</div>
+								<div class="col-3">
+									Fakultas
+								</div>
+								<div class="col-8">
+									: <b>Kedokteran Gigi Universitas Jember</b>
+								</div>
+							</div>
+							<br> 
+							Dengan Judul <b>“Penilaian Indeks Kebutuhan Perawatan Gigi pada Anak Sekolah Dasar di Wilayah Argoindustri Bobbin Arjasa Melalui Aplikasi Berbasis Web”</b> dengan sebenar-benarnya tanpa ada suatu paksaan dari pihak manapun. 
+							<div class="row">
+								<div class="col-6">
+									<br>
+									Saya yang bertandatangan,
+								</div>
+								<div class="col-6">
+									Jember, @php echo(tgl_indo(date('Y-m-d')));@endphp<br>
+									Peneliti,
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-6">
+									
+								</div>
+								<div class="col-6">
+									
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-6">
+									{{$ortu->name_ortu}}
+								</div>
+								<div class="col-6">
+									<b>Fadli Muhammad Fathoni</b>
+								</div>
+							</div>
+							<hr>
+							<h5>Tandatangani Informed Consent</h5>
+							<form method="POST" action="/tandatangan">
+                                @csrf
+                                <div class="col-md-12">
+                                    <label class="" for="">Signature:</label>
+                                    <br/>
+                                    <div id="sig" ></div>
+                                    <br/>
+                                    
+                                    <textarea id="signature64" name="signed" style="display: none"></textarea>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                                        <button id="clear" class="btn btn-danger btn-sm">Hapus tanda tangan</button>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                                        <button class="btn btn-success">Tandatangani Informed Consent</button>
+                                    </div>
+                                </div>
+                            </form>
 						</div>
 					</div>
 				</div>
@@ -243,6 +302,14 @@
 	</div>
 
 	<script src="{{asset('static/js/app.js')}}"></script>
+	<script type="text/javascript">
+		var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
+		$('#clear').click(function(e) {
+			e.preventDefault();
+			sig.signature('clear');
+			$("#signature64").val('');
+		});
+	</script>
     <style>
           .required:after {
             content:" *";
