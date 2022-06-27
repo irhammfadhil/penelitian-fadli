@@ -58,6 +58,15 @@
 					<div class="card">
 						<div class="card-body">
 							<h3 class="card-title mb-0">Biodata Diri</h3>
+							@if($message = Session::get('success'))
+                            <div class="alert alert-success" role="alert">
+                                <strong>{{$message}}</strong>
+                            </div>
+							@elseif($message = Session::get('danger'))
+								<div class="alert alert-danger" role="alert">
+									<strong>{{$message}}</strong>
+								</div>
+							@endif
 							<br>
 							<form action="/biodata" method="post">
 								@csrf

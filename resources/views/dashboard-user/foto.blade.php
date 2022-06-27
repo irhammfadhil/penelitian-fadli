@@ -85,7 +85,7 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Informed Consent</h1>
+					<h1 class="h3 mb-3">Foto Gigi</h1>
 					
                     <div class="md-stepper-horizontal orange">
                         <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/biodata';" style="cursor: pointer;">
@@ -100,7 +100,7 @@
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                         </div>
-                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
+                        <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
                         <div class="md-step-circle"><span>3</span></div>
                         <div class="md-step-title">Foto Gigi</div>
                         <div class="md-step-bar-left"></div>
@@ -110,163 +110,114 @@
 					<br>
 					<div class="card">
 						<div class="card-body">
-							<h3 class="card-title mb-0">Informed Consent</h3>
-							<br>
-							<h3 class="text-center">LEMBAR PERSETUJUAN SUBJEK PENELITIAN</h3>
-							<br>
-							<br>
-							<b>Saya yang bertandatangan di bawah ini, </b>
-							<div class="row">
-								<div class="col-1">
-
-								</div>
-								<div class="col-3">
-									Nama
-								</div>
-								<div class="col-8">
-									: {{$ortu->name_ortu}}
-								</div>
-							</div>
-							{{--<div class="row">
-								<div class="col-3">
-									Umur
-								</div>
-								<div class="col-9">
-									: 
-								</div>
-							</div>--}}
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Alamat
-								</div>
-								<div class="col-8">
-									: {{$ortu->address}}
-								</div>
-							</div>
-							<br>
-							<b>Sebagai orang tua dari:</b>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Nama
-								</div>
-								<div class="col-8">
-									: {{Auth::user()->name}}
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Umur
-								</div>
-								<div class="col-8">
-									: {{$age}} tahun
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Alamat
-								</div>
-								<div class="col-8">
-									: {{$ortu->address}}
-								</div>
-							</div>
-							<br>
-							Setelah mendapatkan penjelasan dan keterangan secara lengkap, menyatakan bersedia dan mengizinkan anak saya untuk melakukan pemeriksaan gigi demi kepentingan penelitian dari :
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Nama
-								</div>
-								<div class="col-8">
-									: <b>Fadli Muhammad Fathoni</b>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									NIM
-								</div>
-								<div class="col-8">
-									: <b>191610101125</b>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Fakultas
-								</div>
-								<div class="col-8">
-									: <b>Kedokteran Gigi Universitas Jember</b>
-								</div>
-							</div>
-							<br> 
-							Dengan Judul <b>“Penilaian Indeks Kebutuhan Perawatan Gigi pada Anak Sekolah Dasar di Wilayah Argoindustri Bobbin Arjasa Melalui Aplikasi Berbasis Web”</b> dengan sebenar-benarnya tanpa ada suatu paksaan dari pihak manapun. 
-							<div class="row">
-								<div class="col-6">
-									<br>
-									Saya yang bertandatangan,
-								</div>
-								<div class="col-6">
-									Jember, @php echo(tgl_indo(date('Y-m-d')));@endphp<br>
-									Peneliti,
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-6">
-									@if(Auth::user()->signature)
-                                    <img src="{{asset(Auth::user()->signature)}}" class="img-fluid"> 
-                                    @endif
-								</div>
-								<div class="col-6">
-									
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-6">
-									{{$ortu->name_ortu}}
-								</div>
-								<div class="col-6">
-									<b>Fadli Muhammad Fathoni</b>
-								</div>
-							</div>
-							<hr>
-							<h5>Tandatangani Informed Consent</h5>
-							<form method="POST" action="/tandatangan" enctype="multipart/form-data">
+                            @if($message = Session::get('success'))
+                                <div class="alert alert-success" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </div>
+                            @elseif($message = Session::get('danger'))
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </div>
+                            @endif
+							<form action="/foto-gigi" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <div class="col-md-12">
-                                    <label class="" for="">Signature:</label>
-                                    <br/>
-                                    <div id="sig" ></div>
-                                    <br/>
-                                    
-                                    <textarea id="signature64" name="signed" style="display: none"></textarea>
-                                </div>
-                                <br/>
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
-                                        <button id="clear" class="btn btn-danger btn-sm">Hapus tanda tangan</button>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Foto Gigi Tampak Senyum Penuh</label><br>
+                                            <small id="emailHelp" class="form-text text-muted" style="color: red;">Ukuran maksimum file: 2 MB dengan jenis file: JPG/JPEG.</small>
+                                            <input type="file" class="form-control-file" id="gigi_senyum" name="gigi_senyum" required>
+                                        </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
-                                        <button class="btn btn-success">Tandatangani Informed Consent</button>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Foto Gigi Tampak Samping Kiri</label><br>
+                                            <small id="emailHelp" class="form-text text-muted" style="color: red;">Ukuran maksimum file: 2 MB dengan jenis file: JPG/JPEG.</small>
+                                            <input type="file" class="form-control-file" id="gigi_kiri" name="gigi_kiri" required>
+                                        </div>
                                     </div>
                                 </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tanggal Pengambilan Gambar Foto Gigi Tampak Senyum Penuh</label><br>
+                                            <input type="date" class="form-control" id="date_gigi_senyum" name="date_gigi_senyum" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tanggal Pengambilan Gambar Foto Gigi Tampak Samping Kiri</label><br>
+                                            <input type="date" class="form-control" id="date_gigi_kiri" name="date_gigi_kiri" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Foto Gigi Tampak Depan</label><br>
+                                            <small id="emailHelp" class="form-text text-muted" style="color: red;">Ukuran maksimum file: 2 MB dengan jenis file: JPG/JPEG.</small>
+                                            <input type="file" class="form-control-file" id="gigi_depan" name="gigi_depan" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Foto Gigi Tampak Atas</label><br>
+                                            <small id="emailHelp" class="form-text text-muted" style="color: red;">Ukuran maksimum file: 2 MB dengan jenis file: JPG/JPEG.</small>
+                                            <input type="file" class="form-control-file" id="gigi_atas" name="gigi_atas" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tanggal Pengambilan Foto Gigi Tampak Depan</label><br>
+                                            <input type="date" class="form-control" id="date_gigi_depan" name="date_gigi_depan" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tanggal Pengambilan Foto Gigi Tampak Atas</label><br>
+                                            <input type="date" class="form-control" id="date_gigi_atas" name="date_gigi_atas" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Foto Gigi Tampak Samping Kanan</label><br>
+                                            <small id="emailHelp" class="form-text text-muted" style="color: red;">Ukuran maksimum file: 2 MB dengan jenis file: JPG/JPEG.</small>
+                                            <input type="file" class="form-control-file" id="gigi_kanan" name="gigi_kanan" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Foto Gigi Tampak Bawah</label><br>
+                                            <small id="emailHelp" class="form-text text-muted" style="color: red;">Ukuran maksimum file: 2 MB dengan jenis file: JPG/JPEG.</small>
+                                            <input type="file" class="form-control-file" id="gigi_bawah" name="gigi_bawah" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tanggal Pengambilan Foto Gigi Tampak Samping Kanan</label><br>
+                                            <input type="date" class="form-control" id="date_gigi_kanan" name="date_gigi_kanan" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tanggal Pengambilan Foto Gigi Tampak Bawah</label><br>
+                                            <input type="date" class="form-control" id="date_gigi_bawah" name="date_gigi_bawah" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <input id="submit" type="submit" class="btn btn-primary btn-user btn-block" value="Submit">
                             </form>
 						</div>
 					</div>
