@@ -119,6 +119,62 @@
                                     <strong>{{$message}}</strong>
                                 </div>
                             @endif
+                            @if($foto)
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Foto Gigi Tampak Senyum Penuh</label><br>
+                                            <img src="{{asset($foto->foto_senyum)}}" class="img-fluid">
+                                            <i>Tanggal Pengambilan Foto: {{$foto->date_taken_senyum}}</i>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Foto Gigi Tampak Samping Kiri</label><br>
+                                            <img src="{{asset($foto->foto_kiri)}}" class="img-fluid">
+                                            <i>Tanggal Pengambilan Foto: {{$foto->date_taken_kiri}}</i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Foto Gigi Tampak Depan</label><br>
+                                            <img src="{{asset($foto->foto_depan)}}" class="img-fluid">
+                                            <i>Tanggal Pengambilan Foto: {{$foto->date_taken_depan}}</i>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Foto Gigi Tampak Atas</label><br>
+                                            <img src="{{asset($foto->foto_atas)}}" class="img-fluid">
+                                            <i>Tanggal Pengambilan Foto: {{$foto->date_taken_atas}}</i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Foto Gigi Tampak Samping Kanan</label><br>
+                                            <img src="{{asset($foto->foto_kanan)}}" class="img-fluid">
+                                            <i>Tanggal Pengambilan Foto: {{$foto->date_taken_kanan}}</i>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Foto Gigi Tampak Bawah</label><br>
+                                            <img src="{{asset($foto->foto_bawah)}}" class="img-fluid">
+                                            <i>Tanggal Pengambilan Foto: {{$foto->date_taken_bawah}}</i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            <hr>
+                            <h3>Unggah Ulang Foto</h3>
+                            <br>
+                            @endif
 							<form action="/foto-gigi" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">

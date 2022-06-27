@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2022 at 01:34 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.31
+-- Generation Time: Jun 27, 2022 at 11:47 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -7928,6 +7929,7 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_admin` int(11) NOT NULL DEFAULT 0,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `signature` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -7936,9 +7938,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Irham Fadhil', 'jokotole12345', 'irham.mfadhil@gmail.com', NULL, '$2y$10$O6aMveacsUgJzpev1aJgjuwnB0/C1CrBR8ZmsGTIdBli7PTTL0zXu', 0, NULL, '2022-06-11 20:06:44', '2022-06-11 20:06:44'),
-(2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, NULL, '2022-06-18 19:01:55', '2022-06-18 19:01:55');
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `remember_token`, `signature`, `created_at`, `updated_at`) VALUES
+(1, 'Irham Fadhil', 'jokotole12345', 'irham.mfadhil@gmail.com', NULL, '$2y$10$O6aMveacsUgJzpev1aJgjuwnB0/C1CrBR8ZmsGTIdBli7PTTL0zXu', 0, NULL, NULL, '2022-06-11 20:06:44', '2022-06-11 20:06:44'),
+(2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, NULL, 'upload/62b9286e5efa6.png', '2022-06-18 19:01:55', '2022-06-18 19:01:55');
 
 -- --------------------------------------------------------
 
@@ -7963,6 +7965,38 @@ CREATE TABLE `users_biodata` (
 
 INSERT INTO `users_biodata` (`id`, `users_id`, `gender`, `birth_place`, `birth_date`, `id_sekolah`, `created_at`, `updated_at`) VALUES
 (1, 2, 'Laki-laki', 'Surabaya', '2003-01-01', 1, '2022-06-24 19:19:13', '2022-06-24 20:33:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_foto`
+--
+
+CREATE TABLE `users_foto` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `users_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `foto_senyum` varchar(255) DEFAULT NULL,
+  `foto_depan` varchar(255) DEFAULT NULL,
+  `foto_kiri` varchar(255) DEFAULT NULL,
+  `foto_atas` varchar(255) DEFAULT NULL,
+  `foto_kanan` varchar(255) DEFAULT NULL,
+  `foto_bawah` varchar(255) DEFAULT NULL,
+  `date_taken_senyum` date DEFAULT NULL,
+  `date_taken_depan` date DEFAULT NULL,
+  `date_taken_kiri` date DEFAULT NULL,
+  `date_taken_atas` date DEFAULT NULL,
+  `date_taken_kanan` date DEFAULT NULL,
+  `date_taken_bawah` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_foto`
+--
+
+INSERT INTO `users_foto` (`id`, `users_id`, `foto_senyum`, `foto_depan`, `foto_kiri`, `foto_atas`, `foto_kanan`, `foto_bawah`, `date_taken_senyum`, `date_taken_depan`, `date_taken_kiri`, `date_taken_atas`, `date_taken_kanan`, `date_taken_bawah`, `created_at`, `updated_at`) VALUES
+(1, 2, 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27 01:43:28', '2022-06-27 01:43:28');
 
 -- --------------------------------------------------------
 
@@ -88672,6 +88706,13 @@ ALTER TABLE `users_biodata`
   ADD KEY `users_id` (`users_id`);
 
 --
+-- Indexes for table `users_foto`
+--
+ALTER TABLE `users_foto`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_id` (`users_id`);
+
+--
 -- Indexes for table `users_ortu`
 --
 ALTER TABLE `users_ortu`
@@ -88720,6 +88761,12 @@ ALTER TABLE `users_biodata`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `users_foto`
+--
+ALTER TABLE `users_foto`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users_ortu`
 --
 ALTER TABLE `users_ortu`
@@ -88746,6 +88793,12 @@ ALTER TABLE `regencies`
 --
 ALTER TABLE `users_biodata`
   ADD CONSTRAINT `users_biodata_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `users_foto`
+--
+ALTER TABLE `users_foto`
+  ADD CONSTRAINT `users_foto_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `users_ortu`

@@ -114,7 +114,8 @@ class DashboardUserController extends Controller
         return redirect($url)->with('success', 'Tandatangan Informed Consent Berhasil');
     }
     public function getFotoGigi() {
-        return view('dashboard-user.foto');
+        $foto = Foto::where('users_id', '=', Auth::user()->id)->first();
+        return view('dashboard-user.foto', ['foto' => $foto]);
     }
     public function submitFotoGigi(Request $request) {
         $this->validate($request, [
