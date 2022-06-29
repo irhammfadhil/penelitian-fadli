@@ -33,7 +33,6 @@ Route::get('/logout', [UserController::class,'doLogout']);
 Route::post('/getDesa', [AjaxController::class,'getKelurahan']);
 
 #dashboard
-Route::get('/dashboard/admin', [DashboardAdminController::class,'index']);
 Route::get('/dashboard/user', [DashboardUserController::class,'index']);
 Route::get('/biodata', [DashboardUserController::class,'getBiodata']);
 Route::post('/biodata', [DashboardUserController::class,'submitBiodata']);
@@ -41,3 +40,7 @@ Route::get('/informed-consent', [DashboardUserController::class,'getConsent']);
 Route::post('/tandatangan', [DashboardUserController::class,'tandatanganInformedConsent']);
 Route::get('/foto-gigi', [DashboardUserController::class,'getFotoGigi']);
 Route::post('/foto-gigi', [DashboardUserController::class,'submitFotoGigi']);
+
+#admin
+Route::get('/dashboard/admin', [DashboardAdminController::class,'index']);
+Route::get('/daftar-anak', [DashboardAdminController::class,'getAllAnak']);

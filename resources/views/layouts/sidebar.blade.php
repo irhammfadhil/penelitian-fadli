@@ -8,6 +8,7 @@
 					<li class="sidebar-header">
 						Halaman
 					</li>
+			@if(Auth::user()->is_admin == 0)
 
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="/dashboard/user">
@@ -20,6 +21,18 @@
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Biodata dan Foto Gigi</span>
             </a>
 					</li>
+			@else
+			<li class="sidebar-item active">
+						<a class="sidebar-link" href="/dashboard/admin">
+              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+            </a>
+			</li>
+			<li class="sidebar-item">
+						<a class="sidebar-link" href="/daftar-anak">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Daftar Anak</span>
+            </a>
+			</li>
+			@endif
 {{--
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="pages-sign-in.html">
