@@ -82,14 +82,22 @@ class DashboardUserController extends Controller
     public function getConsent() {
         $biodata = Biodata::where('users_id', '=', Auth::user()->id)->first();
         $ortu = BiodataOrtu::where('users_id', '=', Auth::user()->id)->first();
-        $date1 = new DateTime($biodata->birth_date);
-        $date2 = new DateTime("now");
-        $age = $date1->diff($date2);
-        return view('dashboard-user.consent', [
-            'biodata' => $biodata,
-            'ortu' => $ortu,
-            'age' => $age->y,
-        ]);
+        if($biodata && $ortu) {
+            $date1 = new DateTime($biodata->birth_date);
+            $date2 = new DateTime("now");
+            $age = $date1->diff($date2);
+            return view('dashboard-user.consent', [
+                'biodata' => $biodata,
+                'ortu' => $ortu,
+                'age' => $age->y,
+            ]);
+        }
+        else {
+            return view('dashboard-user.consent', [
+                'biodata' => $biodata,
+                'ortu' => $ortu,
+            ]);
+        }
     }
     public function tandatanganInformedConsent(Request $request) {
         $id_user = Auth::user()->id;

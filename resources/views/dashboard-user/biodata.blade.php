@@ -70,6 +70,7 @@
 							<br>
 							<form action="/biodata" method="post">
 								@csrf
+								@if($biodata)
 								<div class="row">
 									<div class="col-lg-6">
 										<div class="form-group">
@@ -128,9 +129,70 @@
 									<option value="2">Two</option>
 									<option value="3">Three</option>
 								</select>
+								@else
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Nama</label>
+											<input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" value="{{Auth::user()->name}}" placeholder="Nama anak" disabled>
+										</div>
+									</div>
+									@if(!$biodata)
+									<div class="col-lg-6">
+										<label for="exampleInputEmail1">Jenis Kelamin</label>
+										<select class="form-select" name="gender" id="gender" aria-label="Default select example">
+											<option selected>Pilih...</option>
+											<option value="Laki-laki">Laki-laki</option>
+											<option value="Perempuan">Perempuan</option>
+										</select>
+									</div>
+									@else
+									<div class="col-lg-6">
+										<label for="exampleInputEmail1">Jenis Kelamin</label>
+										<select class="form-select" name="gender" id="gender" aria-label="Default select example">
+											@foreach($gender as $g)
+											@if($g == $biodata->gender)
+											<option value="{{$g}}"selected>{{$g}}</option>
+											@else
+											<option value="{{$g}}">{{$g}}</option>
+											@endif
+											@endforeach
+										</select>
+									</div>
+									@endif
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Tempat Lahir</label>
+											<input type="text" class="form-control" id="birthplace" name="birthplace" aria-describedby="emailHelp" placeholder="Tempat lahir">
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Tanggal Lahir</label>
+											<input type="date" class="form-control" id="birthdate" name="birthdate" aria-describedby="emailHelp" placeholder="Tanggal lahir">
+										</div>
+									</div>
+								</div>
+								{{--<div class="form-group">
+									<label for="exampleInputEmail1">Nama</label>
+									<input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Nama anak">
+								</div>--}}
+								<br>
+								<label for="exampleInputEmail1">Sekolah</label>
+								<select class="form-select" name="sekolah" id="sekolah" aria-label="Default select example">
+									<option selected>Pilih...</option>
+									<option value="1">One</option>
+									<option value="2">Two</option>
+									<option value="3">Three</option>
+								</select>
+								@endif
 								<hr>
 								<h3 class="card-title mb-0">Biodata Orang Tua</h3>
 								<br>
+								@if($ortu)
 								<div class="row">
 									<div class="col-lg-6">
 										<div class="form-group">
@@ -213,6 +275,90 @@
 									<label for="exampleInputEmail1">No. HP</label>
 									<input type="text" class="form-control" id="phone" name="phone" value="{{$ortu->phone}}" aria-describedby="emailHelp" placeholder="Nomor HP">
 								</div>
+								@else
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Nama Orang Tua</label>
+											<input type="text" class="form-control" id="name_ortu" name="name_ortu" aria-describedby="emailHelp" placeholder="Nama orang tua">
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Alamat</label>
+											<input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp" placeholder="Alamat">
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Provinsi</label>
+											<input type="text" class="form-control" id="provinsi" name="provinsi" aria-describedby="emailHelp" placeholder="Provinsi" value="Jawa Timur" disabled>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Kabupaten/Kota</label>
+											<input type="text" class="form-control" id="kab" name="kab" aria-describedby="emailHelp" placeholder="Kabupaten/Kota" value="Kabupaten Jember" disabled>
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-lg-6">
+										<label for="exampleInputEmail1">Kecamatan</label>
+										@if(!$ortu)
+										<select class="form-select" name="kecamatan" id="kecamatan" aria-label="Default select example">
+											<option value="" selected>Pilih...</option>
+											@foreach($kecamatan as $k)
+											<option value="{{$k->id}}">{{$k->name}}</option>
+											@endforeach
+										</select>
+										@else
+										<select class="form-select" name="kecamatan" id="kecamatan" aria-label="Default select example">
+											<option value="" selected>{{$ortu->kecamatan}}</option>
+											@foreach($kecamatan as $k)
+											<option value="{{$k->id}}">{{$k->name}}</option>
+											@endforeach
+										</select>
+										@endif
+									</div>
+									<div class="col-lg-6">
+										<label for="exampleInputEmail1">Desa/Kelurahan</label>
+										@if(!$ortu)
+										<select class="form-select" name="desa" id="desa" aria-label="Default select example">
+											<option value="" selected>Pilih...</option>
+										</select>
+										@else
+										<select class="form-select" name="desa" id="desa" aria-label="Default select example">
+											<option value="" selected>{{$ortu->desa}}</option>
+										</select>
+										@endif
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">RT</label>
+											<input type="text" class="form-control" id="rt" name="rt" aria-describedby="emailHelp" placeholder="RT">
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">RW</label>
+											<input type="text" class="form-control" id="rw" name="rw" aria-describedby="emailHelp" placeholder="RW">
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="form-group">
+									<label for="exampleInputEmail1">No. HP</label>
+									<input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp" placeholder="Nomor HP">
+								</div>
+								@endif
 								<br>
 								<button type="submit" class="btn btn-primary">Lanjut</button>
 							</form>

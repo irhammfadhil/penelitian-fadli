@@ -110,6 +110,7 @@
 					<br>
 					<div class="card">
 						<div class="card-body">
+                            @if($biodata)
 							<h3 class="card-title mb-0">Informed Consent</h3>
 							<br>
 							<h3 class="text-center">LEMBAR PERSETUJUAN SUBJEK PENELITIAN</h3>
@@ -268,6 +269,11 @@
                                     </div>
                                 </div>
                             </form>
+                            @else
+                            <h3 class="card-title mb-0">Bagian ini belum dapat diakses</h3>
+                            <br>
+							<h3 class="text-center">Bagian ini belum dapat diakses. Silakan isi biodata terlebih dahulu.</h3>
+                            @endif
 						</div>
 					</div>
 				</div>

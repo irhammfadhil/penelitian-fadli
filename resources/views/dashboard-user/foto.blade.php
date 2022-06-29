@@ -110,6 +110,7 @@
 					<br>
 					<div class="card">
 						<div class="card-body">
+                            @if(Auth::user()->signature != NULL)
                             @if($message = Session::get('success'))
                                 <div class="alert alert-success" role="alert">
                                     <strong>{{$message}}</strong>
@@ -275,6 +276,11 @@
                                 <br>
                                 <input id="submit" type="submit" class="btn btn-primary btn-user btn-block" value="Submit">
                             </form>
+                            @else
+                            <h3 class="card-title mb-0">Bagian ini belum dapat diakses</h3>
+                            <br>
+							<h3 class="text-center">Bagian ini belum dapat diakses. Silakan tandatangani informed consent terlebih dahulu.</h3>
+                            @endif
 						</div>
 					</div>
 				</div>
