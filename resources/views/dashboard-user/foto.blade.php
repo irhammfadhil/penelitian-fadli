@@ -122,14 +122,14 @@
                             @endif
                             @if($foto)
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Senyum Penuh</label><br>
                                             <img src="{{asset($foto->foto_senyum)}}" class="img-fluid">
                                             <i>Tanggal Pengambilan Foto: {{$foto->date_taken_senyum}}</i>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Samping Kiri</label><br>
                                             <img src="{{asset($foto->foto_kiri)}}" class="img-fluid">
@@ -139,14 +139,14 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Depan</label><br>
                                             <img src="{{asset($foto->foto_depan)}}" class="img-fluid">
                                             <i>Tanggal Pengambilan Foto: {{$foto->date_taken_depan}}</i>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Atas</label><br>
                                             <img src="{{asset($foto->foto_atas)}}" class="img-fluid">
@@ -156,14 +156,14 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Samping Kanan</label><br>
                                             <img src="{{asset($foto->foto_kanan)}}" class="img-fluid">
                                             <i>Tanggal Pengambilan Foto: {{$foto->date_taken_kanan}}</i>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Bawah</label><br>
                                             <img src="{{asset($foto->foto_bawah)}}" class="img-fluid">
@@ -179,14 +179,14 @@
 							<form action="/foto-gigi" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Senyum Penuh</label><br>
                                             <small id="emailHelp" class="form-text text-muted" style="color: red;">Ukuran maksimum file: 2 MB dengan jenis file: JPG/JPEG.</small>
                                             <input type="file" class="form-control-file" id="gigi_senyum" name="gigi_senyum" required>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Samping Kiri</label><br>
                                             <small id="emailHelp" class="form-text text-muted" style="color: red;">Ukuran maksimum file: 2 MB dengan jenis file: JPG/JPEG.</small>
@@ -196,13 +196,13 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Tanggal Pengambilan Gambar Foto Gigi Tampak Senyum Penuh</label><br>
                                             <input type="date" class="form-control" id="date_gigi_senyum" name="date_gigi_senyum" required>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Tanggal Pengambilan Gambar Foto Gigi Tampak Samping Kiri</label><br>
                                             <input type="date" class="form-control" id="date_gigi_kiri" name="date_gigi_kiri" required>
@@ -211,14 +211,14 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Depan</label><br>
                                             <small id="emailHelp" class="form-text text-muted" style="color: red;">Ukuran maksimum file: 2 MB dengan jenis file: JPG/JPEG.</small>
                                             <input type="file" class="form-control-file" id="gigi_depan" name="gigi_depan" required>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Atas</label><br>
                                             <small id="emailHelp" class="form-text text-muted" style="color: red;">Ukuran maksimum file: 2 MB dengan jenis file: JPG/JPEG.</small>
@@ -228,13 +228,13 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Tanggal Pengambilan Foto Gigi Tampak Depan</label><br>
                                             <input type="date" class="form-control" id="date_gigi_depan" name="date_gigi_depan" required>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Tanggal Pengambilan Foto Gigi Tampak Atas</label><br>
                                             <input type="date" class="form-control" id="date_gigi_atas" name="date_gigi_atas" required>
@@ -243,14 +243,14 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Samping Kanan</label><br>
                                             <small id="emailHelp" class="form-text text-muted" style="color: red;">Ukuran maksimum file: 2 MB dengan jenis file: JPG/JPEG.</small>
                                             <input type="file" class="form-control-file" id="gigi_kanan" name="gigi_kanan" required>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Bawah</label><br>
                                             <small id="emailHelp" class="form-text text-muted" style="color: red;">Ukuran maksimum file: 2 MB dengan jenis file: JPG/JPEG.</small>
@@ -260,13 +260,13 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Tanggal Pengambilan Foto Gigi Tampak Samping Kanan</label><br>
                                             <input type="date" class="form-control" id="date_gigi_kanan" name="date_gigi_kanan" required>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Tanggal Pengambilan Foto Gigi Tampak Bawah</label><br>
                                             <input type="date" class="form-control" id="date_gigi_bawah" name="date_gigi_bawah" required>
@@ -289,12 +289,12 @@
 			<footer class="footer">
 				<div class="container-fluid">
 					<div class="row text-muted">
-						<div class="col-6 text-start">
+						<div class="col-lg-6 text-start">
 							<p class="mb-0">
 								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Serat</strong></a> &copy;
 							</p>
 						</div>
-						<div class="col-6 text-end">
+						<div class="col-lg-6 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item">
 									<a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
@@ -482,6 +482,178 @@
                         },
                     });
                 });
+            });
+        });
+    </script>
+    <script>
+        $( document ).ready(function() {
+            $('#gigi_senyum').on('change', function(){
+                var maxFileSize = 1024*2 // 20kb
+                var fileUpload = $('#gigi_senyum');
+                if (fileUpload.val() == '') {
+                    return false;
+                }
+                else {
+                    //Check if the file size is less than maximum file size
+                    if ((fileUpload[0].files[0].size / 1024) < maxFileSize) {
+                        var fileInput = document.getElementById('gigi_senyum');
+                        var filePath = fileInput.value;
+                        var allowedExtensions = /(\.jpg|\.jpeg)$/i;
+                        if(!allowedExtensions.exec(filePath)){
+                            alert('Ekstensi file yang diizinkan: JPG.');
+                            fileUpload.val('');
+                            return false;
+                        }
+                        else{
+                            return true;
+                        }
+                    } 
+                    else {
+                        alert('Maksimum ukuran file 2 MB')
+                        fileUpload.val('');
+                        return false;
+                    }
+                }
+            });
+            $('#gigi_kiri').on('change', function(){
+                var maxFileSize = 1024*2 // 20kb
+                var fileUpload = $('#gigi_kiri');
+                if (fileUpload.val() == '') {
+                    return false;
+                }
+                else {
+                    //Check if the file size is less than maximum file size
+                    if ((fileUpload[0].files[0].size / 1024) < maxFileSize) {
+                        var fileInput = document.getElementById('gigi_kiri');
+                        var filePath = fileInput.value;
+                        var allowedExtensions = /(\.jpg|\.jpeg)$/i;
+                        if(!allowedExtensions.exec(filePath)){
+                            alert('Ekstensi file yang diizinkan: JPG.');
+                            fileUpload.val('');
+                            return false;
+                        }
+                        else{
+                            return true;
+                        }
+                    } 
+                    else {
+                        alert('Maksimum ukuran file 2 MB')
+                        fileUpload.val('');
+                        return false;
+                    }
+                }
+            });
+            $('#gigi_depan').on('change', function(){
+                var maxFileSize = 1024*2 // 20kb
+                var fileUpload = $('#gigi_depan');
+                if (fileUpload.val() == '') {
+                    return false;
+                }
+                else {
+                    //Check if the file size is less than maximum file size
+                    if ((fileUpload[0].files[0].size / 1024) < maxFileSize) {
+                        var fileInput = document.getElementById('gigi_depan');
+                        var filePath = fileInput.value;
+                        var allowedExtensions = /(\.jpg|\.jpeg)$/i;
+                        if(!allowedExtensions.exec(filePath)){
+                            alert('Ekstensi file yang diizinkan: JPG.');
+                            fileUpload.val('');
+                            return false;
+                        }
+                        else{
+                            return true;
+                        }
+                    } 
+                    else {
+                        alert('Maksimum ukuran file 2 MB')
+                        fileUpload.val('');
+                        return false;
+                    }
+                }
+            });
+            $('#gigi_atas').on('change', function(){
+                var maxFileSize = 1024*2 // 20kb
+                var fileUpload = $('#gigi_atas');
+                if (fileUpload.val() == '') {
+                    return false;
+                }
+                else {
+                    //Check if the file size is less than maximum file size
+                    if ((fileUpload[0].files[0].size / 1024) < maxFileSize) {
+                        var fileInput = document.getElementById('gigi_atas');
+                        var filePath = fileInput.value;
+                        var allowedExtensions = /(\.jpg|\.jpeg)$/i;
+                        if(!allowedExtensions.exec(filePath)){
+                            alert('Ekstensi file yang diizinkan: JPG.');
+                            fileUpload.val('');
+                            return false;
+                        }
+                        else{
+                            return true;
+                        }
+                    } 
+                    else {
+                        alert('Maksimum ukuran file 2 MB')
+                        fileUpload.val('');
+                        return false;
+                    }
+                }
+            });
+            $('#gigi_kanan').on('change', function(){
+                var maxFileSize = 1024*2 // 20kb
+                var fileUpload = $('#gigi_kanan');
+                if (fileUpload.val() == '') {
+                    return false;
+                }
+                else {
+                    //Check if the file size is less than maximum file size
+                    if ((fileUpload[0].files[0].size / 1024) < maxFileSize) {
+                        var fileInput = document.getElementById('gigi_kanan');
+                        var filePath = fileInput.value;
+                        var allowedExtensions = /(\.jpg|\.jpeg)$/i;
+                        if(!allowedExtensions.exec(filePath)){
+                            alert('Ekstensi file yang diizinkan: JPG.');
+                            fileUpload.val('');
+                            return false;
+                        }
+                        else{
+                            return true;
+                        }
+                    } 
+                    else {
+                        alert('Maksimum ukuran file 2 MB')
+                        fileUpload.val('');
+                        return false;
+                    }
+                }
+            });
+            $('#gigi_bawah').on('change', function(){
+                var maxFileSize = 1024*2 // 20kb
+                var fileUpload = $('#gigi_bawah');
+                if (fileUpload.val() == '') {
+                    return false;
+                }
+                else {
+                    //Check if the file size is less than maximum file size
+                    if ((fileUpload[0].files[0].size / 1024) < maxFileSize) {
+                        var fileInput = document.getElementById('gigi_bawah');
+                        var filePath = fileInput.value;
+                        var allowedExtensions = /(\.jpg|\.jpeg)$/i;
+                        if(!allowedExtensions.exec(filePath)){
+                            alert('Ekstensi file yang diizinkan: JPG.');
+                            fileUpload.val('');
+                            return false;
+                        }
+                        else{
+                            return true;
+                        }
+                    } 
+                    else {
+                        alert('Maksimum ukuran file 2 MB')
+                        fileUpload.val('');
+                        return false;
+                    }
+                }
             });
         });
     </script>

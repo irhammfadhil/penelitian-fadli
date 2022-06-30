@@ -23,7 +23,7 @@ class DashboardUserController extends Controller
         $ortu = BiodataOrtu::where('users_id', '=', Auth::user()->id)->first();
         $kabupaten = Regency::where('name', 'like', '%JEMBER%')->first();
         $id_kab = $kabupaten->id;
-        $kecamatan = District::where('regency_id', '=', $id_kab)->get();
+        $kecamatan = District::where('regency_id', '=', $id_kab)->orderBy('name')->get();
         $desa = Village::all();
         $gender = ['Laki-laki', 'Perempuan'];
         return view('dashboard-user.biodata', [

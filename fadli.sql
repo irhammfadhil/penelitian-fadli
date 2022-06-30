@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2022 at 11:47 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Jun 29, 2022 at 09:27 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -7940,7 +7939,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `remember_token`, `signature`, `created_at`, `updated_at`) VALUES
 (1, 'Irham Fadhil', 'jokotole12345', 'irham.mfadhil@gmail.com', NULL, '$2y$10$O6aMveacsUgJzpev1aJgjuwnB0/C1CrBR8ZmsGTIdBli7PTTL0zXu', 0, NULL, NULL, '2022-06-11 20:06:44', '2022-06-11 20:06:44'),
-(2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, NULL, 'upload/62b9286e5efa6.png', '2022-06-18 19:01:55', '2022-06-18 19:01:55');
+(2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, NULL, 'upload/62b9286e5efa6.png', '2022-06-18 19:01:55', '2022-06-18 19:01:55'),
+(3, 'aidil', 'Aidilabdillah4', 'aidil@gmail.com', NULL, '$2y$10$xeLURmhfJj47RhgLRZ3OoOJ4A/f679wyJ.m20foieGKJhpzpZfnq.', 0, NULL, 'upload/62bbd81b03550.png', '2022-06-28 21:33:40', '2022-06-28 21:33:40'),
+(4, 'Administrator', 'Administrator', 'admin@email.com', NULL, '$2y$10$VmIzQn1KDr1bmpzb5Yrb0uaZsu.i.86Xuz893hGcGiwNeqqSLAGh2', 1, NULL, NULL, '2022-06-28 23:56:45', '2022-06-28 23:56:45');
 
 -- --------------------------------------------------------
 
@@ -7964,7 +7965,8 @@ CREATE TABLE `users_biodata` (
 --
 
 INSERT INTO `users_biodata` (`id`, `users_id`, `gender`, `birth_place`, `birth_date`, `id_sekolah`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Laki-laki', 'Surabaya', '2003-01-01', 1, '2022-06-24 19:19:13', '2022-06-24 20:33:40');
+(1, 2, 'Laki-laki', 'Surabaya', '2003-01-01', 1, '2022-06-24 19:19:13', '2022-06-24 20:33:40'),
+(2, 3, 'Laki-laki', 'Surabaya', '2022-06-02', 2, '2022-06-28 21:41:51', '2022-06-28 21:41:51');
 
 -- --------------------------------------------------------
 
@@ -8023,7 +8025,8 @@ CREATE TABLE `users_ortu` (
 --
 
 INSERT INTO `users_ortu` (`id`, `users_id`, `name_ortu`, `address`, `kecamatan`, `desa`, `rt`, `rw`, `phone`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Irham M Fadhil', 'Villa Galaxi D 2/7', 'RAMBIPUJI', 'RAMBIPUJI', 32, 23, '081283902244', '2022-06-24 19:19:58', '2022-06-24 19:34:53');
+(1, 2, 'Irham M Fadhil', 'Villa Galaxi D 2/7', 'RAMBIPUJI', 'RAMBIPUJI', 32, 23, '081283902244', '2022-06-24 19:19:58', '2022-06-24 19:34:53'),
+(2, 3, 'Irham Fadhil', 'Villa Galaxi D 2/7', 'UMBULSARI', 'UMBULREJO', 32, 12, '081283902244', '2022-06-28 21:41:51', '2022-06-28 21:41:51');
 
 -- --------------------------------------------------------
 
@@ -88752,13 +88755,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users_biodata`
 --
 ALTER TABLE `users_biodata`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users_foto`
@@ -88770,7 +88773,7 @@ ALTER TABLE `users_foto`
 -- AUTO_INCREMENT for table `users_ortu`
 --
 ALTER TABLE `users_ortu`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

@@ -27,20 +27,21 @@ Route::get('/login', [UserController::class,'getLogin']);
 Route::post('/login', [UserController::class,'doLogin']);
 Route::get('/register', [UserController::class,'getRegister']);
 Route::post('/register', [UserController::class,'submitRegister']);
-Route::get('/logout', [UserController::class,'doLogout']);
+Route::get('/logout', [UserController::class,'doLogout'])->middleware('auth');
 
 #ajax
-Route::post('/getDesa', [AjaxController::class,'getKelurahan']);
+Route::post('/getDesa', [AjaxController::class,'getKelurahan'])->middleware('auth');
 
 #dashboard
-Route::get('/dashboard/user', [DashboardUserController::class,'index']);
-Route::get('/biodata', [DashboardUserController::class,'getBiodata']);
-Route::post('/biodata', [DashboardUserController::class,'submitBiodata']);
-Route::get('/informed-consent', [DashboardUserController::class,'getConsent']);
-Route::post('/tandatangan', [DashboardUserController::class,'tandatanganInformedConsent']);
-Route::get('/foto-gigi', [DashboardUserController::class,'getFotoGigi']);
-Route::post('/foto-gigi', [DashboardUserController::class,'submitFotoGigi']);
+Route::get('/dashboard/user', [DashboardUserController::class,'index'])->middleware('auth');
+Route::get('/biodata', [DashboardUserController::class,'getBiodata'])->middleware('auth');
+Route::post('/biodata', [DashboardUserController::class,'submitBiodata'])->middleware('auth');
+Route::get('/informed-consent', [DashboardUserController::class,'getConsent'])->middleware('auth');
+Route::post('/tandatangan', [DashboardUserController::class,'tandatanganInformedConsent'])->middleware('auth');
+Route::get('/foto-gigi', [DashboardUserController::class,'getFotoGigi'])->middleware('auth');
+Route::post('/foto-gigi', [DashboardUserController::class,'submitFotoGigi'])->middleware('auth');
 
 #admin
-Route::get('/dashboard/admin', [DashboardAdminController::class,'index']);
-Route::get('/daftar-anak', [DashboardAdminController::class,'getAllAnak']);
+Route::get('/dashboard/admin', [DashboardAdminController::class,'index'])->middleware('auth');
+Route::get('/daftar-anak', [DashboardAdminController::class,'getAllAnak'])->middleware('auth');
+Route::get('/daftar-anak/detail', [DashboardAdminController::class,'getDetailAnak'])->middleware('auth');
