@@ -85,55 +85,64 @@
 							@endif
 							@if($foto)
 							<h4>Foto Gigi</h4>
-							<div class="row">
-								<div class="col-lg-6">Foto Gigi Tampak Senyum Penuh</div>
-								<div class="col-lg-6">: <img src="{{asset($foto->foto_senyum)}}" class="img-fluid"></div>
+							<ul class="nav nav-tabs" id="myTab" role="tablist">
+							<li class="nav-item" role="presentation">
+								<button class="nav-link active" id="senyum-penuh-tab" data-bs-toggle="tab" data-bs-target="#senyum-penuh" type="button" role="tab" aria-controls="home" aria-selected="true">Senyum Penuh</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="tampak-depan-tab" data-bs-toggle="tab" data-bs-target="#tampak-depan" type="button" role="tab" aria-controls="profile" aria-selected="false">Tampak Depan</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="tampak-kiri-tab" data-bs-toggle="tab" data-bs-target="#tampak-kiri" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Kiri</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="tampak-atas-tab" data-bs-toggle="tab" data-bs-target="#tampak-atas" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Atas</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="tampak-kanan-tab" data-bs-toggle="tab" data-bs-target="#tampak-kanan" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Kanan</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" id="tampak-bawah-tab" data-bs-toggle="tab" data-bs-target="#tampak-kanan" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Bawah</button>
+							</li>
+							</ul>
+							<div class="tab-content" id="myTabContent">
+								<div class="tab-pane fade show active" id="senyum-penuh" role="tabpanel" aria-labelledby="senyum-penuh-tab">
+									<br>
+									<img src="{{asset($foto->foto_senyum)}}" class="img-fluid">
+									<br>
+									<i>Tanggal Pengambilan: {{$foto->date_taken_senyum}}</i>
+								</div>
+								<div class="tab-pane fade" id="tampak-depan" role="tabpanel" aria-labelledby="tampak-depan-tab">
+									<br>
+									<img src="{{asset($foto->foto_depan)}}" class="img-fluid">
+									<br>
+									<i>Tanggal Pengambilan: {{$foto->date_taken_depan}}</i>
+								</div>
+								<div class="tab-pane fade" id="tampak-kiri" role="tabpanel" aria-labelledby="tampak-kiri-tab">
+									<br>
+									<img src="{{asset($foto->foto_kiri)}}" class="img-fluid">
+									<br>
+									<i>Tanggal Pengambilan: {{$foto->date_taken_kiri}}</i>
+								</div>
+								<div class="tab-pane fade" id="tampak-atas" role="tabpanel" aria-labelledby="tampak-atas-tab">
+									<br>
+									<img src="{{asset($foto->foto_atas)}}" class="img-fluid">
+									<br>
+									<i>Tanggal Pengambilan: {{$foto->date_taken_atas}}</i>
+								</div>
+								<div class="tab-pane fade" id="tampak-kanan" role="tabpanel" aria-labelledby="tampak-kanan-tab">
+									<br>
+									<img src="{{asset($foto->foto_kanan)}}" class="img-fluid">
+									<br>
+									<i>Tanggal Pengambilan: {{$foto->date_taken_kanan}}</i>
+								</div>
+								<div class="tab-pane fade" id="tampak-bawah" role="tabpanel" aria-labelledby="tampak-bawah-tab">
+									<br>
+									<img src="{{asset($foto->foto_bawah)}}" class="img-fluid">
+									<br>
+									<i>Tanggal Pengambilan: {{$foto->date_taken_bawah}}</i>
+								</div>
 							</div>
-							<div class="row">
-								<div class="col-lg-6">Tanggal Pengambilan Foto Gigi Tampak Senyum Penuh</div>
-								<div class="col-lg-6">: {{$foto->date_taken_senyum}}</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6">Foto Gigi Tampak Depan</div>
-								<div class="col-lg-6">: <img src="{{asset($foto->foto_depan)}}" class="img-fluid"></div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6">Tanggal Pengambilan Foto Gigi Tampak Depan</div>
-								<div class="col-lg-6">: {{$foto->date_taken_depan}}</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6">Foto Gigi Tampak Kiri</div>
-								<div class="col-lg-6">: <img src="{{asset($foto->foto_kiri)}}" class="img-fluid"></div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6">Tanggal Pengambilan Foto Gigi Tampak Kiri</div>
-								<div class="col-lg-6">: {{$foto->date_taken_kiri}}</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6">Foto Gigi Tampak Atas</div>
-								<div class="col-lg-6">: <img src="{{asset($foto->foto_atas)}}" class="img-fluid"></div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6">Tanggal Pengambilan Foto Gigi Tampak Atas</div>
-								<div class="col-lg-6">: {{$foto->date_taken_atas}}</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6">Foto Gigi Tampak Kanan</div>
-								<div class="col-lg-6">: <img src="{{asset($foto->foto_kanan)}}" class="img-fluid"></div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6">Tanggal Pengambilan Foto Gigi Tampak Kanan</div>
-								<div class="col-lg-6">: {{$foto->date_taken_kanan}}</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6">Foto Gigi Tampak Bawah</div>
-								<div class="col-lg-6">: <img src="{{asset($foto->foto_bawah)}}" class="img-fluid"></div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6">Tanggal Pengambilan Foto Gigi Tampak Bawah</div>
-								<div class="col-lg-6">: {{$foto->date_taken_bawah}}</div>
-							</div>
-							<hr>
 							@endif
 						</div>
 					</div>
