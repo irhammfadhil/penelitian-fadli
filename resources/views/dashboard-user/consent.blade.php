@@ -236,7 +236,7 @@
                                     @endif
 								</div>
 								<div class="col-6">
-									
+                                    <img src="{{asset('ttd.jpg')}}" class="img-fluid"> 
 								</div>
 							</div>
 							<div class="row">

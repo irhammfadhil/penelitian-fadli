@@ -144,6 +144,715 @@
 								</div>
 							</div>
 							@endif
+							<hr>
+							<h4>Odontogram</h4>
+							<div class="row">
+								<div class="col-4" style="text-align: right;">
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+								</div>
+								<div class="col-4">
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+								</div>
+								<div class="col-3"></div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-4" style="text-align: right;">
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+								</div>
+								<div class="col-4">
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+								</div>
+								<div class="col-3"></div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-4" style="text-align: right;">
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+								</div>
+								<div class="col-4">
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+								</div>
+								<div class="col-3"></div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-4" style="text-align: right;">
+								<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+								</div>
+								<div class="col-4">
+								<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+									<svg viewBox="-115 -115 230 230">
+										<defs>
+										<polygon id="poly" stroke="black"  points="-36.5,36.5 36.5,36.5 108, 108 -108,108 -36.5,36.5" transform="translate(0,3)"  />
+										</defs>
+
+										<use xlink:href="#poly" />
+										<use xlink:href="#poly" transform="rotate(90)" /> 
+										<use xlink:href="#poly" transform="rotate(180)" />
+										<use xlink:href="#poly" transform="rotate(270)" />
+										
+										<rect stroke="black" fill="none" x="-35" y="-35" width="70" height="70" />	
+										
+									</svg>
+								</div>
+								<div class="col-3"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -185,6 +894,11 @@
 			$('#listAnak').DataTable();
 		} );
 	</script>
+	<style>
+		svg{border:1px solid; width:50px}
+		use{fill:white;}
+		use:hover{fill:gold}
+	</style>
 </body>
 
 </html>
