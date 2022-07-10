@@ -32,7 +32,7 @@
             <div class="icon-box">
               <div class="icon"><i class="bi bi-binoculars"></i></div>
               <h4 class="title"><a href="">Mengunggah Foto Gigi</a></h4>
-              <p class="description">Megunggah foto gigi ke laman SERAT</p>
+              <p class="description">Megunggah foto gigi ke laman Simetri</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">

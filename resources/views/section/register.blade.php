@@ -3,7 +3,7 @@
 
           <div class="text-center">
             <h3>Registrasi</h3>
-            <p> Untuk bergabung dengan aplikasi SERAT, Silahkan klik tombol berikut.</p>
+            <p> Untuk bergabung dengan aplikasi Simetri, Silahkan klik tombol berikut.</p>
             <a class="btn btn-primary" href="/register">Daftar</a>
           </div>
 

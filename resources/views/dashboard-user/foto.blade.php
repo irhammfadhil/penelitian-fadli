@@ -15,7 +15,7 @@
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
-	<title>Serat</title>
+	<title>Simetri</title>
 
 	<link href="{{asset('static/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -291,7 +291,7 @@
 					<div class="row text-muted">
 						<div class="col-lg-6 text-start">
 							<p class="mb-0">
-								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Serat</strong></a> &copy;
+								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Simetri</strong></a> &copy;
 							</p>
 						</div>
 						<div class="col-lg-6 text-end">

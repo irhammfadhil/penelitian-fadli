@@ -4,7 +4,7 @@
 
       <div class="logo">
         <!-- Uncomment below if you prefer to use an image logo -->
-       <a href="/"><img src="{{asset('logo.png')}}" alt="" class="img-fluid"><h1 style="color: #f7eb3a;">SERAT</h1></a>
+       <a href="/"><h1 style="color: #f7eb3a;">SIMETRI</h1></a>
       </div>
 
       <nav id="navbar" class="navbar">

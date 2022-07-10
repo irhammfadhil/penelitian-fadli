@@ -65,7 +65,7 @@
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                         <label class="form-check-label" for="defaultCheck1">
-                            Dengan mendaftarkan diri ke platform Serat, Anda telah menyetujui <a href="#exampleModalLong" data-toggle="modal" data-target="#exampleModalLong">
+                            Dengan mendaftarkan diri ke platform Simetri, Anda telah menyetujui <a href="#exampleModalLong" data-toggle="modal" data-target="#exampleModalLong">
   Informed Consent.</a>
                         </label>
                     </div>
@@ -92,7 +92,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Informed Consent Layanan SERAT</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Informed Consent Layanan Simetri</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>

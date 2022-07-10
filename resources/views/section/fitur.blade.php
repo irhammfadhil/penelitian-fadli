@@ -4,9 +4,9 @@
         <div class="row">
           <div class="col-xl-4 col-lg-5" data-aos="fade-up">
             <div class="content">
-              <h3>Fitur Apa Saja di <b style="color:#008d3c">SERAT</b></h3>
+              <h3>Fitur Apa Saja di <b style="color:#008d3c">Simetri</b></h3>
               <p>
-                Aplikasi SERAT mempunyai 3 fitur yang dapat anda manfaatkan untuk mewujudkan gigi anak anda sehat. Wujudkan gigi sehat anak Anda bersama SERAT
+                Aplikasi Simetri mempunyai 3 fitur yang dapat anda manfaatkan untuk mewujudkan gigi anak anda sehat. Wujudkan gigi sehat anak Anda bersama Simetri
               </p>
               <div class="text-center">
                 <a href="#" class="more-btn">Pelajari <i class="bx bx-chevron-right"></i></a>
@@ -20,21 +20,21 @@
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="bx bx-receipt"></i>
                     <h4>PERIKSA GIGI</h4>
-                    <p>Anda dapat memeriksakan gigi anak anda bersama SERAT </p>
+                    <p>Anda dapat memeriksakan gigi anak anda bersama Simetri </p>
                   </div>
                 </div>
                 <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="bx bx-cube-alt"></i>
                     <h4>INFO GIGI</h4>
-                    <p>SERAT menyajikan info kesehatan gigi untuk mewujudkaan gigi sehat. Kehidupan yang sehat dimulai dari Gigi yang sehat</p>
+                    <p>Simetri menyajikan info kesehatan gigi untuk mewujudkaan gigi sehat. Kehidupan yang sehat dimulai dari Gigi yang sehat</p>
                   </div>
                 </div>
                 <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="bx bx-images"></i>
                     <h4>TANYA DOKTER GIGI</h4>
-                    <p>Ada pertanyaan seputar kesehataan gigi dan mulut? silahkan sampaikan pertanyaan anda ke SERAT, dokter gigi anda akan menjawab</p>
+                    <p>Ada pertanyaan seputar kesehataan gigi dan mulut? silahkan sampaikan pertanyaan anda ke Simetri, dokter gigi anda akan menjawab</p>
                   </div>
                 </div>
               </div>

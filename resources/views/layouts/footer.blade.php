@@ -3,7 +3,7 @@
 
       <div class="me-lg-auto text-center text-lg-start">
         <div class="copyright" style="color: white;">
-          &copy; Copyright <strong><span>SERAT</span></strong>. All Rights Reserved
+          &copy; Copyright <strong><span>Simetri</span></strong>. All Rights Reserved
         </div>
         <div class="credits" style="color: white;">
           <!-- All the links in the footer should remain intact. -->
