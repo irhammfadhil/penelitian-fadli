@@ -62,13 +62,6 @@
                         <input type="password" id="form3Example4" name="confirm_password" class="form-control form-control-lg"
                         placeholder="Masukkan kembali password Anda" required/>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
-                            Dengan mendaftarkan diri ke platform Simetri, Anda telah menyetujui <a href="#exampleModalLong" data-toggle="modal" data-target="#exampleModalLong">
-  Informed Consent.</a>
-                        </label>
-                    </div>
                     <br>
                     <button type="submit" class="btn btn-primary block"
                         style="padding-left: 2.5rem; padding-right: 2.5rem; text-align: center;">Daftar</button>
