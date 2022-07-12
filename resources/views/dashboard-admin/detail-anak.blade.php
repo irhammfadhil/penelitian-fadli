@@ -69,17 +69,17 @@
 							<br>
 							<h4>Informasi Pribadi (<a href="#" id="biodata-toggle">tampilkan</a><a href="#" id="biodata-toggle-hide">sembunyikan</a>)</h4>
 								<div class="row">
-									<div class="col-lg-6">Nama</div>
-									<div class="col-lg-6">: {{$user->name}}</div>
+									<div class="col-lg-4">Nama</div>
+									<div class="col-lg-8">: {{$user->name}}</div>
 								</div>
 								@if($biodata)
 								<div class="row">
-									<div class="col-lg-6">Jenis Kelamin</div>
-									<div class="col-lg-6">: {{$biodata->gender}}</div>
+									<div class="col-lg-4">Jenis Kelamin</div>
+									<div class="col-lg-8">: {{$biodata->gender}}</div>
 								</div>
 								<div class="row">
-									<div class="col-lg-6">Tempat dan Tanggal Lahir</div>
-									<div class="col-lg-6">: {{$biodata->birth_place}}, @php echo(tgl_indo($biodata->birth_date)); @endphp</div>
+									<div class="col-lg-4">Tempat dan Tanggal Lahir</div>
+									<div class="col-lg-8">: {{$biodata->birth_place}}, @php echo(tgl_indo($biodata->birth_date)); @endphp</div>
 								</div>
 							<div id="biodata">
 								<hr>
@@ -87,16 +87,16 @@
 								@if($ortu)
 								<h4>Data Orang Tua </h4>
 								<div class="row">
-									<div class="col-lg-6">Nama Orang Tua</div>
-									<div class="col-lg-6">: {{$ortu->name_ortu}}</div>
+									<div class="col-lg-4">Nama Orang Tua</div>
+									<div class="col-lg-8">: {{$ortu->name_ortu}}</div>
 								</div>
 								<div class="row">
-									<div class="col-lg-6">No. HP Orang Tua</div>
-									<div class="col-lg-6">: {{$ortu->phone}}</div>
+									<div class="col-lg-4">No. HP Orang Tua</div>
+									<div class="col-lg-8">: {{$ortu->phone}}</div>
 								</div>
 								<div class="row">
-									<div class="col-lg-6">Alamat</div>
-									<div class="col-lg-6">: {{$ortu->address}}, RT {{$ortu->rt}} RW {{$ortu->rw}} DESA {{$ortu->desa}} KECAMATAN {{$ortu->kecamatan}} KABUPATEN JEMBER JAWA TIMUR</div>
+									<div class="col-lg-4">Alamat</div>
+									<div class="col-lg-8">: {{$ortu->address}}, RT {{$ortu->rt}} RW {{$ortu->rw}} DESA {{$ortu->desa}} KECAMATAN {{$ortu->kecamatan}} KABUPATEN JEMBER JAWA TIMUR</div>
 								</div>
 							</div>
 							<hr>
@@ -129,37 +129,37 @@
 										<br>
 										<img src="{{asset($foto->foto_senyum)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: {{$foto->date_taken_senyum}}</i>
+										<i>Tanggal Pengambilan: @php echo(tgl_indo($foto->date_taken_senyum)); @endphp</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-depan" role="tabpanel" aria-labelledby="tampak-depan-tab">
 										<br>
 										<img src="{{asset($foto->foto_depan)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: {{$foto->date_taken_depan}}</i>
+										<i>Tanggal Pengambilan: @php echo(tgl_indo($foto->date_taken_depan)); @endphp</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-kiri" role="tabpanel" aria-labelledby="tampak-kiri-tab">
 										<br>
 										<img src="{{asset($foto->foto_kiri)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: {{$foto->date_taken_kiri}}</i>
+										<i>Tanggal Pengambilan: @php echo(tgl_indo($foto->date_taken_kiri)); @endphp</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-atas" role="tabpanel" aria-labelledby="tampak-atas-tab">
 										<br>
 										<img src="{{asset($foto->foto_atas)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: {{$foto->date_taken_atas}}</i>
+										<i>Tanggal Pengambilan: @php echo(tgl_indo($foto->date_taken_atas)); @endphp</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-kanan" role="tabpanel" aria-labelledby="tampak-kanan-tab">
 										<br>
 										<img src="{{asset($foto->foto_kanan)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: {{$foto->date_taken_kanan}}</i>
+										<i>Tanggal Pengambilan: @php echo(tgl_indo($foto->date_taken_kanan)); @endphp</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-bawah" role="tabpanel" aria-labelledby="tampak-bawah-tab">
 										<br>
 										<img src="{{asset($foto->foto_bawah)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: {{$foto->date_taken_bawah}}</i>
+										<i>Tanggal Pengambilan: @php echo(tgl_indo($foto->date_taken_bawah)); @endphp</i>
 									</div>
 								</div>
 							</div>
@@ -182,10 +182,10 @@
 							<table class="table table-bordered table-hover">
 								<thead class="thead-dark">
 									<tr>
-									<th scope="col" style="width: 25%;">ID Gigi</th>
-									<th scope="col" style="width: 25%;">Diagnosis</th>
-									<th scope="col" style="width: 25%;">Diagnosis</th>
-									<th scope="col" style="width: 25%;">ID Gigi</th>
+									<th scope="col" style="width: 25%;" class="text-center">ID Gigi</th>
+									<th scope="col" style="width: 25%;" class="text-center">Diagnosis</th>
+									<th scope="col" style="width: 25%;" class="text-center">Diagnosis</th>
+									<th scope="col" style="width: 25%;" class="text-center">ID Gigi</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -231,10 +231,10 @@
 							<table class="table table-bordered table-hover">
 								<thead class="thead-dark">
 									<tr>
-									<th scope="col" style="width: 25%;">ID Gigi</th>
-									<th scope="col" style="width: 25%;">Diagnosis</th>
-									<th scope="col" style="width: 25%;">Diagnosis</th>
-									<th scope="col" style="width: 25%;">ID Gigi</th>
+									<th scope="col" style="width: 25%;" class="text-center">ID Gigi</th>
+									<th scope="col" style="width: 25%;" class="text-center">Diagnosis</th>
+									<th scope="col" style="width: 25%;" class="text-center">Diagnosis</th>
+									<th scope="col" style="width: 25%;" class="text-center">ID Gigi</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -246,18 +246,26 @@
 									<td>{{$id_gigi_tetap_kiri_bawah[$i]}}</td>
 									@endif
 									<td>
-										{{--@foreach($odontogram as $o)
-										@if($o->id_gigi == $i)
+										{{$id_gigi_tetap_kiri_bawah[$i]}}: @foreach($odontogram as $o)
+										@if($o->id_gigi == $id_gigi_tetap_kiri_bawah[$i])
 										{{$o->region->region_code}} {{$o->diagnosis->diagnosis_code}}
+										@elseif($i<5)
+										@if($o->id_gigi == $id_gigi_sulung_kiri_bawah[$i])
+										; {{$id_gigi_sulung_kiri_bawah[$i]}}: {{$o->region->region_code}} {{$o->diagnosis->diagnosis_code}}
 										@endif
-										@endforeach--}}
+										@endif
+										@endforeach
 									</td>
 									<td>
-										{{--@foreach($odontogram as $o)
-										@if($o->id_gigi == $i)
+										{{$id_gigi_tetap_kanan_bawah[$i]}}: @foreach($odontogram as $o)
+										@if($o->id_gigi == $id_gigi_tetap_kanan_bawah[$i])
 										{{$o->region->region_code}} {{$o->diagnosis->diagnosis_code}}
+										@elseif($i<5)
+										@if($o->id_gigi == $id_gigi_sulung_kanan_bawah[$i])
+										; {{$id_gigi_sulung_kanan_bawah[$i]}}: {{$o->region->region_code}} {{$o->diagnosis->diagnosis_code}}
 										@endif
-										@endforeach--}}
+										@endif
+										@endforeach
 									</td>
 									@if($i<5)
 									<td>[{{$id_gigi_sulung_kanan_bawah[$i]}}] {{$id_gigi_tetap_kanan_bawah[$i]}}</td>
