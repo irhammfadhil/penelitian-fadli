@@ -23,7 +23,7 @@ Route::get('/cara-penggunaan', [HomeController::class,'getCaraPenggunaan']);
 Route::get('/artikel', [HomeController::class,'getArtikel']);
 
 #auth
-Route::get('/login', [UserController::class,'getLogin']);
+Route::get('/login', [UserController::class,'getLogin'])->name('login');
 Route::post('/login', [UserController::class,'doLogin']);
 Route::get('/register', [UserController::class,'getRegister']);
 Route::post('/register', [UserController::class,'submitRegister']);
@@ -45,3 +45,4 @@ Route::post('/foto-gigi', [DashboardUserController::class,'submitFotoGigi'])->mi
 Route::get('/dashboard/admin', [DashboardAdminController::class,'index'])->middleware('auth');
 Route::get('/daftar-anak', [DashboardAdminController::class,'getAllAnak'])->middleware('auth');
 Route::get('/daftar-anak/detail', [DashboardAdminController::class,'getDetailAnak'])->middleware('auth');
+Route::post('/odontogram/submit', [DashboardAdminController::class,'submitOdontogram'])->middleware('auth');

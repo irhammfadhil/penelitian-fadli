@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2022 at 09:27 AM
+-- Generation Time: Jul 12, 2022 at 04:39 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -20,6 +20,60 @@ SET time_zone = "+00:00";
 --
 -- Database: `fadli`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `diagnosis`
+--
+
+CREATE TABLE `diagnosis` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `diagnosis_code` varchar(5) DEFAULT NULL,
+  `diagnosis_arti` varchar(255) DEFAULT NULL,
+  `diagnosis_remark` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `diagnosis`
+--
+
+INSERT INTO `diagnosis` (`id`, `diagnosis_code`, `diagnosis_arti`, `diagnosis_remark`, `created_at`, `updated_at`) VALUES
+(1, 'sou', 'Gigi sehat, normal, tanpa kelainan', NULL, '2022-07-11 09:37:11', '2022-07-11 09:37:11'),
+(2, 'non', 'Gigi tidak ada/tidak diketahui', NULL, '2022-07-11 09:37:11', '2022-07-11 09:37:11'),
+(3, 'une', 'Un-erupted', 'Perlu dukungan Ro photo (usia dewasa)', '2022-07-11 09:37:59', '2022-07-11 09:37:59'),
+(4, 'pre', 'Partial erupted', NULL, '2022-07-11 09:37:59', '2022-07-11 09:37:59'),
+(5, 'imv', 'Impacted visible', 'Impaksi', '2022-07-11 09:39:03', '2022-07-11 09:39:03'),
+(6, 'ano', 'Anomali', 'Peg shape, rudimeter, supernumerary DLL', '2022-07-11 09:39:03', '2022-07-11 09:39:03'),
+(7, 'dia', 'Diastema', 'Ada jarak antar gigi', '2022-07-11 09:39:48', '2022-07-11 09:39:48'),
+(8, 'att', 'Atrisi', NULL, '2022-07-11 09:39:48', '2022-07-11 09:39:48'),
+(9, 'abr', 'Abrasi', NULL, '2022-07-11 09:40:42', '2022-07-11 09:40:42'),
+(10, 'car', 'Caries / Karies', 'Harus diikuti permukaan giginya (MODVL), misal: O Car, OM Car', '2022-07-11 09:40:42', '2022-07-11 09:40:42'),
+(11, 'cfr', 'Crown Fracture / Fraktur Mahkota', 'Bisa ditambahkan informasi frakturnya, misal: cfr 1/2 insisal', '2022-07-11 09:42:09', '2022-07-11 09:42:09'),
+(12, 'nvt', 'Gigi Non Vital', 'Biasanya diikuti kondisi karies/tumpatan/ misal: O car-nvt', '2022-07-11 09:42:09', '2022-07-11 09:42:09'),
+(13, 'rrx', 'Sisa Akar', NULL, '2022-07-11 09:42:38', '2022-07-11 09:42:38'),
+(14, 'mis', 'Gigi Hilang', NULL, '2022-07-11 09:42:38', '2022-07-11 09:42:38'),
+(15, 'amf', 'Amalgam filling', 'Harus diikuti permukaan gigi (MODVL) misal O amf', '2022-07-11 09:47:08', '2022-07-11 09:47:08'),
+(16, 'gif', 'GIC/Silika', 'Misal: O gif', '2022-07-11 09:47:08', '2022-07-11 09:47:08'),
+(17, 'cof', 'Composite filling', 'Misal: MO cof', '2022-07-11 09:47:53', '2022-07-11 09:47:53'),
+(18, 'fis', 'Fissure Sealant', 'Misal: O fis', '2022-07-11 09:47:53', '2022-07-11 09:47:53'),
+(19, 'inl', 'Inlay', NULL, '2022-07-11 09:48:12', '2022-07-11 09:48:12'),
+(20, 'onl', 'Onlay', NULL, '2022-07-11 09:48:12', '2022-07-11 09:48:12'),
+(21, 'fmc', 'Full Metal Crown', 'Mahkota Logam', '2022-07-11 09:48:48', '2022-07-11 09:48:48'),
+(22, 'poc', 'Porcelain Crown', 'Mahkota Porcelain', '2022-07-11 09:48:48', '2022-07-11 09:48:48'),
+(23, 'mpc', 'Metal Porcelain Crown', NULL, '2022-07-11 09:49:49', '2022-07-11 09:49:49'),
+(24, 'gmc', 'Gold Metal Crown', NULL, '2022-07-11 09:49:49', '2022-07-11 09:49:49'),
+(25, 'rct', 'Root Canal Treatment / Perawatan Saluran Akar', 'Biasanya diikuti kondisi tumpatan/restorasi, misal: O amf-rct; poc-rct', '2022-07-11 09:50:53', '2022-07-11 09:50:53'),
+(26, 'ipx', 'Implan', NULL, '2022-07-11 09:50:53', '2022-07-11 09:50:53'),
+(27, 'meb', 'Metal Bridge', 'Jembatan Logam', '2022-07-11 09:51:52', '2022-07-11 09:51:52'),
+(28, 'pob', 'Porcelain Bridge', 'Jembatan Porcelain', '2022-07-11 09:51:52', '2022-07-11 09:51:52'),
+(29, 'pon', 'Pontic', 'Bisa ditambah kondisi missing, misal: mis-pon ', '2022-07-11 09:52:44', '2022-07-11 09:52:44'),
+(30, 'abu', 'Gigi abutment', 'Gigi penyangga', '2022-07-11 09:52:44', '2022-07-11 09:52:44'),
+(31, 'prd', 'Partial Denture', 'Gigi Tiruan sebagian', '2022-07-11 09:53:38', '2022-07-11 09:53:38'),
+(32, 'fld', 'Full Denture', 'Gigi Tiruan Lengkap', '2022-07-11 09:53:38', '2022-07-11 09:53:38'),
+(33, 'acr', 'Acrilic', 'misal: prd-acr (Gigi tiruan sebagian akrilik)', '2022-07-11 09:54:15', '2022-07-11 09:54:15');
 
 -- --------------------------------------------------------
 
@@ -7303,6 +7357,34 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `odontogram`
+--
+
+CREATE TABLE `odontogram` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `users_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id_gigi` varchar(5) DEFAULT NULL,
+  `id_region` bigint(20) UNSIGNED DEFAULT NULL,
+  `diagnosis_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `note` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `odontogram`
+--
+
+INSERT INTO `odontogram` (`id`, `users_id`, `id_gigi`, `id_region`, `diagnosis_id`, `note`, `created_at`, `updated_at`) VALUES
+(1, 2, '11', 1, 1, 'normal', '2022-07-11 19:04:05', '2022-07-11 19:04:05'),
+(2, 2, '11', 2, 10, 'karies', '2022-07-11 19:11:00', '2022-07-11 19:11:00'),
+(3, 2, '12', 4, 3, 'unerupted', '2022-07-11 19:11:19', '2022-07-11 19:11:19'),
+(4, 2, '12', 1, 9, 'abrasi', '2022-07-11 19:11:33', '2022-07-11 19:11:33'),
+(5, 2, '13', 3, 3, 'unerupted', '2022-07-11 19:13:34', '2022-07-11 19:13:34');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `password_resets`
 --
 
@@ -7916,6 +7998,31 @@ INSERT INTO `regencies` (`id`, `province_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `region`
+--
+
+CREATE TABLE `region` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `region_code` char(1) DEFAULT NULL,
+  `region_name` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `region`
+--
+
+INSERT INTO `region` (`id`, `region_code`, `region_name`, `created_at`, `updated_at`) VALUES
+(1, 'M', 'Mesial', '2022-07-11 05:26:26', '2022-07-11 05:26:26'),
+(2, 'O', 'Occlusal', '2022-07-11 05:26:26', '2022-07-11 05:26:26'),
+(3, 'D', 'Distal', '2022-07-11 05:27:08', '2022-07-11 05:27:08'),
+(4, 'V', 'Vestibular/bukal/labial', '2022-07-11 05:27:08', '2022-07-11 05:27:08'),
+(5, 'L', 'Lingual/palatal', '2022-07-11 05:27:56', '2022-07-11 05:27:56');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -7941,7 +8048,8 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `pa
 (1, 'Irham Fadhil', 'jokotole12345', 'irham.mfadhil@gmail.com', NULL, '$2y$10$O6aMveacsUgJzpev1aJgjuwnB0/C1CrBR8ZmsGTIdBli7PTTL0zXu', 0, NULL, NULL, '2022-06-11 20:06:44', '2022-06-11 20:06:44'),
 (2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, NULL, 'upload/62b9286e5efa6.png', '2022-06-18 19:01:55', '2022-06-18 19:01:55'),
 (3, 'aidil', 'Aidilabdillah4', 'aidil@gmail.com', NULL, '$2y$10$xeLURmhfJj47RhgLRZ3OoOJ4A/f679wyJ.m20foieGKJhpzpZfnq.', 0, NULL, 'upload/62bbd81b03550.png', '2022-06-28 21:33:40', '2022-06-28 21:33:40'),
-(4, 'Administrator', 'Administrator', 'admin@email.com', NULL, '$2y$10$VmIzQn1KDr1bmpzb5Yrb0uaZsu.i.86Xuz893hGcGiwNeqqSLAGh2', 1, NULL, NULL, '2022-06-28 23:56:45', '2022-06-28 23:56:45');
+(4, 'Administrator', 'Administrator', 'admin@email.com', NULL, '$2y$10$VmIzQn1KDr1bmpzb5Yrb0uaZsu.i.86Xuz893hGcGiwNeqqSLAGh2', 1, NULL, NULL, '2022-06-28 23:56:45', '2022-06-28 23:56:45'),
+(5, 'aidil', 'aidilabdillah98', 'aidilabdillah98@gmail.com', NULL, '$2y$10$/4K/.DUKfz1YGuoRh5Q21eI2vMKKxW9pu2TWNTXVnVdmTZIMAxw0W', 0, NULL, NULL, '2022-07-11 16:58:30', '2022-07-11 16:58:30');
 
 -- --------------------------------------------------------
 
@@ -88647,6 +88755,12 @@ INSERT INTO `villages` (`id`, `district_id`, `name`) VALUES
 --
 
 --
+-- Indexes for table `diagnosis`
+--
+ALTER TABLE `diagnosis`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `districts`
 --
 ALTER TABLE `districts`
@@ -88665,6 +88779,15 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `odontogram`
+--
+ALTER TABLE `odontogram`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_id` (`users_id`),
+  ADD KEY `id_region` (`id_region`),
+  ADD KEY `diagnosis_id` (`diagnosis_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -88692,6 +88815,12 @@ ALTER TABLE `provinces`
 ALTER TABLE `regencies`
   ADD KEY `regencies_province_id_foreign` (`province_id`),
   ADD KEY `regencies_id_index` (`id`);
+
+--
+-- Indexes for table `region`
+--
+ALTER TABLE `region`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -88734,6 +88863,12 @@ ALTER TABLE `villages`
 --
 
 --
+-- AUTO_INCREMENT for table `diagnosis`
+--
+ALTER TABLE `diagnosis`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -88746,16 +88881,28 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `odontogram`
+--
+ALTER TABLE `odontogram`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `region`
+--
+ALTER TABLE `region`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users_biodata`
@@ -88784,6 +88931,14 @@ ALTER TABLE `users_ortu`
 --
 ALTER TABLE `districts`
   ADD CONSTRAINT `districts_regency_id_foreign` FOREIGN KEY (`regency_id`) REFERENCES `regencies` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `odontogram`
+--
+ALTER TABLE `odontogram`
+  ADD CONSTRAINT `odontogram_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `odontogram_ibfk_2` FOREIGN KEY (`id_region`) REFERENCES `region` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `odontogram_ibfk_3` FOREIGN KEY (`diagnosis_id`) REFERENCES `diagnosis` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `regencies`
