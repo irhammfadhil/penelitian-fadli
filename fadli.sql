@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2022 at 04:39 AM
+-- Generation Time: Jul 13, 2022 at 02:56 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -7380,7 +7380,11 @@ INSERT INTO `odontogram` (`id`, `users_id`, `id_gigi`, `id_region`, `diagnosis_i
 (2, 2, '11', 2, 10, 'karies', '2022-07-11 19:11:00', '2022-07-11 19:11:00'),
 (3, 2, '12', 4, 3, 'unerupted', '2022-07-11 19:11:19', '2022-07-11 19:11:19'),
 (4, 2, '12', 1, 9, 'abrasi', '2022-07-11 19:11:33', '2022-07-11 19:11:33'),
-(5, 2, '13', 3, 3, 'unerupted', '2022-07-11 19:13:34', '2022-07-11 19:13:34');
+(5, 2, '13', 3, 3, 'unerupted', '2022-07-11 19:13:34', '2022-07-11 19:13:34'),
+(6, 2, '51', 1, 4, 'partial erupted', '2022-07-11 22:06:37', '2022-07-11 22:06:37'),
+(7, 2, '21', 2, 7, 'diastema', '2022-07-11 22:35:52', '2022-07-11 22:35:52'),
+(8, 2, '21', 5, 6, 'anomali', '2022-07-11 22:36:22', '2022-07-11 22:36:22'),
+(9, 2, '48', 3, 1, 'xxx', '2022-07-11 23:17:49', '2022-07-11 23:17:49');
 
 -- --------------------------------------------------------
 
@@ -88884,7 +88888,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `odontogram`
 --
 ALTER TABLE `odontogram`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
