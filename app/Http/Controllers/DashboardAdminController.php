@@ -25,8 +25,8 @@ class DashboardAdminController extends Controller
         $biodata = Biodata::where('users_id', '=', $request->id)->first();
         $ortu = BiodataOrtu::where('users_id', '=', $request->id)->first();
         $foto = Foto::where('users_id', '=', $request->id)->first();
-        $region_gigi = Region::all();
-        $diagnosis = Diagnosis::all();
+        //$region_gigi = Region::all();
+        //$diagnosis = Diagnosis::all();
         //id gigi
         $id_gigi = ['11', '12', '13', '14', '15', '16', '17', '18', '21', '22', '23', '24', '25', '26', '27', '28', '31', '32', '33', '34', '35', '36', '37', '38', '41', '42', '43', '44', '45', '46', '47', '48',
         '51', '52', '53', '54', '55', '61', '62', '63', '64', '65', '71', '72', '73', '74', '75', '81', '82', '83', '84', '85'];
@@ -40,7 +40,7 @@ class DashboardAdminController extends Controller
         $id_gigi_sulung_kanan_atas = ['61', '62', '63', '64', '65'];
         $id_gigi_sulung_kanan_bawah = ['71', '72', '73', '74', '75'];
         $id_gigi_sulung_kiri_bawah = ['81', '82', '83', '84', '85'];
-        $odontogram = Odontogram::where('users_id', '=', $request->id)->orderBy('id_gigi')->get();
+        //$odontogram = Odontogram::where('users_id', '=', $request->id)->orderBy('id_gigi')->get();
 
         return view('dashboard-admin.detail-anak', [
             'user' => $user,
@@ -56,9 +56,9 @@ class DashboardAdminController extends Controller
             'id_gigi_sulung_kanan_atas' => $id_gigi_sulung_kanan_atas,
             'id_gigi_sulung_kanan_bawah' => $id_gigi_sulung_kanan_bawah,
             'id_gigi_sulung_kiri_bawah' => $id_gigi_sulung_kiri_bawah,
-            'region' => $region_gigi,
-            'diagnosis' => $diagnosis,
-            'odontogram' => $odontogram
+            //'region' => $region_gigi,
+            //'diagnosis' => $diagnosis,
+            //'odontogram' => $odontogram
         ]);
     }
     public function submitOdontogram(Request $request) {
