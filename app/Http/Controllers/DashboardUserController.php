@@ -25,7 +25,7 @@ class DashboardUserController extends Controller
         $id_kab = $kabupaten->id;
         $kecamatan = District::where('regency_id', '=', $id_kab)->orderBy('name')->get();
         $desa = Village::all();
-        $gender = ['Laki-laki', 'Perempuan', 'Memilih untuk tidak menjawab'];
+        $gender = ['Laki-laki', 'Perempuan'];
         return view('dashboard-user.biodata', [
             'kecamatan' => $kecamatan,
             'biodata' => $biodata,

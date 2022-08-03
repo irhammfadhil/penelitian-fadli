@@ -34,12 +34,41 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Daftar Artikel</h1>
-					
+					<div class="row">
+						<div class="col-9">
+							<h1 class="h3 mb-3">Daftar Artikel</h1>
+						</div>
+						<div class="col-3" style="text-align: right;"><a class="btn btn-primary" href="/admin/artikel/new" role="button">Baru</a></div>
+					</div>
+
 					<br>
 					<div class="card">
 						<div class="card-body">
-							
+							<table class="table table-striped table-hover table-bordered" id="listAnak" width="100%" cellspacing="0">
+								<thead class="thead-dark">
+									<tr>
+									<th scope="col" style="width:5%;" class="text-center">No</th>
+									<th scope="col" class="text-center">Gambar Artikel</th>
+									<th scope="col" class="text-center">Judul Artikel</th>
+									<th scope="col" class="text-center">Deskripsi Artikel</th>
+									<th scope="col" class="text-center">URL Artikel</th>
+									<th scope="col" class="text-center">Tindakan</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach($article as $a)
+									<tr>
+									<th scope="row" class="text-center">{{$loop->iteration}}</th>
+									<td><img src="{{asset($a->name)}}" class="img-fluid"></td>
+									<td>{{$a->title}}</td>
+									<td>{!!$a->text!!}</td>
+									<td class="text-center">{{$a->url}}</td>
+									<td class="text-center"><a class="btn btn-primary" href="/admin/artikel/edit?id={{$a->id}}" role="button">Edit</a><br><br>
+									<a class="btn btn-danger" href="/admin/artikel/delete?id={{$a->id}}" role="button">Hapus</a></td>
+									</tr>
+									@endforeach
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>

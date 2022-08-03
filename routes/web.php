@@ -46,3 +46,4 @@ Route::get('/dashboard/admin', [DashboardAdminController::class,'index'])->middl
 Route::get('/daftar-anak', [DashboardAdminController::class,'getAllAnak'])->middleware('auth');
 Route::get('/daftar-anak/detail', [DashboardAdminController::class,'getDetailAnak'])->middleware('auth');
 Route::post('/odontogram/submit', [DashboardAdminController::class,'submitOdontogram'])->middleware('auth');
+Route::get('/admin/artikel', [DashboardAdminController::class,'getAllArticle'])->middleware('auth');

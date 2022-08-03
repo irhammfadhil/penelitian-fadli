@@ -10,6 +10,7 @@ use App\Models\Foto;
 use App\Models\Region;
 use App\Models\Diagnosis;
 use App\Models\Odontogram;
+use App\Models\Article;
 
 class DashboardAdminController extends Controller
 {
@@ -118,5 +119,11 @@ class DashboardAdminController extends Controller
         $url = '/daftar-anak/detail?id='.$users_id;
 
         return redirect($url);
+    }
+    public function getAllArticle() {
+        $article = Article::all();
+        return view('dashboard-admin.list-artikel', [
+            'article' => $article,
+        ]);
     }
 }
