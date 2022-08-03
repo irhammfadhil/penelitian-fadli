@@ -471,7 +471,7 @@
 									@endfor
 								</tbody>
 							</table>--}}
-							D: <b>{{$sum_decay}}</b> M: <b>{{$sum_missing}}</b> F: <b>{{$sum_missing}}</b>
+							D: <b>{{$sum_decay}}</b> M: <b>{{$sum_missing}}</b> F: <b>{{$sum_filling}}</b>
 							<br>
 							DMFT: <b>{{$user->dmft_score}}</b>
 							<br>

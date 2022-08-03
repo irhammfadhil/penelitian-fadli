@@ -74,6 +74,18 @@ class DashboardAdminController extends Controller
         $missing = $request->has('missing');
         $filling = $request->has('filling');
 
+        if(!$decay) {
+            $decay = 0;
+        }
+
+        if(!$missing) {
+            $missing = 0;
+        }
+        
+        if(!$filling) {
+            $filling = 0;
+        }
+
         $data = Diagnosis::where('users_id', '=', $users_id)->where('id_gigi', '=', $gigi)->first();
         if(!$data) {
             $data = new Diagnosis;
