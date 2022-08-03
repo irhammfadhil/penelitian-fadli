@@ -143,7 +143,7 @@
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="{{asset('static/img/avatars/avatar.jpg')}}" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">{{Auth::user()->username}}</span>
+                <img src="{{asset('person.png')}}" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">{{Auth::user()->username}}</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								@if(Auth::user()->is_admin == 0)

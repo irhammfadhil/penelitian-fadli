@@ -41,6 +41,9 @@ class DashboardAdminController extends Controller
         $id_gigi_sulung_kanan_bawah = ['71', '72', '73', '74', '75'];
         $id_gigi_sulung_kiri_bawah = ['81', '82', '83', '84', '85'];
         //$odontogram = Odontogram::where('users_id', '=', $request->id)->orderBy('id_gigi')->get();
+        $sum_decay = Diagnosis::where('users_id', '=', $request->id)->where('is_decay', '=', 1)->count();
+        $sum_missing = Diagnosis::where('users_id', '=', $request->id)->where('is_missing', '=', 1)->count();
+        $sum_filling = Diagnosis::where('users_id', '=', $request->id)->where('is_filling', '=', 1)->count();
 
         return view('dashboard-admin.detail-anak', [
             'user' => $user,
@@ -56,6 +59,9 @@ class DashboardAdminController extends Controller
             'id_gigi_sulung_kanan_atas' => $id_gigi_sulung_kanan_atas,
             'id_gigi_sulung_kanan_bawah' => $id_gigi_sulung_kanan_bawah,
             'id_gigi_sulung_kiri_bawah' => $id_gigi_sulung_kiri_bawah,
+            'sum_decay' => $sum_decay,
+            'sum_missing' => $sum_missing,
+            'sum_filling' => $sum_filling,
             //'region' => $region_gigi,
             //'diagnosis' => $diagnosis,
             //'odontogram' => $odontogram
@@ -64,19 +70,41 @@ class DashboardAdminController extends Controller
     public function submitOdontogram(Request $request) {
         $users_id = $request->usersId;
         $gigi = $request->gigi;
-        $regio = $request->regio;
-        $diagnosis = $request->diagnosis;
-        $catatan = $request->catatan;
+        $decay = $request->has('decay');
+        $missing = $request->has('missing');
+        $filling = $request->has('filling');
 
-        $data = new Odontogram;
+        $data = Diagnosis::where('users_id', '=', $users_id)->where('id_gigi', '=', $gigi)->first();
+        if(!$data) {
+            $data = new Diagnosis;
+        }
         $data->users_id = $users_id;
         $data->id_gigi = $gigi;
-        $data->id_region = $regio;
-        $data->diagnosis_id = $diagnosis;
-        $data->note = $catatan;
+        $data->is_decay = $decay;
+        $data->is_missing = $missing;
+        $data->is_filling = $filling;
         $data->save();
 
+        #itung dmft
+        ##gigi tetap
+        $sum_decay_tetap = Diagnosis::where('users_id', '=', $users_id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+        $sum_missing_tetap = Diagnosis::where('users_id', '=', $users_id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+        $sum_filling_tetap = Diagnosis::where('users_id', '=', $users_id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+        ##gigi susu
+        $sum_decay_susu = Diagnosis::where('users_id', '=', $users_id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [51,85])->count();
+        $sum_missing_susu = Diagnosis::where('users_id', '=', $users_id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [51,85])->count();
+        $sum_filling_susu = Diagnosis::where('users_id', '=', $users_id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [51,85])->count();
+
+        $dmftIndex = $sum_decay_tetap + $sum_missing_tetap + $sum_filling_tetap;
+        $deftIndex = $sum_decay_susu + $sum_missing_susu + $sum_filling_susu;
+
+        $users = User::where('id', '=', $users_id)->first();
+        $users->dmft_score = $dmftIndex;
+        $users->deft_score = $deftIndex;
+        $users->save();
+
         $url = '/daftar-anak/detail?id='.$users_id;
+
         return redirect($url);
     }
 }

@@ -8,6 +8,7 @@
 	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+	<meta name="csrf-token" content="{{csrf_token()}}"/>
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="{{asset('img/icons/icon-48x48.png')}}" />
@@ -17,6 +18,9 @@
 	<title>Simetri</title>
 
 	<link href="{{asset('static/css/app.css')}}" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -30,28 +34,12 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Dashboard</h1>
-
-					<div class="row">
-						<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-
-									<h5 class="card-title mb-0">Status</h5>
-								</div>
-								<div class="card-body d-flex w-100">
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-
-									<h5 class="card-title mb-0">Informasi</h5>
-								</div>
-								<div class="card-body d-flex w-100">
-								</div>
-							</div>
+					<h1 class="h3 mb-3">Daftar Artikel</h1>
+					
+					<br>
+					<div class="card">
+						<div class="card-body">
+							
 						</div>
 					</div>
 				</div>
@@ -75,9 +63,11 @@
 	</div>
 
 	<script src="{{asset('static/js/app.js')}}"></script>
-
-
-
+	<script>
+		$(document).ready( function () {
+			$('#listAnak').DataTable();
+		} );
+	</script>
 </body>
 
 </html>
