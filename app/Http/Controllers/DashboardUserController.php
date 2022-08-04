@@ -50,6 +50,11 @@ class DashboardUserController extends Controller
         $pendidikan_terakhir = $request->pendidikan_terakhir;
         $pekerjaan = $request->pekerjaan;
 
+        $tanggal = substr($birthdate,0,2);
+        $bulan = substr($birthdate,3,2);
+        $tahun = substr($birthdate,6,4);
+        $date_formatted = $tahun.'-'.$bulan.'-'.$tanggal;
+
         $biodata = Biodata::where('users_id', '=', Auth::user()->id)->first();
         if(!$biodata) {
             $biodata = new Biodata;
@@ -57,7 +62,7 @@ class DashboardUserController extends Controller
         $biodata->users_id = Auth::user()->id;
         $biodata->gender = $gender;
         $biodata->birth_place = $birthplace;
-        $biodata->birth_date = $birthdate;
+        $biodata->birth_date = $date_formatted;
         $biodata->id_sekolah = $sekolah;
         $biodata->save();
 

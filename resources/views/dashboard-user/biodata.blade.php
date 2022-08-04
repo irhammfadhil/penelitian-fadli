@@ -20,6 +20,8 @@
 	<link href="{{asset('static/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+	<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -113,7 +115,7 @@
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Tanggal Lahir</label>
-											<input type="date" class="form-control" id="birthdate" name="birthdate" aria-describedby="emailHelp" value="{{$biodata->birth_date}}" placeholder="Tanggal lahir">
+											<input class="form-control" id="birthdate" name="birthdate" aria-describedby="emailHelp" value="{{$biodata->birth_date}}" placeholder="Tanggal lahir">
 										</div>
 									</div>
 								</div>
@@ -124,10 +126,9 @@
 								<br>
 								<label for="exampleInputEmail1">Sekolah</label>
 								<select class="form-select" name="sekolah" id="sekolah" aria-label="Default select example">
-									<option selected>Pilih...</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
+									<option>Pilih...</option>
+									<option value="SDN Biting 04">SDN Biting 04</option>
+									<option value="SDN Candijati 01">SDN Candijati 01</option>
 								</select>
 								@else
 								<div class="row">
@@ -183,10 +184,9 @@
 								<br>
 								<label for="exampleInputEmail1">Sekolah</label>
 								<select class="form-select" name="sekolah" id="sekolah" aria-label="Default select example">
-									<option selected>Pilih...</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
+									<option>Pilih...</option>
+									<option value="SDN Biting 04">SDN Biting 04</option>
+									<option value="SDN Candijati 01">SDN Candijati 01</option>
 								</select>
 								@endif
 								<hr>
@@ -212,13 +212,34 @@
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Pendidikan Terakhir</label>
-											<input type="text" class="form-control" id="pendidikan_terakhir" name="pendidikan_terakhir" aria-describedby="emailHelp" value="{{$ortu->pendidikan_terakhir}}" placeholder="Pendidikan Terakhir">
+											<select class="form-select" name="pendidikan_terakhir" id="pendidikan_terakhir" aria-label="Default select example">
+												<option>Pilih...</option>
+												<option value="TK">TK</option>
+												<option value="SD">SD</option>
+												<option value="SMP">SMP</option>
+												<option value="SMA">SMA</option>
+												<option value="Diploma 1, 2, 3">Diploma 1, 2, 3</option>
+												<option value="D4/S1">D4/S1</option>
+												<option value="S2">S2</option>
+												<option value="S3">S3</option>
+											</select>
 										</div>
 									</div>
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Pekerjaan</label>
-											<input type="text" class="form-control" id="pekerjaan" name="pekerjaan" aria-describedby="emailHelp" value="{{$ortu->pekerjaan}}" placeholder="Pekerjaan">
+											<select class="form-select" name="pekerjaan" id="pekerjaan" aria-label="Default select example">
+												<option>Pilih...</option>
+												<option value="Guru/Dosen">Guru/Dosen</option>
+												<option value="Petani/Nelayan">Petani/Nelayan</option>
+												<option value="Wiraswasta">Wiraswasta</option>
+												<option value="TNI/POLRI">TNI/POLRI</option>
+												<option value="Pensiunan">Pensiunan</option>
+												<option value="Pegawai Negeri">Pegawai Negeri</option>
+												<option value="Pegawai BUMN/BUMD">Pegawai BUMN/BUMD</option>
+												<option value="Pegawai Swasta">Pegawai Swasta</option>
+												<option value="Lainnya">Lainnya</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -310,13 +331,34 @@
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Pendidikan Terakhir</label>
-											<input type="text" class="form-control" id="pendidikan_terakhir" name="pendidikan_terakhir" aria-describedby="emailHelp" placeholder="Pendidikan Terakhir">
+											<select class="form-select" name="pendidikan_terakhir" id="pendidikan_terakhir" aria-label="Default select example">
+												<option>Pilih...</option>
+												<option value="TK">TK</option>
+												<option value="SD">SD</option>
+												<option value="SMP">SMP</option>
+												<option value="SMA">SMA</option>
+												<option value="Diploma 1, 2, 3">Diploma 1, 2, 3</option>
+												<option value="D4/S1">D4/S1</option>
+												<option value="S2">S2</option>
+												<option value="S3">S3</option>
+											</select>
 										</div>
 									</div>
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Pekerjaan</label>
-											<input type="text" class="form-control" id="pekerjaan" name="pekerjaan" aria-describedby="emailHelp" placeholder="Pekerjaan">
+											<select class="form-select" name="pekerjaan" id="pekerjaan" aria-label="Default select example">
+												<option>Pilih...</option>
+												<option value="Guru/Dosen">Guru/Dosen</option>
+												<option value="Petani/Nelayan">Petani/Nelayan</option>
+												<option value="Wiraswasta">Wiraswasta</option>
+												<option value="TNI/POLRI">TNI/POLRI</option>
+												<option value="Pensiunan">Pensiunan</option>
+												<option value="Pegawai Negeri">Pegawai Negeri</option>
+												<option value="Pegawai BUMN/BUMD">Pegawai BUMN/BUMD</option>
+												<option value="Pegawai Swasta">Pegawai Swasta</option>
+												<option value="Lainnya">Lainnya</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -586,6 +628,10 @@
                     });
                 });
             });
+        });
+		$('#birthdate').datepicker({
+            uiLibrary: 'bootstrap4',
+			format: 'dd/mm/yyyy'
         });
     </script>
 </body>

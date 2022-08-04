@@ -56,6 +56,7 @@
                         <label class="form-label" for="form3Example3">Password (*)</label>
                         <input type="password" id="form3Example4" name="password" class="form-control form-control-lg"
                         placeholder="Password" required/>
+                        <small>Panjang minimum password adalah 8 karakter.</small>
                     </div>
                     <div class="form-outline mb-3">
                         <label class="form-label" for="form3Example3">Masukkan kembali password Anda (*)</label>
