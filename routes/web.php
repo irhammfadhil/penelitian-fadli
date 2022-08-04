@@ -20,7 +20,8 @@ use App\Http\Controllers\DashboardUserController;
 
 Route::get('/', [HomeController::class,'index']);
 Route::get('/cara-penggunaan', [HomeController::class,'getCaraPenggunaan']);
-Route::get('/artikel', [HomeController::class,'getArtikel']);
+Route::get('/article', [HomeController::class,'getArtikel']);
+Route::get('/article/{url}', [HomeController::class,'getDetailArtikel']);
 
 #auth
 Route::get('/login', [UserController::class,'getLogin'])->name('login');
@@ -47,3 +48,8 @@ Route::get('/daftar-anak', [DashboardAdminController::class,'getAllAnak'])->midd
 Route::get('/daftar-anak/detail', [DashboardAdminController::class,'getDetailAnak'])->middleware('auth');
 Route::post('/odontogram/submit', [DashboardAdminController::class,'submitOdontogram'])->middleware('auth');
 Route::get('/admin/artikel', [DashboardAdminController::class,'getAllArticle'])->middleware('auth');
+Route::get('/admin/artikel/new', [DashboardAdminController::class,'getNewArticle'])->middleware('auth');
+Route::post('/admin/artikel/new', [DashboardAdminController::class,'submitNewArticle'])->middleware('auth');
+Route::get('/admin/artikel/edit', [DashboardAdminController::class,'getEditArticle'])->middleware('auth');
+Route::post('/admin/artikel/edit', [DashboardAdminController::class,'submitEditArticle'])->middleware('auth');
+Route::get('/admin/artikel/delete', [DashboardAdminController::class,'deleteArticle'])->middleware('auth');

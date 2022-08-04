@@ -47,6 +47,8 @@ class DashboardUserController extends Controller
         $rt = $request->rt;
         $rw = $request->rw;
         $phone = $request->phone;
+        $pendidikan_terakhir = $request->pendidikan_terakhir;
+        $pekerjaan = $request->pekerjaan;
 
         $biodata = Biodata::where('users_id', '=', Auth::user()->id)->first();
         if(!$biodata) {
@@ -66,6 +68,8 @@ class DashboardUserController extends Controller
         $ortu->users_id = Auth::user()->id;
         $ortu->name_ortu = $name_ortu;
         $ortu->address = $address;
+        $ortu->pendidikan_terakhir = $pendidikan_terakhir;
+        $ortu->pekerjaan = $pekerjaan;
         $kecamatan_dom_name = District::where('id', '=', $kecamatan)->first();
         $kecamatan_dom_name = $kecamatan_dom_name->name;
         $desa_dom_name = Village::where('id', '=', $desa)->first();

@@ -212,13 +212,13 @@
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Pendidikan Terakhir</label>
-											<input type="text" class="form-control" id="pendidikan_terakhir" name="pendidikan_terakhir" value="" aria-describedby="emailHelp" placeholder="RT">
+											<input type="text" class="form-control" id="pendidikan_terakhir" name="pendidikan_terakhir" aria-describedby="emailHelp" value="{{$ortu->pendidikan_terakhir}}" placeholder="Pendidikan Terakhir">
 										</div>
 									</div>
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Pekerjaan</label>
-											<input type="text" class="form-control" id="pekerjaan" name="pekerjaan" value="" aria-describedby="emailHelp" placeholder="RW">
+											<input type="text" class="form-control" id="pekerjaan" name="pekerjaan" aria-describedby="emailHelp" value="{{$ortu->pekerjaan}}" placeholder="Pekerjaan">
 										</div>
 									</div>
 								</div>
@@ -309,6 +309,21 @@
 								<div class="row">
 									<div class="col-lg-6">
 										<div class="form-group">
+											<label for="exampleInputEmail1">Pendidikan Terakhir</label>
+											<input type="text" class="form-control" id="pendidikan_terakhir" name="pendidikan_terakhir" aria-describedby="emailHelp" placeholder="Pendidikan Terakhir">
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Pekerjaan</label>
+											<input type="text" class="form-control" id="pekerjaan" name="pekerjaan" aria-describedby="emailHelp" placeholder="Pekerjaan">
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
 											<label for="exampleInputEmail1">Provinsi</label>
 											<input type="text" class="form-control" id="provinsi" name="provinsi" aria-describedby="emailHelp" placeholder="Provinsi" value="Jawa Timur" disabled>
 										</div>
@@ -391,7 +406,20 @@
 							</p>
 						</div>
 						<div class="col-6 text-end">
-							
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>

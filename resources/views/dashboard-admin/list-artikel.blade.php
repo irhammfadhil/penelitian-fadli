@@ -59,10 +59,10 @@
 									@foreach($article as $a)
 									<tr>
 									<th scope="row" class="text-center">{{$loop->iteration}}</th>
-									<td><img src="{{asset($a->name)}}" class="img-fluid"></td>
+									<td><img src="{{asset($a->image)}}" class="img-fluid"></td>
 									<td>{{$a->title}}</td>
 									<td>{!!$a->text!!}</td>
-									<td class="text-center">{{$a->url}}</td>
+									<td class="text-center"><a href="{{url('')}}/article/{{$a->link}}">{{url('')}}/article/{{$a->link}}</a></td>
 									<td class="text-center"><a class="btn btn-primary" href="/admin/artikel/edit?id={{$a->id}}" role="button">Edit</a><br><br>
 									<a class="btn btn-danger" href="/admin/artikel/delete?id={{$a->id}}" role="button">Hapus</a></td>
 									</tr>

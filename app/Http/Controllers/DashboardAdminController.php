@@ -126,4 +126,78 @@ class DashboardAdminController extends Controller
             'article' => $article,
         ]);
     }
+    public function getNewArticle() {
+        return view('dashboard-admin.artikel.new');
+    }
+    public function submitNewArticle(Request $request) {
+        $this->validate($request, [
+            'file' => 'file',
+    	]);
+        $title = $request->title;
+        $deskripsi = $request->deskripsi;
+        $file = $request->file('file');
+
+        $fileName = NULL;
+        $base_file_name = NULL;
+
+        if($file) {
+            $rand = substr(md5(microtime()), 0, 10);
+            $fileName = 'artikel/'.$rand.'_'.$file->getClientOriginalName();
+            $base_file_name = $rand.'_'.$file->getClientOriginalName();
+            $file->move(public_path('artikel/'), $fileName);
+        }
+
+        $url = str_replace(" ", "-", strtolower($title));
+
+        $artikel = new Article;
+        $artikel->title = $title;
+        $artikel->text = $deskripsi;
+        $artikel->image = $fileName;
+        $artikel->link = $url;
+        $artikel->save();
+
+        return redirect('/admin/artikel');
+    }
+    public function getEditArticle(Request $request) {
+        $artikel = Article::find($request->id);
+
+        return view('dashboard-admin.artikel.edit', ['article' => $artikel]);
+    }
+    public function submitEditArticle(Request $request) {
+        $this->validate($request, [
+            'file' => 'file',
+    	]);
+        $title = $request->title;
+        $deskripsi = $request->deskripsi;
+        $file = $request->file('file');
+
+        $fileName = NULL;
+        $base_file_name = NULL;
+
+        if($file) {
+            $rand = substr(md5(microtime()), 0, 10);
+            $fileName = 'artikel/'.$rand.'_'.$file->getClientOriginalName();
+            $base_file_name = $rand.'_'.$file->getClientOriginalName();
+            $file->move(public_path('artikel/'), $fileName);
+        }
+
+        $url = str_replace(" ", "-", strtolower($title));
+
+        $artikel = Article::find($request->id);
+        $artikel->title = $title;
+        $artikel->text = $deskripsi;
+        if($file) {
+            $artikel->image = $fileName;
+        }
+        $artikel->link = $url;
+        $artikel->save();
+
+        return redirect('/admin/artikel');
+    }
+    public function deleteArticle(Request $request) {
+        $artikel = Article::find($request->id);
+        $artikel->delete();
+
+        return redirect('/admin/artikel');
+    }
 }

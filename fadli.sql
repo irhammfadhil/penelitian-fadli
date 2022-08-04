@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2022 at 02:56 AM
+-- Generation Time: Aug 04, 2022 at 06:01 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -24,56 +24,55 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `articles`
+--
+
+CREATE TABLE `articles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `text` text DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `link` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `articles`
+--
+
+INSERT INTO `articles` (`id`, `title`, `text`, `image`, `link`, `created_at`, `updated_at`) VALUES
+(3, 'Sikat Gigi Dengan Teknik dan Waktu Yang Tepat Hindarkan Karies', '<p>Apakah yang menjadi masalah utama kesehatan gigi dan mulut di Indonesia? Karies gigi. Ya, penyakit ini rata-rata tumbuh subur di kebanyakan negara industri. Sekitar 60-90 persennya terjadi pada anak-anak usia sekolah dan sebagian besar orang dewasa.</p>\r\n<p>Karies gigi timbul akibat infeksi yang merusak struktur gigi dan pada akhirnya menyebabkan gigi berlubang. Jika tidak ditangani dengan baik, penyakit ini bisa menyebabkan nyeri, tanggalnya gigi, bahkan berujung kematian. Padahal karies dapat dicegah menimbulkan dampak yang lebih parah, jika penderitanya rutin mengunjungi dokter gigi.</p>\r\n<p>Sayangnya, rata-rata masyarakat Indonesia belum menjadikan kunjungan ke dokter gigi sebagai sesuatu yang wajib dan rutin. Penyebabnya adalah adanya anggapan biaya memeriksakan gigi ke dokter gigi mahal.</p>\r\n<p>Kehadiran Bulan Kesehatan Gigi Nasional (BKGN) setiap bulan September diharapkan bisa menekan dampak buruk perilaku masyarakat kita yang baru ke dokter gigi, jika sudah merasa sakit. Kegiatan-kegiatan dalam BKGN bertujuan mengedukasi untuk mengingatkan masyarakat mengenai perawatan gigi dan mulut yang baik.</p>\r\n<p>Lalu, bagaimana sebetulnya merawat gigi dan mulut yang baik itu? Hal penting pertama dalam menjaga kesehatan gigi dan mulut adalah menyikat gigi dengan teknik yang benar dan di waktu yang tepat. Banyak orang yang masih keliru melakukannya dalam dua hal tadi.</p>\r\n<p>Menyikat gigi yang benar dilakukan dengan teknik memutar minimal 15 detik untuk setiap gigi, menggunakan pasta gigi yang mengandung fluoride. Lakukan pula gerakan vertikal untuk mengangkat kotoran dari sela-sela gigi. Gunakan dental floss dan mouthwash agar mulut lebih bersih dan segar. Jangan lupa bersihkan pula lidah dengan scrub khusus.</p>\r\n<p>Orang juga masih mengira menyikat gigi cukup dilakukan sebelum sarapan dan sebelum berangkat tidur. Padahal yang paling tepat adalah menyikat gigi setiap kali selesai makan (sarapan, makan siang, dan makan malam).</p>\r\n<p>Nah, jadi sebetulnya sederhana saja bukan menjaga kesehatan gigi dan mulut? Yang diperlukan hanyalah kedisiplinan dan kemauan untuk mengubah pola kebiasaan. (*)</p>\r\n<p>&nbsp;</p>\r\n<p>Sumber:&nbsp;<a href=\"https://promkes.kemkes.go.id/?p=3358\">https://promkes.kemkes.go.id/?p=3358</a>&nbsp;</p>', 'artikel/2af3784955_noimage.jpg', 'sikat-gigi-dengan-teknik-dan-waktu-yang-tepat-hindarkan-karies', '2022-08-03 19:35:30', '2022-08-03 19:35:30'),
+(4, 'Pentingnya Cek Kesehatan Gigi Berkala', '<p dir=\"ltr\">Sebagian besar orang tidak memperhatikan kesehatan gigi mereka. Para ahli higi sangat menyarankan untuk melakukan&nbsp;<a href=\"https://promkes.kemkes.go.id/germas\"><strong>pemeriksaan gigi secara berkala</strong></a>&nbsp;setidaknya setiap 6 bulan sekali. Tetapi, kebanyakan dari kita belum memiliki kesadaran tentang pentingnya&nbsp;<em>pemeriksaan kesehatan gigi secara berkala</em>&nbsp;karena adanya rasa malas.</p>\r\n<p dir=\"ltr\">Pemeriksaan gigi secara berkala bisa membantu kita memiliki gigi yang sehat dan kuat serta membantu kita mengonsumsi makanan dengan baik.</p>\r\n<p dir=\"ltr\">Times of India pada Senin (19/1/2015) melansir 3 alasan kenapa kita harus&nbsp;rajin melakukan pemeriksaan gigi secara berkala ke dokter gigi.</p>\r\n<ol>\r\n<li dir=\"ltr\">\r\n<p dir=\"ltr\">Pemeriksaan secara berkala akan memastikan dokter gigi untuk bisa mengetahui masalah rongga kita. Pemeriksaan rutin ini membantu kita mendapatkan treatment yang cepat dan juga menghemat uang. Selain itu, dokter gigi akan memberikan saran dan tips yang tepat bagi kesehatan gigi kita.</p>\r\n</li>\r\n</ol>\r\n<ol start=\"2\">\r\n<li dir=\"ltr\">\r\n<p dir=\"ltr\">Pemeriksaan gigi secara berkala juga dapat membantu dokter mendiagnosa kondisi kesehatan tubuh secara umum. Dengan memeriksa kondisi gigi dan gusi di mulut kita, dokter gigi dapat melihat tanda-tanda penyakit yang sangat serius seperti kanker.</p>\r\n</li>\r\n</ol>\r\n<ol start=\"3\">\r\n<li dir=\"ltr\">\r\n<p dir=\"ltr\">Banyak orang beranggapan jika pergi ke dokter gigi adalah hal yang menyeramkan. Tetapi, berkat kemajuan teknologi kedokteran, hal ini membantu kita tidak merasakan rasa sakit atau tidak nyaman saat pergi ke dokter gigi.</p>\r\n</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<p>Sumber:&nbsp;<a href=\"https://promkes.kemkes.go.id/pentingnya-cek-kesehatan-gigi-berkala\">https://promkes.kemkes.go.id/pentingnya-cek-kesehatan-gigi-berkala</a>&nbsp;</p>', 'artikel/9f311178c6_cd76b1cfdokter.jpg', 'pentingnya-cek-kesehatan-gigi-berkala', '2022-08-03 19:36:24', '2022-08-03 19:36:24'),
+(5, '5 Cara Sederhana Rawat Gigi Agar Tetap Sehat', '<p>Sejak kecil kita selalu diingatkan untuk rajin menggosok gigi dan ditanamkan agar rutin memeriksakan ke dokter gigi setiap enam bulan sekali. Hal itu bertujuan agar gigi tumbuh kuat dan sehat, bahkan hingga tua nanti.</p>\r\n<p>Tapi acap kali kita abai pada pemeriksaan gigi ke dokter gigi setiap enam bulan sekali. Entah karena merasa repot, atau biaya untuk&nbsp;<em>check up&nbsp;</em>tidak murah. Apapun alasannya, kita sudah lalai untuk memenuhi salah satu kebutuhan kesehatan gigi.</p>\r\n<p>Sebenarnya, ada banyak cara yang bisa digunakan agar kebutuhan gigi yang sehat dapat terpenuhi. Asalkan telaten, merawat gigi bukan hal yang susah dan butuh biaya selangit.</p>\r\n<p>Berikut ini 5 cara sederhana yang bisa kita terapkan untuk menjaga gigi kita tetap sehat.</p>\r\n<p><strong>Kurangi Makanan Manis, Masih Panas Atau Terlalu Dingin</strong></p>\r\n<p>Makanan atau minuman yang masih panas atau terlalu dingin dapat berisiko merusak sensitivitas gigi. Lebih jauh, hal itu bahkan dapat membuat keretakan pada gigi yang membuat bakteri dan kuman dapat dengan mudah masuk ke dalam struktur gigi. Jika sudah demikian, sakit gigi atau bahkan kerusakan gigi&mdash;terutama pada warna putih&mdash;bukan hal yang tidak mungkin terjadi.</p>\r\n<p>Selain itu, makanan manis atau yang mengandung gula juga dapat memicu berkembangnya bakteri di dalam mulut.</p>\r\n<p>Jadi, agar bakteri tidak sampai berkembang dan berisiko merusak gigi, konsumsi makanan dan minuman yang masih panas atau terlalu dingin, serta makanan manis baiknya dikurangi.</p>\r\n<p><strong>Gosok Gigi Minimal 3 Kali Sehari</strong></p>\r\n<p>Terlalu sering menggosok gigi dapat berisiko merusak email gigi. Tapi, bukan berarti Anda boleh untuk malas menggosok gigi. Agar tetap sehat dan putih, disarankan agar menggosok gigi minimal 3 kali sehari, khususnya menjelang tidur malam. Gosok gigi sebelum tidur berfungsi untuk membersihkan sisa makanan yang tertinggal pada gigi, agar tidak semakin bertambah dan dapat mencegah perkembangan bakteri yang memakan sisa makanan tersebut.</p>\r\n<p><strong>Banyak Konsumsi Buah-Buahan Segar</strong></p>\r\n<p>Selain menyehatkan tubuh, serat dalam buah-buahan segar ternyata juga membantu membersihkan kotoran dan sisa makanan yang menempel pada gigi. Untuk itu, semakin banyak mengkonsumsi buah-buahan segar, semakin terjaga pula kesehatan gigi.</p>\r\n<p><strong>Sering Mengunyah Permen Karet</strong></p>\r\n<p>Selain dapat melatih otot mulut, mengunyah permen karet ternyata juga bisa merangsang produksi air liur dalam mulut.</p>\r\n<p>Meningkatnya kuantitas air liur dapat membantu membersihkan partikel-partikel asam dari sisa makanan di dalam mulut. Hal ini akan membantu merawat gigi agar tetap putih, sehat dan juga mencegah agar tidak berlubang.</p>\r\n<p>Namun, perlu diingat, hal ini hanya bisa dihasilkan oleh permen karet yang tidak mengandung banyak gula.</p>\r\n<p><strong>Gunakan Obat Kumur</strong></p>\r\n<p>Berkumur pakai obat kumur maksimal 2 kali sehari akan membantu gigi tetap sehat dan berwarna putih. Kandungan fluoride yang ada pada obat kumur baik untuk menjaga kesehatan gigi dan mencegahnya berlubang.</p>\r\n<p>&nbsp;</p>\r\n<p>sumber:&nbsp;<a href=\"https://promkes.kemkes.go.id/?p=8369\">https://promkes.kemkes.go.id/?p=8369</a>&nbsp;</p>', 'artikel/edd9055bdf_f0b471b1kesehatangigi2.jpg', '5-cara-sederhana-rawat-gigi-agar-tetap-sehat', '2022-08-03 19:37:44', '2022-08-03 19:37:44'),
+(6, 'Pentingnya Pemeriksaan Gigi dan Mulut 6 Bulan Sekali', '<p dir=\"ltr\">Sebagian besar orang tidak memperhatikan kesehatan gigi mereka. Para ahli higi sangat menyarankan untuk melakukan&nbsp;<a href=\"https://promkes.kemkes.go.id/germas\"><strong>pemeriksaan gigi secara berkala</strong></a>&nbsp;setidaknya setiap 6 bulan sekali. Tetapi, kebanyakan dari kita belum memiliki kesadaran tentang pentingnya&nbsp;<em>pemeriksaan kesehatan gigi secara berkala</em>&nbsp;karena adanya rasa malas.</p>\r\n<p dir=\"ltr\">Pemeriksaan gigi secara berkala bisa membantu kita memiliki gigi yang sehat dan kuat serta membantu kita mengonsumsi makanan dengan baik.</p>\r\n<p dir=\"ltr\">Times of India pada Senin (19/1/2015) melansir 3 alasan kenapa kita harus&nbsp;rajin melakukan pemeriksaan gigi secara berkala ke dokter gigi.</p>\r\n<ol>\r\n<li dir=\"ltr\">\r\n<p dir=\"ltr\">Pemeriksaan secara berkala akan memastikan dokter gigi untuk bisa mengetahui masalah rongga kita. Pemeriksaan rutin ini membantu kita mendapatkan treatment yang cepat dan juga menghemat uang. Selain itu, dokter gigi akan memberikan saran dan tips yang tepat bagi kesehatan gigi kita.</p>\r\n</li>\r\n</ol>\r\n<ol start=\"2\">\r\n<li dir=\"ltr\">\r\n<p dir=\"ltr\">Pemeriksaan gigi secara berkala juga dapat membantu dokter mendiagnosa kondisi kesehatan tubuh secara umum. Dengan memeriksa kondisi gigi dan gusi di mulut kita, dokter gigi dapat melihat tanda-tanda penyakit yang sangat serius seperti kanker.</p>\r\n</li>\r\n</ol>\r\n<ol start=\"3\">\r\n<li dir=\"ltr\">\r\n<p dir=\"ltr\">Banyak orang beranggapan jika pergi ke dokter gigi adalah hal yang menyeramkan. Tetapi, berkat kemajuan teknologi kedokteran, hal ini membantu kita tidak merasakan rasa sakit atau tidak nyaman saat pergi ke dokter gigi.</p>\r\n</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<p>Sumber:&nbsp;<a href=\"https://promkes.kemkes.go.id/?p=5882\">https://promkes.kemkes.go.id/?p=5882</a>&nbsp;</p>', 'artikel/70a3b53ce6_524028aakesehatan-gigi.jpg', 'pentingnya-pemeriksaan-gigi-dan-mulut-6-bulan-sekali', '2022-08-03 19:38:21', '2022-08-03 19:38:21');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `diagnosis`
 --
 
 CREATE TABLE `diagnosis` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `diagnosis_code` varchar(5) DEFAULT NULL,
-  `diagnosis_arti` varchar(255) DEFAULT NULL,
-  `diagnosis_remark` text DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp()
+  `users_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id_gigi` int(11) DEFAULT NULL,
+  `is_decay` int(11) DEFAULT 0,
+  `is_missing` int(11) DEFAULT 0,
+  `is_filling` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `diagnosis`
 --
 
-INSERT INTO `diagnosis` (`id`, `diagnosis_code`, `diagnosis_arti`, `diagnosis_remark`, `created_at`, `updated_at`) VALUES
-(1, 'sou', 'Gigi sehat, normal, tanpa kelainan', NULL, '2022-07-11 09:37:11', '2022-07-11 09:37:11'),
-(2, 'non', 'Gigi tidak ada/tidak diketahui', NULL, '2022-07-11 09:37:11', '2022-07-11 09:37:11'),
-(3, 'une', 'Un-erupted', 'Perlu dukungan Ro photo (usia dewasa)', '2022-07-11 09:37:59', '2022-07-11 09:37:59'),
-(4, 'pre', 'Partial erupted', NULL, '2022-07-11 09:37:59', '2022-07-11 09:37:59'),
-(5, 'imv', 'Impacted visible', 'Impaksi', '2022-07-11 09:39:03', '2022-07-11 09:39:03'),
-(6, 'ano', 'Anomali', 'Peg shape, rudimeter, supernumerary DLL', '2022-07-11 09:39:03', '2022-07-11 09:39:03'),
-(7, 'dia', 'Diastema', 'Ada jarak antar gigi', '2022-07-11 09:39:48', '2022-07-11 09:39:48'),
-(8, 'att', 'Atrisi', NULL, '2022-07-11 09:39:48', '2022-07-11 09:39:48'),
-(9, 'abr', 'Abrasi', NULL, '2022-07-11 09:40:42', '2022-07-11 09:40:42'),
-(10, 'car', 'Caries / Karies', 'Harus diikuti permukaan giginya (MODVL), misal: O Car, OM Car', '2022-07-11 09:40:42', '2022-07-11 09:40:42'),
-(11, 'cfr', 'Crown Fracture / Fraktur Mahkota', 'Bisa ditambahkan informasi frakturnya, misal: cfr 1/2 insisal', '2022-07-11 09:42:09', '2022-07-11 09:42:09'),
-(12, 'nvt', 'Gigi Non Vital', 'Biasanya diikuti kondisi karies/tumpatan/ misal: O car-nvt', '2022-07-11 09:42:09', '2022-07-11 09:42:09'),
-(13, 'rrx', 'Sisa Akar', NULL, '2022-07-11 09:42:38', '2022-07-11 09:42:38'),
-(14, 'mis', 'Gigi Hilang', NULL, '2022-07-11 09:42:38', '2022-07-11 09:42:38'),
-(15, 'amf', 'Amalgam filling', 'Harus diikuti permukaan gigi (MODVL) misal O amf', '2022-07-11 09:47:08', '2022-07-11 09:47:08'),
-(16, 'gif', 'GIC/Silika', 'Misal: O gif', '2022-07-11 09:47:08', '2022-07-11 09:47:08'),
-(17, 'cof', 'Composite filling', 'Misal: MO cof', '2022-07-11 09:47:53', '2022-07-11 09:47:53'),
-(18, 'fis', 'Fissure Sealant', 'Misal: O fis', '2022-07-11 09:47:53', '2022-07-11 09:47:53'),
-(19, 'inl', 'Inlay', NULL, '2022-07-11 09:48:12', '2022-07-11 09:48:12'),
-(20, 'onl', 'Onlay', NULL, '2022-07-11 09:48:12', '2022-07-11 09:48:12'),
-(21, 'fmc', 'Full Metal Crown', 'Mahkota Logam', '2022-07-11 09:48:48', '2022-07-11 09:48:48'),
-(22, 'poc', 'Porcelain Crown', 'Mahkota Porcelain', '2022-07-11 09:48:48', '2022-07-11 09:48:48'),
-(23, 'mpc', 'Metal Porcelain Crown', NULL, '2022-07-11 09:49:49', '2022-07-11 09:49:49'),
-(24, 'gmc', 'Gold Metal Crown', NULL, '2022-07-11 09:49:49', '2022-07-11 09:49:49'),
-(25, 'rct', 'Root Canal Treatment / Perawatan Saluran Akar', 'Biasanya diikuti kondisi tumpatan/restorasi, misal: O amf-rct; poc-rct', '2022-07-11 09:50:53', '2022-07-11 09:50:53'),
-(26, 'ipx', 'Implan', NULL, '2022-07-11 09:50:53', '2022-07-11 09:50:53'),
-(27, 'meb', 'Metal Bridge', 'Jembatan Logam', '2022-07-11 09:51:52', '2022-07-11 09:51:52'),
-(28, 'pob', 'Porcelain Bridge', 'Jembatan Porcelain', '2022-07-11 09:51:52', '2022-07-11 09:51:52'),
-(29, 'pon', 'Pontic', 'Bisa ditambah kondisi missing, misal: mis-pon ', '2022-07-11 09:52:44', '2022-07-11 09:52:44'),
-(30, 'abu', 'Gigi abutment', 'Gigi penyangga', '2022-07-11 09:52:44', '2022-07-11 09:52:44'),
-(31, 'prd', 'Partial Denture', 'Gigi Tiruan sebagian', '2022-07-11 09:53:38', '2022-07-11 09:53:38'),
-(32, 'fld', 'Full Denture', 'Gigi Tiruan Lengkap', '2022-07-11 09:53:38', '2022-07-11 09:53:38'),
-(33, 'acr', 'Acrilic', 'misal: prd-acr (Gigi tiruan sebagian akrilik)', '2022-07-11 09:54:15', '2022-07-11 09:54:15');
+INSERT INTO `diagnosis` (`id`, `users_id`, `id_gigi`, `is_decay`, `is_missing`, `is_filling`, `created_at`, `updated_at`) VALUES
+(1, 1, 11, 1, 0, 0, '2022-08-03 06:59:37', '2022-08-03 06:59:37'),
+(2, 1, 15, 0, 1, 0, '2022-08-03 06:59:43', '2022-08-03 06:59:43'),
+(3, 2, 13, 0, 1, 0, '2022-08-03 07:07:03', '2022-08-03 07:07:03'),
+(4, 2, 17, 1, 0, 1, '2022-08-03 07:07:10', '2022-08-03 07:07:10');
 
 -- --------------------------------------------------------
 
@@ -7357,38 +7356,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `odontogram`
---
-
-CREATE TABLE `odontogram` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `users_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `id_gigi` varchar(5) DEFAULT NULL,
-  `id_region` bigint(20) UNSIGNED DEFAULT NULL,
-  `diagnosis_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `note` text DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `odontogram`
---
-
-INSERT INTO `odontogram` (`id`, `users_id`, `id_gigi`, `id_region`, `diagnosis_id`, `note`, `created_at`, `updated_at`) VALUES
-(1, 2, '11', 1, 1, 'normal', '2022-07-11 19:04:05', '2022-07-11 19:04:05'),
-(2, 2, '11', 2, 10, 'karies', '2022-07-11 19:11:00', '2022-07-11 19:11:00'),
-(3, 2, '12', 4, 3, 'unerupted', '2022-07-11 19:11:19', '2022-07-11 19:11:19'),
-(4, 2, '12', 1, 9, 'abrasi', '2022-07-11 19:11:33', '2022-07-11 19:11:33'),
-(5, 2, '13', 3, 3, 'unerupted', '2022-07-11 19:13:34', '2022-07-11 19:13:34'),
-(6, 2, '51', 1, 4, 'partial erupted', '2022-07-11 22:06:37', '2022-07-11 22:06:37'),
-(7, 2, '21', 2, 7, 'diastema', '2022-07-11 22:35:52', '2022-07-11 22:35:52'),
-(8, 2, '21', 5, 6, 'anomali', '2022-07-11 22:36:22', '2022-07-11 22:36:22'),
-(9, 2, '48', 3, 1, 'xxx', '2022-07-11 23:17:49', '2022-07-11 23:17:49');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `password_resets`
 --
 
@@ -8002,31 +7969,6 @@ INSERT INTO `regencies` (`id`, `province_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `region`
---
-
-CREATE TABLE `region` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `region_code` char(1) DEFAULT NULL,
-  `region_name` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `region`
---
-
-INSERT INTO `region` (`id`, `region_code`, `region_name`, `created_at`, `updated_at`) VALUES
-(1, 'M', 'Mesial', '2022-07-11 05:26:26', '2022-07-11 05:26:26'),
-(2, 'O', 'Occlusal', '2022-07-11 05:26:26', '2022-07-11 05:26:26'),
-(3, 'D', 'Distal', '2022-07-11 05:27:08', '2022-07-11 05:27:08'),
-(4, 'V', 'Vestibular/bukal/labial', '2022-07-11 05:27:08', '2022-07-11 05:27:08'),
-(5, 'L', 'Lingual/palatal', '2022-07-11 05:27:56', '2022-07-11 05:27:56');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -8040,6 +7982,8 @@ CREATE TABLE `users` (
   `is_admin` int(11) NOT NULL DEFAULT 0,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `signature` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dmft_score` int(11) DEFAULT 0,
+  `deft_score` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -8048,12 +7992,15 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `remember_token`, `signature`, `created_at`, `updated_at`) VALUES
-(1, 'Irham Fadhil', 'jokotole12345', 'irham.mfadhil@gmail.com', NULL, '$2y$10$O6aMveacsUgJzpev1aJgjuwnB0/C1CrBR8ZmsGTIdBli7PTTL0zXu', 0, NULL, NULL, '2022-06-11 20:06:44', '2022-06-11 20:06:44'),
-(2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, NULL, 'upload/62b9286e5efa6.png', '2022-06-18 19:01:55', '2022-06-18 19:01:55'),
-(3, 'aidil', 'Aidilabdillah4', 'aidil@gmail.com', NULL, '$2y$10$xeLURmhfJj47RhgLRZ3OoOJ4A/f679wyJ.m20foieGKJhpzpZfnq.', 0, NULL, 'upload/62bbd81b03550.png', '2022-06-28 21:33:40', '2022-06-28 21:33:40'),
-(4, 'Administrator', 'Administrator', 'admin@email.com', NULL, '$2y$10$VmIzQn1KDr1bmpzb5Yrb0uaZsu.i.86Xuz893hGcGiwNeqqSLAGh2', 1, NULL, NULL, '2022-06-28 23:56:45', '2022-06-28 23:56:45'),
-(5, 'aidil', 'aidilabdillah98', 'aidilabdillah98@gmail.com', NULL, '$2y$10$/4K/.DUKfz1YGuoRh5Q21eI2vMKKxW9pu2TWNTXVnVdmTZIMAxw0W', 0, NULL, NULL, '2022-07-11 16:58:30', '2022-07-11 16:58:30');
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `remember_token`, `signature`, `dmft_score`, `deft_score`, `created_at`, `updated_at`) VALUES
+(1, 'Irham Fadhil', 'jokotole12345', 'irham.mfadhil@gmail.com', NULL, '$2y$10$O6aMveacsUgJzpev1aJgjuwnB0/C1CrBR8ZmsGTIdBli7PTTL0zXu', 0, NULL, NULL, 2, 0, '2022-06-11 20:06:44', '2022-08-03 06:59:43'),
+(2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, NULL, 'upload/62b9286e5efa6.png', 3, 0, '2022-06-18 19:01:55', '2022-08-03 07:07:10'),
+(3, 'aidil', 'Aidilabdillah4', 'aidil@gmail.com', NULL, '$2y$10$xeLURmhfJj47RhgLRZ3OoOJ4A/f679wyJ.m20foieGKJhpzpZfnq.', 0, NULL, 'upload/62bbd81b03550.png', 0, 0, '2022-06-28 21:33:40', '2022-06-28 21:33:40'),
+(4, 'Administrator', 'Administrator', 'admin@email.com', NULL, '$2y$10$VmIzQn1KDr1bmpzb5Yrb0uaZsu.i.86Xuz893hGcGiwNeqqSLAGh2', 1, NULL, NULL, 0, 0, '2022-06-28 23:56:45', '2022-06-28 23:56:45'),
+(5, 'risky', 'risky123', 'risky123@gmail.com', NULL, '$2y$10$wwhqmC1SDwoHO6itC4k7xelNRJTO/A0Z/XlsMXQtKoy0sAwe68EpO', 0, NULL, 'upload/62ca3696aa8f0.png', 0, 0, '2022-07-09 19:16:00', '2022-07-09 19:16:00'),
+(6, 'alya', 'alyaraisa', 'alyalaksono@gmail.com', NULL, '$2y$10$97/nh3vO79Hhpt92oAjk/uertGNgXkYpYVsv.fofwmPZTjA.ZF0Q.', 0, NULL, 'upload/62ca37e1cfdee.png', 0, 0, '2022-07-09 19:21:19', '2022-07-09 19:21:19'),
+(7, 'uwel', 'uwel', 'irham.m.fadhil@gmail.con', NULL, '$2y$10$ZBKbnw.Q.DAbgUvC1lNF3e.Wg0.nwomh0HjWirRMXSyiYfeV1CHf2', 0, NULL, NULL, 0, 0, '2022-08-03 06:13:13', '2022-08-03 06:13:13'),
+(8, 'xxx', 'yyy', 'tole@tole.com12', NULL, '$2y$10$W9QV1MIg0f80JM4MSEu7OOH9CztwsrRAGac..wM85CvcjRcqv0rl2', 0, NULL, 'upload/62ea8ff79e713.png', 9, 0, '2022-08-03 06:45:49', '2022-08-03 06:53:41');
 
 -- --------------------------------------------------------
 
@@ -8078,7 +8025,10 @@ CREATE TABLE `users_biodata` (
 
 INSERT INTO `users_biodata` (`id`, `users_id`, `gender`, `birth_place`, `birth_date`, `id_sekolah`, `created_at`, `updated_at`) VALUES
 (1, 2, 'Laki-laki', 'Surabaya', '2003-01-01', 1, '2022-06-24 19:19:13', '2022-06-24 20:33:40'),
-(2, 3, 'Laki-laki', 'Surabaya', '2022-06-02', 2, '2022-06-28 21:41:51', '2022-06-28 21:41:51');
+(2, 3, 'Laki-laki', 'Surabaya', '2022-06-02', 2, '2022-06-28 21:41:51', '2022-06-28 21:41:51'),
+(3, 5, 'Perempuan', 'Surabaya', '2009-01-01', 2, '2022-07-09 19:16:43', '2022-07-09 19:16:43'),
+(4, 6, 'Laki-laki', 'Surabaya', '2004-01-01', 2, '2022-07-09 19:21:55', '2022-07-09 19:21:55'),
+(5, 8, 'Laki-laki', 'jogja', '2005-01-08', 2, '2022-08-03 06:48:34', '2022-08-03 20:51:35');
 
 -- --------------------------------------------------------
 
@@ -8110,7 +8060,9 @@ CREATE TABLE `users_foto` (
 --
 
 INSERT INTO `users_foto` (`id`, `users_id`, `foto_senyum`, `foto_depan`, `foto_kiri`, `foto_atas`, `foto_kanan`, `foto_bawah`, `date_taken_senyum`, `date_taken_depan`, `date_taken_kiri`, `date_taken_atas`, `date_taken_kanan`, `date_taken_bawah`, `created_at`, `updated_at`) VALUES
-(1, 2, 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27 01:43:28', '2022-06-27 01:43:28');
+(1, 2, 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27 01:43:28', '2022-06-27 01:43:28'),
+(2, 5, 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-09 19:18:19', '2022-07-09 19:18:19'),
+(3, 6, 'data_peserta/6/5b72f3bbfb_akfar.jpg', 'data_peserta/6/5b72f3bbfb_ttd.jpg', 'data_peserta/6/5b72f3bbfb_ttd.jpg', 'data_peserta/6/5b72f3bbfb_kursi gigi.jpg', 'data_peserta/6/5b72f3bbfb_periksa gigi.jpg', 'data_peserta/6/5b72f3bbfb_periksa gigi.jpg', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-09 19:25:29', '2022-07-09 19:25:29');
 
 -- --------------------------------------------------------
 
@@ -8123,6 +8075,8 @@ CREATE TABLE `users_ortu` (
   `users_id` bigint(20) UNSIGNED DEFAULT NULL,
   `name_ortu` varchar(100) DEFAULT NULL,
   `address` text DEFAULT NULL,
+  `pendidikan_terakhir` varchar(255) DEFAULT NULL,
+  `pekerjaan` varchar(255) DEFAULT NULL,
   `kecamatan` varchar(100) DEFAULT NULL,
   `desa` varchar(100) DEFAULT NULL,
   `rt` int(11) DEFAULT NULL,
@@ -8136,9 +8090,12 @@ CREATE TABLE `users_ortu` (
 -- Dumping data for table `users_ortu`
 --
 
-INSERT INTO `users_ortu` (`id`, `users_id`, `name_ortu`, `address`, `kecamatan`, `desa`, `rt`, `rw`, `phone`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Irham M Fadhil', 'Villa Galaxi D 2/7', 'RAMBIPUJI', 'RAMBIPUJI', 32, 23, '081283902244', '2022-06-24 19:19:58', '2022-06-24 19:34:53'),
-(2, 3, 'Irham Fadhil', 'Villa Galaxi D 2/7', 'UMBULSARI', 'UMBULREJO', 32, 12, '081283902244', '2022-06-28 21:41:51', '2022-06-28 21:41:51');
+INSERT INTO `users_ortu` (`id`, `users_id`, `name_ortu`, `address`, `pendidikan_terakhir`, `pekerjaan`, `kecamatan`, `desa`, `rt`, `rw`, `phone`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Irham M Fadhil', 'Villa Galaxi D 2/7', NULL, NULL, 'RAMBIPUJI', 'RAMBIPUJI', 32, 23, '081283902244', '2022-06-24 19:19:58', '2022-06-24 19:34:53'),
+(2, 3, 'Irham Fadhil', 'Villa Galaxi D 2/7', NULL, NULL, 'UMBULSARI', 'UMBULREJO', 32, 12, '081283902244', '2022-06-28 21:41:51', '2022-06-28 21:41:51'),
+(3, 5, 'joko', 'jember', NULL, NULL, 'MUMBULSARI', 'LAMPEJI', 5, 22, '081283902244', '2022-07-09 19:16:43', '2022-07-09 19:16:43'),
+(4, 6, 'Irham Fadhil', 'Villa Galaxi D 2/7', NULL, NULL, 'LEDOKOMBO', 'SUKOGIDRI', 10, 20, '081283902244', '2022-07-09 19:21:55', '2022-07-09 19:21:55'),
+(5, 8, 'joko tole', 'test alamat 2', 'S1', 'pengangguran', 'KENCONG', 'KRATON', 3, 77, '0809898999', '2022-08-03 08:10:40', '2022-08-03 21:01:24');
 
 -- --------------------------------------------------------
 
@@ -88759,10 +88716,17 @@ INSERT INTO `villages` (`id`, `district_id`, `name`) VALUES
 --
 
 --
+-- Indexes for table `articles`
+--
+ALTER TABLE `articles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `diagnosis`
 --
 ALTER TABLE `diagnosis`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_id` (`users_id`);
 
 --
 -- Indexes for table `districts`
@@ -88783,15 +88747,6 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `odontogram`
---
-ALTER TABLE `odontogram`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `users_id` (`users_id`),
-  ADD KEY `id_region` (`id_region`),
-  ADD KEY `diagnosis_id` (`diagnosis_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -88819,12 +88774,6 @@ ALTER TABLE `provinces`
 ALTER TABLE `regencies`
   ADD KEY `regencies_province_id_foreign` (`province_id`),
   ADD KEY `regencies_id_index` (`id`);
-
---
--- Indexes for table `region`
---
-ALTER TABLE `region`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -88867,10 +88816,16 @@ ALTER TABLE `villages`
 --
 
 --
+-- AUTO_INCREMENT for table `articles`
+--
+ALTER TABLE `articles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `diagnosis`
 --
 ALTER TABLE `diagnosis`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -88885,64 +88840,50 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `odontogram`
---
-ALTER TABLE `odontogram`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `region`
---
-ALTER TABLE `region`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users_biodata`
 --
 ALTER TABLE `users_biodata`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users_foto`
 --
 ALTER TABLE `users_foto`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users_ortu`
 --
 ALTER TABLE `users_ortu`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `diagnosis`
+--
+ALTER TABLE `diagnosis`
+  ADD CONSTRAINT `diagnosis_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `districts`
 --
 ALTER TABLE `districts`
   ADD CONSTRAINT `districts_regency_id_foreign` FOREIGN KEY (`regency_id`) REFERENCES `regencies` (`id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `odontogram`
---
-ALTER TABLE `odontogram`
-  ADD CONSTRAINT `odontogram_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `odontogram_ibfk_2` FOREIGN KEY (`id_region`) REFERENCES `region` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `odontogram_ibfk_3` FOREIGN KEY (`diagnosis_id`) REFERENCES `diagnosis` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `regencies`

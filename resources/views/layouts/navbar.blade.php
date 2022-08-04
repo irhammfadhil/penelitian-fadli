@@ -11,7 +11,7 @@
         <ul>
           <li><a class="nav-link scrollto active" href="/">Beranda</a></li>
           <li><a class="nav-link scrollto" href="/cara-penggunaan">Cara Penggunaan</a></li>
-          <li><a class="nav-link scrollto" href="/artikel">Artikel</a></li>
+          <li><a class="nav-link scrollto" href="/article">Artikel</a></li>
           <li><a class="nav-link scrollto" href="/tanya-jawab">Tanya Jawab</a></li>
           <li><a class="nav-link scrollto" href="/login">Daftar</a></li>
         </ul>
