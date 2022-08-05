@@ -58,7 +58,7 @@
 									<td class="text-center">{{$a->created_at}}</td>
 									<td class="text-center">@if($a->is_photo_verified == 0) Belum Disetujui @else Sudah Disetujui @endif</td>
 									<td class="text-center">{{$a->photo_comments}}</td>
-									<td class="text-center"><a class="btn btn-primary" href="/daftar-anak/detail?id={{$a->id}}" role="button">Detail</a><br><br>
+									<td class="text-center"><a class="btn btn-primary" href="/daftar-anak/detail?id={{$a->id}}" role="button">Detail</a>
 									<a class="btn btn-danger" href="/daftar-anak/delete?id={{$a->id}}" role="button">Hapus</a>
 									</td>
 									</tr>
