@@ -421,7 +421,7 @@
 									<textarea class="form-control" id="komentar" name="komentar" rows="3">{{$user->comments}}</textarea>
 								</div>
 								<br>
-								<button type="submit" class="btn btn-primary">Setujui Foto</button>
+								<button type="submit" class="btn btn-primary">Submit</button>
 							</form>
 							<!-- Modal -->
 							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

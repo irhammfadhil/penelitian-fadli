@@ -35,6 +35,10 @@
 						<a class="sidebar-link" href="/admin/artikel">
               <i class="align-middle" data-feather="file"></i> <span class="align-middle">Daftar Artikel</span>
             </a>
+			<li class="sidebar-item">
+						<a class="sidebar-link" href="/daftar-user">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Daftar User</span>
+            </a>
 			</li>
 			@endif
 {{--

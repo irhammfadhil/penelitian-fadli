@@ -47,6 +47,10 @@ Route::get('/komentar', [DashboardUserController::class,'getKomentar'])->middlew
 Route::get('/dashboard/admin', [DashboardAdminController::class,'index'])->middleware('auth');
 Route::get('/daftar-anak', [DashboardAdminController::class,'getAllAnak'])->middleware('auth');
 Route::get('/daftar-anak/detail', [DashboardAdminController::class,'getDetailAnak'])->middleware('auth');
+Route::get('/daftar-anak/delete', [DashboardAdminController::class,'deleteAnak'])->middleware('auth');
+Route::get('/daftar-user', [DashboardAdminController::class,'getAllUsers'])->middleware('auth');
+Route::get('/daftar-user/makeAdmin', [DashboardAdminController::class,'makeAdmin'])->middleware('auth');
+Route::get('/daftar-user/makeUser', [DashboardAdminController::class,'makeUser'])->middleware('auth');
 Route::post('/odontogram/submit', [DashboardAdminController::class,'submitOdontogram'])->middleware('auth');
 Route::get('/admin/artikel', [DashboardAdminController::class,'getAllArticle'])->middleware('auth');
 Route::get('/admin/artikel/new', [DashboardAdminController::class,'getNewArticle'])->middleware('auth');

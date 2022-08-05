@@ -19,7 +19,7 @@ class UserController extends Controller
         $password = $request->password;
         
         //auto-login
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password]) || Auth::attempt(['username' => $request->email, 'password' => $request->password])) {
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_deleted' => 0]) || Auth::attempt(['username' => $request->email, 'password' => $request->password, 'is_deleted' => 0])) {
             $user = Auth::user();
             if(Auth::user()->is_admin == 0) {
                 return redirect('/dashboard/user');

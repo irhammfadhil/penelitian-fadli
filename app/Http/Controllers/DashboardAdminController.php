@@ -18,8 +18,26 @@ class DashboardAdminController extends Controller
         return view('dashboard-admin.index');
     }
     public function getAllAnak(){
-        $anak = User::where('is_admin', '=', 0)->get();
+        $anak = User::where('is_admin', '=', 0)->where('is_deleted', '=', 0)->get();
         return view('dashboard-admin.list-anak', ['anak' => $anak]);
+    }
+    public function getAllUsers(){
+        $anak = User::where('is_deleted', '=', 0)->get();
+        return view('dashboard-admin.list-user', ['anak' => $anak]);
+    }
+    public function makeAdmin(Request $request) {
+        $user = User::where('id', '=', $request->id)->first();
+        $user->is_admin = 1;
+        $user->save();
+
+        return redirect('/daftar-user');
+    }
+    public function makeUser(Request $request) {
+        $user = User::where('id', '=', $request->id)->first();
+        $user->is_admin = 0;
+        $user->save();
+
+        return redirect('/daftar-user');
     }
     public function getDetailAnak(Request $request) {
         $user = User::where('id', '=', $request->id)->first();
@@ -272,5 +290,13 @@ class DashboardAdminController extends Controller
         $url = '/daftar-anak/detail?id='.$id;
 
         return redirect($url);
+    }
+    public function deleteAnak(Request $request) {
+        $id = $request->id;
+        $user = User::where('id', '=', $id)->first();
+        $user->is_deleted = 1;
+        $user->save();
+
+        return redirect('/daftar-anak');
     }
 }

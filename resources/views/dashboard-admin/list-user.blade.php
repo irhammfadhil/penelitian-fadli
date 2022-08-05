@@ -34,7 +34,7 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Daftar Anak</h1>
+					<h1 class="h3 mb-3">Daftar User</h1>
 					
 					<br>
 					<div class="card">
@@ -45,8 +45,7 @@
 									<th scope="col" style="width:5%;" class="text-center">No</th>
 									<th scope="col" class="text-center">Nama Anak</th>
 									<th scope="col" class="text-center">Tanggal Pendaftaran</th>
-									<th scope="col" class="text-center">Status Verifikasi Foto</th>
-									<th scope="col" class="text-center">Komentar Verifikasi Foto</th>
+									<th scope="col" class="text-center">Role</th>
 									<th scope="col" class="text-center">Tindakan</th>
 									</tr>
 								</thead>
@@ -56,10 +55,11 @@
 									<th scope="row" class="text-center">{{$loop->iteration}}</th>
 									<td>{{$a->name}}</td>
 									<td class="text-center">{{$a->created_at}}</td>
-									<td class="text-center">@if($a->is_photo_verified == 0) Belum Disetujui @else Sudah Disetujui @endif</td>
-									<td class="text-center">{{$a->photo_comments}}</td>
-									<td class="text-center"><a class="btn btn-primary" href="/daftar-anak/detail?id={{$a->id}}" role="button">Detail</a><br><br>
-									<a class="btn btn-danger" href="/daftar-anak/delete?id={{$a->id}}" role="button">Hapus</a>
+									<td class="text-center">@if($a->is_admin == 0) User @else Admin @endif</td>
+									<td class="text-center">@if($a->is_admin == 0)<a class="btn btn-primary" href="/daftar-user/makeAdmin?id={{$a->id}}" role="button">Jadikan sebagai Admin</a>
+                                    @else
+                                    <a class="btn btn-primary" href="/daftar-user/makeUser?id={{$a->id}}" role="button">Jadikan sebagai User</a>
+                                    @endif
 									</td>
 									</tr>
 									@endforeach
