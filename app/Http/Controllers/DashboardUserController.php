@@ -237,6 +237,7 @@ class DashboardUserController extends Controller
     }
     public function getKomentar() {
         $user = User::where('id', '=', Auth::user()->id)->first();
+        $biodata = Biodata::where('users_id', '=', Auth::user()->id)->first();
         ##gigi tetap
         $sum_decay_tetap = Diagnosis::where('users_id', '=', Auth::user()->id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
         $sum_missing_tetap = Diagnosis::where('users_id', '=', Auth::user()->id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
@@ -282,6 +283,7 @@ class DashboardUserController extends Controller
         }
         return view('dashboard-user.komentar', [
             'user' => $user,
+            'biodata' => $biodata,
             'sum_decay_tetap' => $sum_decay_tetap,
             'sum_missing_tetap' => $sum_missing_tetap,
             'sum_filling_tetap' => $sum_filling_tetap,

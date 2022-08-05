@@ -260,8 +260,8 @@
 
 							<div class="row">
 								<div class="col-6">
-									<div id="tabel-gigi-susu-kiri" style="text-align: right;">
-										<table class="table table-bordered" style="width: 62.5%; text-align: right;">
+									<div id="tabel-gigi-susu-kiri">
+										<table class="table table-bordered" style="width: 62.5%; float: right;">
 											<tbody>
 												<tr class="text-center" style="border:none;">
 												<td class="" id="" style="border:none;">55</td>
@@ -305,7 +305,7 @@
 							<br>
 							<div class="row">
 								<div class="col-6">
-									<table class="table table-bordered" style="width: 62.5%; text-align: right;">
+									<table class="table table-bordered" style="width: 62.5%; float: right;">
 										<tbody>
 											<tr class="text-center">
 											<td class="gigi" id="gigi85" style="height: 2.5rem; width: 2.5rem;"></td>

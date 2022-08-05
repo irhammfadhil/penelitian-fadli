@@ -106,12 +106,6 @@
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                         </div>
-                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/komentar';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>4</span></div>
-                        <div class="md-step-title">Laporan</div>
-                        <div class="md-step-bar-left"></div>
-                        <div class="md-step-bar-right"></div>
-                        </div>
                     </div>
 					<br>
 					<div class="card">

@@ -21,6 +21,12 @@
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Biodata dan Foto Gigi</span>
             </a>
 					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="/komentar">
+              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan</span>
+            </a>
+					</li>
 			@else
 			<li class="sidebar-item active">
 						<a class="sidebar-link" href="/dashboard/admin">

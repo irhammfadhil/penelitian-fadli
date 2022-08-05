@@ -84,42 +84,55 @@
 
 			<main class="content">
 				<div class="container-fluid p-0">
-
-					<h1 class="h3 mb-3">Informed Consent</h1>
-					
-                    <div class="md-stepper-horizontal orange">
-                        <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/biodata';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>1</span></div>
-                        <div class="md-step-title">Biodata</div>
-                        <div class="md-step-bar-left"></div>
-                        <div class="md-step-bar-right"></div>
-                        </div>
-						<div class="md-step active col-lg-1 col-md-1" onclick="location.href='/informed-consent';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>2</span></div>
-                        <div class="md-step-title">Informed Consent</div>
-                        <div class="md-step-bar-left"></div>
-                        <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>3</span></div>
-                        <div class="md-step-title">Foto Gigi</div>
-                        <div class="md-step-bar-left"></div>
-                        <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/komentar';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>4</span></div>
-                        <div class="md-step-title">Laporan</div>
-                        <div class="md-step-bar-left"></div>
-                        <div class="md-step-bar-right"></div>
-                        </div>
-                    </div>
-					<br>
+                    <h3>Laporan</h3>
 					<div class="card">
 						<div class="card-body">
-                            <h3>Laporan</h3>
+                            <h4>Informasi Pribadi</h4>
                             <div class="row">
                                 <div class="col-6">
-									D/d
+									Nama
+								</div>
+								<div class="col-6">
+									: {{$user->name}}
+								</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+									Alamat Email
+								</div>
+								<div class="col-6">
+									: {{$user->email}}
+								</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+									Tempat Tanggal Lahir
+								</div>
+								<div class="col-6">
+									: {{$biodata->birth_place}}, {{$biodata->birth_date}}
+								</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+									Jenis Kelamin
+								</div>
+								<div class="col-6">
+									: {{$biodata->gender}}
+								</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+									Sekolah
+								</div>
+								<div class="col-6">
+									: {{$biodata->id_sekolah}}
+								</div>
+                            </div>
+                            <hr>
+                            <h4>Hasil Diagnosis</h4>
+                            <div class="row">
+                                <div class="col-6">
+									Jumlah D/d
 								</div>
 								<div class="col-6">
 									: <b>{{$sum_decay_tetap}}/{{$sum_decay_susu}}</b>
@@ -127,7 +140,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-									M/e
+									Jumlah M/e
 								</div>
 								<div class="col-6">
 									: <b>{{$sum_missing_tetap}}/{{$sum_missing_susu}}</b>
@@ -135,7 +148,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-									F/f
+									Jumlah F/f
 								</div>
 								<div class="col-6">
 									: <b>{{$sum_filling_tetap}}/{{$sum_filling_susu}}</b>
@@ -145,16 +158,22 @@
                                 <div class="col-6">
 									Indeks DMF-T
 								</div>
-								<div class="col-6">
-									: <b>{{$user->dmft_score}}</b>, kategori <b> kategori {{$kriteria_dmft}}</b>
+								<div class="col-3">
+									: <b>{{$user->dmft_score}}</b>
+								</div>
+                                <div class="col-3">
+									kategori <b> {{$kriteria_dmft}}</b>
 								</div>
                             </div>
                             <div class="row">
                                 <div class="col-6">
 									Indeks def-t
 								</div>
-								<div class="col-6">
-									: <b>{{$user->deft_score}}</b>, kategori <b>{{$kriteria_deft}}</b>
+								<div class="col-3">
+									: <b>{{$user->deft_score}}</b>
+								</div>
+                                <div class="col-3">
+									kategori <b>{{$kriteria_deft}}</b>
 								</div>
                             </div>
                             <div class="row">
