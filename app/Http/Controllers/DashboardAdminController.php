@@ -41,10 +41,50 @@ class DashboardAdminController extends Controller
         $id_gigi_sulung_kanan_atas = ['61', '62', '63', '64', '65'];
         $id_gigi_sulung_kanan_bawah = ['71', '72', '73', '74', '75'];
         $id_gigi_sulung_kiri_bawah = ['81', '82', '83', '84', '85'];
-        //$odontogram = Odontogram::where('users_id', '=', $request->id)->orderBy('id_gigi')->get();
-        $sum_decay = Diagnosis::where('users_id', '=', $request->id)->where('is_decay', '=', 1)->count();
-        $sum_missing = Diagnosis::where('users_id', '=', $request->id)->where('is_missing', '=', 1)->count();
-        $sum_filling = Diagnosis::where('users_id', '=', $request->id)->where('is_filling', '=', 1)->count();
+        #itung dmft
+        ##gigi tetap
+        $sum_decay_tetap = Diagnosis::where('users_id', '=', $request->id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+        $sum_missing_tetap = Diagnosis::where('users_id', '=', $request->id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+        $sum_filling_tetap = Diagnosis::where('users_id', '=', $request->id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+        ##gigi susu
+        $sum_decay_susu = Diagnosis::where('users_id', '=', $request->id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [51,85])->count();
+        $sum_missing_susu = Diagnosis::where('users_id', '=', $request->id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [51,85])->count();
+        $sum_filling_susu = Diagnosis::where('users_id', '=', $request->id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [51,85])->count();
+
+        #kriteria DMFT (Yulia et al., 2013)
+        $kriteria_dmft = '';
+        $kriteria_deft = '';
+        if($user->dmft_score >= 0 && $user->dmft_score <= 1.1) {
+            $kriteria_dmft = 'Sangat Rendah';
+        }
+        else if ($user->dmft_score > 1.1 && $user->dmft_score <= 2.6) {
+            $kriteria_dmft = 'Rendah';
+        }
+        else if ($user->dmft_score > 2.6 && $user->dmft_score <= 4.4) {
+            $kriteria_dmft = 'Sedang';
+        }
+        else if ($user->dmft_score > 4.4 && $user->dmft_score <= 6.5) {
+            $kriteria_dmft = 'Tinggi';
+        }
+        else if ($user->dmft_score > 6.5) {
+            $kriteria_dmft = 'Sangat Tinggi';
+        }
+        #kriteria DEFT (Yulia et al., 2013)
+        if($user->deft_score >= 0 && $user->deft_score <= 1.1) {
+            $kriteria_deft = 'Sangat Rendah';
+        }
+        else if ($user->deft_score > 1.1 && $user->deft_score <= 2.6) {
+            $kriteria_deft = 'Rendah';
+        }
+        else if ($user->deft_score > 2.6 && $user->deft_score <= 4.4) {
+            $kriteria_deft = 'Sedang';
+        }
+        else if ($user->deft_score > 4.4 && $user->deft_score <= 6.5) {
+            $kriteria_deft = 'Tinggi';
+        }
+        else if ($user->deft_score > 6.5) {
+            $kriteria_deft = 'Sangat Tinggi';
+        }
 
         return view('dashboard-admin.detail-anak', [
             'user' => $user,
@@ -60,12 +100,14 @@ class DashboardAdminController extends Controller
             'id_gigi_sulung_kanan_atas' => $id_gigi_sulung_kanan_atas,
             'id_gigi_sulung_kanan_bawah' => $id_gigi_sulung_kanan_bawah,
             'id_gigi_sulung_kiri_bawah' => $id_gigi_sulung_kiri_bawah,
-            'sum_decay' => $sum_decay,
-            'sum_missing' => $sum_missing,
-            'sum_filling' => $sum_filling,
-            //'region' => $region_gigi,
-            //'diagnosis' => $diagnosis,
-            //'odontogram' => $odontogram
+            'sum_decay_tetap' => $sum_decay_tetap,
+            'sum_missing_tetap' => $sum_missing_tetap,
+            'sum_filling_tetap' => $sum_filling_tetap,
+            'sum_decay_susu' => $sum_decay_susu,
+            'sum_missing_susu' => $sum_missing_susu,
+            'sum_filling_susu' => $sum_filling_susu,
+            'kriteria_dmft' => $kriteria_dmft,
+            'kriteria_deft' => $kriteria_deft,
         ]);
     }
     public function submitOdontogram(Request $request) {
@@ -199,5 +241,24 @@ class DashboardAdminController extends Controller
         $artikel->delete();
 
         return redirect('/admin/artikel');
+    }
+    public function inputKomentarFotoAdmin (Request $request) {
+        $id = $request->id;
+        $komentar_foto = $request->komentar_foto;
+        $status_persetujuan = 0;
+        if($request->action == 'tolak') {
+            $status_persetujuan = 0;
+        }
+        else {
+            $status_persetujuan = 1;
+        }
+        $user = User::where('id', '=', $id)->first();
+        $user->is_photo_verified = $status_persetujuan;
+        $user->photo_comments = $komentar_foto;
+        $user->save();
+
+        $url = '/daftar-anak/detail?id='.$id;
+
+        return redirect($url);
     }
 }

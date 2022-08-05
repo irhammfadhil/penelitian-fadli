@@ -104,6 +104,14 @@
 							@if($foto)
 							<h4>Foto Gigi (<a href="#" id="foto-toggle">tampilkan</a><a href="#" id="foto-toggle-hide">sembunyikan</a>)</h4>
 							<div id="foto">
+								<div class="row">
+									<div class="col-4">Status Persetujuan Foto</div>
+									<div class="col-8">: <b>@if($user->is_photo_verified == 0) Belum Disetujui @else Sudah Disetujui @endif</b> </div>
+								</div>
+								<div class="row">
+									<div class="col-4">Komentar Foto</div>
+									<div class="col-8">: {{$user->photo_comments}} </div>
+								</div>
 								<ul class="nav nav-tabs" id="myTab" role="tablist">
 								<li class="nav-item" role="presentation">
 									<button class="nav-link active" id="senyum-penuh-tab" data-bs-toggle="tab" data-bs-target="#senyum-penuh" type="button" role="tab" aria-controls="home" aria-selected="true">Senyum Penuh</button>
@@ -162,6 +170,23 @@
 										<i>Tanggal Pengambilan: @php echo(tgl_indo($foto->date_taken_bawah)); @endphp</i>
 									</div>
 								</div>
+								<form action="/admin/submitFoto" method="post">
+									@csrf
+									<input type="hidden" name="id" value="{{ app('request')->input('id') }}">
+									<div class="form-group">
+										<label for="exampleFormControlTextarea1">Komentar Admin:</label>
+										<textarea class="form-control" id="komentar-foto" name="komentar_foto" rows="3"></textarea>
+									</div>
+									<br>
+									<div class="row text-center">
+										<div class="col-6">
+											<button type="submit" name="action" value="tolak" class="btn btn-danger">Tolak Foto</button>
+										</div>
+										<div class="col-6">
+											<button type="submit" name="action" value="setuju" class="btn btn-primary">Setujui Foto</button>
+										</div>
+									</div>
+								</form>
 							</div>
 							@endif
 							<hr>
@@ -277,17 +302,11 @@
 									</table>
 								</div>
 							</div>
+							<br>
 							<div class="row">
 								<div class="col-6">
 									<table class="table table-bordered" style="width: 62.5%; text-align: right;">
 										<tbody>
-											<tr class="text-center" style="border:none;">
-												<td class="" id="" style="border:none;">85</td>
-												<td class="" id="" style="border:none;">84</td>
-												<td class="" id="" style="border:none;">83</td>
-												<td class="" id="" style="border:none;">82</td>
-												<td class="" id="" style="border:none;">81</td>
-											</tr>
 											<tr class="text-center">
 											<td class="gigi" id="gigi85" style="height: 2.5rem; width: 2.5rem;"></td>
 											<td class="gigi" id="gigi84" style="height: 2.5rem; width: 2.5rem;"></td>
@@ -295,25 +314,32 @@
 											<td class="gigi" id="gigi82" style="height: 2.5rem; width: 2.5rem;"></td>
 											<td class="gigi" id="gigi81" style="height: 2.5rem; width: 2.5rem;"></td>
 											</tr>
+											<tr class="text-center" style="border:none;">
+												<td class="" id="" style="border:none;">85</td>
+												<td class="" id="" style="border:none;">84</td>
+												<td class="" id="" style="border:none;">83</td>
+												<td class="" id="" style="border:none;">82</td>
+												<td class="" id="" style="border:none;">81</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>
 								<div class="col-6">
 									<table class="table table-bordered" style="width: 62.5%; text-align: right;">
 										<tbody>
-											<tr class="text-center" style="border:none;">
-												<td class="" id="" style="border:none;">71</td>
-												<td class="" id="" style="border:none;">72</td>
-												<td class="" id="" style="border:none;">73</td>
-												<td class="" id="" style="border:none;">74</td>
-												<td class="" id="" style="border:none;">75</td>
-											</tr>
 											<tr class="text-center">
 											<td class="gigi" id="gigi71" style="height: 2.5rem; width: 2.5rem;"></td>
 											<td class="gigi" id="gigi72" style="height: 2.5rem; width: 2.5rem;"></td>
 											<td class="gigi" id="gigi73" style="height: 2.5rem; width: 2.5rem;"></td>
 											<td class="gigi" id="gigi74" style="height: 2.5rem; width: 2.5rem;"></td>
 											<td class="gigi" id="gigi75" style="height: 2.5rem; width: 2.5rem;"></td>
+											</tr>
+											<tr class="text-center" style="border:none;">
+												<td class="" id="" style="border:none;">71</td>
+												<td class="" id="" style="border:none;">72</td>
+												<td class="" id="" style="border:none;">73</td>
+												<td class="" id="" style="border:none;">74</td>
+												<td class="" id="" style="border:none;">75</td>
 											</tr>
 										</tbody>
 									</table>
@@ -324,16 +350,6 @@
 								<div class="col-6">
 									<table class="table table-bordered">
 										<tbody>
-											<tr class="text-center" style="border:none;">
-												<td class="" id="" style="border:none;">48</td>
-												<td class="" id="" style="border:none;">47</td>
-												<td class="" id="" style="border:none;">46</td>
-												<td class="" id="" style="border:none;">45</td>
-												<td class="" id="" style="border:none;">44</td>
-												<td class="" id="" style="border:none;">43</td>
-												<td class="" id="" style="border:none;">42</td>
-												<td class="" id="" style="border:none;">41</td>
-											</tr>
 											<tr class="text-center">
 											<td class="gigi" id="gigi48" style="height: 2.5rem; width: 2.5rem;"></td>
 											<td class="gigi" id="gigi47" style="height: 2.5rem; width: 2.5rem;"></td>
@@ -344,22 +360,22 @@
 											<td class="gigi" id="gigi42" style="height: 2.5rem; width: 2.5rem;"></td>
 											<td class="gigi" id="gigi41" style="height: 2.5rem; width: 2.5rem;"></td>
 											</tr>
+											<tr class="text-center" style="border:none;">
+												<td class="" id="" style="border:none;">48</td>
+												<td class="" id="" style="border:none;">47</td>
+												<td class="" id="" style="border:none;">46</td>
+												<td class="" id="" style="border:none;">45</td>
+												<td class="" id="" style="border:none;">44</td>
+												<td class="" id="" style="border:none;">43</td>
+												<td class="" id="" style="border:none;">42</td>
+												<td class="" id="" style="border:none;">41</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>
 								<div class="col-6">
 									<table class="table table-bordered">
 										<tbody>
-											<tr class="text-center" style="border:none;">
-												<td class="" id="" style="border:none;">31</td>
-												<td class="" id="" style="border:none;">32</td>
-												<td class="" id="" style="border:none;">33</td>
-												<td class="" id="" style="border:none;">34</td>
-												<td class="" id="" style="border:none;">35</td>
-												<td class="" id="" style="border:none;">36</td>
-												<td class="" id="" style="border:none;">37</td>
-												<td class="" id="" style="border:none;">38</td>
-											</tr>
 											<tr class="text-center">
 											<td class="gigi" id="gigi31" style="height: 2.5rem; width: 2.5rem;"></td>
 											<td class="gigi" id="gigi32" style="height: 2.5rem; width: 2.5rem;"></td>
@@ -370,112 +386,31 @@
 											<td class="gigi" id="gigi37" style="height: 2.5rem; width: 2.5rem;"></td>
 											<td class="gigi" id="gigi38" style="height: 2.5rem; width: 2.5rem;"></td>
 											</tr>
+											<tr class="text-center" style="border:none;">
+												<td class="" id="" style="border:none;">31</td>
+												<td class="" id="" style="border:none;">32</td>
+												<td class="" id="" style="border:none;">33</td>
+												<td class="" id="" style="border:none;">34</td>
+												<td class="" id="" style="border:none;">35</td>
+												<td class="" id="" style="border:none;">36</td>
+												<td class="" id="" style="border:none;">37</td>
+												<td class="" id="" style="border:none;">38</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
-							{{--<table class="table table-bordered table-hover">
-								<thead class="thead-dark">
-									<tr>
-									<th scope="col" style="width: 25%;" class="text-center">ID Gigi</th>
-									<th scope="col" style="width: 25%;" class="text-center">Diagnosis</th>
-									<th scope="col" style="width: 25%;" class="text-center">Diagnosis</th>
-									<th scope="col" style="width: 25%;" class="text-center">ID Gigi</th>
-									</tr>
-								</thead>
-								<tbody>
-									@for($i=0;$i<sizeof($id_gigi_tetap_kiri_atas);$i++)
-									<tr>
-									@if($i<5)
-									<td>{{$id_gigi_tetap_kiri_atas[$i]}} [{{$id_gigi_sulung_kiri_atas[$i]}}]</td>
-									@else
-									<td>{{$id_gigi_tetap_kiri_atas[$i]}}</td>
-									@endif
-									<td>
-										{{$id_gigi_tetap_kiri_atas[$i]}}: @foreach($odontogram as $o)
-										@if($o->id_gigi == $id_gigi_tetap_kiri_atas[$i])
-										{{$o->region->region_code}} {{$o->diagnosis->diagnosis_code}}
-										@elseif($i<5)
-										@if($o->id_gigi == $id_gigi_sulung_kiri_atas[$i])
-										; {{$id_gigi_sulung_kiri_atas[$i]}}: {{$o->region->region_code}} {{$o->diagnosis->diagnosis_code}}
-										@endif
-										@endif
-										@endforeach
-									</td>
-									<td>
-										{{$id_gigi_tetap_kanan_atas[$i]}}: @foreach($odontogram as $o)
-										@if($o->id_gigi == $id_gigi_tetap_kanan_atas[$i])
-										{{$o->region->region_code}} {{$o->diagnosis->diagnosis_code}}
-										@elseif($i<5)
-										@if($o->id_gigi == $id_gigi_sulung_kanan_atas[$i])
-										; {{$id_gigi_sulung_kanan_atas[$i]}}: {{$o->region->region_code}} {{$o->diagnosis->diagnosis_code}}
-										@endif
-										@endif
-										@endforeach
-									</td>
-									@if($i<5)
-									<td>[{{$id_gigi_sulung_kanan_atas[$i]}}] {{$id_gigi_tetap_kanan_atas[$i]}}</td>
-									@else
-									<td>{{$id_gigi_tetap_kanan_atas[$i]}}</td>
-									@endif
-									</tr>
-									@endfor
-								</tbody>
-							</table>
-
-							<table class="table table-bordered table-hover">
-								<thead class="thead-dark">
-									<tr>
-									<th scope="col" style="width: 25%;" class="text-center">ID Gigi</th>
-									<th scope="col" style="width: 25%;" class="text-center">Diagnosis</th>
-									<th scope="col" style="width: 25%;" class="text-center">Diagnosis</th>
-									<th scope="col" style="width: 25%;" class="text-center">ID Gigi</th>
-									</tr>
-								</thead>
-								<tbody>
-									@for($i=sizeof($id_gigi_tetap_kiri_bawah)-1;$i>=0;$i--)
-									<tr>
-									@if($i<5)
-									<td>{{$id_gigi_tetap_kiri_bawah[$i]}} [{{$id_gigi_sulung_kiri_bawah[$i]}}]</td>
-									@else
-									<td>{{$id_gigi_tetap_kiri_bawah[$i]}}</td>
-									@endif
-									<td>
-										{{$id_gigi_tetap_kiri_bawah[$i]}}: @foreach($odontogram as $o)
-										@if($o->id_gigi == $id_gigi_tetap_kiri_bawah[$i])
-										{{$o->region->region_code}} {{$o->diagnosis->diagnosis_code}}
-										@elseif($i<5)
-										@if($o->id_gigi == $id_gigi_sulung_kiri_bawah[$i])
-										; {{$id_gigi_sulung_kiri_bawah[$i]}}: {{$o->region->region_code}} {{$o->diagnosis->diagnosis_code}}
-										@endif
-										@endif
-										@endforeach
-									</td>
-									<td>
-										{{$id_gigi_tetap_kanan_bawah[$i]}}: @foreach($odontogram as $o)
-										@if($o->id_gigi == $id_gigi_tetap_kanan_bawah[$i])
-										{{$o->region->region_code}} {{$o->diagnosis->diagnosis_code}}
-										@elseif($i<5)
-										@if($o->id_gigi == $id_gigi_sulung_kanan_bawah[$i])
-										; {{$id_gigi_sulung_kanan_bawah[$i]}}: {{$o->region->region_code}} {{$o->diagnosis->diagnosis_code}}
-										@endif
-										@endif
-										@endforeach
-									</td>
-									@if($i<5)
-									<td>[{{$id_gigi_sulung_kanan_bawah[$i]}}] {{$id_gigi_tetap_kanan_bawah[$i]}}</td>
-									@else
-									<td>{{$id_gigi_tetap_kanan_bawah[$i]}}</td>
-									@endif
-									</tr>
-									@endfor
-								</tbody>
-							</table>--}}
-							D: <b>{{$sum_decay}}</b> M: <b>{{$sum_missing}}</b> F: <b>{{$sum_filling}}</b>
+							D/d: <b>{{$sum_decay_tetap}}/{{$sum_decay_susu}}</b> M/e: <b>{{$sum_missing_tetap}}/{{$sum_missing_susu}}</b> F/f: <b>{{$sum_filling_tetap}}/{{$sum_filling_susu}}</b>
 							<br>
-							DMFT: <b>{{$user->dmft_score}}</b>
+							DMFT: <b>{{$user->dmft_score}}</b>, Kriteria DMFT: <b>{{$kriteria_dmft}}</b>
 							<br>
-							RTI: ....
+							def-t: <b>{{$user->deft_score}}</b>, Kriteria def-t: <b>{{$kriteria_deft}}</b>
+							<br>
+							@if($user->dmft_score == 0)
+							RTI: <b>0%</b>
+							@else
+							RTI: <b>{{number_format($sum_decay_tetap/$user->dmft_score, 2)*100}}%</b>
+							@endif
 
 							<!-- Modal -->
 							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

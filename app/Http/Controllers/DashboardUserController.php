@@ -132,7 +132,9 @@ class DashboardUserController extends Controller
     }
     public function getFotoGigi() {
         $foto = Foto::where('users_id', '=', Auth::user()->id)->first();
-        return view('dashboard-user.foto', ['foto' => $foto]);
+        $user = User::where('id', '=', Auth::user()->id)->first();
+        
+        return view('dashboard-user.foto', ['foto' => $foto, 'user' => $user]);
     }
     public function submitFotoGigi(Request $request) {
         $this->validate($request, [

@@ -122,17 +122,25 @@
                             @endif
                             @if($foto)
                                 <div class="row">
+									<div class="col-4">Status Persetujuan Foto</div>
+									<div class="col-8">: <b>@if($user->is_photo_verified == 0) Belum Disetujui @else Sudah Disetujui @endif</b> </div>
+								</div>
+								<div class="row">
+									<div class="col-4">Komentar Foto</div>
+									<div class="col-8">: {{$user->photo_comments}} </div>
+								</div>
+                                <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Senyum Penuh</label><br>
-                                            <img src="{{asset($foto->foto_senyum)}}" class="img-fluid">
+                                            <img src="{{asset($foto->foto_senyum)}}" class="img-fluid"><br>
                                             <i>Tanggal Pengambilan Foto: {{$foto->date_taken_senyum}}</i>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Samping Kiri</label><br>
-                                            <img src="{{asset($foto->foto_kiri)}}" class="img-fluid">
+                                            <img src="{{asset($foto->foto_kiri)}}" class="img-fluid"><br>
                                             <i>Tanggal Pengambilan Foto: {{$foto->date_taken_kiri}}</i>
                                         </div>
                                     </div>
@@ -142,14 +150,14 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Depan</label><br>
-                                            <img src="{{asset($foto->foto_depan)}}" class="img-fluid">
+                                            <img src="{{asset($foto->foto_depan)}}" class="img-fluid"><br>
                                             <i>Tanggal Pengambilan Foto: {{$foto->date_taken_depan}}</i>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Atas</label><br>
-                                            <img src="{{asset($foto->foto_atas)}}" class="img-fluid">
+                                            <img src="{{asset($foto->foto_atas)}}" class="img-fluid"><br>
                                             <i>Tanggal Pengambilan Foto: {{$foto->date_taken_atas}}</i>
                                         </div>
                                     </div>
@@ -159,14 +167,14 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Samping Kanan</label><br>
-                                            <img src="{{asset($foto->foto_kanan)}}" class="img-fluid">
+                                            <img src="{{asset($foto->foto_kanan)}}" class="img-fluid"><br>
                                             <i>Tanggal Pengambilan Foto: {{$foto->date_taken_kanan}}</i>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Foto Gigi Tampak Bawah</label><br>
-                                            <img src="{{asset($foto->foto_bawah)}}" class="img-fluid">
+                                            <img src="{{asset($foto->foto_bawah)}}" class="img-fluid"><br>
                                             <i>Tanggal Pengambilan Foto: {{$foto->date_taken_bawah}}</i>
                                         </div>
                                     </div>

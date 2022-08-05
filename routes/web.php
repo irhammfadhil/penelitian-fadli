@@ -53,3 +53,4 @@ Route::post('/admin/artikel/new', [DashboardAdminController::class,'submitNewArt
 Route::get('/admin/artikel/edit', [DashboardAdminController::class,'getEditArticle'])->middleware('auth');
 Route::post('/admin/artikel/edit', [DashboardAdminController::class,'submitEditArticle'])->middleware('auth');
 Route::get('/admin/artikel/delete', [DashboardAdminController::class,'deleteArticle'])->middleware('auth');
+Route::post('/admin/submitFoto', [DashboardAdminController::class,'inputKomentarFotoAdmin'])->middleware('auth');
