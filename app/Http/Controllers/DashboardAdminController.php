@@ -11,6 +11,8 @@ use App\Models\Region;
 use App\Models\Diagnosis;
 use App\Models\Odontogram;
 use App\Models\Article;
+use PDF;
+use DateTime;
 
 class DashboardAdminController extends Controller
 {
@@ -298,5 +300,38 @@ class DashboardAdminController extends Controller
         $user->save();
 
         return redirect('/daftar-anak');
+    }
+    public function cetakInformedConsent(Request $request) {
+        $id = $request->id;
+        $user = User::where('id', '=', $id)->first();
+        $biodata = Biodata::where('users_id', '=', $id)->first();
+        $ortu = BiodataOrtu::where('users_id', '=', $id)->first();
+        $data = NULL;
+        $tanggal = $this->tgl_indo((date('Y-m-d')));
+        if($biodata && $ortu) {
+            $date1 = new DateTime($biodata->birth_date);
+            $date2 = new DateTime("now");
+            $age = $date1->diff($date2);
+            $data = [
+                'biodata' => $biodata,
+                'ortu' => $ortu,
+                'age' => $age->y,
+                'user' => $user,
+                'tanggal' => $tanggal
+            ];
+        }
+        else {
+            $data = [
+                'biodata' => $biodata,
+                'ortu' => $ortu,
+                'user' => $user,
+                'tanggal' => $tanggal
+            ];
+        }
+        $pdf = PDF::loadView('pdf.consent', $data);
+
+        $fileName = 'Informed Consent '.$user->name.'.pdf';
+
+        return $pdf->download($fileName);
     }
 }
