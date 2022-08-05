@@ -9,6 +9,8 @@ use App\Models\Biodata;
 use App\Models\BiodataOrtu;
 use App\Models\Village;
 use App\Models\Foto;
+use App\Models\User;
+use App\Models\Diagnosis;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DateTime;
@@ -232,5 +234,62 @@ class DashboardUserController extends Controller
         $foto->save();
 
         return redirect('/foto-gigi')->with('success', 'Unggah Foto Berhasil');
+    }
+    public function getKomentar() {
+        $user = User::where('id', '=', Auth::user()->id)->first();
+        ##gigi tetap
+        $sum_decay_tetap = Diagnosis::where('users_id', '=', Auth::user()->id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+        $sum_missing_tetap = Diagnosis::where('users_id', '=', Auth::user()->id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+        $sum_filling_tetap = Diagnosis::where('users_id', '=', Auth::user()->id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+        ##gigi susu
+        $sum_decay_susu = Diagnosis::where('users_id', '=', Auth::user()->id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [51,85])->count();
+        $sum_missing_susu = Diagnosis::where('users_id', '=', Auth::user()->id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [51,85])->count();
+        $sum_filling_susu = Diagnosis::where('users_id', '=', Auth::user()->id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [51,85])->count();
+
+        #kriteria DMFT (Yulia et al., 2013)
+        $kriteria_dmft = '';
+        $kriteria_deft = '';
+        if($user->dmft_score >= 0 && $user->dmft_score <= 1.1) {
+            $kriteria_dmft = 'Sangat Rendah';
+        }
+        else if ($user->dmft_score > 1.1 && $user->dmft_score <= 2.6) {
+            $kriteria_dmft = 'Rendah';
+        }
+        else if ($user->dmft_score > 2.6 && $user->dmft_score <= 4.4) {
+            $kriteria_dmft = 'Sedang';
+        }
+        else if ($user->dmft_score > 4.4 && $user->dmft_score <= 6.5) {
+            $kriteria_dmft = 'Tinggi';
+        }
+        else if ($user->dmft_score > 6.5) {
+            $kriteria_dmft = 'Sangat Tinggi';
+        }
+        #kriteria DEFT (Yulia et al., 2013)
+        if($user->deft_score >= 0 && $user->deft_score <= 1.1) {
+            $kriteria_deft = 'Sangat Rendah';
+        }
+        else if ($user->deft_score > 1.1 && $user->deft_score <= 2.6) {
+            $kriteria_deft = 'Rendah';
+        }
+        else if ($user->deft_score > 2.6 && $user->deft_score <= 4.4) {
+            $kriteria_deft = 'Sedang';
+        }
+        else if ($user->deft_score > 4.4 && $user->deft_score <= 6.5) {
+            $kriteria_deft = 'Tinggi';
+        }
+        else if ($user->deft_score > 6.5) {
+            $kriteria_deft = 'Sangat Tinggi';
+        }
+        return view('dashboard-user.komentar', [
+            'user' => $user,
+            'sum_decay_tetap' => $sum_decay_tetap,
+            'sum_missing_tetap' => $sum_missing_tetap,
+            'sum_filling_tetap' => $sum_filling_tetap,
+            'sum_decay_susu' => $sum_decay_susu,
+            'sum_missing_susu' => $sum_missing_susu,
+            'sum_filling_susu' => $sum_filling_susu,
+            'kriteria_dmft' => $kriteria_dmft,
+            'kriteria_deft' => $kriteria_deft,
+        ]);
     }
 }

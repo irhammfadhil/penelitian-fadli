@@ -411,7 +411,18 @@
 							@else
 							RTI: <b>{{number_format($sum_decay_tetap/$user->dmft_score, 2)*100}}%</b>
 							@endif
-
+							<hr>
+							<h4>Komentar Umum</h4>
+							<form action="/admin/submitKomentar" method="post">
+								@csrf
+								<input type="hidden" name="id" value="{{ app('request')->input('id') }}">
+								<div class="form-group">
+									<label for="exampleFormControlTextarea1">Komentar Keseluruhan:</label>
+									<textarea class="form-control" id="komentar" name="komentar" rows="3">{{$user->comments}}</textarea>
+								</div>
+								<br>
+								<button type="submit" class="btn btn-primary">Setujui Foto</button>
+							</form>
 							<!-- Modal -->
 							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-xl">

@@ -100,13 +100,13 @@
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                         </div>
-                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
+                        <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
                         <div class="md-step-circle"><span>3</span></div>
                         <div class="md-step-title">Foto Gigi</div>
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                         </div>
-                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/komentar';" style="cursor: pointer;">
+                        <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/komentar';" style="cursor: pointer;">
                         <div class="md-step-circle"><span>4</span></div>
                         <div class="md-step-title">Laporan</div>
                         <div class="md-step-bar-left"></div>
@@ -116,170 +116,67 @@
 					<br>
 					<div class="card">
 						<div class="card-body">
-                            @if($biodata)
-							<h3 class="card-title mb-0">Informed Consent</h3>
-							<br>
-							<h3 class="text-center">LEMBAR PERSETUJUAN SUBJEK PENELITIAN</h3>
-							<br>
-							<br>
-							<b>Saya yang bertandatangan di bawah ini, </b>
-							<div class="row">
-								<div class="col-1">
-
-								</div>
-								<div class="col-3">
-									Nama
-								</div>
-								<div class="col-8">
-									: {{$ortu->name_ortu}}
-								</div>
-							</div>
-							{{--<div class="row">
-								<div class="col-3">
-									Umur
-								</div>
-								<div class="col-9">
-									: 
-								</div>
-							</div>--}}
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Alamat
-								</div>
-								<div class="col-8">
-									: {{$ortu->address}}
-								</div>
-							</div>
-							<br>
-							<b>Sebagai orang tua dari:</b>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Nama
-								</div>
-								<div class="col-8">
-									: {{Auth::user()->name}}
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Umur
-								</div>
-								<div class="col-8">
-									: {{$age}} tahun
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Alamat
-								</div>
-								<div class="col-8">
-									: {{$ortu->address}}
-								</div>
-							</div>
-							<br>
-							Setelah mendapatkan penjelasan dan keterangan secara lengkap, menyatakan bersedia dan mengizinkan anak saya untuk melakukan pemeriksaan gigi demi kepentingan penelitian dari :
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Nama
-								</div>
-								<div class="col-8">
-									: <b>Fadli Muhammad Fathoni</b>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									NIM
-								</div>
-								<div class="col-8">
-									: <b>191610101125</b>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Fakultas
-								</div>
-								<div class="col-8">
-									: <b>Kedokteran Gigi Universitas Jember</b>
-								</div>
-							</div>
-							<br> 
-							Dengan Judul <b>“Penilaian Indeks Kebutuhan Perawatan Gigi pada Anak Sekolah Dasar di Wilayah Argoindustri Bobbin Arjasa Melalui Aplikasi Berbasis Web”</b> dengan sebenar-benarnya tanpa ada suatu paksaan dari pihak manapun. 
-							<div class="row">
-								<div class="col-6">
-									<br>
-									Saya yang bertandatangan,
+                            <h3>Laporan</h3>
+                            <div class="row">
+                                <div class="col-6">
+									D/d
 								</div>
 								<div class="col-6">
-									Jember, @php echo(tgl_indo(date('Y-m-d')));@endphp<br>
-									Peneliti,
+									: <b>{{$sum_decay_tetap}}/{{$sum_decay_susu}}</b>
 								</div>
-							</div>
-							<div class="row">
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+									M/e
+								</div>
 								<div class="col-6">
-									@if(Auth::user()->signature)
-                                    <img src="{{asset(Auth::user()->signature)}}" class="img-fluid"> 
+									: <b>{{$sum_missing_tetap}}/{{$sum_missing_susu}}</b>
+								</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+									F/f
+								</div>
+								<div class="col-6">
+									: <b>{{$sum_filling_tetap}}/{{$sum_filling_susu}}</b>
+								</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+									Indeks DMF-T
+								</div>
+								<div class="col-6">
+									: <b>{{$user->dmft_score}}</b>, kategori <b> kategori {{$kriteria_dmft}}</b>
+								</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+									Indeks def-t
+								</div>
+								<div class="col-6">
+									: <b>{{$user->deft_score}}</b>, kategori <b>{{$kriteria_deft}}</b>
+								</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+									Indeks RTI
+								</div>
+								<div class="col-6">
+									: @if($user->dmft_score == 0)
+                                    <b>0%</b>
+                                    @else
+                                    <b>{{number_format($sum_decay_tetap/$user->dmft_score, 2)*100}}%</b>
                                     @endif
 								</div>
-								<div class="col-6">
-                                    <img src="{{asset('ttd.jpg')}}" class="img-fluid"> 
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-6">
-									{{$ortu->name_ortu}}
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+									Komentar
 								</div>
 								<div class="col-6">
-									<b>Fadli Muhammad Fathoni</b>
+									: {{$user->comments}}
 								</div>
-							</div>
-							<hr>
-							<h5>Tandatangani Informed Consent</h5>
-							<form method="POST" action="/tandatangan" enctype="multipart/form-data">
-                                @csrf
-                                <div class="col-md-12">
-                                    <label class="" for="">Signature:</label>
-                                    <br/>
-                                    <div id="sig" ></div>
-                                    <br/>
-                                    
-                                    <textarea id="signature64" name="signed" style="display: none"></textarea>
-                                </div>
-                                <br/>
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
-                                        <button id="clear" class="btn btn-danger btn-sm">Hapus tanda tangan</button>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
-                                        <button class="btn btn-success">Tandatangani Informed Consent</button>
-                                    </div>
-                                </div>
-                            </form>
-                            @else
-                            <h3 class="card-title mb-0">Bagian ini belum dapat diakses</h3>
-                            <br>
-							<h3 class="text-center">Bagian ini belum dapat diakses. Silakan isi biodata terlebih dahulu.</h3>
-                            @endif
+                            </div>
 						</div>
 					</div>
 				</div>
@@ -447,30 +344,6 @@
             margin-right:20px;
         }
     </style>
-	<script>
-        $(function() {
-            $.ajaxSetup({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-            });
-            $(function() {
-                $('#kecamatan').on('change', function(){
-                    let id_kecamatan = $('#kecamatan').val();
-                    $.ajax({
-                        type: 'POST',
-                        url: "/getDesa",
-                        data: {id_district: id_kecamatan},
-                        cache: false,
-                        success: function(msg) {
-                            $('#desa').html(msg);
-                        },
-                        error: function(data) {
-                            console.log('error:', data);
-                        },
-                    });
-                });
-            });
-        });
-    </script>
 </body>
 
 </html>

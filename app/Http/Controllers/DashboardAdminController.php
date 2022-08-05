@@ -261,4 +261,16 @@ class DashboardAdminController extends Controller
 
         return redirect($url);
     }
+    public function submitKomentar(Request $request) {
+        $id = $request->id;
+        $komentar = $request->komentar;
+
+        $user = User::where('id', '=', $id)->first();
+        $user->comments = $komentar;
+        $user->save();
+
+        $url = '/daftar-anak/detail?id='.$id;
+
+        return redirect($url);
+    }
 }

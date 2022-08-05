@@ -41,6 +41,7 @@ Route::get('/informed-consent', [DashboardUserController::class,'getConsent'])->
 Route::post('/tandatangan', [DashboardUserController::class,'tandatanganInformedConsent'])->middleware('auth');
 Route::get('/foto-gigi', [DashboardUserController::class,'getFotoGigi'])->middleware('auth');
 Route::post('/foto-gigi', [DashboardUserController::class,'submitFotoGigi'])->middleware('auth');
+Route::get('/komentar', [DashboardUserController::class,'getKomentar'])->middleware('auth');
 
 #admin
 Route::get('/dashboard/admin', [DashboardAdminController::class,'index'])->middleware('auth');
@@ -54,3 +55,4 @@ Route::get('/admin/artikel/edit', [DashboardAdminController::class,'getEditArtic
 Route::post('/admin/artikel/edit', [DashboardAdminController::class,'submitEditArticle'])->middleware('auth');
 Route::get('/admin/artikel/delete', [DashboardAdminController::class,'deleteArticle'])->middleware('auth');
 Route::post('/admin/submitFoto', [DashboardAdminController::class,'inputKomentarFotoAdmin'])->middleware('auth');
+Route::post('/admin/submitKomentar', [DashboardAdminController::class,'submitKomentar'])->middleware('auth');

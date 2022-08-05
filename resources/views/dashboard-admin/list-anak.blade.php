@@ -45,6 +45,8 @@
 									<th scope="col" style="width:5%;" class="text-center">No</th>
 									<th scope="col" class="text-center">Nama Anak</th>
 									<th scope="col" class="text-center">Tanggal Pendaftaran</th>
+									<th scope="col" class="text-center">Status Verifikasi Foto</th>
+									<th scope="col" class="text-center">Komentar Verifikasi Foto</th>
 									<th scope="col" class="text-center">Tindakan</th>
 									</tr>
 								</thead>
@@ -54,6 +56,8 @@
 									<th scope="row" class="text-center">{{$loop->iteration}}</th>
 									<td>{{$a->name}}</td>
 									<td class="text-center">{{$a->created_at}}</td>
+									<td class="text-center">@if($a->is_photo_verified == 0) Belum Disetujui @else Sudah Disetujui @endif</td>
+									<td class="text-center">{{$a->photo_comments}}</td>
 									<td class="text-center"><a class="btn btn-primary" href="/daftar-anak/detail?id={{$a->id}}" role="button">Detail</a><br><br></td>
 									</tr>
 									@endforeach

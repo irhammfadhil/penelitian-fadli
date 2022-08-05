@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2022 at 06:01 AM
+-- Generation Time: Aug 05, 2022 at 06:02 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -72,7 +72,11 @@ INSERT INTO `diagnosis` (`id`, `users_id`, `id_gigi`, `is_decay`, `is_missing`, 
 (1, 1, 11, 1, 0, 0, '2022-08-03 06:59:37', '2022-08-03 06:59:37'),
 (2, 1, 15, 0, 1, 0, '2022-08-03 06:59:43', '2022-08-03 06:59:43'),
 (3, 2, 13, 0, 1, 0, '2022-08-03 07:07:03', '2022-08-03 07:07:03'),
-(4, 2, 17, 1, 0, 1, '2022-08-03 07:07:10', '2022-08-03 07:07:10');
+(4, 2, 17, 1, 0, 1, '2022-08-03 07:07:10', '2022-08-03 07:07:10'),
+(5, 8, 12, 0, 1, 0, '2022-08-04 18:22:19', '2022-08-04 18:22:19'),
+(6, 8, 51, 1, 0, 0, '2022-08-04 18:22:29', '2022-08-04 18:22:29'),
+(7, 8, 11, 1, 0, 0, '2022-08-04 18:23:35', '2022-08-04 18:23:35'),
+(8, 8, 17, 0, 0, 1, '2022-08-04 18:23:44', '2022-08-04 18:23:44');
 
 -- --------------------------------------------------------
 
@@ -7984,6 +7988,9 @@ CREATE TABLE `users` (
   `signature` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `dmft_score` int(11) DEFAULT 0,
   `deft_score` int(11) DEFAULT 0,
+  `is_photo_verified` int(11) NOT NULL DEFAULT 0,
+  `photo_comments` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `comments` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -7992,15 +7999,15 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `remember_token`, `signature`, `dmft_score`, `deft_score`, `created_at`, `updated_at`) VALUES
-(1, 'Irham Fadhil', 'jokotole12345', 'irham.mfadhil@gmail.com', NULL, '$2y$10$O6aMveacsUgJzpev1aJgjuwnB0/C1CrBR8ZmsGTIdBli7PTTL0zXu', 0, NULL, NULL, 2, 0, '2022-06-11 20:06:44', '2022-08-03 06:59:43'),
-(2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, NULL, 'upload/62b9286e5efa6.png', 3, 0, '2022-06-18 19:01:55', '2022-08-03 07:07:10'),
-(3, 'aidil', 'Aidilabdillah4', 'aidil@gmail.com', NULL, '$2y$10$xeLURmhfJj47RhgLRZ3OoOJ4A/f679wyJ.m20foieGKJhpzpZfnq.', 0, NULL, 'upload/62bbd81b03550.png', 0, 0, '2022-06-28 21:33:40', '2022-06-28 21:33:40'),
-(4, 'Administrator', 'Administrator', 'admin@email.com', NULL, '$2y$10$VmIzQn1KDr1bmpzb5Yrb0uaZsu.i.86Xuz893hGcGiwNeqqSLAGh2', 1, NULL, NULL, 0, 0, '2022-06-28 23:56:45', '2022-06-28 23:56:45'),
-(5, 'risky', 'risky123', 'risky123@gmail.com', NULL, '$2y$10$wwhqmC1SDwoHO6itC4k7xelNRJTO/A0Z/XlsMXQtKoy0sAwe68EpO', 0, NULL, 'upload/62ca3696aa8f0.png', 0, 0, '2022-07-09 19:16:00', '2022-07-09 19:16:00'),
-(6, 'alya', 'alyaraisa', 'alyalaksono@gmail.com', NULL, '$2y$10$97/nh3vO79Hhpt92oAjk/uertGNgXkYpYVsv.fofwmPZTjA.ZF0Q.', 0, NULL, 'upload/62ca37e1cfdee.png', 0, 0, '2022-07-09 19:21:19', '2022-07-09 19:21:19'),
-(7, 'uwel', 'uwel', 'irham.m.fadhil@gmail.con', NULL, '$2y$10$ZBKbnw.Q.DAbgUvC1lNF3e.Wg0.nwomh0HjWirRMXSyiYfeV1CHf2', 0, NULL, NULL, 0, 0, '2022-08-03 06:13:13', '2022-08-03 06:13:13'),
-(8, 'xxx', 'yyy', 'tole@tole.com12', NULL, '$2y$10$W9QV1MIg0f80JM4MSEu7OOH9CztwsrRAGac..wM85CvcjRcqv0rl2', 0, NULL, 'upload/62ea8ff79e713.png', 9, 0, '2022-08-03 06:45:49', '2022-08-03 06:53:41');
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `remember_token`, `signature`, `dmft_score`, `deft_score`, `is_photo_verified`, `photo_comments`, `comments`, `created_at`, `updated_at`) VALUES
+(1, 'Irham Fadhil', 'jokotole12345', 'irham.mfadhil@gmail.com', NULL, '$2y$10$O6aMveacsUgJzpev1aJgjuwnB0/C1CrBR8ZmsGTIdBli7PTTL0zXu', 0, NULL, NULL, 2, 0, 0, NULL, '', '2022-06-11 20:06:44', '2022-08-03 06:59:43'),
+(2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, NULL, 'upload/62b9286e5efa6.png', 3, 0, 0, NULL, '', '2022-06-18 19:01:55', '2022-08-03 07:07:10'),
+(3, 'aidil', 'Aidilabdillah4', 'aidil@gmail.com', NULL, '$2y$10$xeLURmhfJj47RhgLRZ3OoOJ4A/f679wyJ.m20foieGKJhpzpZfnq.', 0, NULL, 'upload/62bbd81b03550.png', 0, 0, 0, NULL, '', '2022-06-28 21:33:40', '2022-06-28 21:33:40'),
+(4, 'Administrator', 'Administrator', 'admin@email.com', NULL, '$2y$10$VmIzQn1KDr1bmpzb5Yrb0uaZsu.i.86Xuz893hGcGiwNeqqSLAGh2', 1, NULL, NULL, 0, 0, 0, NULL, '', '2022-06-28 23:56:45', '2022-06-28 23:56:45'),
+(5, 'risky', 'risky123', 'risky123@gmail.com', NULL, '$2y$10$wwhqmC1SDwoHO6itC4k7xelNRJTO/A0Z/XlsMXQtKoy0sAwe68EpO', 0, NULL, 'upload/62ca3696aa8f0.png', 0, 0, 1, 'sudah bagus', '', '2022-07-09 19:16:00', '2022-08-04 19:47:57'),
+(6, 'alya', 'alyaraisa', 'alyalaksono@gmail.com', NULL, '$2y$10$97/nh3vO79Hhpt92oAjk/uertGNgXkYpYVsv.fofwmPZTjA.ZF0Q.', 0, NULL, 'upload/62ca37e1cfdee.png', 0, 0, 0, NULL, '', '2022-07-09 19:21:19', '2022-07-09 19:21:19'),
+(7, 'uwel', 'uwel', 'irham.m.fadhil@gmail.con', NULL, '$2y$10$ZBKbnw.Q.DAbgUvC1lNF3e.Wg0.nwomh0HjWirRMXSyiYfeV1CHf2', 0, NULL, NULL, 0, 0, 0, NULL, '', '2022-08-03 06:13:13', '2022-08-03 06:13:13'),
+(8, 'xxx', 'yyy', 'tole@tole.com12', NULL, '$2y$10$W9QV1MIg0f80JM4MSEu7OOH9CztwsrRAGac..wM85CvcjRcqv0rl2', 0, NULL, 'upload/62ea8ff79e713.png', 3, 1, 0, 'Tolong upload ulang fotonya ya', 'jaga kebersihan ya', '2022-08-03 06:45:49', '2022-08-04 20:27:23');
 
 -- --------------------------------------------------------
 
@@ -8014,7 +8021,7 @@ CREATE TABLE `users_biodata` (
   `gender` varchar(30) DEFAULT NULL,
   `birth_place` varchar(100) DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
-  `id_sekolah` bigint(20) UNSIGNED DEFAULT NULL,
+  `id_sekolah` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -8024,11 +8031,11 @@ CREATE TABLE `users_biodata` (
 --
 
 INSERT INTO `users_biodata` (`id`, `users_id`, `gender`, `birth_place`, `birth_date`, `id_sekolah`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Laki-laki', 'Surabaya', '2003-01-01', 1, '2022-06-24 19:19:13', '2022-06-24 20:33:40'),
-(2, 3, 'Laki-laki', 'Surabaya', '2022-06-02', 2, '2022-06-28 21:41:51', '2022-06-28 21:41:51'),
-(3, 5, 'Perempuan', 'Surabaya', '2009-01-01', 2, '2022-07-09 19:16:43', '2022-07-09 19:16:43'),
-(4, 6, 'Laki-laki', 'Surabaya', '2004-01-01', 2, '2022-07-09 19:21:55', '2022-07-09 19:21:55'),
-(5, 8, 'Laki-laki', 'jogja', '2005-01-08', 2, '2022-08-03 06:48:34', '2022-08-03 20:51:35');
+(1, 2, 'Laki-laki', 'Surabaya', '2003-01-01', NULL, '2022-06-24 19:19:13', '2022-06-24 20:33:40'),
+(2, 3, 'Laki-laki', 'Surabaya', '2022-06-02', NULL, '2022-06-28 21:41:51', '2022-06-28 21:41:51'),
+(3, 5, 'Perempuan', 'Surabaya', '2009-01-01', NULL, '2022-07-09 19:16:43', '2022-07-09 19:16:43'),
+(4, 6, 'Laki-laki', 'Surabaya', '2004-01-01', NULL, '2022-07-09 19:21:55', '2022-07-09 19:21:55'),
+(5, 8, 'Laki-laki', 'jogja', '2000-07-06', 'SDN Candijati 01', '2022-08-03 06:48:34', '2022-08-03 23:00:23');
 
 -- --------------------------------------------------------
 
@@ -8062,7 +8069,8 @@ CREATE TABLE `users_foto` (
 INSERT INTO `users_foto` (`id`, `users_id`, `foto_senyum`, `foto_depan`, `foto_kiri`, `foto_atas`, `foto_kanan`, `foto_bawah`, `date_taken_senyum`, `date_taken_depan`, `date_taken_kiri`, `date_taken_atas`, `date_taken_kanan`, `date_taken_bawah`, `created_at`, `updated_at`) VALUES
 (1, 2, 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27 01:43:28', '2022-06-27 01:43:28'),
 (2, 5, 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-09 19:18:19', '2022-07-09 19:18:19'),
-(3, 6, 'data_peserta/6/5b72f3bbfb_akfar.jpg', 'data_peserta/6/5b72f3bbfb_ttd.jpg', 'data_peserta/6/5b72f3bbfb_ttd.jpg', 'data_peserta/6/5b72f3bbfb_kursi gigi.jpg', 'data_peserta/6/5b72f3bbfb_periksa gigi.jpg', 'data_peserta/6/5b72f3bbfb_periksa gigi.jpg', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-09 19:25:29', '2022-07-09 19:25:29');
+(3, 6, 'data_peserta/6/5b72f3bbfb_akfar.jpg', 'data_peserta/6/5b72f3bbfb_ttd.jpg', 'data_peserta/6/5b72f3bbfb_ttd.jpg', 'data_peserta/6/5b72f3bbfb_kursi gigi.jpg', 'data_peserta/6/5b72f3bbfb_periksa gigi.jpg', 'data_peserta/6/5b72f3bbfb_periksa gigi.jpg', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-09 19:25:29', '2022-07-09 19:25:29'),
+(4, 8, 'data_peserta/8/ff5a3d3ce2_noimage.jpg', 'data_peserta/8/ff5a3d3ce2_64d6800b-5c9d-4b7e-8537-d83481a32fb1.jpg', 'data_peserta/8/ff5a3d3ce2_noimage.jpg', 'data_peserta/8/ff5a3d3ce2_64d6800b-5c9d-4b7e-8537-d83481a32fb1.jpg', 'data_peserta/8/ff5a3d3ce2_3.jpg', 'data_peserta/8/ff5a3d3ce2_4.jpg', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-04 18:42:08', '2022-08-04 18:42:08');
 
 -- --------------------------------------------------------
 
@@ -8095,7 +8103,7 @@ INSERT INTO `users_ortu` (`id`, `users_id`, `name_ortu`, `address`, `pendidikan_
 (2, 3, 'Irham Fadhil', 'Villa Galaxi D 2/7', NULL, NULL, 'UMBULSARI', 'UMBULREJO', 32, 12, '081283902244', '2022-06-28 21:41:51', '2022-06-28 21:41:51'),
 (3, 5, 'joko', 'jember', NULL, NULL, 'MUMBULSARI', 'LAMPEJI', 5, 22, '081283902244', '2022-07-09 19:16:43', '2022-07-09 19:16:43'),
 (4, 6, 'Irham Fadhil', 'Villa Galaxi D 2/7', NULL, NULL, 'LEDOKOMBO', 'SUKOGIDRI', 10, 20, '081283902244', '2022-07-09 19:21:55', '2022-07-09 19:21:55'),
-(5, 8, 'joko tole', 'test alamat 2', 'S1', 'pengangguran', 'KENCONG', 'KRATON', 3, 77, '0809898999', '2022-08-03 08:10:40', '2022-08-03 21:01:24');
+(5, 8, 'joko tole', 'test alamat 2', 'SD', 'Wiraswasta', 'PANTI', 'PAKIS', 3, 77, '0809898999', '2022-08-03 08:10:40', '2022-08-03 23:00:23');
 
 -- --------------------------------------------------------
 
@@ -88825,7 +88833,7 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT for table `diagnosis`
 --
 ALTER TABLE `diagnosis`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -88861,7 +88869,7 @@ ALTER TABLE `users_biodata`
 -- AUTO_INCREMENT for table `users_foto`
 --
 ALTER TABLE `users_foto`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users_ortu`
