@@ -192,7 +192,7 @@
 							<hr>
 							<div class="row">
 								<div class="col-6">
-									<h4>Odontogram</h4>
+									<h4>Pemeriksaan RTI</h4>
 								</div>
 								<div class="col-6">
 									<!-- Button trigger modal -->
@@ -201,7 +201,6 @@
 									</button>
 								</div>
 							</div>
-
 							<br>
 							<div class="row">
 								<div class="col-6">
@@ -218,14 +217,111 @@
 											<td class="" id="" style="border:none;">11</td>
 											</tr>
 											<tr class="text-center">
-											<td class="gigi" id="gigi18" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi17" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi16" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi15" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi14" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi13" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi12" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi11" style="height: 2.5rem; width: 2.5rem;"></td>
+											<td class="gigi" id="gigi18" style="height: 2.5rem; width: 2.5rem;">
+											@foreach($diagnosis as $d)
+											@if($d->id_gigi == 18)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td>
+											<td class="gigi" id="gigi17" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 17)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi16" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 16)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi15" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 15)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi14" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 14)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi13" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 13)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi12" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 12)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi11" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 11)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 										</tbody>
 									</table>
@@ -244,14 +340,110 @@
 											<td class="" id="" style="border:none;">28</td>
 											</tr>
 											<tr class="text-center">
-											<td class="gigi" id="gigi21" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi22" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi23" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi24" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi25" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi26" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi27" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi28" style="height: 2.5rem; width: 2.5rem;"></td>
+											<td class="gigi" id="gigi21" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 21)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi22" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 22)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi23" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 23)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi24" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 24)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi25" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 25)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi26" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 26)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi27" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 27)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi28" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 28)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 										</tbody>
 									</table>
@@ -271,11 +463,71 @@
 												<td class="" id="" style="border:none;">51</td>
 												</tr>
 												<tr class="text-center">
-												<td class="gigi" id="gigi55" style="height: 2.5rem; width: 2.5rem;"></td>
-												<td class="gigi" id="gigi54" style="height: 2.5rem; width: 2.5rem;"></td>
-												<td class="gigi" id="gigi53" style="height: 2.5rem; width: 2.5rem;"></td>
-												<td class="gigi" id="gigi52" style="height: 2.5rem; width: 2.5rem;"></td>
-												<td class="gigi" id="gigi51" style="height: 2.5rem; width: 2.5rem;"></td>
+												<td class="gigi" id="gigi55" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 55)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+												<td class="gigi" id="gigi54" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 54)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+												<td class="gigi" id="gigi53" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 53)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+												<td class="gigi" id="gigi52" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 52)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+												<td class="gigi" id="gigi51" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 51)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
 												</tr>
 											</tbody>
 										</table>
@@ -292,11 +544,71 @@
 												<td class="" id="" style="border:none;">65</td>
 											</tr>
 											<tr class="text-center">
-											<td class="gigi" id="gigi61" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi62" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi63" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi64" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi65" style="height: 2.5rem; width: 2.5rem;"></td>
+											<td class="gigi" id="gigi61" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 61)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi62" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 62)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi63" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 63)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi64" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 64)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi65" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 65)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 										</tbody>
 									</table>
@@ -308,11 +620,71 @@
 									<table class="table table-bordered" style="width: 62.5%; float: right;">
 										<tbody>
 											<tr class="text-center">
-											<td class="gigi" id="gigi85" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi84" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi83" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi82" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi81" style="height: 2.5rem; width: 2.5rem;"></td>
+											<td class="gigi" id="gigi85" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 85)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi84" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 84)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi83" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 83)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi82" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 82)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi81" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 81)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 											<tr class="text-center" style="border:none;">
 												<td class="" id="" style="border:none;">85</td>
@@ -328,11 +700,71 @@
 									<table class="table table-bordered" style="width: 62.5%; text-align: right;">
 										<tbody>
 											<tr class="text-center">
-											<td class="gigi" id="gigi71" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi72" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi73" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi74" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi75" style="height: 2.5rem; width: 2.5rem;"></td>
+											<td class="gigi" id="gigi71" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 71)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi72" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 72)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi73" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 73)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi74" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 74)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi75" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 75)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 											<tr class="text-center" style="border:none;">
 												<td class="" id="" style="border:none;">71</td>
@@ -351,14 +783,110 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr class="text-center">
-											<td class="gigi" id="gigi48" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi47" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi46" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi45" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi44" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi43" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi42" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi41" style="height: 2.5rem; width: 2.5rem;"></td>
+											<td class="gigi" id="gigi48" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 48)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi47" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 47)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi46" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 46)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi45" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 45)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi44" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 44)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi43" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 43)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi42" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 42)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi41" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 41)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 											<tr class="text-center" style="border:none;">
 												<td class="" id="" style="border:none;">48</td>
@@ -377,14 +905,110 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr class="text-center">
-											<td class="gigi" id="gigi31" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi32" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi33" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi34" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi35" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi36" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi37" style="height: 2.5rem; width: 2.5rem;"></td>
-											<td class="gigi" id="gigi38" style="height: 2.5rem; width: 2.5rem;"></td>
+											<td class="gigi" id="gigi31" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 31)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi32" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 32)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi33" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 33)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi34" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 34)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi35" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 35)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi36" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 36)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi37" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 37)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi38" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 38)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 											<tr class="text-center" style="border:none;">
 												<td class="" id="" style="border:none;">31</td>
@@ -400,6 +1024,7 @@
 									</table>
 								</div>
 							</div>
+
 							D/d: <b>{{$sum_decay_tetap}}/{{$sum_decay_susu}}</b> M/e: <b>{{$sum_missing_tetap}}/{{$sum_missing_susu}}</b> F/f: <b>{{$sum_filling_tetap}}/{{$sum_filling_susu}}</b>
 							<br>
 							DMFT: <b>{{$user->dmft_score}}</b>, Kriteria DMFT: <b>{{$kriteria_dmft}}</b>
@@ -412,12 +1037,11 @@
 							RTI: <b>{{number_format($sum_decay_tetap/$user->dmft_score, 2)*100}}%</b>
 							@endif
 							<hr>
-							<h4>Komentar Umum</h4>
+							<h4>Saran</h4>
 							<form action="/admin/submitKomentar" method="post">
 								@csrf
 								<input type="hidden" name="id" value="{{ app('request')->input('id') }}">
 								<div class="form-group">
-									<label for="exampleFormControlTextarea1">Komentar Keseluruhan:</label>
 									<textarea class="form-control" id="komentar" name="komentar" rows="3">{{$user->comments}}</textarea>
 								</div>
 								<br>

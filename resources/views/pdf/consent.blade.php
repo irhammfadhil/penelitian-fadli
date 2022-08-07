@@ -145,7 +145,7 @@
 		</div>
 	</div>
     <br> 
-	Dengan Judul <b>“Penilaian Indeks Kebutuhan Perawatan Gigi pada Anak Sekolah Dasar di Wilayah Argoindustri Bobbin Arjasa Melalui Aplikasi Berbasis Web”</b> dengan sebenar-benarnya tanpa ada suatu paksaan dari pihak manapun. 
+	Dengan Judul <b>“PENILAIAN REOUIRED TREATMENT INDEX (RTI) PADA ANAK SEKOLAH DASAR DI WILAYAH AGROINDUSTRI BOBBIN ARJASA KABUPATEN JEMBER MELALUI APLIKASI BERBASIS WEB "SIMETRI"”</b> dengan sebenar-benarnya tanpa ada suatu paksaan dari pihak manapun. 
     <div class="row">
 		<div class="col-lg-6">
 			<br>

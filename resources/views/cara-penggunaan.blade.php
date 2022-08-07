@@ -15,7 +15,7 @@
       <div class="container">
         <ol>
           <li><a href="/">Home</a></li>
-          <li>Cara Pendaftaran dan Penggunaan</li>
+          <li>Cara Penggunaan </li>
         </ol>
         <h2>Cara Pendaftaran dan Penggunaan</h2>
       </div>
@@ -25,17 +25,22 @@
       <div class="container">
         <h4>Cara Pendaftaran</h4>
         <ol>
-          <li>k</li>
-          <li>kkrk</li>
+          <li>Klik tombol Daftar di halaman Beranda</li>
+          <li>Membuat akun dengan cara mengisi nama, nama pengguna, alamat e-mail dan password</li>
+          <li>Setelah mendaftar maka pengguna akan diarahkan ke akun masing-masing</li>
+          <li>Jika pengguna sudah terdaftar maka pengguna dapat langsung masuk ke aplikasi Simetri dengan memasukkan nama pengguna dan password kemudian klik tombol Login</li> 
         </ol>
         <hr>
         <h4>Cara Penggunaan</h4>
         <ol>
-          <li>kkrk</li>
-          <li>kkrk</li>
+          <li>Mengisi biodata Anak</li>
+          <li>Mengisi biodata Orang tua</li>
+          <li>Menandatangani Informed Consent</li>
+          <li>Mengunggah foto gigi sesuai video tutorial pengambilan foto gigi yang benar</li>
+          <li>Melihat hasil pemeriksaan gigi di halaman laporan setelah dianalisa oleh tim berupa kondisi kesehatan gigi (jumlah gigi decay, hilang dan tumpatan)</li>
         </ol>
         <hr>
-        <h4>Cara Pengambilan Foto yang Benar</h4>
+        <h4>Cara Pengambilan Foto Gigi yang Benar</h4>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/3Asm09CYB-0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </section>

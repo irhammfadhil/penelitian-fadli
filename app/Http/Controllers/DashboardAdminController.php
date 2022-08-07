@@ -47,7 +47,7 @@ class DashboardAdminController extends Controller
         $ortu = BiodataOrtu::where('users_id', '=', $request->id)->first();
         $foto = Foto::where('users_id', '=', $request->id)->first();
         //$region_gigi = Region::all();
-        //$diagnosis = Diagnosis::all();
+        $diagnosis = Diagnosis::where('users_id', '=', $request->id)->get();
         //id gigi
         $id_gigi = ['11', '12', '13', '14', '15', '16', '17', '18', '21', '22', '23', '24', '25', '26', '27', '28', '31', '32', '33', '34', '35', '36', '37', '38', '41', '42', '43', '44', '45', '46', '47', '48',
         '51', '52', '53', '54', '55', '61', '62', '63', '64', '65', '71', '72', '73', '74', '75', '81', '82', '83', '84', '85'];
@@ -111,7 +111,8 @@ class DashboardAdminController extends Controller
             'biodata' => $biodata,
             'ortu' => $ortu,
             'foto' => $foto,
-            'id_gigi' => $id_gigi,
+            'diagnosis' => $diagnosis,
+            'id_gigi' => $id_gigi, 
             'id_gigi_tetap_kiri_atas' => $id_gigi_tetap_kiri_atas,
             'id_gigi_tetap_kanan_atas' => $id_gigi_tetap_kanan_atas,
             'id_gigi_tetap_kiri_bawah' => $id_gigi_tetap_kiri_bawah,
@@ -275,6 +276,9 @@ class DashboardAdminController extends Controller
         $user = User::where('id', '=', $id)->first();
         $user->is_photo_verified = $status_persetujuan;
         $user->photo_comments = $komentar_foto;
+        if($status_persetujuan == 1) {
+            $user->photo_verified_at = date('Y-m-d H:i:s');
+        }
         $user->save();
 
         $url = '/daftar-anak/detail?id='.$id;
@@ -331,6 +335,81 @@ class DashboardAdminController extends Controller
         $pdf = PDF::loadView('pdf.consent', $data);
 
         $fileName = 'Informed Consent '.$user->name.'.pdf';
+
+        return $pdf->download($fileName);
+    }
+    public function cetakLaporan(Request $request) {
+        $id = $request->id;
+        $user = User::where('id', '=', $id)->first();
+        $biodata = Biodata::where('users_id', '=', $id)->first();
+        $ortu = BiodataOrtu::where('users_id', '=', $id)->first();
+        $foto = Foto::where('users_id', '=', $id)->first();
+        $diagnosis = Diagnosis::where('users_id', '=', $id)->get();
+
+        #itung dmft
+        ##gigi tetap
+        $sum_decay_tetap = Diagnosis::where('users_id', '=', $request->id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+        $sum_missing_tetap = Diagnosis::where('users_id', '=', $request->id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+        $sum_filling_tetap = Diagnosis::where('users_id', '=', $request->id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+        ##gigi susu
+        $sum_decay_susu = Diagnosis::where('users_id', '=', $request->id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [51,85])->count();
+        $sum_missing_susu = Diagnosis::where('users_id', '=', $request->id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [51,85])->count();
+        $sum_filling_susu = Diagnosis::where('users_id', '=', $request->id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [51,85])->count();
+
+        #kriteria DMFT (Yulia et al., 2013)
+        $kriteria_dmft = '';
+        $kriteria_deft = '';
+        if($user->dmft_score >= 0 && $user->dmft_score <= 1.1) {
+            $kriteria_dmft = 'Sangat Rendah';
+        }
+        else if ($user->dmft_score > 1.1 && $user->dmft_score <= 2.6) {
+            $kriteria_dmft = 'Rendah';
+        }
+        else if ($user->dmft_score > 2.6 && $user->dmft_score <= 4.4) {
+            $kriteria_dmft = 'Sedang';
+        }
+        else if ($user->dmft_score > 4.4 && $user->dmft_score <= 6.5) {
+            $kriteria_dmft = 'Tinggi';
+        }
+        else if ($user->dmft_score > 6.5) {
+            $kriteria_dmft = 'Sangat Tinggi';
+        }
+        #kriteria DEFT (Yulia et al., 2013)
+        if($user->deft_score >= 0 && $user->deft_score <= 1.1) {
+            $kriteria_deft = 'Sangat Rendah';
+        }
+        else if ($user->deft_score > 1.1 && $user->deft_score <= 2.6) {
+            $kriteria_deft = 'Rendah';
+        }
+        else if ($user->deft_score > 2.6 && $user->deft_score <= 4.4) {
+            $kriteria_deft = 'Sedang';
+        }
+        else if ($user->deft_score > 4.4 && $user->deft_score <= 6.5) {
+            $kriteria_deft = 'Tinggi';
+        }
+        else if ($user->deft_score > 6.5) {
+            $kriteria_deft = 'Sangat Tinggi';
+        }
+
+        $data = [
+            'user' => $user,
+            'biodata' => $biodata,
+            'ortu' => $ortu,
+            'foto' => $foto,
+            'diagnosis' => $diagnosis,
+            'sum_decay_tetap' => $sum_decay_tetap,
+            'sum_missing_tetap' => $sum_missing_tetap,
+            'sum_filling_tetap' => $sum_filling_tetap,
+            'sum_decay_susu' => $sum_decay_susu,
+            'sum_missing_susu' => $sum_missing_susu,
+            'sum_filling_susu' => $sum_filling_susu,
+            'kriteria_dmft' => $kriteria_dmft,
+            'kriteria_deft' => $kriteria_deft,
+        ];
+
+        $pdf = PDF::loadView('pdf.report', $data);
+
+        $fileName = 'Laporan '.$user->name.'.pdf';
 
         return $pdf->download($fileName);
     }

@@ -47,7 +47,7 @@
 									<th scope="col" class="text-center">Tanggal Pendaftaran</th>
 									<th scope="col" class="text-center">Status Verifikasi Foto</th>
 									<th scope="col" class="text-center">Komentar Verifikasi Foto</th>
-									<th scope="col" class="text-center">Tindakan</th>
+									<th scope="col" class="text-center" style="width: 20%;">Tindakan</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -58,8 +58,11 @@
 									<td class="text-center">{{$a->created_at}}</td>
 									<td class="text-center">@if($a->is_photo_verified == 0) Belum Disetujui @else Sudah Disetujui @endif</td>
 									<td class="text-center">{{$a->photo_comments}}</td>
-									<td class="text-center"><a class="btn btn-primary" href="/daftar-anak/detail?id={{$a->id}}" role="button">Detail</a>
-									<a class="btn btn-danger" href="/daftar-anak/delete?id={{$a->id}}" role="button">Hapus</a> @if($a->signature)<a class="btn btn-primary" href="/daftar-anak/cetak?id={{$a->id}}" role="button">Cetak Informed Consent</a>@endif
+									<td class="text-center">
+									<a class="btn btn-primary" href="/daftar-anak/detail?id={{$a->id}}" style="width: 10rem;" role="button">Detail</a><br><br>
+									<a class="btn btn-danger" href="/daftar-anak/delete?id={{$a->id}}" style="width: 10rem;" role="button">Hapus</a><br><br>
+									@if($a->signature)<a class="btn btn-secondary" href="/daftar-anak/cetak-consent?id={{$a->id}}" style="width: 10rem;" role="button">Cetak Informed Consent</a><br><br>@endif
+									<a class="btn btn-secondary" href="/daftar-anak/cetak-laporan?id={{$a->id}}" style="width: 10rem;" role="button">Cetak Laporan</a>
 									</td>
 									</tr>
 									@endforeach
