@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 08, 2022 at 06:15 AM
+-- Generation Time: Aug 09, 2022 at 03:27 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -70,17 +70,28 @@ CREATE TABLE `diagnosis` (
 
 INSERT INTO `diagnosis` (`id`, `users_id`, `id_gigi`, `is_decay`, `is_missing`, `is_filling`, `created_at`, `updated_at`) VALUES
 (1, 1, 11, 1, 0, 0, '2022-08-03 06:59:37', '2022-08-03 06:59:37'),
-(2, 1, 15, 0, 1, 0, '2022-08-03 06:59:43', '2022-08-03 06:59:43'),
+(2, 1, 15, 1, 0, 0, '2022-08-03 06:59:43', '2022-08-08 21:19:02'),
 (3, 2, 13, 0, 1, 0, '2022-08-03 07:07:03', '2022-08-03 07:07:03'),
 (4, 2, 17, 1, 0, 1, '2022-08-03 07:07:10', '2022-08-03 07:07:10'),
 (5, 8, 12, 0, 1, 0, '2022-08-04 18:22:19', '2022-08-04 18:22:19'),
 (6, 8, 51, 1, 0, 0, '2022-08-04 18:22:29', '2022-08-04 18:22:29'),
 (7, 8, 11, 1, 0, 0, '2022-08-04 18:23:35', '2022-08-04 18:23:35'),
 (8, 8, 17, 0, 0, 1, '2022-08-04 18:23:44', '2022-08-04 18:23:44'),
-(9, 8, 18, 1, 0, 1, '2022-08-06 18:59:47', '2022-08-06 18:59:47'),
+(9, 8, 18, 0, 1, 0, '2022-08-06 18:59:47', '2022-08-08 21:22:50'),
 (10, 8, 45, 0, 0, 1, '2022-08-06 19:08:29', '2022-08-06 19:08:29'),
 (11, 8, 21, 1, 1, 1, '2022-08-06 19:08:44', '2022-08-06 19:08:44'),
-(12, 8, 26, 1, 0, 0, '2022-08-06 19:08:56', '2022-08-06 19:08:56');
+(12, 8, 26, 1, 0, 0, '2022-08-06 19:08:56', '2022-08-06 19:08:56'),
+(13, 6, 24, 1, 0, 0, '2022-08-08 00:09:14', '2022-08-08 00:09:14'),
+(14, 9, 13, 0, 0, 1, '2022-08-08 00:19:11', '2022-08-08 00:19:11'),
+(15, 9, 16, 1, 0, 0, '2022-08-08 00:19:16', '2022-08-08 00:19:16'),
+(16, 2, 26, 1, 0, 0, '2022-08-08 21:19:45', '2022-08-08 21:19:45'),
+(17, 5, 27, 1, 0, 0, '2022-08-08 21:19:59', '2022-08-08 21:19:59'),
+(18, 5, 12, 1, 0, 0, '2022-08-08 21:22:04', '2022-08-08 21:22:04'),
+(19, 5, 16, 0, 0, 1, '2022-08-08 21:22:09', '2022-08-08 21:22:09'),
+(20, 6, 26, 0, 1, 0, '2022-08-08 21:22:21', '2022-08-08 21:22:21'),
+(21, 7, 21, 0, 1, 0, '2022-08-08 21:22:32', '2022-08-08 21:22:32'),
+(22, 7, 11, 1, 0, 0, '2022-08-08 21:22:36', '2022-08-08 21:22:36'),
+(23, 9, 22, 0, 1, 0, '2022-08-08 21:23:03', '2022-08-08 21:23:03');
 
 -- --------------------------------------------------------
 
@@ -7991,6 +8002,7 @@ CREATE TABLE `users` (
   `is_deleted` int(11) DEFAULT 0,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `signature` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `num_decay` int(11) DEFAULT NULL,
   `dmft_score` int(11) DEFAULT 0,
   `deft_score` int(11) DEFAULT 0,
   `is_photo_verified` int(11) NOT NULL DEFAULT 0,
@@ -8005,15 +8017,16 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `is_deleted`, `remember_token`, `signature`, `dmft_score`, `deft_score`, `is_photo_verified`, `photo_verified_at`, `photo_comments`, `comments`, `created_at`, `updated_at`) VALUES
-(1, 'Irham Fadhil', 'jokotole12345', 'irham.mfadhil@gmail.com', NULL, '$2y$10$O6aMveacsUgJzpev1aJgjuwnB0/C1CrBR8ZmsGTIdBli7PTTL0zXu', 0, 0, NULL, NULL, 2, 0, 0, NULL, NULL, '', '2022-06-11 20:06:44', '2022-08-03 06:59:43'),
-(2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, 0, NULL, 'upload/62b9286e5efa6.png', 3, 0, 0, NULL, NULL, '', '2022-06-18 19:01:55', '2022-08-03 07:07:10'),
-(3, 'aidil', 'Aidilabdillah4', 'aidil@gmail.com', NULL, '$2y$10$xeLURmhfJj47RhgLRZ3OoOJ4A/f679wyJ.m20foieGKJhpzpZfnq.', 0, 1, NULL, 'upload/62bbd81b03550.png', 0, 0, 0, NULL, NULL, '', '2022-06-28 21:33:40', '2022-08-05 02:53:06'),
-(4, 'Administrator', 'Administrator', 'admin@email.com', NULL, '$2y$10$VmIzQn1KDr1bmpzb5Yrb0uaZsu.i.86Xuz893hGcGiwNeqqSLAGh2', 1, 0, NULL, NULL, 0, 0, 0, NULL, NULL, '', '2022-06-28 23:56:45', '2022-06-28 23:56:45'),
-(5, 'risky', 'risky123', 'risky123@gmail.com', NULL, '$2y$10$wwhqmC1SDwoHO6itC4k7xelNRJTO/A0Z/XlsMXQtKoy0sAwe68EpO', 0, 0, NULL, 'upload/62ca3696aa8f0.png', 0, 0, 1, '2022-08-07 05:13:46', 'alhamdulillah', '', '2022-07-09 19:16:00', '2022-08-07 05:13:46'),
-(6, 'alya', 'alyaraisa', 'alyalaksono@gmail.com', NULL, '$2y$10$97/nh3vO79Hhpt92oAjk/uertGNgXkYpYVsv.fofwmPZTjA.ZF0Q.', 0, 0, NULL, 'upload/62ca37e1cfdee.png', 0, 0, 1, NULL, 'setuju', '', '2022-07-09 19:21:19', '2022-08-05 02:45:19'),
-(7, 'uwel', 'uwel', 'irham.m.fadhil@gmail.con', NULL, '$2y$10$ZBKbnw.Q.DAbgUvC1lNF3e.Wg0.nwomh0HjWirRMXSyiYfeV1CHf2', 0, 0, NULL, NULL, 0, 0, 0, NULL, NULL, '', '2022-08-03 06:13:13', '2022-08-03 06:13:13'),
-(8, 'xxx', 'yyy', 'tole@tole.com12', NULL, '$2y$10$W9QV1MIg0f80JM4MSEu7OOH9CztwsrRAGac..wM85CvcjRcqv0rl2', 0, 0, NULL, 'upload/62ea8ff79e713.png', 10, 1, 0, NULL, 'Tolong upload ulang fotonya ya', 'jaga kebersihan ya', '2022-08-03 06:45:49', '2022-08-06 19:08:56');
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `is_deleted`, `remember_token`, `signature`, `num_decay`, `dmft_score`, `deft_score`, `is_photo_verified`, `photo_verified_at`, `photo_comments`, `comments`, `created_at`, `updated_at`) VALUES
+(1, 'Irham Fadhil', 'jokotole12345', 'irham.mfadhil@gmail.com', NULL, '$2y$10$O6aMveacsUgJzpev1aJgjuwnB0/C1CrBR8ZmsGTIdBli7PTTL0zXu', 0, 0, NULL, NULL, 2, 2, 0, 0, NULL, NULL, '', '2022-06-11 20:06:44', '2022-08-08 21:19:02'),
+(2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, 0, NULL, 'upload/62b9286e5efa6.png', 2, 4, 0, 0, NULL, NULL, '', '2022-06-18 19:01:55', '2022-08-08 21:19:45'),
+(3, 'aidil', 'Aidilabdillah4', 'aidil@gmail.com', NULL, '$2y$10$xeLURmhfJj47RhgLRZ3OoOJ4A/f679wyJ.m20foieGKJhpzpZfnq.', 0, 1, NULL, 'upload/62bbd81b03550.png', NULL, 0, 0, 0, NULL, NULL, '', '2022-06-28 21:33:40', '2022-08-05 02:53:06'),
+(4, 'Administrator', 'Administrator', 'admin@email.com', NULL, '$2y$10$VmIzQn1KDr1bmpzb5Yrb0uaZsu.i.86Xuz893hGcGiwNeqqSLAGh2', 1, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, '', '2022-06-28 23:56:45', '2022-06-28 23:56:45'),
+(5, 'risky', 'risky123', 'risky123@gmail.com', NULL, '$2y$10$wwhqmC1SDwoHO6itC4k7xelNRJTO/A0Z/XlsMXQtKoy0sAwe68EpO', 0, 0, NULL, 'upload/62ca3696aa8f0.png', 2, 3, 0, 1, '2022-08-07 05:13:46', 'alhamdulillah', '', '2022-07-09 19:16:00', '2022-08-08 21:22:09'),
+(6, 'alya', 'alyaraisa', 'alyalaksono@gmail.com', NULL, '$2y$10$97/nh3vO79Hhpt92oAjk/uertGNgXkYpYVsv.fofwmPZTjA.ZF0Q.', 0, 0, NULL, 'upload/62ca37e1cfdee.png', 1, 2, 0, 1, NULL, 'setuju', '', '2022-07-09 19:21:19', '2022-08-08 21:22:21'),
+(7, 'uwel', 'uwel', 'irham.m.fadhil@gmail.con', NULL, '$2y$10$ZBKbnw.Q.DAbgUvC1lNF3e.Wg0.nwomh0HjWirRMXSyiYfeV1CHf2', 0, 0, NULL, NULL, 1, 2, 0, 0, NULL, NULL, '', '2022-08-03 06:13:13', '2022-08-08 21:22:37'),
+(8, 'xxx', 'yyy', 'tole@tole.com12', NULL, '$2y$10$W9QV1MIg0f80JM4MSEu7OOH9CztwsrRAGac..wM85CvcjRcqv0rl2', 0, 0, NULL, 'upload/62ea8ff79e713.png', 3, 9, 1, 0, NULL, 'Tolong upload ulang fotonya ya', 'jaga kebersihan ya', '2022-08-03 06:45:49', '2022-08-08 21:22:50'),
+(9, 'Test anak', 'testanak123', 'testanak123@email.com', NULL, '$2y$10$z9o5k62qHn5GtnQSHigxT.m0KRRnWJzzHzo3Za.P7DdPgJXS6FnIK', 0, 0, NULL, 'upload/62f0b73f5c70f.png', 1, 3, 0, 0, NULL, NULL, NULL, '2022-08-08 00:10:32', '2022-08-08 21:23:03');
 
 -- --------------------------------------------------------
 
@@ -8039,9 +8052,10 @@ CREATE TABLE `users_biodata` (
 INSERT INTO `users_biodata` (`id`, `users_id`, `gender`, `birth_place`, `birth_date`, `id_sekolah`, `created_at`, `updated_at`) VALUES
 (1, 2, 'Laki-laki', 'Surabaya', '2003-01-01', NULL, '2022-06-24 19:19:13', '2022-06-24 20:33:40'),
 (2, 3, 'Laki-laki', 'Surabaya', '2022-06-02', NULL, '2022-06-28 21:41:51', '2022-06-28 21:41:51'),
-(3, 5, 'Perempuan', 'Surabaya', '2009-01-01', NULL, '2022-07-09 19:16:43', '2022-07-09 19:16:43'),
-(4, 6, 'Laki-laki', 'Surabaya', '2004-01-01', NULL, '2022-07-09 19:21:55', '2022-07-09 19:21:55'),
-(5, 8, 'Laki-laki', 'jogja', '1911-12-23', 'Pilih...', '2022-08-03 06:48:34', '2022-08-05 04:53:03');
+(3, 5, 'Perempuan', 'Surabaya', '2011-07-31', NULL, '2022-07-09 19:16:43', '2022-07-09 19:16:43'),
+(4, 6, 'Laki-laki', 'Surabaya', '2015-01-01', NULL, '2022-07-09 19:21:55', '2022-07-09 19:21:55'),
+(5, 8, 'Laki-laki', 'jogja', '2014-12-23', 'Pilih...', '2022-08-03 06:48:34', '2022-08-05 04:53:03'),
+(6, 9, 'Perempuan', 'jogja', '2015-01-01', 'SDN Biting 04', '2022-08-08 00:11:52', '2022-08-08 00:11:52');
 
 -- --------------------------------------------------------
 
@@ -8076,7 +8090,8 @@ INSERT INTO `users_foto` (`id`, `users_id`, `foto_senyum`, `foto_depan`, `foto_k
 (1, 2, 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', 'data_peserta/2/ec88c04c19_Joe_Biden_presidential_portrait.jpg', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27', '2022-06-27 01:43:28', '2022-06-27 01:43:28'),
 (2, 5, 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-09 19:18:19', '2022-07-09 19:18:19'),
 (3, 6, 'data_peserta/6/5b72f3bbfb_akfar.jpg', 'data_peserta/6/5b72f3bbfb_ttd.jpg', 'data_peserta/6/5b72f3bbfb_ttd.jpg', 'data_peserta/6/5b72f3bbfb_kursi gigi.jpg', 'data_peserta/6/5b72f3bbfb_periksa gigi.jpg', 'data_peserta/6/5b72f3bbfb_periksa gigi.jpg', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-09 19:25:29', '2022-07-09 19:25:29'),
-(4, 8, 'data_peserta/8/ff5a3d3ce2_noimage.jpg', 'data_peserta/8/ff5a3d3ce2_64d6800b-5c9d-4b7e-8537-d83481a32fb1.jpg', 'data_peserta/8/ff5a3d3ce2_noimage.jpg', 'data_peserta/8/ff5a3d3ce2_64d6800b-5c9d-4b7e-8537-d83481a32fb1.jpg', 'data_peserta/8/ff5a3d3ce2_3.jpg', 'data_peserta/8/ff5a3d3ce2_4.jpg', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-04 18:42:08', '2022-08-04 18:42:08');
+(4, 8, 'data_peserta/8/ff5a3d3ce2_noimage.jpg', 'data_peserta/8/ff5a3d3ce2_64d6800b-5c9d-4b7e-8537-d83481a32fb1.jpg', 'data_peserta/8/ff5a3d3ce2_noimage.jpg', 'data_peserta/8/ff5a3d3ce2_64d6800b-5c9d-4b7e-8537-d83481a32fb1.jpg', 'data_peserta/8/ff5a3d3ce2_3.jpg', 'data_peserta/8/ff5a3d3ce2_4.jpg', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-04 18:42:08', '2022-08-04 18:42:08'),
+(5, 9, 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', '2022-08-08', '2022-08-07', '2022-08-08', '2022-08-08', '2022-08-08', '2022-08-08', '2022-08-08 00:12:53', '2022-08-08 00:12:53');
 
 -- --------------------------------------------------------
 
@@ -8109,7 +8124,8 @@ INSERT INTO `users_ortu` (`id`, `users_id`, `name_ortu`, `address`, `pendidikan_
 (2, 3, 'Irham Fadhil', 'Villa Galaxi D 2/7', NULL, NULL, 'UMBULSARI', 'UMBULREJO', 32, 12, '081283902244', '2022-06-28 21:41:51', '2022-06-28 21:41:51'),
 (3, 5, 'joko', 'jember', NULL, NULL, 'MUMBULSARI', 'LAMPEJI', 5, 22, '081283902244', '2022-07-09 19:16:43', '2022-07-09 19:16:43'),
 (4, 6, 'Irham Fadhil', 'Villa Galaxi D 2/7', NULL, NULL, 'LEDOKOMBO', 'SUKOGIDRI', 10, 20, '081283902244', '2022-07-09 19:21:55', '2022-07-09 19:21:55'),
-(5, 8, 'joko tole', 'test alamat 2', 'SD', 'Wiraswasta', 'PANTI', 'PAKIS', 3, 77, '0809898999', '2022-08-03 08:10:40', '2022-08-03 23:00:23');
+(5, 8, 'joko tole', 'test alamat 2', 'SD', 'Wiraswasta', 'PANTI', 'PAKIS', 3, 77, '0809898999', '2022-08-03 08:10:40', '2022-08-03 23:00:23'),
+(6, 9, 'joko tole', 'test alamat 2', 'Diploma 1, 2, 3', 'Petani/Nelayan', 'LEDOKOMBO', 'LEMBENGAN', 3, 18, '0809898999', '2022-08-08 00:11:52', '2022-08-08 00:11:52');
 
 -- --------------------------------------------------------
 
@@ -88839,7 +88855,7 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT for table `diagnosis`
 --
 ALTER TABLE `diagnosis`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -88863,25 +88879,25 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users_biodata`
 --
 ALTER TABLE `users_biodata`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users_foto`
 --
 ALTER TABLE `users_foto`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users_ortu`
 --
 ALTER TABLE `users_ortu`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
