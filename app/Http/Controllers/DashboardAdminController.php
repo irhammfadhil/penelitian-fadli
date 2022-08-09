@@ -13,6 +13,7 @@ use App\Models\Odontogram;
 use App\Models\Article;
 use PDF;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 
 class DashboardAdminController extends Controller
 {
@@ -175,6 +176,7 @@ class DashboardAdminController extends Controller
         $deftIndex = $sum_decay_susu + $sum_missing_susu + $sum_filling_susu;
 
         $users = User::where('id', '=', $users_id)->first();
+        $users->num_decay = $sum_decay_tetap;
         $users->dmft_score = $dmftIndex;
         $users->deft_score = $deftIndex;
         $users->save();
@@ -412,5 +414,47 @@ class DashboardAdminController extends Controller
         $fileName = 'Laporan '.$user->name.'.pdf';
 
         return $pdf->download($fileName);
+    }
+    public function generateReportGeneral() {
+        $query_general = DB::table('users as u')->select(DB::raw(' b.gender as jenis_kelamin, count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, 
+        sum(u.num_decay)/sum(dmft_score) as rata_rata_rti'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)->whereRaw('(YEAR(NOW()) - YEAR(b.birth_date)) between 7 and 12')
+        ->groupBy('b.gender')->get();
+        $query_klp_usia = DB::table('users as u')->select(DB::raw(' b.gender as jenis_kelamin, case when (YEAR(NOW()) - YEAR(b.birth_date)) >= 7 and (YEAR(NOW()) - YEAR(b.birth_date)) < 10 then \'Usia 7-10 th\' 
+        when (YEAR(NOW()) - YEAR(b.birth_date)) between 10 and 12 then \'Usia 10-12 th\' end as kategori_umur, 
+        count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, 
+        sum(u.num_decay)/sum(dmft_score) as rata_rata_rti'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)->whereRaw('(YEAR(NOW()) - YEAR(b.birth_date)) between 7 and 12')
+        ->groupBy('b.gender', 'kategori_umur')->get();
+        return view('dashboard-admin.laporan.general', [
+            'query_klp_usia' => $query_klp_usia,
+            'query_general' => $query_general,
+        ]);
+    }
+    public function generateReportBySchool() {
+        $sekolah = ['SDN Biting 04', 'SDN Candijati 01'];
+        return view('dashboard-admin.laporan.by_school', [
+            'sekolah' => $sekolah,
+            'result' => 0,
+        ]);
+    }
+    public function submitgenerateReportBySchool (Request $request) {
+        $sekolah = $request->sekolah;
+
+        $query_general = DB::table('users as u')->select(DB::raw(' b.gender as jenis_kelamin, count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, 
+        sum(u.num_decay)/sum(dmft_score) as rata_rata_rti'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
+        ->where('b.id_sekolah', '=', $sekolah)->whereRaw('(YEAR(NOW()) - YEAR(b.birth_date)) between 7 and 12')->groupBy('b.gender')->get();
+        $query_klp_usia = DB::table('users as u')->select(DB::raw(' b.gender as jenis_kelamin, case when (YEAR(NOW()) - YEAR(b.birth_date)) >= 7 and (YEAR(NOW()) - YEAR(b.birth_date)) < 10 then \'Usia 7-10 th\' 
+        when (YEAR(NOW()) - YEAR(b.birth_date)) between 10 and 12 then \'Usia 10-12 th\' end as kategori_umur, 
+        count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, 
+        sum(u.num_decay)/sum(dmft_score) as rata_rata_rti'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
+        ->where('b.id_sekolah', '=', $sekolah)->whereRaw('(YEAR(NOW()) - YEAR(b.birth_date)) between 7 and 12')->groupBy('b.gender', 'kategori_umur')->get();
+
+        $sekolah = ['SDN Biting 04', 'SDN Candijati 01'];
+        return view('dashboard-admin.laporan.by_school', [
+            'query_klp_usia' => $query_klp_usia,
+            'query_general' => $query_general,
+            'result' => 1,
+            'sekolah' => $sekolah,
+            'sekolah_selected' => $request->sekolah,
+        ]);
     }
 }

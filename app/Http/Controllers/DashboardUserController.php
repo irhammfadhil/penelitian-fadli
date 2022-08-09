@@ -64,7 +64,7 @@ class DashboardUserController extends Controller
         $biodata->users_id = Auth::user()->id;
         $biodata->gender = $gender;
         $biodata->birth_place = $birthplace;
-        $biodata->birth_date = $date_formatted;
+        $biodata->birth_date = $birthdate;
         $biodata->id_sekolah = $sekolah;
         $biodata->save();
 

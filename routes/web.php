@@ -62,3 +62,7 @@ Route::post('/admin/artikel/edit', [DashboardAdminController::class,'submitEditA
 Route::get('/admin/artikel/delete', [DashboardAdminController::class,'deleteArticle'])->middleware('auth');
 Route::post('/admin/submitFoto', [DashboardAdminController::class,'inputKomentarFotoAdmin'])->middleware('auth');
 Route::post('/admin/submitKomentar', [DashboardAdminController::class,'submitKomentar'])->middleware('auth');
+##report
+Route::get('/report', [DashboardAdminController::class,'generateReportGeneral'])->middleware('auth');
+Route::get('/report/bySchool', [DashboardAdminController::class,'generateReportBySchool'])->middleware('auth');
+Route::post('/report/bySchool', [DashboardAdminController::class,'submitgenerateReportBySchool'])->middleware('auth');

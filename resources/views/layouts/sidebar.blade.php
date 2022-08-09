@@ -46,6 +46,15 @@
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Daftar User</span>
             </a>
 			</li>
+			<li class="sidebar-item">
+						<a class="sidebar-link" href="/report">
+              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan</span>
+            </a>
+			<li class="sidebar-item">
+						<a class="sidebar-link" href="/report/bySchool">
+              <i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan Berdasarkan Sekolah</span>
+            </a>
+			</li>
 			@endif
 {{--
 					<li class="sidebar-item">
