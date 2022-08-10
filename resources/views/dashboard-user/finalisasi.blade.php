@@ -20,62 +20,11 @@
 	<link href="{{asset('static/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet"> 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="{{asset('script.js')}}"></script>
-	<style>
-        /* Styles for signature plugin v1.2.0. */
-        .kbw-signature {
-            display: inline-block;
-            border: 1px solid #a0a0a0;
-            -ms-touch-action: none;
-        }
-        .kbw-signature-disabled {
-            opacity: 0.35;
-        }
-    </style>
-  
-    <style>
-        .kbw-signature { width: 30%; height: 200px;}
-        #sig canvas{
-            width: 100% !important;
-            height: auto;
-        }
-        @media screen and (max-width: 400px) {
-            .kbw-signature { width: 100%; height: 200px;}
-        }
-        @media only screen and (max-width: 600px) and (min-width: 400px) {
-            .kbw-signature { width: 70%; height: 200px;}
-        }
-    </style>
+	<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+	<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-	@php
-		function tgl_indo($tanggal){
-		$bulan = array (
-		1 =>   'Januari',
-		'Februari',
-		'Maret',
-		'April',
-		'Mei',
-		'Juni',
-		'Juli',
-		'Agustus',
-		'September',
-		'Oktober',
-		'November',
-		'Desember'
-		);
-		$pecahkan = explode('-', $tanggal);
-		
-		// variabel pecahkan 0 = tanggal
-		// variabel pecahkan 1 = bulan
-		// variabel pecahkan 2 = tahun
-	
-		return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
-	}
-	@endphp
 	<div class="wrapper">
 		@include('layouts.sidebar')
 
@@ -85,7 +34,7 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Informed Consent</h1>
+					<h1 class="h3 mb-3">Finalisasi dan Kunci Data</h1>
 					
                     <div class="md-stepper-horizontal orange">
                         <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/biodata';" style="cursor: pointer;">
@@ -100,13 +49,13 @@
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                         </div>
-                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
+                        <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
                         <div class="md-step-circle"><span>3</span></div>
                         <div class="md-step-title">Foto Gigi</div>
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/finalisasi';" style="cursor: pointer;">
+						</div>
+						<div class="md-step active col-lg-1 col-md-1" onclick="location.href='/finalisasi';" style="cursor: pointer;">
                         <div class="md-step-circle"><span>4</span></div>
                         <div class="md-step-title">Finalisasi Data</div>
                         <div class="md-step-bar-left"></div>
@@ -117,169 +66,19 @@
 					<div class="card">
 						<div class="card-body">
                             @if(!Auth::user()->finalisasi_at)
-                            @if($biodata)
-							<h3 class="card-title mb-0">Informed Consent</h3>
-							<br>
-							<h3 class="text-center">LEMBAR PERSETUJUAN SUBJEK PENELITIAN</h3>
-							<br>
-							<br>
-							<b>Saya yang bertandatangan di bawah ini, </b>
-							<div class="row">
-								<div class="col-1">
-
-								</div>
-								<div class="col-3">
-									Nama
-								</div>
-								<div class="col-8">
-									: {{$ortu->name_ortu}}
-								</div>
-							</div>
-							{{--<div class="row">
-								<div class="col-3">
-									Umur
-								</div>
-								<div class="col-9">
-									: 
-								</div>
-							</div>--}}
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Alamat
-								</div>
-								<div class="col-8">
-									: {{$ortu->address}}
-								</div>
-							</div>
-							<br>
-							<b>Sebagai orang tua dari:</b>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Nama
-								</div>
-								<div class="col-8">
-									: {{Auth::user()->name}}
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Umur
-								</div>
-								<div class="col-8">
-									: {{$age}} tahun
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Alamat
-								</div>
-								<div class="col-8">
-									: {{$ortu->address}}
-								</div>
-							</div>
-							<br>
-							Setelah mendapatkan penjelasan dan keterangan secara lengkap, menyatakan bersedia dan mengizinkan anak saya untuk melakukan pemeriksaan gigi demi kepentingan penelitian dari :
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Nama
-								</div>
-								<div class="col-8">
-									: <b>Fadli Muhammad Fathoni</b>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									NIM
-								</div>
-								<div class="col-8">
-									: <b>191610101125</b>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-1">
-									
-								</div>
-								<div class="col-3">
-									Fakultas
-								</div>
-								<div class="col-8">
-									: <b>Kedokteran Gigi Universitas Jember</b>
-								</div>
-							</div>
-							<br> 
-							Dengan Judul <b>“PENILAIAN REOUIRED TREATMENT INDEX (RTI) PADA ANAK SEKOLAH DASAR DI WILAYAH AGROINDUSTRI BOBBIN ARJASA KABUPATEN JEMBER MELALUI APLIKASI BERBASIS WEB "SIMETRI"”</b> dengan sebenar-benarnya tanpa ada suatu paksaan dari pihak manapun. 
-							<div class="row">
-								<div class="col-6">
-									<br>
-									Saya yang bertandatangan,
-								</div>
-								<div class="col-6">
-									Jember, @php echo(tgl_indo(date('Y-m-d')));@endphp<br>
-									Peneliti,
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-6">
-									@if(Auth::user()->signature)
-                                    <img src="{{asset(Auth::user()->signature)}}" class="img-fluid"> 
-                                    @endif
-								</div>
-								<div class="col-6">
-                                    <img src="{{asset('ttd.jpg')}}" class="img-fluid"> 
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-6">
-									{{$ortu->name_ortu}}
-								</div>
-								<div class="col-6">
-									<b>Fadli Muhammad Fathoni</b>
-								</div>
-							</div>
-							<hr>
-							<h5>Tandatangani Informed Consent</h5>
-							<form method="POST" action="/tandatangan" enctype="multipart/form-data">
-                                @csrf
-                                <div class="col-md-12">
-                                    <label class="" for="">Signature:</label>
-                                    <br/>
-                                    <div id="sig" ></div>
-                                    <br/>
-                                    
-                                    <textarea id="signature64" name="signed" style="display: none"></textarea>
+                            @if($foto)
+							<h1 class="text-center" style="color: red;">Apakah Anda yakin untuk melakukan finalisasi terhadap data Anda? Data Anda tidak dapat diubah setelah melakukan finalisasi.</h1>
+                            <br><br>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 mt-4 mt-lg-0" style="text-align: center;">
+                                    <a class="btn btn-secondary" href="/biodata" style="width: 10rem;" role="button">Tidak</a>
                                 </div>
-                                <br/>
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
-                                        <button id="clear" class="btn btn-danger btn-sm">Hapus tanda tangan</button>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
-                                        <button class="btn btn-success">Tandatangani Informed Consent</button>
-                                    </div>
+                                <div class="col-lg-6 col-md-6 mt-4 mt-lg-0" style="text-align: center;">
+                                    <a class="btn btn-primary" href="/finalisasi/submit" style="width: 10rem;" role="button">Ya</a>
                                 </div>
-                            </form>
+                            </div>
                             @else
-                            <h3 class="card-title mb-0">Bagian ini belum dapat diakses</h3>
-                            <br>
-							<h3 class="text-center">Bagian ini belum dapat diakses. Silakan isi biodata terlebih dahulu.</h3>
+                            <h1 class="text-center">Harap unggah foto gigi Anda terlebih dahulu sebelum melakukan finalisasi data.</h1>
                             @endif
                             @else
                             <h1 class="text-center">Anda telah melakukan finalisasi data.</h1>
@@ -298,7 +97,20 @@
 							</p>
 						</div>
 						<div class="col-6 text-end">
-							
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -307,14 +119,6 @@
 	</div>
 
 	<script src="{{asset('static/js/app.js')}}"></script>
-	<script type="text/javascript">
-		var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
-		$('#clear').click(function(e) {
-			e.preventDefault();
-			sig.signature('clear');
-			$("#signature64").val('');
-		});
-	</script>
     <style>
           .required:after {
             content:" *";
@@ -473,6 +277,10 @@
                     });
                 });
             });
+        });
+		$('#birthdate').datepicker({
+            uiLibrary: 'bootstrap4',
+			format: 'dd/mm/yyyy'
         });
     </script>
 </body>

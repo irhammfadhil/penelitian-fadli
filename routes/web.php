@@ -42,6 +42,8 @@ Route::post('/tandatangan', [DashboardUserController::class,'tandatanganInformed
 Route::get('/foto-gigi', [DashboardUserController::class,'getFotoGigi'])->middleware('auth');
 Route::post('/foto-gigi', [DashboardUserController::class,'submitFotoGigi'])->middleware('auth');
 Route::get('/komentar', [DashboardUserController::class,'getKomentar'])->middleware('auth');
+Route::get('/finalisasi', [DashboardUserController::class,'getFinalisasi'])->middleware('auth');
+Route::get('/finalisasi/submit', [DashboardUserController::class,'submitFinalisasi'])->middleware('auth');
 
 #admin
 Route::get('/dashboard/admin', [DashboardAdminController::class,'index'])->middleware('auth');

@@ -294,4 +294,15 @@ class DashboardUserController extends Controller
             'kriteria_deft' => $kriteria_deft,
         ]);
     }
+    public function getFinalisasi() {
+        $foto = Foto::where('users_id', '=', Auth::user()->id)->first();
+        return view('dashboard-user.finalisasi', ['foto' => $foto]);
+    }
+    public function submitFinalisasi() {
+        $user = User::where('id', '=', Auth::user()->id)->first();
+        $user->finalisasi_at = date('Y-m-d H:i:s');
+        $user->save();
+
+        return redirect('/dashboard/user');
+    }
 }

@@ -10,16 +10,14 @@
   <!-- ======= Hero Section ======= -->
 
   <main id="main">
-    <!-- ======= Team Section ======= -->
-    <section class="vh-100">
-        <div class="container-fluid h-custom">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-9 col-lg-6 col-xl-5">
-                <img src="{{asset('Picture1.png')}}"
-                class="img-fluid" alt="Sample image">
-            </div>
-            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <h1 class="text-center">Daftar</h1>
+  <section class="vh-100" style="background-color: #ffffff;">
+    <div class="container py-5 h-100" style="margin-top: -70px;">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+
+            <h1 class="text-center">Daftar</h1>
                 @if($message = Session::get('danger'))
                             <div class="alert alert-danger" role="alert">
                                 <strong>{{$message}}</strong>
@@ -74,36 +72,17 @@
                             class="link-danger">Lupa Password?</a></p>
                     </div>
                 </form>
+
             </div>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+        </div>
+    </div>
     </section>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Informed Consent Layanan Simetri</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            Saya yang bertandatangan di bawah ini, 
-            
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Saya Tidak Setuju</button>
-            <button type="button" class="btn btn-primary">Saya Setuju</button>
-        </div>
-        </div>
-    </div>
-    </div>
 
   </main><!-- End #main -->
+
+  <br><br><br><br>
 
   @include('layouts.footer')
 
@@ -134,6 +113,7 @@
             text-align: center;
         }
   </style>
+
 </body>
 
 </html>

@@ -11,15 +11,14 @@
 
   <main id="main">
     <!-- ======= Team Section ======= -->
-    <section class="vh-100">
-        <div class="container-fluid h-custom">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-9 col-lg-6 col-xl-5">
-                <img src="{{asset('Picture1.png')}}"
-                class="img-fluid" alt="Sample image">
-            </div>
-            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <h1 class="text-center">Login</h1>
+    <section class="vh-100" style="background-color: #ffffff;">
+    <div class="container py-5 h-100" style="margin-top: -70px;">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+
+            <h1 class="text-center">Login</h1>
                 <p class="text-center">Silakan login menggunakan akun Anda.</p>
                 @if($message = Session::get('danger'))
                                     <div class="alert alert-danger" role="alert">
@@ -56,9 +55,12 @@
                             class="link-danger">Lupa Password?</a></p>
                     </div>
                 </form>
+
             </div>
             </div>
         </div>
+        </div>
+    </div>
     </section>
 
   </main><!-- End #main -->

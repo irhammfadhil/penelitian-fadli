@@ -106,10 +106,17 @@
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                         </div>
+                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/finalisasi';" style="cursor: pointer;">
+                        <div class="md-step-circle"><span>4</span></div>
+                        <div class="md-step-title">Finalisasi Data</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                        </div>
                     </div>
 					<br>
 					<div class="card">
 						<div class="card-body">
+                            @if(!Auth::user()->finalisasi_at)
                             @if(Auth::user()->signature != NULL)
                             @if($message = Session::get('success'))
                                 <div class="alert alert-success" role="alert">
@@ -129,6 +136,7 @@
 									<div class="col-4">Komentar Foto</div>
 									<div class="col-8">: {{$user->photo_comments}} </div>
 								</div>
+                                <br><br>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
@@ -288,6 +296,9 @@
                             <h3 class="card-title mb-0">Bagian ini belum dapat diakses</h3>
                             <br>
 							<h3 class="text-center">Bagian ini belum dapat diakses. Silakan tandatangani informed consent terlebih dahulu.</h3>
+                            @endif
+                            @else
+                            <h1 class="text-center">Anda telah melakukan finalisasi data.</h1>
                             @endif
 						</div>
 					</div>
