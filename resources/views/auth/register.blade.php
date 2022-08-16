@@ -40,6 +40,7 @@
                         Daftar
                     </span>
                 </div>
+                <br>
 
                 @if($message = Session::get('danger'))
                 <div class="alert alert-danger" role="alert">
