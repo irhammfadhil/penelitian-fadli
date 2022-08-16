@@ -37,6 +37,8 @@ Route::post('/getDesa', [AjaxController::class,'getKelurahan'])->middleware('aut
 Route::get('/dashboard/user', [DashboardUserController::class,'index'])->middleware('auth');
 Route::get('/biodata', [DashboardUserController::class,'getBiodata'])->middleware('auth');
 Route::post('/biodata', [DashboardUserController::class,'submitBiodata'])->middleware('auth');
+Route::get('/screening-covid', [DashboardUserController::class,'getScreeningCovid'])->middleware('auth');
+Route::post('/screening-covid', [DashboardUserController::class,'screeningCovid'])->middleware('auth');
 Route::get('/informed-consent', [DashboardUserController::class,'getConsent'])->middleware('auth');
 Route::post('/tandatangan', [DashboardUserController::class,'tandatanganInformedConsent'])->middleware('auth');
 Route::get('/foto-gigi', [DashboardUserController::class,'getFotoGigi'])->middleware('auth');

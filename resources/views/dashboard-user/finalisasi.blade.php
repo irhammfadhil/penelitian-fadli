@@ -43,20 +43,26 @@
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                         </div>
-						<div class="md-step active col-lg-1 col-md-1" onclick="location.href='/informed-consent';" style="cursor: pointer;">
+                        <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/screening-covid';" style="cursor: pointer;">
                         <div class="md-step-circle"><span>2</span></div>
+                        <div class="md-step-title">Screening COVID-19</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                        </div>
+						<div class="md-step active col-lg-1 col-md-1" onclick="location.href='/informed-consent';" style="cursor: pointer;">
+                        <div class="md-step-circle"><span>3</span></div>
                         <div class="md-step-title">Informed Consent</div>
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                         </div>
                         <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-circle"><span>4</span></div>
                         <div class="md-step-title">Foto Gigi</div>
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
 						</div>
 						<div class="md-step active col-lg-1 col-md-1" onclick="location.href='/finalisasi';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>4</span></div>
+                        <div class="md-step-circle"><span>5</span></div>
                         <div class="md-step-title">Finalisasi Data</div>
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>

@@ -11,6 +11,7 @@ use App\Models\Village;
 use App\Models\Foto;
 use App\Models\User;
 use App\Models\Diagnosis;
+use App\Models\UsersCovid;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DateTime;
@@ -88,11 +89,45 @@ class DashboardUserController extends Controller
         $ortu->phone = $phone;
         $ortu->save();
 
+        return redirect('/screening-covid');
+    }
+    public function getScreeningCovid() {
+        $biodata = Biodata::where('users_id', '=', Auth::user()->id)->first();
+        $ortu = BiodataOrtu::where('users_id', '=', Auth::user()->id)->first();
+        $screening = UsersCovid::where('users_id', '=', Auth::user()->id)->first();
+        return view('dashboard-user.covid', [
+            'biodata' => $biodata,
+            'ortu' => $ortu,
+            'screening' => $screening,
+        ]);
+    }
+    public function screeningCovid(Request $request) {
+        $is_demam = $request->is_demam;
+        $is_batuk = $request->is_batuk;
+        $is_sesak = $request->is_sesak;
+        $is_travel = $request->is_travel;
+        $is_close_contact = $request->is_close_contact;
+        $is_health_facilities_visit = $request->is_health_facilities_visit;
+
+        $user = UsersCovid::where('users_id', '=', Auth::user()->id)->first();
+        if(!$user) {
+            $user = new UsersCovid;
+        }
+        $user->users_id = Auth::user()->id;
+        $user->is_demam = $is_demam;
+        $user->is_batuk = $is_batuk;
+        $user->is_sesak = $is_sesak;
+        $user->is_travel = $is_travel;
+        $user->is_close_contact = $is_close_contact;
+        $user->is_health_facilities_visit = $is_health_facilities_visit;
+        $user->save();
+
         return redirect('/informed-consent');
     }
     public function getConsent() {
         $biodata = Biodata::where('users_id', '=', Auth::user()->id)->first();
         $ortu = BiodataOrtu::where('users_id', '=', Auth::user()->id)->first();
+        $covid = UsersCovid::where('users_id', '=', Auth::user()->id)->first();
         if($biodata && $ortu) {
             $date1 = new DateTime($biodata->birth_date);
             $date2 = new DateTime("now");
@@ -100,6 +135,7 @@ class DashboardUserController extends Controller
             return view('dashboard-user.consent', [
                 'biodata' => $biodata,
                 'ortu' => $ortu,
+                'covid' => $covid,
                 'age' => $age->y,
             ]);
         }
@@ -107,6 +143,7 @@ class DashboardUserController extends Controller
             return view('dashboard-user.consent', [
                 'biodata' => $biodata,
                 'ortu' => $ortu,
+                'covid' => $covid,
             ]);
         }
     }

@@ -94,20 +94,26 @@
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                         </div>
-						<div class="md-step active col-lg-1 col-md-1" onclick="location.href='/informed-consent';" style="cursor: pointer;">
+						<div class="md-step active col-lg-1 col-md-1" onclick="location.href='/screening-covid';" style="cursor: pointer;">
                         <div class="md-step-circle"><span>2</span></div>
+                        <div class="md-step-title">Screening COVID-19</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                        </div>
+						<div class="md-step active col-lg-1 col-md-1" onclick="location.href='/informed-consent';" style="cursor: pointer;">
+                        <div class="md-step-circle"><span>3</span></div>
                         <div class="md-step-title">Informed Consent</div>
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                         </div>
                         <div class="md-step col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-circle"><span>4</span></div>
                         <div class="md-step-title">Foto Gigi</div>
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/finalisasi';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>4</span></div>
+						</div>
+						<div class="md-step col-lg-1 col-md-1" onclick="location.href='/finalisasi';" style="cursor: pointer;">
+                        <div class="md-step-circle"><span>5</span></div>
                         <div class="md-step-title">Finalisasi Data</div>
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
@@ -117,7 +123,7 @@
 					<div class="card">
 						<div class="card-body">
                             @if(!Auth::user()->finalisasi_at)
-                            @if($biodata)
+                            @if($covid)
 							<h3 class="card-title mb-0">Informed Consent</h3>
 							<br>
 							<h3 class="text-center">LEMBAR PERSETUJUAN SUBJEK PENELITIAN</h3>
@@ -279,7 +285,7 @@
                             @else
                             <h3 class="card-title mb-0">Bagian ini belum dapat diakses</h3>
                             <br>
-							<h3 class="text-center">Bagian ini belum dapat diakses. Silakan isi biodata terlebih dahulu.</h3>
+							<h3 class="text-center">Bagian ini belum dapat diakses. Silakan isi form screning COVID-19 terlebih dahulu.</h3>
                             @endif
                             @else
                             <h1 class="text-center">Anda telah melakukan finalisasi data.</h1>

@@ -35,7 +35,7 @@
     @include('section.gallery')
     
     <!-- ======= Contact Section ======= -->
-    @include('section.contact')
+    {{--@include('section.contact')--}}
 
   </main><!-- End #main -->
 

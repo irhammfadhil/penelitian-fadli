@@ -50,7 +50,7 @@
                 </div>
                 @endif
 
-                <form action="/login" method="post" class="login100-form validate-form" enctype="multipart/form-data">
+                <form action="/register" method="post" class="login100-form validate-form" enctype="multipart/form-data">
                     @csrf
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Name is required">
                         <span class="label-input100">Nama</span>
