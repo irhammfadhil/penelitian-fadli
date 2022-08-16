@@ -9,8 +9,6 @@
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="{{asset('auth/images/icons/favicon.ico')}}" />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('auth/vendor/bootstrap/css/bootstrap.min.css')}}">
-    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('auth/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('auth/fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
@@ -30,7 +28,7 @@
     <!--===============================================================================================-->
 </head>
 
-<body>
+<body style="background-color: #ebeeef;">
     @include('layouts.navbar')
     <div class="limiter">
         <div class="container-login100">
@@ -79,11 +77,9 @@
                         <input type="password" name="confirm_password" id="confirm_password" class="input100" placeholder="Masukkan kembali Password anda" required />
                         <span class="focus-input100"></span>
                     </div>
-                    <div class="wrap-input100 validate-input m-b-26" data-validate="Name is required">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #1d443f;">
-                            Daftar
-                        </button>
-                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #1d443f;">
+                        Daftar
+                    </button>
                 </form>
                 <div class="closing">
                     <p class="small fw-bold mt-2 pt-1 mb-0 text-center txt1">Sudah mempunyai akun? <a href="/login" class="link-danger">Login.</a></p>
@@ -98,9 +94,16 @@
         .closing {
             margin-top: -100px;
         }
+
         @media screen and (max-width: 800px) {
             .closing {
                 margin-top: -70px;
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            .limiter {
+                margin-top: 40px;
             }
         }
     </style>
@@ -121,6 +124,16 @@
     <script src="{{asset('auth/vendor/countdowntime/countdowntime.js')}}"></script>
     <!--===============================================================================================-->
     <script src="{{asset('auth/js/main.js')}}"></script>
+    <!-- Vendor JS Files -->
+    <script src="{{asset('assets/vendor/aos/aos.js')}}"></script>
+    <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{asset('assets/js/main.js')}}"></script>
 
 </body>
 
