@@ -1,99 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@include('layouts.header')
+<head>
+    <title>Login SIMETRI</title>
+    @include('layouts.header')
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{{asset('auth/images/icons/favicon.ico')}}" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('auth/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('auth/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('auth/fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('auth/vendor/animate/animate.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('auth/vendor/css-hamburgers/hamburgers.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('auth/vendor/animsition/css/animsition.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('auth/vendor/select2/select2.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('auth/vendor/daterangepicker/daterangepicker.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('auth/css/util.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('auth/css/main.css')}}">
+    <!--===============================================================================================-->
+</head>
 
 <body>
+    @include('layouts.navbar')
 
-  @include('layouts.navbar')
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-form-title" style="background-image: url(Picture1.png);">
+                    <span class="login100-form-title-1">
+                        Sign In
+                    </span>
+                </div>
 
-  <!-- ======= Hero Section ======= -->
-
-  <main id="main">
-    <!-- ======= Team Section ======= -->
-    <section class="vh-100" style="background-color: #ffffff;">
-    <div class="container py-5 h-100" style="margin-top: -70px;">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div class="card shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
-
-            <h1 class="text-center">Login</h1>
-                <p class="text-center">Silakan login menggunakan akun Anda.</p>
                 @if($message = Session::get('danger'))
-                                    <div class="alert alert-danger" role="alert">
-                                        <strong>{{$message}}</strong>
-                                    </div>
-                                    @elseif($message = Session::get('success'))
-                                    <div class="alert alert-success" role="alert">
-                                        <strong>{{$message}}</strong>
-                                    </div>
+                <div class="alert alert-danger" role="alert">
+                    <strong>{{$message}}</strong>
+                </div>
+                @elseif($message = Session::get('success'))
+                <div class="alert alert-success" role="alert">
+                    <strong>{{$message}}</strong>
+                </div>
                 @endif
-                <form action="/login" method="post" enctype="multipart/form-data">
+
+                <form action="/login" method="post" class="login100-form validate-form" enctype="multipart/form-data">
                     @csrf
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="form3Example3">Nama Pengguna</label>
-                        <input type="text" name="email" id="email" class="form-control form-control-lg"
-                        placeholder="Nama Pengguna" required/>
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                        <span class="label-input100">Username</span>
+                        <input type="text" name="email" id="email" class="input100" placeholder="Nama Pengguna" required />
+                        <span class="focus-input100"></span>
                     </div>
-
-                    <!-- Password input -->
-                    <div class="form-outline mb-3">
-                        <label class="form-label" for="form3Example3">Password</label>
-                        <input type="password" name="password" id="password" class="form-control form-control-lg"
-                        placeholder="Password" required/>
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="Password is required">
+                        <span class="label-input100">Password</span>
+                        <input type="password" name="password" id="password" class="input100" placeholder="Password" required />
+                        <span class="focus-input100"></span>
                     </div>
-                    <br>
-                    <button type="submit" class="btn btn-primary block"
-                        style="padding-left: 2.5rem; padding-right: 2.5rem; text-align: center;">Login</button>
-
-                    <div class="text-center text-lg-start mt-4 pt-2">
-                        <p class="small fw-bold mt-2 pt-1 mb-0 text-center">Belum mempunyai akun? <a href="/register"
-                            class="link-danger">Daftar sekarang.</a></p>
-                        <p class="small fw-bold mt-2 pt-1 mb-0 text-center"><a href="/forget-password"
-                            class="link-danger">Lupa Password?</a></p>
-                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #1d443f;">
+                        Login
+                    </button>
                 </form>
-
+                <div class="closing">
+                    <p class="small fw-bold mt-2 pt-1 mb-0 text-center txt1">Belum mempunyai akun? <a href="/register" class="link-danger">Daftar sekarang.</a></p>
+                    <p class="small fw-bold mt-2 pt-1 mb-0 text-center txt1"><a href="/forget-password" class="link-danger">Lupa Password?</a></p>
+                </div>
+                <br>
             </div>
-            </div>
-        </div>
         </div>
     </div>
-    </section>
 
-  </main><!-- End #main -->
+    <style>
+        .closing {
+            margin-top: -70px;
+        }
+        @media screen and (max-width: 800px) {
+            .closing {
+                margin-top: -50px;
+            }
+        }
+    </style>
 
-  @include('layouts.footer')
-
-  <style>
-        .divider:after,
-        .divider:before {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: #eee;
-        }
-        .h-custom {
-        height: calc(100% - 73px);
-        }
-        @media (max-width: 450px) {
-        .h-custom {
-        height: 100%;
-        }
-        }
-        .block {
-            display: block;
-            width: 100%;
-            border: none;
-            background-color: #1D443F;
-            padding: 14px 28px;
-            font-size: 16px;
-            cursor: pointer;
-            text-align: center;
-        }
-  </style>
+    <!--===============================================================================================-->
+    <script src="{{asset('auth/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+    <!--===============================================================================================-->
+    <script src="{{asset('auth/vendor/animsition/js/animsition.min.js')}}"></script>
+    <!--===============================================================================================-->
+    <script src="{{asset('auth/vendor/bootstrap/js/popper.js')}}"></script>
+    <script src="{{asset('auth/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    <!--===============================================================================================-->
+    <script src="{{asset('auth/vendor/select2/select2.min.js')}}"></script>
+    <!--===============================================================================================-->
+    <script src="{{asset('auth/vendor/daterangepicker/moment.min.js')}}"></script>
+    <script src="{{asset('auth/vendor/daterangepicker/daterangepicker.js')}}"></script>
+    <!--===============================================================================================-->
+    <script src="{{asset('auth/vendor/countdowntime/countdowntime.js')}}"></script>
+    <!--===============================================================================================-->
+    <script src="{{asset('auth/js/main.js')}}"></script>
 
 </body>
 
