@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2022 at 03:27 PM
+-- Generation Time: Aug 17, 2022 at 04:52 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -8009,6 +8009,7 @@ CREATE TABLE `users` (
   `photo_verified_at` timestamp NULL DEFAULT NULL,
   `photo_comments` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `comments` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `finalisasi_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -8017,16 +8018,17 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `is_deleted`, `remember_token`, `signature`, `num_decay`, `dmft_score`, `deft_score`, `is_photo_verified`, `photo_verified_at`, `photo_comments`, `comments`, `created_at`, `updated_at`) VALUES
-(1, 'Irham Fadhil', 'jokotole12345', 'irham.mfadhil@gmail.com', NULL, '$2y$10$O6aMveacsUgJzpev1aJgjuwnB0/C1CrBR8ZmsGTIdBli7PTTL0zXu', 0, 0, NULL, NULL, 2, 2, 0, 0, NULL, NULL, '', '2022-06-11 20:06:44', '2022-08-08 21:19:02'),
-(2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, 0, NULL, 'upload/62b9286e5efa6.png', 2, 4, 0, 0, NULL, NULL, '', '2022-06-18 19:01:55', '2022-08-08 21:19:45'),
-(3, 'aidil', 'Aidilabdillah4', 'aidil@gmail.com', NULL, '$2y$10$xeLURmhfJj47RhgLRZ3OoOJ4A/f679wyJ.m20foieGKJhpzpZfnq.', 0, 1, NULL, 'upload/62bbd81b03550.png', NULL, 0, 0, 0, NULL, NULL, '', '2022-06-28 21:33:40', '2022-08-05 02:53:06'),
-(4, 'Administrator', 'Administrator', 'admin@email.com', NULL, '$2y$10$VmIzQn1KDr1bmpzb5Yrb0uaZsu.i.86Xuz893hGcGiwNeqqSLAGh2', 1, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, '', '2022-06-28 23:56:45', '2022-06-28 23:56:45'),
-(5, 'risky', 'risky123', 'risky123@gmail.com', NULL, '$2y$10$wwhqmC1SDwoHO6itC4k7xelNRJTO/A0Z/XlsMXQtKoy0sAwe68EpO', 0, 0, NULL, 'upload/62ca3696aa8f0.png', 2, 3, 0, 1, '2022-08-07 05:13:46', 'alhamdulillah', '', '2022-07-09 19:16:00', '2022-08-08 21:22:09'),
-(6, 'alya', 'alyaraisa', 'alyalaksono@gmail.com', NULL, '$2y$10$97/nh3vO79Hhpt92oAjk/uertGNgXkYpYVsv.fofwmPZTjA.ZF0Q.', 0, 0, NULL, 'upload/62ca37e1cfdee.png', 1, 2, 0, 1, NULL, 'setuju', '', '2022-07-09 19:21:19', '2022-08-08 21:22:21'),
-(7, 'uwel', 'uwel', 'irham.m.fadhil@gmail.con', NULL, '$2y$10$ZBKbnw.Q.DAbgUvC1lNF3e.Wg0.nwomh0HjWirRMXSyiYfeV1CHf2', 0, 0, NULL, NULL, 1, 2, 0, 0, NULL, NULL, '', '2022-08-03 06:13:13', '2022-08-08 21:22:37'),
-(8, 'xxx', 'yyy', 'tole@tole.com12', NULL, '$2y$10$W9QV1MIg0f80JM4MSEu7OOH9CztwsrRAGac..wM85CvcjRcqv0rl2', 0, 0, NULL, 'upload/62ea8ff79e713.png', 3, 9, 1, 0, NULL, 'Tolong upload ulang fotonya ya', 'jaga kebersihan ya', '2022-08-03 06:45:49', '2022-08-08 21:22:50'),
-(9, 'Test anak', 'testanak123', 'testanak123@email.com', NULL, '$2y$10$z9o5k62qHn5GtnQSHigxT.m0KRRnWJzzHzo3Za.P7DdPgJXS6FnIK', 0, 0, NULL, 'upload/62f0b73f5c70f.png', 1, 3, 0, 0, NULL, NULL, NULL, '2022-08-08 00:10:32', '2022-08-08 21:23:03');
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `is_admin`, `is_deleted`, `remember_token`, `signature`, `num_decay`, `dmft_score`, `deft_score`, `is_photo_verified`, `photo_verified_at`, `photo_comments`, `comments`, `finalisasi_at`, `created_at`, `updated_at`) VALUES
+(1, 'Irham Fadhil', 'jokotole12345', 'irham.mfadhil@gmail.com', NULL, '$2y$10$O6aMveacsUgJzpev1aJgjuwnB0/C1CrBR8ZmsGTIdBli7PTTL0zXu', 0, 0, NULL, NULL, 2, 2, 0, 0, NULL, NULL, '', '2022-08-10 12:51:38', '2022-06-11 20:06:44', '2022-08-08 21:19:02'),
+(2, 'ais', 'farizputradandi', 'fariz.d@gmail.com', NULL, '$2y$10$K3OBRRt2OyjSWVh/isMpluq7SKoRGtoLbvwsI6tzhoUJvtcwFdcTW', 0, 0, NULL, 'upload/62b9286e5efa6.png', 2, 4, 0, 0, NULL, NULL, '', '2022-08-10 12:51:31', '2022-06-18 19:01:55', '2022-08-08 21:19:45'),
+(3, 'aidil', 'Aidilabdillah4', 'aidil@gmail.com', NULL, '$2y$10$xeLURmhfJj47RhgLRZ3OoOJ4A/f679wyJ.m20foieGKJhpzpZfnq.', 0, 1, NULL, 'upload/62bbd81b03550.png', NULL, 0, 0, 0, NULL, NULL, '', '2022-08-10 12:51:25', '2022-06-28 21:33:40', '2022-08-05 02:53:06'),
+(4, 'Administrator', 'Administrator', 'admin@email.com', NULL, '$2y$10$VmIzQn1KDr1bmpzb5Yrb0uaZsu.i.86Xuz893hGcGiwNeqqSLAGh2', 1, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, '', NULL, '2022-06-28 23:56:45', '2022-06-28 23:56:45'),
+(5, 'risky', 'risky123', 'risky123@gmail.com', NULL, '$2y$10$wwhqmC1SDwoHO6itC4k7xelNRJTO/A0Z/XlsMXQtKoy0sAwe68EpO', 0, 0, NULL, 'upload/62ca3696aa8f0.png', 2, 3, 0, 1, '2022-08-07 05:13:46', 'alhamdulillah', '', '2022-08-10 12:51:13', '2022-07-09 19:16:00', '2022-08-08 21:22:09'),
+(6, 'alya', 'alyaraisa', 'alyalaksono@gmail.com', NULL, '$2y$10$97/nh3vO79Hhpt92oAjk/uertGNgXkYpYVsv.fofwmPZTjA.ZF0Q.', 0, 0, NULL, 'upload/62ca37e1cfdee.png', 1, 2, 0, 1, NULL, 'setuju', '', '2022-08-10 12:50:32', '2022-07-09 19:21:19', '2022-08-08 21:22:21'),
+(7, 'uwel', 'uwel', 'irham.m.fadhil@gmail.con', NULL, '$2y$10$ZBKbnw.Q.DAbgUvC1lNF3e.Wg0.nwomh0HjWirRMXSyiYfeV1CHf2', 0, 0, NULL, NULL, 1, 2, 0, 0, NULL, NULL, '', '2022-08-10 12:50:41', '2022-08-03 06:13:13', '2022-08-08 21:22:37'),
+(8, 'xxx', 'yyy', 'tole@tole.com', NULL, '$2y$10$W9QV1MIg0f80JM4MSEu7OOH9CztwsrRAGac..wM85CvcjRcqv0rl2', 0, 0, NULL, 'upload/62ea8ff79e713.png', 3, 9, 1, 0, NULL, 'Tolong upload ulang fotonya ya', 'jaga kebersihan ya', NULL, '2022-08-03 06:45:49', '2022-08-16 00:15:18'),
+(9, 'Test anak', 'testanak123', 'testanak123@email.com', NULL, '$2y$10$z9o5k62qHn5GtnQSHigxT.m0KRRnWJzzHzo3Za.P7DdPgJXS6FnIK', 0, 0, NULL, 'upload/62f0b73f5c70f.png', 1, 3, 0, 0, NULL, NULL, NULL, '2022-08-10 12:51:00', '2022-08-08 00:10:32', '2022-08-08 21:23:03'),
+(10, 'alya raisa laksono', 'alyaraisa10', 'alya.raisa@gmail.com', NULL, '$2y$10$5TxCg0Doe1UtZ5ZwVCGLEuGlBLRNdiobytU2pmVCPBb4XwfEp2zmi', 0, 0, NULL, 'upload/62fb6fa0898c5.png', NULL, 0, 0, 0, NULL, NULL, NULL, '2022-08-16 03:24:14', '2022-08-16 03:18:16', '2022-08-16 03:24:14');
 
 -- --------------------------------------------------------
 
@@ -8055,7 +8057,8 @@ INSERT INTO `users_biodata` (`id`, `users_id`, `gender`, `birth_place`, `birth_d
 (3, 5, 'Perempuan', 'Surabaya', '2011-07-31', NULL, '2022-07-09 19:16:43', '2022-07-09 19:16:43'),
 (4, 6, 'Laki-laki', 'Surabaya', '2015-01-01', NULL, '2022-07-09 19:21:55', '2022-07-09 19:21:55'),
 (5, 8, 'Laki-laki', 'jogja', '2014-12-23', 'Pilih...', '2022-08-03 06:48:34', '2022-08-05 04:53:03'),
-(6, 9, 'Perempuan', 'jogja', '2015-01-01', 'SDN Biting 04', '2022-08-08 00:11:52', '2022-08-08 00:11:52');
+(6, 9, 'Perempuan', 'jogja', '2015-01-01', 'SDN Biting 04', '2022-08-08 00:11:52', '2022-08-08 00:11:52'),
+(7, 10, 'Perempuan', 'surabaya', '2003-01-01', 'SDN Candijati 01', '2022-08-16 03:20:54', '2022-08-16 03:20:54');
 
 -- --------------------------------------------------------
 
@@ -8091,7 +8094,8 @@ INSERT INTO `users_foto` (`id`, `users_id`, `foto_senyum`, `foto_depan`, `foto_k
 (2, 5, 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', 'data_peserta/5/d1993aead8_akfar.jpg', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-09 19:18:19', '2022-07-09 19:18:19'),
 (3, 6, 'data_peserta/6/5b72f3bbfb_akfar.jpg', 'data_peserta/6/5b72f3bbfb_ttd.jpg', 'data_peserta/6/5b72f3bbfb_ttd.jpg', 'data_peserta/6/5b72f3bbfb_kursi gigi.jpg', 'data_peserta/6/5b72f3bbfb_periksa gigi.jpg', 'data_peserta/6/5b72f3bbfb_periksa gigi.jpg', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-10', '2022-07-09 19:25:29', '2022-07-09 19:25:29'),
 (4, 8, 'data_peserta/8/ff5a3d3ce2_noimage.jpg', 'data_peserta/8/ff5a3d3ce2_64d6800b-5c9d-4b7e-8537-d83481a32fb1.jpg', 'data_peserta/8/ff5a3d3ce2_noimage.jpg', 'data_peserta/8/ff5a3d3ce2_64d6800b-5c9d-4b7e-8537-d83481a32fb1.jpg', 'data_peserta/8/ff5a3d3ce2_3.jpg', 'data_peserta/8/ff5a3d3ce2_4.jpg', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-05', '2022-08-04 18:42:08', '2022-08-04 18:42:08'),
-(5, 9, 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', '2022-08-08', '2022-08-07', '2022-08-08', '2022-08-08', '2022-08-08', '2022-08-08', '2022-08-08 00:12:53', '2022-08-08 00:12:53');
+(5, 9, 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', 'data_peserta/9/7768a38fa3_4.jpg', '2022-08-08', '2022-08-07', '2022-08-08', '2022-08-08', '2022-08-08', '2022-08-08', '2022-08-08 00:12:53', '2022-08-08 00:12:53'),
+(6, 10, 'data_peserta/10/0179a83f48_0ce528f319_teams-competing-prize-people-playing-tug-war-pulling-rope-with-golden-cup-flat-vector-illustration-competition-contest-concept_74855-10163.jpg', 'data_peserta/10/0179a83f48_0ce528f319_teams-competing-prize-people-playing-tug-war-pulling-rope-with-golden-cup-flat-vector-illustration-competition-contest-concept_74855-10163.jpg', 'data_peserta/10/0179a83f48_0ce528f319_teams-competing-prize-people-playing-tug-war-pulling-rope-with-golden-cup-flat-vector-illustration-competition-contest-concept_74855-10163.jpg', 'data_peserta/10/0179a83f48_0ce528f319_teams-competing-prize-people-playing-tug-war-pulling-rope-with-golden-cup-flat-vector-illustration-competition-contest-concept_74855-10163.jpg', 'data_peserta/10/0179a83f48_0ce528f319_teams-competing-prize-people-playing-tug-war-pulling-rope-with-golden-cup-flat-vector-illustration-competition-contest-concept_74855-10163.jpg', 'data_peserta/10/0179a83f48_0ce528f319_teams-competing-prize-people-playing-tug-war-pulling-rope-with-golden-cup-flat-vector-illustration-competition-contest-concept_74855-10163.jpg', '2022-08-09', '2022-08-09', '2022-08-09', '2022-08-09', '2022-08-08', '2022-08-09', '2022-08-16 03:22:20', '2022-08-16 03:22:20');
 
 -- --------------------------------------------------------
 
@@ -8125,7 +8129,35 @@ INSERT INTO `users_ortu` (`id`, `users_id`, `name_ortu`, `address`, `pendidikan_
 (3, 5, 'joko', 'jember', NULL, NULL, 'MUMBULSARI', 'LAMPEJI', 5, 22, '081283902244', '2022-07-09 19:16:43', '2022-07-09 19:16:43'),
 (4, 6, 'Irham Fadhil', 'Villa Galaxi D 2/7', NULL, NULL, 'LEDOKOMBO', 'SUKOGIDRI', 10, 20, '081283902244', '2022-07-09 19:21:55', '2022-07-09 19:21:55'),
 (5, 8, 'joko tole', 'test alamat 2', 'SD', 'Wiraswasta', 'PANTI', 'PAKIS', 3, 77, '0809898999', '2022-08-03 08:10:40', '2022-08-03 23:00:23'),
-(6, 9, 'joko tole', 'test alamat 2', 'Diploma 1, 2, 3', 'Petani/Nelayan', 'LEDOKOMBO', 'LEMBENGAN', 3, 18, '0809898999', '2022-08-08 00:11:52', '2022-08-08 00:11:52');
+(6, 9, 'joko tole', 'test alamat 2', 'Diploma 1, 2, 3', 'Petani/Nelayan', 'LEDOKOMBO', 'LEMBENGAN', 3, 18, '0809898999', '2022-08-08 00:11:52', '2022-08-08 00:11:52'),
+(7, 10, 'joko tole', 'test alamat 2', 'SMA', 'TNI/POLRI', 'PANTI', 'KEMUNINGSARI LOR', 4, 19, '0809898999', '2022-08-16 03:20:54', '2022-08-16 03:20:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_screening_covid`
+--
+
+CREATE TABLE `users_screening_covid` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `users_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `is_demam` int(11) DEFAULT 0,
+  `is_batuk` int(11) DEFAULT 0,
+  `is_sesak` int(11) DEFAULT 0,
+  `is_travel` int(11) DEFAULT 0,
+  `is_close_contact` int(11) DEFAULT 0,
+  `is_health_facilities_visit` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users_screening_covid`
+--
+
+INSERT INTO `users_screening_covid` (`id`, `users_id`, `is_demam`, `is_batuk`, `is_sesak`, `is_travel`, `is_close_contact`, `is_health_facilities_visit`, `created_at`, `updated_at`) VALUES
+(1, 8, 0, 0, 0, 0, 0, 0, '2022-08-16 03:14:39', '2022-08-16 03:14:39'),
+(2, 10, 0, 0, 0, 1, 0, 0, '2022-08-16 03:21:12', '2022-08-16 03:21:12');
 
 -- --------------------------------------------------------
 
@@ -88835,6 +88867,13 @@ ALTER TABLE `users_ortu`
   ADD KEY `users_id` (`users_id`);
 
 --
+-- Indexes for table `users_screening_covid`
+--
+ALTER TABLE `users_screening_covid`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_id` (`users_id`);
+
+--
 -- Indexes for table `villages`
 --
 ALTER TABLE `villages`
@@ -88879,25 +88918,31 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users_biodata`
 --
 ALTER TABLE `users_biodata`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users_foto`
 --
 ALTER TABLE `users_foto`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users_ortu`
 --
 ALTER TABLE `users_ortu`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `users_screening_covid`
+--
+ALTER TABLE `users_screening_covid`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -88938,6 +88983,12 @@ ALTER TABLE `users_foto`
 --
 ALTER TABLE `users_ortu`
   ADD CONSTRAINT `users_ortu_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `users_screening_covid`
+--
+ALTER TABLE `users_screening_covid`
+  ADD CONSTRAINT `users_screening_covid_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `villages`

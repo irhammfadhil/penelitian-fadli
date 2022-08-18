@@ -1,32 +1,38 @@
-<section id="team" class="team section-bg">
+<section class="wrapper team section-bg">
+  <div class="container-fostrap">
+    <div class="section-title">
+      <h2 data-aos="fade-up">Artikel</h2>
+      <p data-aos="fade-up">Hidup sehat dimulai dengan gigi yang lebih sehat.</p>
+    </div>
+    <div class="content">
       <div class="container">
-
-        <div class="section-title">
-          <h2 data-aos="fade-up">Artikel</h2>
-          <p data-aos="fade-up">Hidup sehat dimulai dengan gigi yang lebih sehat.</p>
-        </div>
-
         <div class="row">
-
           @foreach($artikel as $a)
-
-          <div class="col-lg-4 col-md-12 d-flex align-items-stretch" data-aos="fade-up">
-            <div class="member">
-              <div class="member-img" style="height: 15rem;">
-                <img src="{{asset($a->image)}}" class="img-fluid" alt="">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="card">
+              <a class="img-card" href="{{$a->image}}">
+                <img src="{{asset($a->image)}}" class="img-fluid" />
+              </a>
+              <div class="card-content">
+                <h4 class="card-title">
+                  <a href="{{url('')}}/article/{{$a->link}}"> {{$a->title}}
+                  </a>
+                </h4>
               </div>
-              <div class="member-info">
-                <h4><a href="{{url('')}}/article/{{$a->link}}">{{$a->title}}</a></h4>
-                <hr>
+              <div class="card-read-more">
+                <a href="{{url('')}}/article/{{$a->link}}" class="btn btn-link btn-block">
+                  Baca Selengkapnya
+                </a>
               </div>
             </div>
           </div>
           @endforeach
         </div>
-
-        <div class="article-more" style="text-align: center;">
-          <a class="btn btn-primary btn-lg" href="/article" role="button">Baca Semua Artikel</a>
-        </div>
-
       </div>
-    </section><!-- End Team Section -->
+    </div>
+    <br>
+    <div class="article-more" style="text-align: center;">
+      <a class="btn btn-primary btn-lg" href="/article" role="button">Baca Semua Artikel</a>
+    </div>
+  </div>
+</section>

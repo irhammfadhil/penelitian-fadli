@@ -98,6 +98,70 @@
 									<div class="col-4">Alamat</div>
 									<div class="col-8">: {{$ortu->address}}, RT {{$ortu->rt}} RW {{$ortu->rw}} DESA {{$ortu->desa}} KECAMATAN {{$ortu->kecamatan}} KABUPATEN JEMBER JAWA TIMUR</div>
 								</div>
+								@if($screening)
+								<hr>
+								<h4>Data Screening COVID-19 </h4>
+								<div class="row">
+									<div class="col-4">Apakah Anda sedang Demam atau riwayat demam >38°c?</div>
+									<div class="col-8">: 
+										@if($screening->is_demam == 0)
+										Tidak
+										@else
+										Ya
+										@endif
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-4">Apakah Anda sedang Batuk / pilek / nyeri tenggorokan/tidak bisa mencium?</div>
+									<div class="col-8">: 
+										@if($screening->is_batuk == 0)
+										Tidak
+										@else
+										Ya
+										@endif
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-4">Apakah Anda sedang Sesak napas?</div>
+									<div class="col-8">: 
+										@if($screening->is_sesak == 0)
+										Tidak
+										@else
+										Ya
+										@endif
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-4">Apakah Anda Memiliki riwayat perjalanan ke luar kota atau kontak dengan orang yang memiliki riwayat perjalanan ke luar kota dalam 14 hari terakhir?</div>
+									<div class="col-8">: 
+										@if($screening->is_travel == 0)
+										Tidak
+										@else
+										Ya
+										@endif
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-4">Apakah Anda memiliki Riwayat kontak erat dengan kasus konfirmasi covid-19?</div>
+									<div class="col-8">: 
+										@if($screening->is_close_contact == 0)
+										Tidak
+										@else
+										Ya
+										@endif
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-4">Apakah Anda Mengunjungi fasilitas kesehatan yang berhubungan dengan pasien konfirmasi COVID-19?</div>
+									<div class="col-8">: 
+										@if($screening->is_health_facilities_visit == 0)
+										Tidak
+										@else
+										Ya
+										@endif
+									</div>
+								</div>
+								@endif
 							</div>
 							<hr>
 							@endif

@@ -11,6 +11,7 @@ use App\Models\Region;
 use App\Models\Diagnosis;
 use App\Models\Odontogram;
 use App\Models\Article;
+use App\Models\UsersCovid;
 use PDF;
 use DateTime;
 use Illuminate\Support\Facades\DB;
@@ -47,6 +48,7 @@ class DashboardAdminController extends Controller
         $biodata = Biodata::where('users_id', '=', $request->id)->first();
         $ortu = BiodataOrtu::where('users_id', '=', $request->id)->first();
         $foto = Foto::where('users_id', '=', $request->id)->first();
+        $screening = UsersCovid::where('users_id', '=', $request->id)->first();
         //$region_gigi = Region::all();
         $diagnosis = Diagnosis::where('users_id', '=', $request->id)->get();
         //id gigi
@@ -113,7 +115,8 @@ class DashboardAdminController extends Controller
             'ortu' => $ortu,
             'foto' => $foto,
             'diagnosis' => $diagnosis,
-            'id_gigi' => $id_gigi, 
+            'id_gigi' => $id_gigi,
+            'screening' => $screening, 
             'id_gigi_tetap_kiri_atas' => $id_gigi_tetap_kiri_atas,
             'id_gigi_tetap_kanan_atas' => $id_gigi_tetap_kanan_atas,
             'id_gigi_tetap_kiri_bawah' => $id_gigi_tetap_kiri_bawah,
