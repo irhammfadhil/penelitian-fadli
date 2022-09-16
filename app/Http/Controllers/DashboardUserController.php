@@ -29,11 +29,13 @@ class DashboardUserController extends Controller
         $kecamatan = District::where('regency_id', '=', $id_kab)->orderBy('name')->get();
         $desa = Village::all();
         $gender = ['Laki-laki', 'Perempuan'];
+        $label_gaji = ['<1 juta', '1-3 juta', '>3 juta'];
         return view('dashboard-user.biodata', [
             'kecamatan' => $kecamatan,
             'biodata' => $biodata,
             'ortu' => $ortu,
             'gender' => $gender,
+            'label_gaji' => $label_gaji,
         ]);
     }
     public function submitBiodata (Request $request) {
@@ -52,6 +54,9 @@ class DashboardUserController extends Controller
         $phone = $request->phone;
         $pendidikan_terakhir = $request->pendidikan_terakhir;
         $pekerjaan = $request->pekerjaan;
+        $gaji = $request->gaji;
+        $luas_rumah = $request->luas_rumah;
+        $daya_listrik = $request->daya_listrik;
 
         $tanggal = substr($birthdate,0,2);
         $bulan = substr($birthdate,3,2);
@@ -78,6 +83,9 @@ class DashboardUserController extends Controller
         $ortu->address = $address;
         $ortu->pendidikan_terakhir = $pendidikan_terakhir;
         $ortu->pekerjaan = $pekerjaan;
+        $ortu->gaji = $gaji;
+        $ortu->luas_rumah = $luas_rumah;
+        $ortu->daya_listrik = $daya_listrik;
         $kecamatan_dom_name = District::where('id', '=', $kecamatan)->first();
         $kecamatan_dom_name = $kecamatan_dom_name->name;
         $desa_dom_name = Village::where('id', '=', $desa)->first();
@@ -89,7 +97,7 @@ class DashboardUserController extends Controller
         $ortu->phone = $phone;
         $ortu->save();
 
-        return redirect('/screening-covid');
+        return redirect('/informed-consent');
     }
     public function getScreeningCovid() {
         $biodata = Biodata::where('users_id', '=', Auth::user()->id)->first();

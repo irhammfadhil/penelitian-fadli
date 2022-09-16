@@ -45,9 +45,11 @@
                                 <thead>
                                     <tr>
                                     <th scope="col" class="text-center" style="width: 30%;">Jenis Kelamin</th>
-                                    <th scope="col" class="text-center">Jumlah Responden</th>
-                                    <th scope="col" class="text-center">Rata-rata Indeks DMFT</th>
-                                    <th scope="col" class="text-center">Rata-rata Indeks RTI</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">Jumlah Responden</th>
+                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks DMF-T</th>
+                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks DEF-T</th>
+                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks RTI Gigi Tetap</th>
+                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks RTI Gigi Sulung</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,13 +60,17 @@
                                         @if($q->jenis_kelamin == 'Laki-laki')
                                         <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
+                                        <td class="text-center"></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
+                                        <td class="text-center"></td>
                                         @php $found = 1; @endphp
                                         @endif
                                         @endforeach
                                         @if(!$found)
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0%</b></td>
                                         <td class="text-center"><b>0%</b></td>
                                         @endif
                                     </tr>
@@ -75,13 +81,17 @@
                                         @if($q->jenis_kelamin == 'Perempuan')
                                         <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
+                                        <td class="text-center"></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
+                                        <td class="text-center"></td>
                                         @php $found = 1; @endphp
                                         @endif
                                         @endforeach
                                         @if(!$found)
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0%</b></td>
                                         <td class="text-center"><b>0%</b></td>
                                         @endif
                                     </tr>
@@ -94,9 +104,11 @@
                                     <tr>
                                     <th scope="col" class="text-center" style="width: 15%;">Jenis Kelamin</th>
                                     <th scope="col" class="text-center" style="width: 15%;">Kelompok Usia</th>
-                                    <th scope="col" class="text-center">Jumlah Responden</th>
-                                    <th scope="col" class="text-center">Rata-rata Indeks DMFT</th>
-                                    <th scope="col" class="text-center">Rata-rata Indeks RTI</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">Jumlah Responden</th>
+                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks DMF-T</th>
+                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks DEF-T</th>
+                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks RTI Gigi Tetap</th>
+                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks RTI Gigi Sulung</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -108,13 +120,17 @@
                                         @if($q->jenis_kelamin == 'Laki-laki' && $q->kategori_umur == 'Usia 7-10 th')
                                         <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
+                                        <td class="text-center"></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
+                                        <td class="text-center"></td>
                                         @php $found = 1; @endphp
                                         @endif
                                         @endforeach
                                         @if(!$found)
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0%</b></td>
                                         <td class="text-center"><b>0%</b></td>
                                         @endif
                                     </tr>
@@ -125,13 +141,17 @@
                                         @if($q->jenis_kelamin == 'Laki-laki' && $q->kategori_umur == 'Usia 10-12 th')
                                         <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
+                                        <td class="text-center"></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
+                                        <td class="text-center"></td>
                                         @php $found = 1; @endphp
                                         @endif
                                         @endforeach
                                         @if(!$found)
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0%</b></td>
                                         <td class="text-center"><b>0%</b></td>
                                         @endif
                                     </tr>
@@ -143,13 +163,17 @@
                                         @if($q->jenis_kelamin == 'Perempuan' && $q->kategori_umur == 'Usia 7-10 th')
                                         <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
+                                        <td class="text-center"></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
+                                        <td class="text-center"></td>
                                         @php $found = 1; @endphp
                                         @endif
                                         @endforeach
                                         @if(!$found)
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0%</b></td>
                                         <td class="text-center"><b>0%</b></td>
                                         @endif
                                     </tr>
@@ -160,13 +184,17 @@
                                         @if($q->jenis_kelamin == 'Perempuan' && $q->kategori_umur == 'Usia 10-12 th')
                                         <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
+                                        <td class="text-center"></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
+                                        <td class="text-center"></td>
                                         @php $found = 1; @endphp
                                         @endif
                                         @endforeach
                                         @if(!$found)
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0%</b></td>
                                         <td class="text-center"><b>0%</b></td>
                                         @endif
                                     </tr>

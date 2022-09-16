@@ -32,7 +32,7 @@
     @include('section.article')
 
     <!-- ======= Portfolio Section ======= -->
-    @include('section.gallery')
+    {{--@include('section.gallery')--}}
 
     <!-- ======= Contact Section ======= -->
     {{--@include('section.contact')--}}

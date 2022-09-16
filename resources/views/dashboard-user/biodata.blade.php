@@ -8,7 +8,7 @@
 	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-	<meta name="csrf-token" content="{{csrf_token()}}"/>
+	<meta name="csrf-token" content="{{csrf_token()}}" />
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="{{asset('img/icons/icon-48x48.png')}}" />
@@ -35,52 +35,46 @@
 				<div class="container-fluid p-0">
 
 					<h1 class="h3 mb-3">Biodata dan Foto Gigi</h1>
-					
-                    <div class="md-stepper-horizontal orange">
-                        <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/biodata';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>1</span></div>
-                        <div class="md-step-title">Biodata</div>
-                        <div class="md-step-bar-left"></div>
-                        <div class="md-step-bar-right"></div>
-                        </div>
-						<div class="md-step col-lg-1 col-md-1" onclick="location.href='/screening-covid';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>2</span></div>
-                        <div class="md-step-title">Screening COVID-19</div>
-                        <div class="md-step-bar-left"></div>
-                        <div class="md-step-bar-right"></div>
-                        </div>
+
+					<div class="md-stepper-horizontal orange">
+						<div class="md-step active col-lg-1 col-md-1" onclick="location.href='/biodata';" style="cursor: pointer;">
+							<div class="md-step-circle"><span>1</span></div>
+							<div class="md-step-title">Biodata</div>
+							<div class="md-step-bar-left"></div>
+							<div class="md-step-bar-right"></div>
+						</div>
 						<div class="md-step col-lg-1 col-md-1" onclick="location.href='/informed-consent';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>3</span></div>
-                        <div class="md-step-title">Informed Consent</div>
-                        <div class="md-step-bar-left"></div>
-                        <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>4</span></div>
-                        <div class="md-step-title">Foto Gigi</div>
-                        <div class="md-step-bar-left"></div>
-                        <div class="md-step-bar-right"></div>
+							<div class="md-step-circle"><span>2</span></div>
+							<div class="md-step-title">Informed Consent</div>
+							<div class="md-step-bar-left"></div>
+							<div class="md-step-bar-right"></div>
+						</div>
+						<div class="md-step col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
+							<div class="md-step-circle"><span>3</span></div>
+							<div class="md-step-title">Foto Gigi</div>
+							<div class="md-step-bar-left"></div>
+							<div class="md-step-bar-right"></div>
 						</div>
 						<div class="md-step col-lg-1 col-md-1" onclick="location.href='/finalisasi';" style="cursor: pointer;">
-                        <div class="md-step-circle"><span>5</span></div>
-                        <div class="md-step-title">Finalisasi Data</div>
-                        <div class="md-step-bar-left"></div>
-                        <div class="md-step-bar-right"></div>
-                        </div>
-                    </div>
+							<div class="md-step-circle"><span>4</span></div>
+							<div class="md-step-title">Finalisasi Data</div>
+							<div class="md-step-bar-left"></div>
+							<div class="md-step-bar-right"></div>
+						</div>
+					</div>
 					<br>
 					<div class="card">
 						<div class="card-body">
 							@if(!Auth::user()->finalisasi_at)
 							<h3 class="card-title mb-0">Biodata Diri</h3>
 							@if($message = Session::get('success'))
-                            <div class="alert alert-success" role="alert">
-                                <strong>{{$message}}</strong>
-                            </div>
+							<div class="alert alert-success" role="alert">
+								<strong>{{$message}}</strong>
+							</div>
 							@elseif($message = Session::get('danger'))
-								<div class="alert alert-danger" role="alert">
-									<strong>{{$message}}</strong>
-								</div>
+							<div class="alert alert-danger" role="alert">
+								<strong>{{$message}}</strong>
+							</div>
 							@endif
 							<br>
 							<form action="/biodata" method="post">
@@ -108,7 +102,7 @@
 										<select class="form-select" name="gender" id="gender" aria-label="Default select example">
 											@foreach($gender as $g)
 											@if($g == $biodata->gender)
-											<option value="{{$g}}"selected>{{$g}}</option>
+											<option value="{{$g}}" selected>{{$g}}</option>
 											@else
 											<option value="{{$g}}">{{$g}}</option>
 											@endif
@@ -166,7 +160,7 @@
 										<select class="form-select" name="gender" id="gender" aria-label="Default select example">
 											@foreach($gender as $g)
 											@if($g == $biodata->gender)
-											<option value="{{$g}}"selected>{{$g}}</option>
+											<option value="{{$g}}" selected>{{$g}}</option>
 											@else
 											<option value="{{$g}}">{{$g}}</option>
 											@endif
@@ -260,6 +254,45 @@
 								<div class="row">
 									<div class="col-lg-6">
 										<div class="form-group">
+											<label for="exampleInputEmail1">Range Gaji Orang Tua</label>
+											<select class="form-select" name="gaji" id="gaji" aria-label="Default select example">
+												<option>Pilih...</option>
+												@foreach($label_gaji as $l)
+												@if($l == $ortu->gaji)
+												<option value="{{$l}}" selected>{{$l}}</option>
+												@else
+												<option value="{{$l}}">{{$l}}</option>
+												@endif
+												@endforeach
+											</select>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Luas rumah (m2)</label>
+											<input type="text" class="form-control" id="luas_rumah" name="luas_rumah" value="{{$ortu->luas_rumah}}" aria-describedby="emailHelp" placeholder="Luas rumah" required>
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Daya Listrik (VA)</label>
+											<input type="text" class="form-control" id="daya_listrik" name="daya_listrik" value="{{$ortu->daya_listrik}}" aria-describedby="emailHelp" placeholder="Daya Listrik" required>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">No. HP</label>
+											<input type="text" class="form-control" id="phone" name="phone" value="{{$ortu->phone}}" aria-describedby="emailHelp" placeholder="Nomor HP">
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
 											<label for="exampleInputEmail1">Provinsi</label>
 											<input type="text" class="form-control" id="provinsi" name="provinsi" aria-describedby="emailHelp" placeholder="Provinsi" value="Jawa Timur" disabled>
 										</div>
@@ -320,10 +353,6 @@
 									</div>
 								</div>
 								<br>
-								<div class="form-group">
-									<label for="exampleInputEmail1">No. HP</label>
-									<input type="text" class="form-control" id="phone" name="phone" value="{{$ortu->phone}}" aria-describedby="emailHelp" placeholder="Nomor HP">
-								</div>
 								@else
 								<div class="row">
 									<div class="col-lg-6">
@@ -379,14 +408,35 @@
 								<div class="row">
 									<div class="col-lg-6">
 										<div class="form-group">
-											<label for="exampleInputEmail1">Provinsi</label>
-											<input type="text" class="form-control" id="provinsi" name="provinsi" aria-describedby="emailHelp" placeholder="Provinsi" value="Jawa Timur" disabled>
+											<label for="exampleInputEmail1">Range Gaji Orang Tua</label>
+											<select class="form-select" name="gaji" id="gaji" aria-label="Default select example">
+												<option>Pilih...</option>
+												<option value="< 1 juta">
+													< 1 juta</option>
+												<option value="1-3 juta">1-3 juta</option>
+												<option value="> 3 juta">> 3 juta</option>
+											</select>
 										</div>
 									</div>
 									<div class="col-lg-6">
 										<div class="form-group">
-											<label for="exampleInputEmail1">Kabupaten/Kota</label>
-											<input type="text" class="form-control" id="kab" name="kab" aria-describedby="emailHelp" placeholder="Kabupaten/Kota" value="Kabupaten Jember" disabled>
+											<label for="exampleInputEmail1">Luas rumah (m2)</label>
+											<input type="text" class="form-control" id="luas_rumah" name="luas_rumah" aria-describedby="emailHelp" placeholder="Luas rumah" required>
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Daya Listrik (VA)</label>
+											<input type="text" class="form-control" id="daya_listrik" name="daya_listrik" aria-describedby="emailHelp" placeholder="Daya Listrik" required>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="exampleInputEmail1">No. HP</label>
+											<input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp" placeholder="Nomor HP">
 										</div>
 									</div>
 								</div>
@@ -439,10 +489,6 @@
 									</div>
 								</div>
 								<br>
-								<div class="form-group">
-									<label for="exampleInputEmail1">No. HP</label>
-									<input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp" placeholder="Nomor HP">
-								</div>
 								@endif
 								<br>
 								<button type="submit" class="btn btn-primary">Lanjut</button>
@@ -486,166 +532,197 @@
 	</div>
 
 	<script src="{{asset('static/js/app.js')}}"></script>
-    <style>
-          .required:after {
-            content:" *";
-            color: red;
-        }
-        .md-stepper-horizontal {
-            display:table;
-            width:100%;
-            margin:0 auto;
-            background-color:#FFFFFF;
-            box-shadow: 0 3px 8px -6px rgba(0,0,0,.50);
-        }
-        .md-stepper-horizontal .md-step {
-            display:table-cell;
-            position:relative;
-            padding:24px;
-        }
-        @media screen and (max-width: 750px) {
-            .md-stepper-horizontal .md-step {
-            display:block;
-            position:relative;
-            padding:24px;
-            }
-        }
-        @media screen and (min-width: 750px) and (max-width: 1100px) {
-            .md-stepper-horizontal .md-step {
-            display:table-cell;
-            position:relative;
-            padding:8px;
-            }
-        }
-        .md-stepper-horizontal .md-step:hover,
-        .md-stepper-horizontal .md-step:active {
-            background-color:rgba(0,0,0,0.04);
-        }
-        .md-stepper-horizontal .md-step:active {
-            border-radius: 15% / 75%;
-        }
-        .md-stepper-horizontal .md-step:first-child:active {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-        .md-stepper-horizontal .md-step:last-child:active {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-        .md-stepper-horizontal .md-step:hover .md-step-circle {
-            background-color:#757575;
-        }
-        .md-stepper-horizontal .md-step:first-child .md-step-bar-left,
-        .md-stepper-horizontal .md-step:last-child .md-step-bar-right {
-            display:none;
-        }
-        .md-stepper-horizontal .md-step .md-step-circle {
-            width:30px;
-            height:30px;
-            margin:0 auto;
-            background-color:#999999;
-            border-radius: 50%;
-            text-align: center;
-            line-height:30px;
-            font-size: 16px;
-            font-weight: 600;
-            color:#FFFFFF;
-        }
-        .md-stepper-horizontal.green .md-step.active .md-step-circle {
-            background-color:#00AE4D;
-        }
-        .md-stepper-horizontal.orange .md-step.active .md-step-circle {
-            background-color:#F96302;
-        }
-        .md-stepper-horizontal .md-step.active .md-step-circle {
-            background-color: rgb(33,150,243);
-        }
-        .md-stepper-horizontal .md-step.done .md-step-circle:before {
-            font-family:'FontAwesome';
-            font-weight:100;
-            content: "\f00c";
-        }
-        .md-stepper-horizontal .md-step.done .md-step-circle *,
-        .md-stepper-horizontal .md-step.editable .md-step-circle * {
-            display:none;
-        }
-        .md-stepper-horizontal .md-step.editable .md-step-circle {
-            -moz-transform: scaleX(-1);
-            -o-transform: scaleX(-1);
-            -webkit-transform: scaleX(-1);
-            transform: scaleX(-1);
-        }
-        .md-stepper-horizontal .md-step.editable .md-step-circle:before {
-            font-family:'FontAwesome';
-            font-weight:100;
-            content: "\f040";
-        }
-        .md-stepper-horizontal .md-step .md-step-title {
-            margin-top:16px;
-            font-size:16px;
-            font-weight:600;
-        }
-        .md-stepper-horizontal .md-step .md-step-title,
-        .md-stepper-horizontal .md-step .md-step-optional {
-            text-align: center;
-            color:rgba(0,0,0,.26);
-        }
-        .md-stepper-horizontal .md-step.active .md-step-title {
-            font-weight: 600;
-            color:rgba(0,0,0,.87);
-        }
-        .md-stepper-horizontal .md-step.active.done .md-step-title,
-        .md-stepper-horizontal .md-step.active.editable .md-step-title {
-            font-weight:600;
-        }
-        .md-stepper-horizontal .md-step .md-step-optional {
-            font-size:12px;
-        }
-        .md-stepper-horizontal .md-step.active .md-step-optional {
-            color:rgba(0,0,0,.54);
-        }
-        .md-stepper-horizontal .md-step .md-step-bar-left,
-        .md-stepper-horizontal .md-step .md-step-bar-right {
-            position:absolute;
-            top:36px;
-            height:1px;
-            border-top:1px solid #DDDDDD;
-        }
-        .md-stepper-horizontal .md-step .md-step-bar-right {
-            right:0;
-            left:50%;
-            margin-left:20px;
-        }
-        .md-stepper-horizontal .md-step .md-step-bar-left {
-            left:0;
-            right:50%;
-            margin-right:20px;
-        }
-    </style>
+	<style>
+		.required:after {
+			content: " *";
+			color: red;
+		}
+
+		.md-stepper-horizontal {
+			display: table;
+			width: 100%;
+			margin: 0 auto;
+			background-color: #FFFFFF;
+			box-shadow: 0 3px 8px -6px rgba(0, 0, 0, .50);
+		}
+
+		.md-stepper-horizontal .md-step {
+			display: table-cell;
+			position: relative;
+			padding: 24px;
+		}
+
+		@media screen and (max-width: 750px) {
+			.md-stepper-horizontal .md-step {
+				display: block;
+				position: relative;
+				padding: 24px;
+			}
+		}
+
+		@media screen and (min-width: 750px) and (max-width: 1100px) {
+			.md-stepper-horizontal .md-step {
+				display: table-cell;
+				position: relative;
+				padding: 8px;
+			}
+		}
+
+		.md-stepper-horizontal .md-step:hover,
+		.md-stepper-horizontal .md-step:active {
+			background-color: rgba(0, 0, 0, 0.04);
+		}
+
+		.md-stepper-horizontal .md-step:active {
+			border-radius: 15% / 75%;
+		}
+
+		.md-stepper-horizontal .md-step:first-child:active {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+
+		.md-stepper-horizontal .md-step:last-child:active {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+
+		.md-stepper-horizontal .md-step:hover .md-step-circle {
+			background-color: #757575;
+		}
+
+		.md-stepper-horizontal .md-step:first-child .md-step-bar-left,
+		.md-stepper-horizontal .md-step:last-child .md-step-bar-right {
+			display: none;
+		}
+
+		.md-stepper-horizontal .md-step .md-step-circle {
+			width: 30px;
+			height: 30px;
+			margin: 0 auto;
+			background-color: #999999;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 30px;
+			font-size: 16px;
+			font-weight: 600;
+			color: #FFFFFF;
+		}
+
+		.md-stepper-horizontal.green .md-step.active .md-step-circle {
+			background-color: #00AE4D;
+		}
+
+		.md-stepper-horizontal.orange .md-step.active .md-step-circle {
+			background-color: #F96302;
+		}
+
+		.md-stepper-horizontal .md-step.active .md-step-circle {
+			background-color: rgb(33, 150, 243);
+		}
+
+		.md-stepper-horizontal .md-step.done .md-step-circle:before {
+			font-family: 'FontAwesome';
+			font-weight: 100;
+			content: "\f00c";
+		}
+
+		.md-stepper-horizontal .md-step.done .md-step-circle *,
+		.md-stepper-horizontal .md-step.editable .md-step-circle * {
+			display: none;
+		}
+
+		.md-stepper-horizontal .md-step.editable .md-step-circle {
+			-moz-transform: scaleX(-1);
+			-o-transform: scaleX(-1);
+			-webkit-transform: scaleX(-1);
+			transform: scaleX(-1);
+		}
+
+		.md-stepper-horizontal .md-step.editable .md-step-circle:before {
+			font-family: 'FontAwesome';
+			font-weight: 100;
+			content: "\f040";
+		}
+
+		.md-stepper-horizontal .md-step .md-step-title {
+			margin-top: 16px;
+			font-size: 16px;
+			font-weight: 600;
+		}
+
+		.md-stepper-horizontal .md-step .md-step-title,
+		.md-stepper-horizontal .md-step .md-step-optional {
+			text-align: center;
+			color: rgba(0, 0, 0, .26);
+		}
+
+		.md-stepper-horizontal .md-step.active .md-step-title {
+			font-weight: 600;
+			color: rgba(0, 0, 0, .87);
+		}
+
+		.md-stepper-horizontal .md-step.active.done .md-step-title,
+		.md-stepper-horizontal .md-step.active.editable .md-step-title {
+			font-weight: 600;
+		}
+
+		.md-stepper-horizontal .md-step .md-step-optional {
+			font-size: 12px;
+		}
+
+		.md-stepper-horizontal .md-step.active .md-step-optional {
+			color: rgba(0, 0, 0, .54);
+		}
+
+		.md-stepper-horizontal .md-step .md-step-bar-left,
+		.md-stepper-horizontal .md-step .md-step-bar-right {
+			position: absolute;
+			top: 36px;
+			height: 1px;
+			border-top: 1px solid #DDDDDD;
+		}
+
+		.md-stepper-horizontal .md-step .md-step-bar-right {
+			right: 0;
+			left: 50%;
+			margin-left: 20px;
+		}
+
+		.md-stepper-horizontal .md-step .md-step-bar-left {
+			left: 0;
+			right: 50%;
+			margin-right: 20px;
+		}
+	</style>
 	<script>
-        $(function() {
-            $.ajaxSetup({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-            });
-            $(function() {
-                $('#kecamatan').on('change', function(){
-                    let id_kecamatan = $('#kecamatan').val();
-                    $.ajax({
-                        type: 'POST',
-                        url: "/getDesa",
-                        data: {id_district: id_kecamatan},
-                        cache: false,
-                        success: function(msg) {
-                            $('#desa').html(msg);
-                        },
-                        error: function(data) {
-                            console.log('error:', data);
-                        },
-                    });
-                });
-            });
-        });
-    </script>
+		$(function() {
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+			$(function() {
+				$('#kecamatan').on('change', function() {
+					let id_kecamatan = $('#kecamatan').val();
+					$.ajax({
+						type: 'POST',
+						url: "/getDesa",
+						data: {
+							id_district: id_kecamatan
+						},
+						cache: false,
+						success: function(msg) {
+							$('#desa').html(msg);
+						},
+						error: function(data) {
+							console.log('error:', data);
+						},
+					});
+				});
+			});
+		});
+	</script>
 </body>
 
 </html>

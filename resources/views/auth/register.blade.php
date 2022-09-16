@@ -77,10 +77,11 @@
                         <input type="password" name="confirm_password" id="confirm_password" class="input100" placeholder="Masukkan kembali Password anda" required />
                         <span class="focus-input100"></span>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #1d443f;">
+                    <button type="submit" class="btn btn-primary tombol" style="background-color: #1d443f;">
                         Daftar
                     </button>
                 </form>
+                <br>
                 <div class="closing">
                     <p class="small fw-bold mt-2 pt-1 mb-0 text-center txt1">Sudah mempunyai akun? <a href="/login" class="link-danger">Login.</a></p>
                     <p class="small fw-bold mt-2 pt-1 mb-0 text-center txt1"><a href="/forget-password" class="link-danger">Lupa Password?</a></p>
@@ -95,13 +96,37 @@
             margin-top: -100px;
         }
 
+        .tombol {
+            width: 200%;
+            margin-left: -125px;
+        }
+
+        @media screen and (max-width: 480px) {
+            .tombol {
+                width: 100%;
+                margin-left: 0px;
+            }
+        }
+
+        @media screen and (min-width: 481px) and (max-width: 576px) {
+            .tombol {
+                width: 200%;
+                margin-left: -100px;
+            }
+        }
         @media screen and (max-width: 800px) {
             .closing {
                 margin-top: -70px;
             }
         }
 
-        @media screen and (max-width: 1200px) {
+        @media screen and (max-width: 485px) {
+            .limiter {
+                margin-top: 80px;
+            }
+        }
+
+        @media screen and (min-width: 485px) and (max-width: 1200px) {
             .limiter {
                 margin-top: 40px;
             }

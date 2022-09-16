@@ -9,12 +9,18 @@
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="{{asset('img/icons/icon-48x48.png')}}" />
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
 	<title>Simetri</title>
+
+
 
 	<link href="{{asset('static/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -40,6 +46,25 @@
 									<h5 class="card-title mb-0">Status</h5>
 								</div>
 								<div class="card-body d-flex w-100">
+									@if(Auth::user()->finalisasi_at == NULL)
+									<div class="alert alert-danger" role="alert">
+										Anda belum melakukan finalisasi atas data Anda!
+									</div>
+									@elseif(Auth::user()->finalisasi_at && !Auth::user()->photo_comments && Auth::user()->is_photo_verified == 0)
+									<div class="alert alert-success" role="alert">
+										Anda sudah melakukan finalisasi atas data Anda! Harap tunggu, admin akan menilai kondisi gigi Anda.
+									</div>
+									@elseif(Auth::user()->finalisasi_at && Auth::user()->photo_comments && Auth::user()->is_photo_verified == 0)
+									<div class="alert alert-danger" role="alert">
+										Mohon maaf, foto gigi Anda belum disetujui! <br><br>
+										<b>Catatan Admin: </b>{{Auth::user()->photo_comments}}
+									</div>
+									@elseif(Auth::user()->finalisasi_at && Auth::user()->is_photo_verified == 1)
+									<div class="alert alert-success" role="alert">
+										Foto Anda sudah disetujui! Anda dapat melihat hasil kondisi gigi pada laman <b>Laporan</b>.<br><br>
+										<b>Catatan Admin: </b>{{Auth::user()->photo_comments}}
+									</div>
+									@endif
 								</div>
 							</div>
 						</div>
@@ -73,6 +98,12 @@
 			</footer>
 		</div>
 	</div>
+
+	<style>
+		.alert {
+			width: 100%;
+		}
+	</style>
 
 	<script src="{{asset('static/js/app.js')}}"></script>
 

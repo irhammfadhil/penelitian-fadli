@@ -64,7 +64,7 @@
                         <input type="password" name="password" id="password" class="input100" placeholder="Password" required />
                         <span class="focus-input100"></span>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #1d443f;">
+                    <button type="submit" class="btn btn-primary tombol" style="background-color: #1d443f;">
                         Login
                     </button>
                 </form>
@@ -78,6 +78,25 @@
     </div>
 
     <style>
+        .tombol {
+            width: 200%;
+            margin-left: -125px;
+        }
+
+        @media screen and (max-width: 480px) {
+            .tombol {
+                width: 100%;
+                margin-left: 0px;
+            }
+        }
+
+        @media screen and (min-width: 481px) and (max-width: 576px) {
+            .tombol {
+                width: 200%;
+                margin-left: -100px;
+            }
+        }
+
         .closing {
             margin-top: -70px;
         }

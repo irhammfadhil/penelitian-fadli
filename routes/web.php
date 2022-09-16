@@ -18,7 +18,7 @@ use App\Http\Controllers\DashboardUserController;
 |
 */
 
-Route::get('/', [HomeController::class,'index']);
+Route::get('/', [HomeController::class,'index'])->name('index');
 Route::get('/cara-penggunaan', [HomeController::class,'getCaraPenggunaan']);
 Route::get('/article', [HomeController::class,'getArtikel']);
 Route::get('/article/{url}', [HomeController::class,'getDetailArtikel']);
@@ -67,6 +67,6 @@ Route::get('/admin/artikel/delete', [DashboardAdminController::class,'deleteArti
 Route::post('/admin/submitFoto', [DashboardAdminController::class,'inputKomentarFotoAdmin'])->middleware('auth');
 Route::post('/admin/submitKomentar', [DashboardAdminController::class,'submitKomentar'])->middleware('auth');
 ##report
-Route::get('/report', [DashboardAdminController::class,'generateReportGeneral'])->middleware('auth');
-Route::get('/report/bySchool', [DashboardAdminController::class,'generateReportBySchool'])->middleware('auth');
-Route::post('/report/bySchool', [DashboardAdminController::class,'submitgenerateReportBySchool'])->middleware('auth');
+Route::get('/report', [DashboardAdminController::class,'generateReportGeneral'])->name('report')->middleware('auth');
+Route::get('/report/bySchool', [DashboardAdminController::class,'generateReportBySchool'])->name('reportBySchool')->middleware('auth');
+Route::post('/report/bySchool', [DashboardAdminController::class,'submitgenerateReportBySchool'])->name('reportBySchoolSubmit')->middleware('auth');

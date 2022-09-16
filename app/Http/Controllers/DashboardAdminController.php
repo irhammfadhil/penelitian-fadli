@@ -19,7 +19,190 @@ use Illuminate\Support\Facades\DB;
 class DashboardAdminController extends Controller
 {
     public function index() {
-        return view('dashboard-admin.index');
+        $gender = ['Laki-laki', 'Perempuan'];
+        //Responden secara keseluruhan
+        $jml_responden = DB::table('users')->select(DB::raw('b.gender as jenis_kelamin,count(b.id) as jumlah'))->join('users_biodata as b', 'users.id', '=','b.users_id')->where('users.is_admin', '=', 0)
+        ->where('users.is_deleted', '=', 0)->whereIn('b.gender', $gender)->whereRaw('(YEAR(users.created_at) - YEAR(b.birth_date)) between 7 and 12')->groupBy('b.gender')->get();
+        //Responden berdasarkan usia
+        $query_79th = DB::table('users')->select(DB::raw('b.gender as jenis_kelamin,count(b.id) as jumlah'))->join('users_biodata as b', 'users.id', '=','b.users_id')->where('users.is_admin', '=', 0)
+        ->where('users.is_deleted', '=', 0)->whereIn('b.gender', $gender)->whereRaw('(YEAR(users.created_at) - YEAR(b.birth_date)) >= 7 and (YEAR(users.created_at) - YEAR(b.birth_date)) < 10')->groupBy('b.gender')->get();
+        $query_912th = DB::table('users')->select(DB::raw('b.gender as jenis_kelamin,count(b.id) as jumlah'))->join('users_biodata as b', 'users.id', '=','b.users_id')->where('users.is_admin', '=', 0)
+        ->where('users.is_deleted', '=', 0)->whereIn('b.gender', $gender)->whereRaw('(YEAR(users.created_at) - YEAR(b.birth_date)) >= 10 and (YEAR(users.created_at) - YEAR(b.birth_date)) <= 12')->groupBy('b.gender')->get();
+        //persyaratan dmft dan rti
+        $users_count = Biodata::whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) between 7 and 12')->count();
+        $users_id_lk_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
+        ->where('gender', '=', 'Laki-laki')->get();
+        $users_id_pr_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
+        ->where('gender', '=', 'Perempuan')->get();
+        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 12')
+        ->where('gender', '=', 'Laki-laki')->get();
+        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 12')
+        ->where('gender', '=', 'Perempuan')->get();
+        //dmft dan rti
+        $users_dmft_lk_79 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.dmft_score) as rata_rata_rti_sulung'))
+        ->whereIn('id', $users_id_lk_79)->get();
+        $users_dmft_pr_79 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.dmft_score) as rata_rata_rti_sulung'))
+        ->whereIn('id', $users_id_pr_79)->get();
+        $users_dmft_lk_912 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.dmft_score) as rata_rata_rti_sulung'))
+        ->whereIn('id', $users_id_lk_912)->get();
+        $users_dmft_pr_912 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.dmft_score) as rata_rata_rti_sulung'))
+        ->whereIn('id', $users_id_pr_912)->get();
+
+        //array push
+        $gender_label = [];
+        $gender_sum = [];
+        $sum_79th = [0,0];
+        $sum_912th = [0,0];
+        $array_dmft_79 = [];
+        $array_dmft_912 = [];
+        $array_deft_79 = [];
+        $array_deft_912 = [];
+        $array_rti_79 = [];
+        $array_rti_912 = [];
+        $array_rti_sulung_79 = [];
+        $array_rti_sulung_912 = [];
+        foreach($jml_responden as $r) {
+            array_push($gender_label, $r->jenis_kelamin);
+            array_push($gender_sum, (int) $r->jumlah);
+        }
+        //anak umur 7-9 thn
+        foreach($query_79th as $q) {
+            if($q->jenis_kelamin == 'Laki-laki') {
+                $sum_79th[0] = (int) $q->jumlah;
+            }
+            else if ($q->jenis_kelamin == 'Perempuan') {
+                $sum_79th[1] = (int) $q->jumlah;
+            }
+        }
+        //anak umur 9-12 thn
+        foreach($query_912th as $q) {
+            if($q->jenis_kelamin == 'Laki-laki') {
+                $sum_912th[0] = (int) $q->jumlah;
+            }
+            else if ($q->jenis_kelamin == 'Perempuan') {
+                $sum_912th[1] = (int) $q->jumlah;
+            }
+        }
+        //masukin ke array indek DMFT dan rti
+        foreach($users_dmft_lk_79 as $u) {
+            if(!is_null($u->rata_rata_dmft)) {
+                array_push($array_dmft_79, (float) ($u->rata_rata_dmft/$users_count));
+            }
+            else {
+                array_push($array_dmft_79, 0);
+            }
+            if(!is_null($u->rata_rata_deft)) {
+                array_push($array_deft_79, (float) $u->rata_rata_deft/$users_count);
+            }
+            else {
+                array_push($array_deft_79, 0);
+            }
+            if(!is_null($u->rata_rata_rti_tetap)) {
+                array_push($array_rti_79, (float) $u->rata_rata_rti_tetap*100);
+            }
+            else {
+                array_push($array_rti_79, 0);
+            }
+            if(!is_null($u->rata_rata_rti_sulung)) {
+                array_push($array_rti_sulung_79, (float) $u->rata_rata_rti_sulung*100);
+            }
+            else {
+                array_push($array_rti_sulung_79, 0);
+            }
+        }
+        foreach($users_dmft_pr_79 as $u) {
+            if(!is_null($u->rata_rata_dmft)) {
+                array_push($array_dmft_79, (float) $u->rata_rata_dmft/$users_count);
+            }
+            else {
+                array_push($array_dmft_79, 0);
+            }
+            if(!is_null($u->rata_rata_deft)) {
+                array_push($array_deft_79, (float) $u->rata_rata_deft/$users_count);
+            }
+            else {
+                array_push($array_deft_79, 0);
+            }
+            if(!is_null($u->rata_rata_rti_tetap)) {
+                array_push($array_rti_79, (float) $u->rata_rata_rti_tetap*100);
+            }
+            else {
+                array_push($array_rti_79, 0);
+            }
+            if(!is_null($u->rata_rata_rti_sulung)) {
+                array_push($array_rti_sulung_79, (float) $u->rata_rata_rti_sulung*100);
+            }
+            else {
+                array_push($array_rti_sulung_79, 0);
+            }
+        }
+        foreach($users_dmft_lk_912 as $u) {
+            if(!is_null($u->rata_rata_dmft)) {
+                array_push($array_dmft_912, (float) $u->rata_rata_dmft/$users_count);
+            }
+            else {
+                array_push($array_dmft_912, 0);
+            }
+            if(!is_null($u->rata_rata_deft)) {
+                array_push($array_deft_912, (float) $u->rata_rata_deft/$users_count);
+            }
+            else {
+                array_push($array_deft_912, 0);
+            }
+            if(!is_null($u->rata_rata_rti_tetap)) {
+                array_push($array_rti_912, (float) $u->rata_rata_rti_tetap*100);
+            }
+            else {
+                array_push($array_rti_912, 0);
+            }
+            if(!is_null($u->rata_rata_rti_sulung)) {
+                array_push($array_rti_sulung_912, (float) $u->rata_rata_rti_sulung*100);
+            }
+            else {
+                array_push($array_rti_sulung_912, 0);
+            }
+        }
+        foreach($users_dmft_pr_912 as $u) {
+            if(!is_null($u->rata_rata_dmft)) {
+                array_push($array_dmft_912, (float) $u->rata_rata_dmft/$users_count);
+            }
+            else {
+                array_push($array_dmft_912, 0);
+            }
+            if(!is_null($u->rata_rata_deft)) {
+                array_push($array_deft_912, (float) $u->rata_rata_deft/$users_count);
+            }
+            else {
+                array_push($array_deft_912, 0);
+            }
+            if(!is_null($u->rata_rata_rti_tetap)) {
+                array_push($array_rti_912, (float) $u->rata_rata_rti_tetap*100);
+            }
+            else {
+                array_push($array_rti_912, 0);
+            }
+            if(!is_null($u->rata_rata_rti_sulung)) {
+                array_push($array_rti_sulung_912, (float) $u->rata_rata_rti_sulung*100);
+            }
+            else {
+                array_push($array_rti_sulung_912, 0);
+            }
+        }
+        return view('dashboard-admin.index', [
+            'gender_label' => $gender_label,
+            'gender_sum' => $gender_sum,
+            'sum_79th' => $sum_79th,
+            'sum_912th' => $sum_912th,
+            'array_dmft_79' => $array_dmft_79,
+            'array_dmft_912' => $array_dmft_912,
+            'array_deft_79' => $array_deft_79,
+            'array_deft_912' => $array_deft_912,
+            'array_rti_912' => $array_rti_912,
+            'array_rti_79' => $array_rti_79,
+            'array_rti_912' => $array_rti_912,
+            'array_rti_sulung_79' => $array_rti_sulung_79,
+            'array_rti_sulung_912' => $array_rti_sulung_912
+        ]);
     }
     public function getAllAnak(){
         $anak = User::where('is_admin', '=', 0)->where('is_deleted', '=', 0)->get();
@@ -180,6 +363,7 @@ class DashboardAdminController extends Controller
 
         $users = User::where('id', '=', $users_id)->first();
         $users->num_decay = $sum_decay_tetap;
+        $users->num_decay_anak = $sum_decay_susu;
         $users->dmft_score = $dmftIndex;
         $users->deft_score = $deftIndex;
         $users->save();

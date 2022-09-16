@@ -98,6 +98,18 @@
 									<div class="col-4">Alamat</div>
 									<div class="col-8">: {{$ortu->address}}, RT {{$ortu->rt}} RW {{$ortu->rw}} DESA {{$ortu->desa}} KECAMATAN {{$ortu->kecamatan}} KABUPATEN JEMBER JAWA TIMUR</div>
 								</div>
+								<div class="row">
+									<div class="col-4">Range Gaji Orang Tua</div>
+									<div class="col-8">: Rp {{$ortu->gaji}}</div>
+								</div>
+								<div class="row">
+									<div class="col-4">Luas Rumah</div>
+									<div class="col-8">: {{$ortu->luas_rumah}} m2</div>
+								</div>
+								<div class="row">
+									<div class="col-4">Daya Listrik</div>
+									<div class="col-8">: {{$ortu->daya_listrik}} VA</div>
+								</div>
 								@if($screening)
 								<hr>
 								<h4>Data Screening COVID-19 </h4>

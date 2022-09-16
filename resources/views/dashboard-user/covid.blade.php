@@ -98,50 +98,9 @@
             <main class="content">
                 <div class="container-fluid p-0">
 
-                    <h1 class="h3 mb-3">Informed Consent</h1>
-
-                    <div class="md-stepper-horizontal orange">
-                        <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/biodata';" style="cursor: pointer;">
-                            <div class="md-step-circle"><span>1</span></div>
-                            <div class="md-step-title">Biodata</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step active col-lg-1 col-md-1" onclick="location.href='/screening-covid';" style="cursor: pointer;">
-                            <div class="md-step-circle"><span>2</span></div>
-                            <div class="md-step-title">Screening COVID-19</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/informed-consent';" style="cursor: pointer;">
-                            <div class="md-step-circle"><span>3</span></div>
-                            <div class="md-step-title">Informed Consent</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
-                            <div class="md-step-circle"><span>4</span></div>
-                            <div class="md-step-title">Foto Gigi</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step col-lg-1 col-md-1" onclick="location.href='/finalisasi';" style="cursor: pointer;">
-                            <div class="md-step-circle"><span>5</span></div>
-                            <div class="md-step-title">Finalisasi Data</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                    </div>
-                    <br>
+                    <h1 class="h3 mb-3">Screening COVID-19</h1>
                     <div class="card">
                         <div class="card-body">
-                            @if(!$biodata)
-                            <h3 class="card-title mb-0">Bagian ini belum dapat diakses</h3>
-                            <br>
-							<h3 class="text-center">Bagian ini belum dapat diakses. Silakan isi biodata Anda terlebih dahulu.</h3>
-                            @elseif(Auth::user()->finalisasi_at)
-                            <h1 class="text-center">Anda telah melakukan finalisasi data.</h1>
-                            @else
                             <h3 class="card-title mb-0">Form Screening COVID-19</h3>
                             <h3 class="text-center">Form Screening COVID-19</h3>
                             <h5 class="text-center">Jawablah pertanyaan di bawah ini dengan keadaan Anda yang sebenarnya.</h5>
@@ -381,7 +340,6 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
-                            @endif
                             @endif
                         </div>
                     </div>
