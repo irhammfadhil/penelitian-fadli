@@ -8,7 +8,7 @@
 	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-	<meta name="csrf-token" content="{{csrf_token()}}" />
+	<meta name="csrf-token" content="{{csrf_token()}}"/>
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="{{asset('img/icons/icon-48x48.png')}}" />
@@ -1196,6 +1196,7 @@
 	</div>
 
 	<script src="{{asset('static/js/app.js')}}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready( function () {
 			id_gigi = 0;
@@ -1386,6 +1387,11 @@
 			});
 		});
 	</script>
+	{{--<style>
+		svg{border:1px solid; width:50px}
+		use{fill:white;}
+		use:hover{fill:gold}
+	</style>--}}
 </body>
 
 </html>

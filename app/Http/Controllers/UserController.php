@@ -78,4 +78,33 @@ class UserController extends Controller
         Auth::logout();
         return redirect('/login');
     }
+    public function getChangePassword() {
+        return view('auth.change-password');
+    }
+    public function submitChangePassword(Request $request) {
+        $current_password = $request->current_password;
+        $new_password = $request->new_password;
+        $confirm_new_password = $request->confirm_new_password;
+
+        $password = Auth::user()->password;
+
+        if(!Hash::check($current_password, $password)) {
+            return redirect()->back()->with(['danger' => 'Password yang Anda masukkan salah. Silakan coba lagi.']);
+        }
+        else if (strcmp($new_password, $confirm_new_password)!=0) {
+            return redirect()->back()->with(['danger' => 'Password dan konfirmasi password harus sama. Silakan coba kembali.']);
+        }
+        else {
+            if(strlen($password) < 8) {
+                return redirect()->back()->with(['danger' => 'Panjang minimal password adalah 8 karakter!']);
+            }
+            else {
+                $user = User::where('id', '=', Auth::user()->id)->first();
+                $user->password = Hash::make($password);
+                $user->save();
+                
+                return redirect()->back()->with(['success' => 'Password berhasil diubah']);
+            }
+        }
+    }
 }

@@ -254,7 +254,7 @@
 								<div class="row">
 									<div class="col-lg-6">
 										<div class="form-group">
-											<label for="exampleInputEmail1">Range Gaji Orang Tua</label>
+											<label for="exampleInputEmail1">Gaji Orang Tua</label>
 											<select class="form-select" name="gaji" id="gaji" aria-label="Default select example">
 												<option>Pilih...</option>
 												@foreach($label_gaji as $l)
@@ -279,7 +279,16 @@
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Daya Listrik (VA)</label>
-											<input type="text" class="form-control" id="daya_listrik" name="daya_listrik" value="{{$ortu->daya_listrik}}" aria-describedby="emailHelp" placeholder="Daya Listrik" required>
+											<select class="form-select" name="daya_listrik" id="daya_listrik" aria-label="Default select example" required>
+												<option>Pilih...</option>
+												@foreach($label_listrik as $l)
+												@if($l == $ortu->daya_listrik)
+												<option value="{{$l}}" selected>{{$l}}</option>
+												@else
+												<option value="{{$l}}">{{$l}}</option>
+												@endif
+												@endforeach
+											</select>
 										</div>
 									</div>
 									<div class="col-lg-6">
@@ -408,7 +417,7 @@
 								<div class="row">
 									<div class="col-lg-6">
 										<div class="form-group">
-											<label for="exampleInputEmail1">Range Gaji Orang Tua</label>
+											<label for="exampleInputEmail1">Gaji Orang Tua</label>
 											<select class="form-select" name="gaji" id="gaji" aria-label="Default select example">
 												<option>Pilih...</option>
 												<option value="< 1 juta">
@@ -430,7 +439,14 @@
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Daya Listrik (VA)</label>
-											<input type="text" class="form-control" id="daya_listrik" name="daya_listrik" aria-describedby="emailHelp" placeholder="Daya Listrik" required>
+											<select class="form-select" name="daya_listrik" id="daya_listrik" aria-label="Default select example" required>
+												<option>Pilih...</option>
+												<option value="450 VA">450 VA</option>
+												<option value="900 VA">900 VA</option>
+												<option value="1300 VA">1300 VA</option>
+												<option value="2200 VA">2200 VA</option>
+												<option value="> 2200 VA">> 2200 VA</option>
+											</select>
 										</div>
 									</div>
 									<div class="col-lg-6">

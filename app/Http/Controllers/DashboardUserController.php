@@ -30,12 +30,14 @@ class DashboardUserController extends Controller
         $desa = Village::all();
         $gender = ['Laki-laki', 'Perempuan'];
         $label_gaji = ['<1 juta', '1-3 juta', '>3 juta'];
+        $label_listrik = ['450 VA', '900 VA', '1300 VA', '2200 VA', '> 2200 VA'];
         return view('dashboard-user.biodata', [
             'kecamatan' => $kecamatan,
             'biodata' => $biodata,
             'ortu' => $ortu,
             'gender' => $gender,
             'label_gaji' => $label_gaji,
+            'label_listrik' => $label_listrik,
         ]);
     }
     public function submitBiodata (Request $request) {

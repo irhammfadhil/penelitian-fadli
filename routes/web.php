@@ -29,6 +29,8 @@ Route::post('/login', [UserController::class,'doLogin']);
 Route::get('/register', [UserController::class,'getRegister']);
 Route::post('/register', [UserController::class,'submitRegister']);
 Route::get('/logout', [UserController::class,'doLogout'])->middleware('auth');
+Route::get('/change-password', [UserController::class,'getChangePassword'])->middleware('auth');
+Route::post('/change-password', [UserController::class,'submitChangePassword'])->middleware('auth');
 
 #ajax
 Route::post('/getDesa', [AjaxController::class,'getKelurahan'])->middleware('auth');

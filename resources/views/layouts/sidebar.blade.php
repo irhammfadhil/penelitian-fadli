@@ -10,7 +10,7 @@
 			</li>
 			@if(Auth::user()->is_admin == 0)
 
-			@if(str_contains(url()->current(), '/dashboard-user'))
+			@if(str_contains(url()->current(), '/dashboard-user') || str_contains(url()->current(), '/change-password'))
 
 			<li class="sidebar-item active">
 				<a class="sidebar-link" href="/dashboard/user">
@@ -67,7 +67,7 @@
 			</li>
 			@endif
 			@else
-			@if(str_contains(url()->current(), '/dashboard/admin'))
+			@if(str_contains(url()->current(), '/dashboard/admin') || str_contains(url()->current(), '/change-password'))
 			<li class="sidebar-item active">
 				<a class="sidebar-link" href="/dashboard/admin">
 					<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
