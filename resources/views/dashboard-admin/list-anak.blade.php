@@ -60,7 +60,7 @@
 									<td class="text-center">{{$a->photo_comments}}</td>
 									<td class="text-center">
 									<a class="btn btn-primary" href="/daftar-anak/detail?id={{$a->id}}" style="width: 10rem;" role="button">Detail</a><br><br>
-									<a class="btn btn-danger" href="/daftar-anak/delete?id={{$a->id}}" style="width: 10rem;" role="button">Hapus</a><br><br>
+									<a class="btn btn-danger" href="/daftar-anak/delete?id={{$a->id}}" style="width: 10rem;" role="button" onclick="return confirm('Apakah anda yakin untuk menghapus {{ $a->name }}?');">Hapus</a><br><br>
 									@if($a->signature)<a class="btn btn-secondary" href="/daftar-anak/cetak-consent?id={{$a->id}}" style="width: 10rem;" role="button">Cetak Informed Consent</a><br><br>@endif
 									<a class="btn btn-secondary" href="/daftar-anak/cetak-laporan?id={{$a->id}}" style="width: 10rem;" role="button">Cetak Laporan</a>
 									</td>

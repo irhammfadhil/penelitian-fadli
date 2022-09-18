@@ -64,7 +64,7 @@
 									<td>{!!$a->text!!}</td>
 									<td class="text-center"><a href="{{url('')}}/article/{{$a->link}}">{{url('')}}/article/{{$a->link}}</a></td>
 									<td class="text-center"><a class="btn btn-primary" href="/admin/artikel/edit?id={{$a->id}}" role="button">Edit</a><br><br>
-									<a class="btn btn-danger" href="/admin/artikel/delete?id={{$a->id}}" role="button">Hapus</a></td>
+									<a class="btn btn-danger" href="/admin/artikel/delete?id={{$a->id}}" role="button" onclick="return confirm('Apakah anda yakin untuk menghapus {{ $a->title }}?');">Hapus</a></td>
 									</tr>
 									@endforeach
 								</tbody>
