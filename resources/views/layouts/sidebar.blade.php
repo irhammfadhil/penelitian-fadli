@@ -39,7 +39,7 @@
 			</li>
 			@endif
 
-			@if(str_contains(url()->current(), '/screening-covid'))
+			{{--@if(str_contains(url()->current(), '/screening-covid'))
 			<li class="sidebar-item active">
 				<a class="sidebar-link" href="/screening-covid">
 					<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Screening COVID-19</span>
@@ -51,7 +51,7 @@
 					<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Screening COVID-19</span>
 				</a>
 			</li>
-			@endif
+			@endif--}}
 
 			@if(str_contains(url()->current(), '/komentar'))
 			<li class="sidebar-item active">

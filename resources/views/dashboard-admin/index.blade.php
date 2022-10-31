@@ -60,6 +60,28 @@
 					<br>
 					<div class="row">
 						<div class="col-lg-6">
+							<h4>Rekapitulasi Jumlah DMF usia 7-10 tahun</h4>
+							<div id="container-report-dmf_7"></div>
+						</div>
+						<div class="col-lg-6">
+							<h4>Rekapitulasi Jumlah DMF usia 10-12 tahun</h4>
+							<div id="container-report-dmf_10"></div>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-lg-6">
+							<h4>Rekapitulasi Jumlah DEF usia 7-10 tahun</h4>
+							<div id="container-report-dmf_7_anak"></div>
+						</div>
+						<div class="col-lg-6">
+							<h4>Rekapitulasi Jumlah DEF usia 10-12 tahun</h4>
+							<div id="container-report-dmf_10_anak"></div>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-lg-6">
 							<h4>Rekapitulasi Indeks RTI Gigi Tetap</h4>
 							<div id="container-report-rti-tetap"></div>
 						</div>
@@ -212,6 +234,186 @@
 			}, {
 				name: 'Usia 10-12 th',
 				data: <?php echo json_encode($array_dmft_912) ?>
+			}]
+		});
+		Highcharts.chart('container-report-dmf_7', {
+			chart: {
+				type: 'column'
+			},
+			title: {
+				text: 'Rekapitulasi Jumlah DMF pada Anak Usia 7-10 Tahun'
+			},
+			subtitle: {
+				text: 'Sistem Informasi Penilaian Required Treatment Index Gigi Anak'
+			},
+			xAxis: {
+				categories: <?php echo json_encode($gender_label) ?>,
+				crosshair: true
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'Indeks DMF-T'
+				}
+			},
+			tooltip: {
+				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+					'<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+				footerFormat: '</table>',
+				shared: true,
+				useHTML: true
+			},
+			plotOptions: {
+				column: {
+					pointPadding: 0.2,
+					borderWidth: 0
+				}
+			},
+			series: [{
+				name: 'Decay Usia 7-10 th',
+				data: <?php echo json_encode($array_decay_79) ?>
+			},{
+				name: 'Missing Usia 7-10 th',
+				data: <?php echo json_encode($array_missing_79) ?>
+			},{
+				name: 'Filling Usia 7-10 th',
+				data: <?php echo json_encode($array_filling_79) ?>
+			}]
+		});
+		Highcharts.chart('container-report-dmf_10', {
+			chart: {
+				type: 'column'
+			},
+			title: {
+				text: 'Rekapitulasi Jumlah DMF pada Anak Usia 10-12 Tahun'
+			},
+			subtitle: {
+				text: 'Sistem Informasi Penilaian Required Treatment Index Gigi Anak'
+			},
+			xAxis: {
+				categories: <?php echo json_encode($gender_label) ?>,
+				crosshair: true
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'Indeks DMF-T'
+				}
+			},
+			tooltip: {
+				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+					'<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+				footerFormat: '</table>',
+				shared: true,
+				useHTML: true
+			},
+			plotOptions: {
+				column: {
+					pointPadding: 0.2,
+					borderWidth: 0
+				}
+			},
+			series: [{
+				name: 'Decay Usia 10-12 th',
+				data: <?php echo json_encode($array_decay_912) ?>
+			},{
+				name: 'Missing Usia 10-12 th',
+				data: <?php echo json_encode($array_missing_912) ?>
+			},{
+				name: 'Filling Usia 10-12 th',
+				data: <?php echo json_encode($array_filling_912) ?>
+			}]
+		});
+		Highcharts.chart('container-report-dmf_7_anak', {
+			chart: {
+				type: 'column'
+			},
+			title: {
+				text: 'Rekapitulasi Jumlah DEF pada Anak Usia 7-10 Tahun'
+			},
+			subtitle: {
+				text: 'Sistem Informasi Penilaian Required Treatment Index Gigi Anak'
+			},
+			xAxis: {
+				categories: <?php echo json_encode($gender_label) ?>,
+				crosshair: true
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'Indeks DMF-T'
+				}
+			},
+			tooltip: {
+				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+					'<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+				footerFormat: '</table>',
+				shared: true,
+				useHTML: true
+			},
+			plotOptions: {
+				column: {
+					pointPadding: 0.2,
+					borderWidth: 0
+				}
+			},
+			series: [{
+				name: 'Decay Usia 7-10 th',
+				data: <?php echo json_encode($array_decay_79_anak) ?>
+			},{
+				name: 'Missing Usia 7-10 th',
+				data: <?php echo json_encode($array_missing_79_anak) ?>
+			},{
+				name: 'Filling Usia 7-10 th',
+				data: <?php echo json_encode($array_filling_79_anak) ?>
+			}]
+		});
+		Highcharts.chart('container-report-dmf_10_anak', {
+			chart: {
+				type: 'column'
+			},
+			title: {
+				text: 'Rekapitulasi Jumlah DEF pada Anak Usia 10-12 Tahun'
+			},
+			subtitle: {
+				text: 'Sistem Informasi Penilaian Required Treatment Index Gigi Anak'
+			},
+			xAxis: {
+				categories: <?php echo json_encode($gender_label) ?>,
+				crosshair: true
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'Indeks DMF-T'
+				}
+			},
+			tooltip: {
+				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+					'<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+				footerFormat: '</table>',
+				shared: true,
+				useHTML: true
+			},
+			plotOptions: {
+				column: {
+					pointPadding: 0.2,
+					borderWidth: 0
+				}
+			},
+			series: [{
+				name: 'Decay Usia 10-12 th',
+				data: <?php echo json_encode($array_decay_912_anak) ?>
+			},{
+				name: 'Missing Usia 10-12 th',
+				data: <?php echo json_encode($array_missing_912_anak) ?>
+			},{
+				name: 'Filling Usia 10-12 th',
+				data: <?php echo json_encode($array_filling_912_anak) ?>
 			}]
 		});
 		Highcharts.chart('container-report-deft', {

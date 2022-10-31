@@ -44,12 +44,15 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                    <th scope="col" class="text-center" style="width: 30%;">Jenis Kelamin</th>
-                                    <th scope="col" class="text-center" style="width: 10%;">Jumlah Responden</th>
-                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks DMF-T</th>
-                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks DEF-T</th>
-                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks RTI Gigi Tetap</th>
-                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks RTI Gigi Sulung</th>
+                                    <th scope="col" class="text-center" style="width: 15%;">Jenis Kelamin</th>
+                                    <th scope="col" class="text-center" style="width: 15%;">Jumlah Responden</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">D/d</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">M/e</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">F/f</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks DMF-T</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks DEF-T</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks RTI Gigi Tetap</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks RTI Gigi Sulung</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,6 +62,9 @@
                                         @foreach($query_general as $q)
                                         @if($q->jenis_kelamin == 'Laki-laki')
                                         <td class="text-center"><b>{{$q->jumlah}}</b></td>
+                                        <td class="text-center">{{$jml_decay_lk_79 + $jml_decay_lk_912}}/{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak}}</td>
+                                        <td class="text-center">{{$jml_missing_lk_79 + $jml_missing_lk_912}}/{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak}}</td>
+                                        <td class="text-center">{{$jml_filling_lk_79 + $jml_filling_lk_912}}/{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak}}</td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
@@ -68,6 +74,9 @@
                                         @endforeach
                                         @if(!$found)
                                         <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0%</b></td>
@@ -80,6 +89,9 @@
                                         @foreach($query_general as $q)
                                         @if($q->jenis_kelamin == 'Perempuan')
                                         <td class="text-center"><b>{{$q->jumlah}}</b></td>
+                                        <td class="text-center">{{$jml_decay_pr_79 + $jml_decay_pr_912}}/{{$jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</td>
+                                        <td class="text-center">{{$jml_missing_pr_79 + $jml_missing_pr_912}}/{{$jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</td>
+                                        <td class="text-center">{{$jml_filling_pr_79 + $jml_filling_pr_912}}/{{$jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
@@ -89,6 +101,9 @@
                                         @endforeach
                                         @if(!$found)
                                         <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0%</b></td>
@@ -103,12 +118,15 @@
                                 <thead>
                                     <tr>
                                     <th scope="col" class="text-center" style="width: 15%;">Jenis Kelamin</th>
-                                    <th scope="col" class="text-center" style="width: 15%;">Kelompok Usia</th>
-                                    <th scope="col" class="text-center" style="width: 10%;">Jumlah Responden</th>
-                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks DMF-T</th>
-                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks DEF-T</th>
-                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks RTI Gigi Tetap</th>
-                                    <th scope="col" class="text-center" style="width: 15%;">Rata-rata Indeks RTI Gigi Sulung</th>
+                                    <th scope="col" class="text-center" style="width: 7.5%;">Kelompok Usia</th>
+                                    <th scope="col" class="text-center" style="width: 7.5%;">Jumlah Responden</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">D/d</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">M/e</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">F/f</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks DMF-T</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks DEF-T</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks RTI Gigi Tetap</th>
+                                    <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks RTI Gigi Sulung</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -119,6 +137,9 @@
                                         @foreach($query_klp_usia as $q)
                                         @if($q->jenis_kelamin == 'Laki-laki' && $q->kategori_umur == 'Usia 7-10 th')
                                         <td class="text-center"><b>{{$q->jumlah}}</b></td>
+                                        <td class="text-center">{{$jml_decay_lk_79}}/{{$jml_decay_lk_79_anak}}</td>
+                                        <td class="text-center">{{$jml_missing_lk_79}}/{{$jml_missing_lk_79_anak}}</td>
+                                        <td class="text-center">{{$jml_filling_lk_79}}/{{$jml_filling_lk_79_anak}}</td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
@@ -128,6 +149,9 @@
                                         @endforeach
                                         @if(!$found)
                                         <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0%</b></td>
@@ -140,6 +164,9 @@
                                         @foreach($query_klp_usia as $q)
                                         @if($q->jenis_kelamin == 'Laki-laki' && $q->kategori_umur == 'Usia 10-12 th')
                                         <td class="text-center"><b>{{$q->jumlah}}</b></td>
+                                        <td class="text-center">{{$jml_decay_lk_912}}/{{$jml_decay_lk_912_anak}}</td>
+                                        <td class="text-center">{{$jml_missing_lk_912}}/{{$jml_missing_lk_912_anak}}</td>
+                                        <td class="text-center">{{$jml_filling_lk_912}}/{{$jml_filling_lk_912_anak}}</td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
@@ -149,6 +176,9 @@
                                         @endforeach
                                         @if(!$found)
                                         <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0%</b></td>
@@ -162,6 +192,9 @@
                                         @foreach($query_klp_usia as $q)
                                         @if($q->jenis_kelamin == 'Perempuan' && $q->kategori_umur == 'Usia 7-10 th')
                                         <td class="text-center"><b>{{$q->jumlah}}</b></td>
+                                        <td class="text-center">{{$jml_decay_pr_79}}/{{$jml_decay_pr_79_anak}}</td>
+                                        <td class="text-center">{{$jml_missing_pr_79}}/{{$jml_missing_pr_79_anak}}</td>
+                                        <td class="text-center">{{$jml_filling_pr_79}}/{{$jml_filling_pr_79_anak}}</td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
@@ -171,6 +204,9 @@
                                         @endforeach
                                         @if(!$found)
                                         <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0%</b></td>
@@ -183,6 +219,9 @@
                                         @foreach($query_klp_usia as $q)
                                         @if($q->jenis_kelamin == 'Perempuan' && $q->kategori_umur == 'Usia 10-12 th')
                                         <td class="text-center"><b>{{$q->jumlah}}</b></td>
+                                        <td class="text-center">{{$jml_decay_pr_912}}/{{$jml_decay_pr_912_anak}}</td>
+                                        <td class="text-center">{{$jml_missing_pr_912}}/{{$jml_missing_pr_912_anak}}</td>
+                                        <td class="text-center">{{$jml_filling_pr_912}}/{{$jml_filling_pr_912_anak}}</td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
                                         <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
@@ -192,6 +231,9 @@
                                         @endforeach
                                         @if(!$found)
                                         <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0</b></td>
                                         <td class="text-center"><b>0%</b></td>
