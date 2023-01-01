@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         AzisHapidin\IndoRegion\IndoRegionServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Goodnesskay\LaravelPdfViewer\LaravelPdfViewerServiceProvider::class,
 
     ],
 
