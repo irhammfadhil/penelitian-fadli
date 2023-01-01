@@ -215,26 +215,26 @@ class DashboardUserController extends Controller
         $ext_gigi_kanan= $gigi_kanan->getClientOriginalExtension();
         $ext_gigi_bawah = $gigi_bawah->getClientOriginalExtension();
 
-        if($ext_gigi_senyum != 'jpg' && $ext_gigi_senyum != 'jpeg') {
+        if($ext_gigi_senyum != 'jpg' && $ext_gigi_senyum != 'jpeg' && $ext_gigi_senyum != 'heic') {
             return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
         }
-        if($ext_gigi_kiri != 'jpg' && $ext_gigi_kiri != 'jpeg') {
+        if($ext_gigi_kiri != 'jpg' && $ext_gigi_kiri != 'jpeg' && $ext_gigi_kiri != 'heic') {
             return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
         }
-        if($ext_gigi_depan != 'jpg' && $ext_gigi_depan != 'jpeg') {
+        if($ext_gigi_depan != 'jpg' && $ext_gigi_depan != 'jpeg' && $ext_gigi_depan != 'heic') {
             return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
         }
-        if($ext_gigi_atas != 'jpg' && $ext_gigi_atas != 'jpeg') {
+        if($ext_gigi_atas != 'jpg' && $ext_gigi_atas != 'jpeg' && $ext_gigi_atas != 'heic') {
             return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
         }
-        if($ext_gigi_kanan != 'jpg' && $ext_gigi_kanan != 'jpeg') {
+        if($ext_gigi_kanan != 'jpg' && $ext_gigi_kanan != 'jpeg' && $ext_gigi_kanan != 'heic') {
             return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
         }
-        if($ext_gigi_bawah != 'jpg' && $ext_gigi_bawah != 'jpeg') {
+        if($ext_gigi_bawah != 'jpg' && $ext_gigi_bawah != 'jpeg' && $ext_gigi_bawah != 'heic') {
             return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
         }
-        if(filesize($gigi_senyum) > 1024*1024*2 || filesize($gigi_kiri) > 1024*1024*2 || filesize($gigi_depan) > 1024*1024*2 || filesize($gigi_atas) > 1024*1024*2 || filesize($gigi_kanan) > 1024*1024*2 || filesize($gigi_bawah) > 1024*1024*2) {
-            return redirect()->back()->with(['danger' => 'Ukuran maksimum file 2 MB']);
+        if(filesize($gigi_senyum) > 1024*1024*50 || filesize($gigi_kiri) > 1024*1024*50 || filesize($gigi_depan) > 1024*1024*50 || filesize($gigi_atas) > 1024*1024*50 || filesize($gigi_kanan) > 1024*1024*50 || filesize($gigi_bawah) > 1024*1024*50) {
+            return redirect()->back()->with(['danger' => 'Ukuran maksimum file 50 MB']);
         }
 
         $rand = substr(md5(microtime()), 0, 10);
