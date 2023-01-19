@@ -26,6 +26,7 @@
 </head>
 
 <body>
+	{{--@if($biodata)
 	@php
 		function tgl_indo($tanggal){
 		$bulan = array (
@@ -51,6 +52,7 @@
 		return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
 	}
 	@endphp
+	@endif--}}
 	<div class="wrapper">
 		@include('layouts.sidebar')
 
@@ -65,7 +67,7 @@
 					<br>
 					<div class="card">
 						<div class="card-body">
-							<h3>Detail Anak</h3>
+							<h3>Detail Anak (<a href="/daftar-anak/detail/edit?id={{$user->id}}">edit</a>)</h3>
 							<br>
 							<h4>Informasi Pribadi (<a href="#" id="biodata-toggle">tampilkan</a><a href="#" id="biodata-toggle-hide">sembunyikan</a>)</h4>
 								<div class="row">
@@ -79,7 +81,11 @@
 								</div>
 								<div class="row">
 									<div class="col-4">Tempat dan Tanggal Lahir</div>
-									<div class="col-8">: {{$biodata->birth_place}}, @php echo(tgl_indo($biodata->birth_date)); @endphp</div>
+									@if($biodata->birth_date)
+									<div class="col-8">: {{$biodata->birth_place}}, {{$biodata->birth_date}}</div>
+									@else
+									<div class="col-8">:</div>
+									@endif
 								</div>
 							<div id="biodata">
 								<hr>
@@ -205,7 +211,7 @@
 									<button class="nav-link" id="tampak-kanan-tab" data-bs-toggle="tab" data-bs-target="#tampak-kanan" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Kanan</button>
 								</li>
 								<li class="nav-item" role="presentation">
-									<button class="nav-link" id="tampak-bawah-tab" data-bs-toggle="tab" data-bs-target="#tampak-kanan" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Bawah</button>
+									<button class="nav-link" id="tampak-bawah-tab" data-bs-toggle="tab" data-bs-target="#tampak-bawah" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Bawah</button>
 								</li>
 								</ul>
 								<div class="tab-content" id="myTabContent">
@@ -213,37 +219,37 @@
 										<br>
 										<img src="{{asset($foto->foto_senyum)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: @php echo(tgl_indo($foto->date_taken_senyum)); @endphp</i>
+										<i>Tanggal Pengambilan: {{$foto->date_taken_senyum}}</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-depan" role="tabpanel" aria-labelledby="tampak-depan-tab">
 										<br>
 										<img src="{{asset($foto->foto_depan)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: @php echo(tgl_indo($foto->date_taken_depan)); @endphp</i>
+										<i>Tanggal Pengambilan: {{$foto->date_taken_depan}}</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-kiri" role="tabpanel" aria-labelledby="tampak-kiri-tab">
 										<br>
 										<img src="{{asset($foto->foto_kiri)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: @php echo(tgl_indo($foto->date_taken_kiri)); @endphp</i>
+										<i>Tanggal Pengambilan: {{$foto->date_taken_kiri}}</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-atas" role="tabpanel" aria-labelledby="tampak-atas-tab">
 										<br>
 										<img src="{{asset($foto->foto_atas)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: @php echo(tgl_indo($foto->date_taken_atas)); @endphp</i>
+										<i>Tanggal Pengambilan: {{$foto->date_taken_atas}}</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-kanan" role="tabpanel" aria-labelledby="tampak-kanan-tab">
 										<br>
 										<img src="{{asset($foto->foto_kanan)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: @php echo(tgl_indo($foto->date_taken_kanan)); @endphp</i>
+										<i>Tanggal Pengambilan: {{$foto->date_taken_kanan}}</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-bawah" role="tabpanel" aria-labelledby="tampak-bawah-tab">
 										<br>
 										<img src="{{asset($foto->foto_bawah)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: @php echo(tgl_indo($foto->date_taken_bawah)); @endphp</i>
+										<i>Tanggal Pengambilan: {{$foto->date_taken_bawah}}</i>
 									</div>
 								</div>
 								<form action="/admin/submitFoto" method="post">

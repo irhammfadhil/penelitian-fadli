@@ -53,6 +53,8 @@ Route::get('/finalisasi/submit', [DashboardUserController::class,'submitFinalisa
 Route::get('/dashboard/admin', [DashboardAdminController::class,'index'])->middleware('auth');
 Route::get('/daftar-anak', [DashboardAdminController::class,'getAllAnak'])->middleware('auth');
 Route::get('/daftar-anak/detail', [DashboardAdminController::class,'getDetailAnak'])->middleware('auth');
+Route::get('/daftar-anak/detail/edit', [DashboardAdminController::class,'getEditData'])->middleware('auth');
+Route::post('/daftar-anak/detail/edit', [DashboardAdminController::class,'submitEditData'])->middleware('auth');
 Route::get('/daftar-anak/delete', [DashboardAdminController::class,'deleteAnak'])->middleware('auth');
 Route::get('/daftar-anak/cetak-consent', [DashboardAdminController::class,'cetakInformedConsent'])->middleware('auth');
 Route::get('/daftar-anak/cetak-laporan', [DashboardAdminController::class,'cetakLaporan'])->middleware('auth');

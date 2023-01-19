@@ -12,6 +12,9 @@ use App\Models\Diagnosis;
 use App\Models\Odontogram;
 use App\Models\Article;
 use App\Models\UsersCovid;
+use App\Models\District;
+use App\Models\Regency;
+use App\Models\Village;
 use PDF;
 use DateTime;
 use Illuminate\Support\Facades\DB;
@@ -1060,5 +1063,230 @@ class DashboardAdminController extends Controller
             'jml_filling_lk_912_anak' => $jml_filling_lk_912_anak,
             'jml_filling_pr_912_anak' => $jml_filling_pr_912_anak,
         ]);
+    }
+    public function getEditData(Request $request)
+    {
+        $user = User::find($request->id);
+        $biodata = Biodata::where('users_id', '=', $request->id)->first();
+        $ortu = BiodataOrtu::where('users_id', '=', $request->id)->first();
+        $foto = Foto::where('users_id', '=', $request->id)->first();
+        $gender = ['Laki-laki', 'Perempuan'];
+        $label_gaji = ['<1 juta', '1-3 juta', '>3 juta'];
+        $label_listrik = ['450 VA', '900 VA', '1300 VA', '2200 VA', '> 2200 VA'];
+        $kabupaten = Regency::where('name', 'like', '%JEMBER%')->first();
+        $id_kab = $kabupaten->id;
+        $kecamatan = District::where('regency_id', '=', $id_kab)->orderBy('name')->get();
+        $sekolah = ['SDN Biting 04', 'SDN Candijati 01'];
+        $pendidikan = ['TK', 'SD', 'SMP', 'SMA', 'Diploma 1, 2, 3', 'D4/S1', 'S2', 'S3'];
+        $pekerjaan = ['Guru/Dosen', 'Petani/Nelayan', 'Wiraswasta', 'TNI/POLRI', 'Pensiunan', 'Pegawai Negeri', 'Pegawai BUMN/BUMD', 'Pegawai Swasta', 'Lainnya'];
+        $id_kecamatan = '';
+        if($ortu->kecamatan) {
+            $id_kecamatan = District::where('name', '=', $ortu->kecamatan)->where('regency_id', '=', '3509')->first();
+            $id_kecamatan = $id_kecamatan->id;
+        }
+        $id_desa = '';
+        if($ortu->desa) {
+            $id_desa = Village::where('name', '=', $ortu->desa)->where('district_id', '=', $id_kecamatan)->first();
+            $id_desa = $id_desa->id;
+        }
+
+        return view('dashboard-admin.edit-data', [
+            'user' => $user,
+            'biodata' => $biodata,
+            'ortu' => $ortu,
+            'foto' => $foto,
+            'gender' => $gender,
+            'label_gaji' => $label_gaji,
+            'label_listrik' => $label_listrik,
+            'kecamatan' => $kecamatan,
+            'sekolah' => $sekolah,
+            'pendidikan' => $pendidikan,
+            'pekerjaan' => $pekerjaan,
+            'id_kecamatan' => $id_kecamatan,
+            'id_desa' => $id_desa,
+        ]);
+    }
+    public function submitEditData(Request $request)
+    {
+        $this->validate($request, [
+            'gigi_senyum' => 'file',
+            'gigi_kiri' => 'file',
+            'gigi_depan' => 'file',
+            'gigi_atas' => 'file',
+            'gigi_kanan' => 'file',
+            'gigi_bawah' => 'file',
+        ]);
+        $gigi_senyum = $request->file('gigi_senyum');
+        $gigi_kiri = $request->file('gigi_kiri');
+        $date_gigi_senyum = $request->date_gigi_senyum;
+        $date_gigi_kiri = $request->date_gigi_kiri;
+        $gigi_depan = $request->file('gigi_depan');
+        $gigi_atas = $request->file('gigi_atas');
+        $date_gigi_depan = $request->date_gigi_depan;
+        $date_gigi_atas = $request->date_gigi_atas;
+        $gigi_kanan = $request->file('gigi_kanan');
+        $gigi_bawah = $request->file('gigi_bawah');
+        $date_gigi_kanan = $request->date_gigi_kanan;
+        $date_gigi_bawah = $request->date_gigi_bawah;
+        $rand = substr(md5(microtime()), 0, 10);
+        $file_name_senyum = '';
+        $file_name_gigi_kiri = '';
+        $file_name_gigi_depan = '';
+        $file_name_gigi_atas = '';
+        $file_name_gigi_kanan = '';
+        $file_name_gigi_bawah = '';
+
+        if (filesize($gigi_senyum) > 1024 * 1024 * 50 || filesize($gigi_kiri) > 1024 * 1024 * 50 || filesize($gigi_depan) > 1024 * 1024 * 50 || filesize($gigi_atas) > 1024 * 1024 * 50 || filesize($gigi_kanan) > 1024 * 1024 * 50 || filesize($gigi_bawah) > 1024 * 1024 * 50) {
+            return redirect()->back()->with(['danger' => 'Ukuran maksimum file 50 MB']);
+        }
+
+        $tujuan_upload = 'data_peserta/' . $request->id;
+
+        #check apakah folder tujuan ada atau tidak
+        if (!file_exists($tujuan_upload)) {
+            mkdir($tujuan_upload);
+        }
+
+        if($gigi_senyum) {
+            $ext_gigi_senyum = $gigi_senyum->getClientOriginalExtension();
+            if ($ext_gigi_senyum != 'jpg' && $ext_gigi_senyum != 'jpeg' && $ext_gigi_senyum != 'heic') {
+                return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
+            }
+            $file_name_senyum = $rand . '_' . $gigi_senyum->getClientOriginalName();
+            $imageSenyum = $gigi_senyum->move(public_path($tujuan_upload), $file_name_senyum);
+        }
+        if($gigi_kiri) {
+            $ext_gigi_kiri = $gigi_kiri->getClientOriginalExtension();
+            if ($ext_gigi_kiri != 'jpg' && $ext_gigi_kiri != 'jpeg' && $ext_gigi_kiri != 'heic') {
+                return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
+            }
+            $file_name_gigi_kiri = $rand . '_' . $gigi_kiri->getClientOriginalName();
+            $imagekiri = $gigi_kiri->move(public_path($tujuan_upload), $file_name_gigi_kiri);
+        }
+        if($gigi_depan) {
+            $ext_gigi_depan = $gigi_depan->getClientOriginalExtension();
+            if ($ext_gigi_depan != 'jpg' && $ext_gigi_depan != 'jpeg' && $ext_gigi_depan != 'heic') {
+                return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
+            }
+            $file_name_gigi_depan = $rand . '_' . $gigi_depan->getClientOriginalName();
+            $imagedepan = $gigi_depan->move(public_path($tujuan_upload), $file_name_gigi_depan);
+        }
+        if($gigi_atas) {
+            $ext_gigi_atas = $gigi_atas->getClientOriginalExtension();
+            if ($ext_gigi_atas != 'jpg' && $ext_gigi_atas != 'jpeg' && $ext_gigi_atas != 'heic') {
+                return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
+            }
+            $file_name_gigi_atas = $rand . '_' . $gigi_atas->getClientOriginalName();
+            $imageatas = $gigi_atas->move(public_path($tujuan_upload), $file_name_gigi_atas);
+        }
+        if($gigi_kanan) {
+            $ext_gigi_kanan = $gigi_kanan->getClientOriginalExtension();
+            if ($ext_gigi_kanan != 'jpg' && $ext_gigi_kanan != 'jpeg' && $ext_gigi_kanan != 'heic') {
+                return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
+            }
+            $file_name_gigi_kanan = $rand . '_' . $gigi_kanan->getClientOriginalName();
+            $imagekanan = $gigi_kanan->move(public_path($tujuan_upload), $file_name_gigi_kanan);
+        }
+        if($gigi_bawah) {
+            $ext_gigi_bawah = $gigi_bawah->getClientOriginalExtension();
+            if ($ext_gigi_bawah != 'jpg' && $ext_gigi_bawah != 'jpeg' && $ext_gigi_bawah != 'heic') {
+                return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
+            }
+            $file_name_gigi_bawah = $rand . '_' . $gigi_bawah->getClientOriginalName();
+            $imagebawah = $gigi_bawah->move(public_path($tujuan_upload), $file_name_gigi_bawah);
+        }
+
+        $name = $request->name;
+        $gender = $request->gender;
+        $birthplace = $request->birthplace;
+        $birthdate = $request->birthdate;
+        $sekolah = $request->sekolah;
+        $name_ortu = $request->name_ortu;
+        $address = $request->address;
+        $pendidikan_terakhir = $request->pendidikan_terakhir;
+        $pekerjaan = $request->pekerjaan;
+        $gaji = $request->gaji;
+        $luas_rumah = $request->luas_rumah;
+        $daya_listrik = $request->daya_listrik;
+        $phone = $request->phone;
+        $kecamatan = $request->kecamatan;
+        $desa = $request->desa;
+        $rt = $request->rt;
+        $rw = $request->rw;
+
+        #edit data user
+        $user = User::find($request->id);
+        $user->name = $name;
+        $user->save();
+
+        #edit biodata
+        $biodata = Biodata::where('users_id', '=', $request->id)->first();
+        if(!$biodata) {
+            $biodata = new Biodata;
+        }
+        $biodata->gender = $gender;
+        $biodata->birth_place = $birthplace;
+        $biodata->birth_date = $birthdate;
+        $biodata->id_sekolah = $sekolah;
+        $biodata->save();
+
+        #edit ortu
+        $ortu = BiodataOrtu::where('users_id', '=', $request->id)->first();
+        if(!$ortu) {
+            $ortu = new BiodataOrtu;
+        }
+        $ortu->name_ortu = $name_ortu;
+        $ortu->address = $address;
+        $ortu->pendidikan_terakhir = $pendidikan_terakhir;
+        $ortu->pekerjaan = $pekerjaan;
+        $ortu->gaji = $gaji;
+        $ortu->luas_rumah = $luas_rumah;
+        $ortu->daya_listrik = $daya_listrik;
+        $kecamatan_dom_name = District::where('id', '=', $kecamatan)->first();
+        $kecamatan_dom_name = $kecamatan_dom_name->name;
+        $desa_dom_name = Village::where('id', '=', $desa)->first();
+        $desa_dom_name = $desa_dom_name->name;
+        $ortu->kecamatan = $kecamatan_dom_name;
+        $ortu->desa = $desa_dom_name;
+        $ortu->rt = $rt;
+        $ortu->rw = $rw;
+        $ortu->phone = $phone;
+        $ortu->save();
+
+        //input to database
+        $foto = Foto::where('users_id', '=', $request->id)->first();
+        if(!$foto) {
+            $foto = new Foto;
+        }
+        $foto->users_id = $request->id;
+        if($gigi_senyum) {
+            $foto->foto_senyum = $tujuan_upload . '/' . $file_name_senyum;
+            $foto->date_taken_senyum = $date_gigi_senyum;
+        }
+        if($gigi_kiri) {
+            $foto->foto_kiri = $tujuan_upload . '/' . $file_name_gigi_kiri;
+            $foto->date_taken_kiri = $date_gigi_kiri;
+        }
+        if($gigi_depan) {
+            $foto->foto_depan = $tujuan_upload . '/' . $file_name_gigi_depan;
+            $foto->date_taken_depan = $date_gigi_depan;
+        }
+        if($gigi_atas) {
+            $foto->foto_atas = $tujuan_upload . '/' . $file_name_gigi_atas;
+            $foto->date_taken_atas = $date_gigi_atas;
+        }
+        if($gigi_kanan) {
+            $foto->foto_kanan = $tujuan_upload . '/' . $file_name_gigi_kanan;
+            $foto->date_taken_kanan = $date_gigi_kanan;
+        }
+        if($gigi_bawah) {
+            $foto->foto_bawah = $tujuan_upload . '/' . $file_name_gigi_bawah;
+            $foto->date_taken_bawah = $date_gigi_bawah;
+        }
+        $foto->save();
+
+        $url = '/daftar-anak/detail?id='.$request->id;
+
+        return redirect($url);
     }
 }
