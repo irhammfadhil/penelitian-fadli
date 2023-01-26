@@ -43,13 +43,13 @@ class DashboardAdminController extends Controller
         $users_id_pr_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 12')
             ->where('gender', '=', 'Perempuan')->get();
         //dmft dan rti
-        $users_dmft_lk_79 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.dmft_score) as rata_rata_rti_sulung'))
+        $users_dmft_lk_79 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.deft_score) as rata_rata_rti_sulung'))
             ->whereIn('id', $users_id_lk_79)->get();
-        $users_dmft_pr_79 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.dmft_score) as rata_rata_rti_sulung'))
+        $users_dmft_pr_79 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.deft_score) as rata_rata_rti_sulung'))
             ->whereIn('id', $users_id_pr_79)->get();
-        $users_dmft_lk_912 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.dmft_score) as rata_rata_rti_sulung'))
+        $users_dmft_lk_912 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.deft_score) as rata_rata_rti_sulung'))
             ->whereIn('id', $users_id_lk_912)->get();
-        $users_dmft_pr_912 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.dmft_score) as rata_rata_rti_sulung'))
+        $users_dmft_pr_912 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.deft_score) as rata_rata_rti_sulung'))
             ->whereIn('id', $users_id_pr_912)->get();
         #perhitungan dmf
         ##decay
@@ -561,33 +561,58 @@ class DashboardAdminController extends Controller
     public function submitOdontogram(Request $request)
     {
         $users_id = $request->usersId;
-        $gigi = $request->gigi;
-        $decay = $request->has('decay');
-        $missing = $request->has('missing');
-        $filling = $request->has('filling');
+        $decay = $request->decay;
+        $missing = $request->missing;
+        $filling = $request->filling;
 
-        if (!$decay) {
-            $decay = 0;
+        $id_decay = explode(',', $decay);
+        $id_missing = explode(',', $missing);
+        $id_filling = explode(',', $filling);
+
+        #delete existing record
+        $diagnosis = Diagnosis::where('users_id', '=', $users_id)->delete();
+
+        #data gigi decay
+        if ($decay) {
+            foreach ($id_decay as $d) {
+                $data = Diagnosis::where('users_id', '=', $users_id)->where('id_gigi', '=', $d)->first();
+                if (!$data) {
+                    $data = new Diagnosis;
+                }
+                $data->users_id = $users_id;
+                $data->id_gigi = $d;
+                $data->is_decay = 1;
+                $data->save();
+            }
         }
 
-        if (!$missing) {
-            $missing = 0;
+        if ($missing) {
+            #data gigi missing
+            foreach ($id_missing as $m) {
+                $data = Diagnosis::where('users_id', '=', $users_id)->where('id_gigi', '=', $m)->first();
+                if (!$data) {
+                    $data = new Diagnosis;
+                }
+                $data->users_id = $users_id;
+                $data->id_gigi = $m;
+                $data->is_missing = 1;
+                $data->save();
+            }
         }
 
-        if (!$filling) {
-            $filling = 0;
+        if ($filling) {
+            #data gigi filling
+            foreach ($id_filling as $f) {
+                $data = Diagnosis::where('users_id', '=', $users_id)->where('id_gigi', '=', $f)->first();
+                if (!$data) {
+                    $data = new Diagnosis;
+                }
+                $data->users_id = $users_id;
+                $data->id_gigi = $f;
+                $data->is_filling = 1;
+                $data->save();
+            }
         }
-
-        $data = Diagnosis::where('users_id', '=', $users_id)->where('id_gigi', '=', $gigi)->first();
-        if (!$data) {
-            $data = new Diagnosis;
-        }
-        $data->users_id = $users_id;
-        $data->id_gigi = $gigi;
-        $data->is_decay = $decay;
-        $data->is_missing = $missing;
-        $data->is_filling = $filling;
-        $data->save();
 
         #itung dmft
         ##gigi tetap
@@ -1080,12 +1105,12 @@ class DashboardAdminController extends Controller
         $pendidikan = ['TK', 'SD', 'SMP', 'SMA', 'Diploma 1, 2, 3', 'D4/S1', 'S2', 'S3'];
         $pekerjaan = ['Guru/Dosen', 'Petani/Nelayan', 'Wiraswasta', 'TNI/POLRI', 'Pensiunan', 'Pegawai Negeri', 'Pegawai BUMN/BUMD', 'Pegawai Swasta', 'Lainnya'];
         $id_kecamatan = '';
-        if($ortu->kecamatan) {
+        if ($ortu->kecamatan) {
             $id_kecamatan = District::where('name', '=', $ortu->kecamatan)->where('regency_id', '=', '3509')->first();
             $id_kecamatan = $id_kecamatan->id;
         }
         $id_desa = '';
-        if($ortu->desa) {
+        if ($ortu->desa) {
             $id_desa = Village::where('name', '=', $ortu->desa)->where('district_id', '=', $id_kecamatan)->first();
             $id_desa = $id_desa->id;
         }
@@ -1147,49 +1172,49 @@ class DashboardAdminController extends Controller
             mkdir($tujuan_upload);
         }
 
-        if($gigi_senyum) {
+        if ($gigi_senyum) {
             $ext_gigi_senyum = $gigi_senyum->getClientOriginalExtension();
-            if ($ext_gigi_senyum != 'jpg' && $ext_gigi_senyum != 'jpeg' && $ext_gigi_senyum != 'heic') {
+            if ($ext_gigi_senyum != 'jpg' && $ext_gigi_senyum != 'jpeg' && $ext_gigi_senyum != 'JPG' && $ext_gigi_senyum != 'JPEG' && $ext_gigi_senyum != 'heic' && $ext_gigi_senyum != 'HEIC') {
                 return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
             }
             $file_name_senyum = $rand . '_' . $gigi_senyum->getClientOriginalName();
             $imageSenyum = $gigi_senyum->move(public_path($tujuan_upload), $file_name_senyum);
         }
-        if($gigi_kiri) {
+        if ($gigi_kiri) {
             $ext_gigi_kiri = $gigi_kiri->getClientOriginalExtension();
-            if ($ext_gigi_kiri != 'jpg' && $ext_gigi_kiri != 'jpeg' && $ext_gigi_kiri != 'heic') {
+            if ($ext_gigi_kiri != 'jpg' && $ext_gigi_kiri != 'jpeg' && $ext_gigi_kiri != 'JPG' && $ext_gigi_kiri != 'JPEG' && $ext_gigi_kiri != 'heic' && $ext_gigi_kiri != 'HEIC') {
                 return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
             }
             $file_name_gigi_kiri = $rand . '_' . $gigi_kiri->getClientOriginalName();
             $imagekiri = $gigi_kiri->move(public_path($tujuan_upload), $file_name_gigi_kiri);
         }
-        if($gigi_depan) {
+        if ($gigi_depan) {
             $ext_gigi_depan = $gigi_depan->getClientOriginalExtension();
-            if ($ext_gigi_depan != 'jpg' && $ext_gigi_depan != 'jpeg' && $ext_gigi_depan != 'heic') {
+            if ($ext_gigi_depan != 'jpg' && $ext_gigi_depan != 'jpeg' && $ext_gigi_depan != 'JPG' && $ext_gigi_depan != 'JPEG' && $ext_gigi_depan != 'heic'&& $ext_gigi_depan != 'HEIC') {
                 return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
             }
             $file_name_gigi_depan = $rand . '_' . $gigi_depan->getClientOriginalName();
             $imagedepan = $gigi_depan->move(public_path($tujuan_upload), $file_name_gigi_depan);
         }
-        if($gigi_atas) {
+        if ($gigi_atas) {
             $ext_gigi_atas = $gigi_atas->getClientOriginalExtension();
-            if ($ext_gigi_atas != 'jpg' && $ext_gigi_atas != 'jpeg' && $ext_gigi_atas != 'heic') {
+            if ($ext_gigi_atas != 'jpg' && $ext_gigi_atas != 'jpeg' && $ext_gigi_atas != 'JPG' && $ext_gigi_atas != 'JPEG' && $ext_gigi_atas != 'heic' && $ext_gigi_atas != 'HEIC') {
                 return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
             }
             $file_name_gigi_atas = $rand . '_' . $gigi_atas->getClientOriginalName();
             $imageatas = $gigi_atas->move(public_path($tujuan_upload), $file_name_gigi_atas);
         }
-        if($gigi_kanan) {
+        if ($gigi_kanan) {
             $ext_gigi_kanan = $gigi_kanan->getClientOriginalExtension();
-            if ($ext_gigi_kanan != 'jpg' && $ext_gigi_kanan != 'jpeg' && $ext_gigi_kanan != 'heic') {
+            if ($ext_gigi_kanan != 'jpg' && $ext_gigi_kanan != 'jpeg' && $ext_gigi_kanan != 'JPG' && $ext_gigi_kanan != 'JPEG' && $ext_gigi_kanan != 'heic' && $ext_gigi_kanan != 'HEIC') {
                 return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
             }
             $file_name_gigi_kanan = $rand . '_' . $gigi_kanan->getClientOriginalName();
             $imagekanan = $gigi_kanan->move(public_path($tujuan_upload), $file_name_gigi_kanan);
         }
-        if($gigi_bawah) {
+        if ($gigi_bawah) {
             $ext_gigi_bawah = $gigi_bawah->getClientOriginalExtension();
-            if ($ext_gigi_bawah != 'jpg' && $ext_gigi_bawah != 'jpeg' && $ext_gigi_bawah != 'heic') {
+            if ($ext_gigi_bawah != 'jpg' && $ext_gigi_bawah != 'jpeg' && $ext_gigi_bawah != 'JPG' && $ext_gigi_bawah != 'JPEG' && $ext_gigi_bawah != 'heic' && $ext_gigi_bawah != 'HEIC') {
                 return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
             }
             $file_name_gigi_bawah = $rand . '_' . $gigi_bawah->getClientOriginalName();
@@ -1221,7 +1246,7 @@ class DashboardAdminController extends Controller
 
         #edit biodata
         $biodata = Biodata::where('users_id', '=', $request->id)->first();
-        if(!$biodata) {
+        if (!$biodata) {
             $biodata = new Biodata;
         }
         $biodata->gender = $gender;
@@ -1232,7 +1257,7 @@ class DashboardAdminController extends Controller
 
         #edit ortu
         $ortu = BiodataOrtu::where('users_id', '=', $request->id)->first();
-        if(!$ortu) {
+        if (!$ortu) {
             $ortu = new BiodataOrtu;
         }
         $ortu->name_ortu = $name_ortu;
@@ -1255,37 +1280,37 @@ class DashboardAdminController extends Controller
 
         //input to database
         $foto = Foto::where('users_id', '=', $request->id)->first();
-        if(!$foto) {
+        if (!$foto) {
             $foto = new Foto;
         }
         $foto->users_id = $request->id;
-        if($gigi_senyum) {
+        if ($gigi_senyum) {
             $foto->foto_senyum = $tujuan_upload . '/' . $file_name_senyum;
             $foto->date_taken_senyum = $date_gigi_senyum;
         }
-        if($gigi_kiri) {
+        if ($gigi_kiri) {
             $foto->foto_kiri = $tujuan_upload . '/' . $file_name_gigi_kiri;
             $foto->date_taken_kiri = $date_gigi_kiri;
         }
-        if($gigi_depan) {
+        if ($gigi_depan) {
             $foto->foto_depan = $tujuan_upload . '/' . $file_name_gigi_depan;
             $foto->date_taken_depan = $date_gigi_depan;
         }
-        if($gigi_atas) {
+        if ($gigi_atas) {
             $foto->foto_atas = $tujuan_upload . '/' . $file_name_gigi_atas;
             $foto->date_taken_atas = $date_gigi_atas;
         }
-        if($gigi_kanan) {
+        if ($gigi_kanan) {
             $foto->foto_kanan = $tujuan_upload . '/' . $file_name_gigi_kanan;
             $foto->date_taken_kanan = $date_gigi_kanan;
         }
-        if($gigi_bawah) {
+        if ($gigi_bawah) {
             $foto->foto_bawah = $tujuan_upload . '/' . $file_name_gigi_bawah;
             $foto->date_taken_bawah = $date_gigi_bawah;
         }
         $foto->save();
 
-        $url = '/daftar-anak/detail?id='.$request->id;
+        $url = '/daftar-anak/detail?id=' . $request->id;
 
         return redirect($url);
     }

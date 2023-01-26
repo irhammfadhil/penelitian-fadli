@@ -1141,34 +1141,20 @@
 								<div class="modal-body">
 									@csrf
 									<input type="hidden" id="usersId" name="usersId" value="">
-									<div class="mb-3">
-										<label for="exampleInputEmail1" class="form-label">ID Gigi</label>
-										<select class="form-select" aria-label="Default select example" name="gigi" id="gigi">
-											<option selected>Pilih ID Gigi...</option>
-											@foreach($id_gigi as $i) 
-											<option value="{{$i}}">{{$i}}</option>
-											@endforeach
-										</select>
-										<br>
-										<b>Diagnosis:</b>
-										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="" id="decay" name="decay">
-											<label class="form-check-label" for="flexCheckDefault">
-												Decay
-											</label>
-										</div>
-										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="" id="missing" name="missing">
-											<label class="form-check-label" for="flexCheckDefault">
-												Missing
-											</label>
-										</div>
-										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="" id="filling" name="filling">
-											<label class="form-check-label" for="flexCheckDefault">
-												Filling
-											</label>
-										</div>
+									<div class="form-group">
+									<label for="exampleInputEmail1" class="form-label">Decay</label><br>
+									<small>Masukkan ID Gigi, dipisahkan dengan tanda koma. Contoh: 11,12,13,14.</small>
+									<input type="text" class="form-control" name="decay" id="decay" placeholder="ID Gigi Decay">
+									</div>
+									<div class="form-group">
+									<label for="exampleInputEmail1" class="form-label">Missing</label><br>
+									<small>Masukkan ID Gigi, dipisahkan dengan tanda koma. Contoh: 11,12,13,14.</small>
+									<input type="text" class="form-control" name="missing" id="missing" placeholder="ID Gigi Missing">
+									</div>
+									<div class="form-group">
+									<label for="exampleInputEmail1" class="form-label">Filling</label><br>
+									<small>Masukkan ID Gigi, dipisahkan dengan tanda koma. Contoh: 11,12,13,14.</small>
+									<input type="text" class="form-control" name="filling" id="filling" placeholder="ID Gigi Filling">
 									</div>
 								</div>
 								<div class="modal-footer">

@@ -77,6 +77,11 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Jenis Kelamin</label>
                                     <select class="form-select" name="gender" id="gender" aria-label="Default select example">
+                                        @if(!$biodata)
+                                        @foreach($gender as $g)
+                                        <option value="{{$g}}">{{$g}}</option>
+                                        @endforeach
+                                        @else
                                         @foreach($gender as $g)
                                         @if($g == $biodata->gender)
                                         <option value="{{$g}}" selected>{{$g}}</option>
@@ -84,23 +89,37 @@
                                         <option value="{{$g}}">{{$g}}</option>
                                         @endif
                                         @endforeach
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-6">
                                             <label for="exampleInputEmail1">Tempat Lahir</label>
+                                            @if($biodata)
                                             <input type="text" class="form-control" id="birthplace" name="birthplace" aria-describedby="emailHelp" value="{{$biodata->birth_place}}" placeholder="Tempat lahir">
+                                            @else
+                                            <input type="text" class="form-control" id="birthplace" name="birthplace" aria-describedby="emailHelp" placeholder="Tempat lahir">
+                                            @endif
                                         </div>
                                         <div class="col-6">
                                             <label for="exampleInputEmail1">Tanggal Lahir</label>
+                                            @if($biodata)
                                             <input type="date" class="form-control" id="birthdate" name="birthdate" aria-describedby="emailHelp" value="{{$biodata->birth_date}}" placeholder="Tanggal lahir">
+                                            @else
+                                            <input type="date" class="form-control" id="birthdate" name="birthdate" aria-describedby="emailHelp" placeholder="Tanggal lahir">
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Sekolah</label>
                                     <select class="form-select" name="sekolah" id="sekolah" aria-label="Default select example">
+                                        @if(!$biodata)
+                                        @foreach($sekolah as $s)
+                                        <option value="{{$s}}">{{$s}}</option>
+                                        @endforeach
+                                        @else
                                         @foreach($sekolah as $s)
                                         @if($s == $biodata->id_sekolah)
                                         <option value="{{$s}}" selected>{{$s}}</option>
@@ -108,6 +127,7 @@
                                         <option value="{{$s}}">{{$s}}</option>
                                         @endif
                                         @endforeach
+                                        @endif
                                     </select>
                                 </div>
                                 <br>
@@ -115,17 +135,30 @@
                                 <hr>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nama Orang Tua</label>
+                                    @if($ortu)
                                     <input type="text" class="form-control" id="name_ortu" name="name_ortu" value="{{$ortu->name_ortu}}" aria-describedby="emailHelp" placeholder="Nama orang tua">
+                                    @else
+                                    <input type="text" class="form-control" id="name_ortu" name="name_ortu" aria-describedby="emailHelp" placeholder="Nama orang tua">
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Alamat</label>
+                                    @if($ortu)
                                     <input type="text" class="form-control" id="address" name="address" value="{{$ortu->address}}" aria-describedby="emailHelp" placeholder="Alamat">
+                                    @else
+                                    <input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp" placeholder="Alamat">
+                                    @endif
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Pendidikan Terakhir</label>
                                             <select class="form-select" name="pendidikan_terakhir" id="pendidikan_terakhir" aria-label="Default select example">
+                                                @if(!$ortu)
+                                                @foreach($pendidikan as $p)
+                                                <option value="{{$p}}">{{$p}}</option>
+                                                @endforeach
+                                                @else
                                                 @foreach($pendidikan as $p)
                                                 @if($p == $ortu->pendidikan_terakhir)
                                                 <option value="{{$p}}" selected>{{$p}}</option>
@@ -133,6 +166,7 @@
                                                 <option value="{{$p}}">{{$p}}</option>
                                                 @endif
                                                 @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
@@ -140,6 +174,11 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Pekerjaan</label>
                                             <select class="form-select" name="pekerjaan" id="pekerjaan" aria-label="Default select example">
+                                                @if(!$ortu)
+                                                @foreach($pekerjaan as $p)
+                                                <option value="{{$p}}">{{$p}}</option>
+                                                @endforeach
+                                                @else
                                                 @foreach($pekerjaan as $p)
                                                 @if($p == $ortu->pekerjaan)
                                                 <option value="{{$p}}" selected>{{$p}}</option>
@@ -147,6 +186,7 @@
                                                 <option value="{{$p}}">{{$p}}</option>
                                                 @endif
                                                 @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
@@ -158,6 +198,11 @@
                                             <label for="exampleInputEmail1">Gaji Orang Tua</label>
                                             <select class="form-select" name="gaji" id="gaji" aria-label="Default select example">
                                                 <option>Pilih...</option>
+                                                @if(!$ortu)
+                                                @foreach($label_gaji as $p)
+                                                <option value="{{$p}}">{{$p}}</option>
+                                                @endforeach
+                                                @else
                                                 @foreach($label_gaji as $l)
                                                 @if($l == $ortu->gaji)
                                                 <option value="{{$l}}" selected>{{$l}}</option>
@@ -165,13 +210,18 @@
                                                 <option value="{{$l}}">{{$l}}</option>
                                                 @endif
                                                 @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Luas rumah (m2)</label>
+                                            @if($ortu)
                                             <input type="text" class="form-control" id="luas_rumah" name="luas_rumah" value="{{$ortu->luas_rumah}}" aria-describedby="emailHelp" placeholder="Luas rumah" required>
+                                            @else
+                                            <input type="text" class="form-control" id="luas_rumah" name="luas_rumah" aria-describedby="emailHelp" placeholder="Luas rumah" required>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -182,6 +232,11 @@
                                             <label for="exampleInputEmail1">Daya Listrik (VA)</label>
                                             <select class="form-select" name="daya_listrik" id="daya_listrik" aria-label="Default select example" required>
                                                 <option>Pilih...</option>
+                                                @if(!$ortu)
+                                                @foreach($label_listrik as $p)
+                                                <option value="{{$p}}">{{$p}}</option>
+                                                @endforeach
+                                                @else
                                                 @foreach($label_listrik as $l)
                                                 @if($l == $ortu->daya_listrik)
                                                 <option value="{{$l}}" selected>{{$l}}</option>
@@ -189,13 +244,18 @@
                                                 <option value="{{$l}}">{{$l}}</option>
                                                 @endif
                                                 @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">No. HP</label>
+                                            @if($ortu)
                                             <input type="text" class="form-control" id="phone" name="phone" value="{{$ortu->phone}}" aria-describedby="emailHelp" placeholder="Nomor HP">
+                                            @else
+                                            <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp" placeholder="Nomor HP">
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -252,13 +312,21 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">RT</label>
+                                            @if($ortu)
                                             <input type="text" class="form-control" id="rt" name="rt" value="{{$ortu->rt}}" aria-describedby="emailHelp" placeholder="RT">
+                                            @else
+                                            <input type="text" class="form-control" id="rt" name="rt" aria-describedby="emailHelp" placeholder="RT">
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">RW</label>
+                                            @if($ortu)
                                             <input type="text" class="form-control" id="rw" name="rw" value="{{$ortu->rw}}" aria-describedby="emailHelp" placeholder="RW">
+                                            @else
+                                            <input type="text" class="form-control" id="rw" name="rw" aria-describedby="emailHelp" placeholder="RW">
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

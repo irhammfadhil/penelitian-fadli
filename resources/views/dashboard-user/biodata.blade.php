@@ -133,9 +133,13 @@
 								<br>
 								<label for="exampleInputEmail1">Sekolah</label>
 								<select class="form-select" name="sekolah" id="sekolah" aria-label="Default select example">
-									<option>Pilih...</option>
-									<option value="SDN Biting 04">SDN Biting 04</option>
-									<option value="SDN Candijati 01">SDN Candijati 01</option>
+									@foreach($sekolah as $s)
+									@if($s == $biodata->id_sekolah)
+									<option value="{{$s}}" selected>{{$s}}</option>
+									@else
+									<option value="{{$s}}">{{$s}}</option>
+									@endif
+									@endforeach
 								</select>
 								@else
 								<div class="row">
@@ -220,15 +224,13 @@
 										<div class="form-group">
 											<label for="exampleInputEmail1">Pendidikan Terakhir</label>
 											<select class="form-select" name="pendidikan_terakhir" id="pendidikan_terakhir" aria-label="Default select example">
-												<option>Pilih...</option>
-												<option value="TK">TK</option>
-												<option value="SD">SD</option>
-												<option value="SMP">SMP</option>
-												<option value="SMA">SMA</option>
-												<option value="Diploma 1, 2, 3">Diploma 1, 2, 3</option>
-												<option value="D4/S1">D4/S1</option>
-												<option value="S2">S2</option>
-												<option value="S3">S3</option>
+												@foreach($pendidikan as $p)
+												@if($p == $ortu->pendidikan_terakhir)
+												<option value="{{$p}}" selected>{{$p}}</option>
+												@else
+												<option value="{{$p}}">{{$p}}</option>
+												@endif
+												@endforeach
 											</select>
 										</div>
 									</div>
@@ -236,16 +238,13 @@
 										<div class="form-group">
 											<label for="exampleInputEmail1">Pekerjaan</label>
 											<select class="form-select" name="pekerjaan" id="pekerjaan" aria-label="Default select example">
-												<option>Pilih...</option>
-												<option value="Guru/Dosen">Guru/Dosen</option>
-												<option value="Petani/Nelayan">Petani/Nelayan</option>
-												<option value="Wiraswasta">Wiraswasta</option>
-												<option value="TNI/POLRI">TNI/POLRI</option>
-												<option value="Pensiunan">Pensiunan</option>
-												<option value="Pegawai Negeri">Pegawai Negeri</option>
-												<option value="Pegawai BUMN/BUMD">Pegawai BUMN/BUMD</option>
-												<option value="Pegawai Swasta">Pegawai Swasta</option>
-												<option value="Lainnya">Lainnya</option>
+												@foreach($pekerjaan as $p)
+												@if($p == $ortu->pekerjaan)
+												<option value="{{$p}}" selected>{{$p}}</option>
+												@else
+												<option value="{{$p}}">{{$p}}</option>
+												@endif
+												@endforeach
 											</select>
 										</div>
 									</div>
@@ -326,7 +325,7 @@
 										</select>
 										@else
 										<select class="form-select" name="kecamatan" id="kecamatan" aria-label="Default select example">
-											<option value="" selected>{{$ortu->kecamatan}}</option>
+											<option value="{{$id_kecamatan}}" selected>{{$ortu->kecamatan}}</option>
 											@foreach($kecamatan as $k)
 											<option value="{{$k->id}}">{{$k->name}}</option>
 											@endforeach
@@ -341,7 +340,7 @@
 										</select>
 										@else
 										<select class="form-select" name="desa" id="desa" aria-label="Default select example">
-											<option value="" selected>{{$ortu->desa}}</option>
+											<option value="{{$id_desa}}" selected>{{$ortu->desa}}</option>
 										</select>
 										@endif
 									</div>
