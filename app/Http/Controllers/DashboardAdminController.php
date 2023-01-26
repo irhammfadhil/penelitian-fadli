@@ -1105,14 +1105,16 @@ class DashboardAdminController extends Controller
         $pendidikan = ['TK', 'SD', 'SMP', 'SMA', 'Diploma 1, 2, 3', 'D4/S1', 'S2', 'S3'];
         $pekerjaan = ['Guru/Dosen', 'Petani/Nelayan', 'Wiraswasta', 'TNI/POLRI', 'Pensiunan', 'Pegawai Negeri', 'Pegawai BUMN/BUMD', 'Pegawai Swasta', 'Lainnya'];
         $id_kecamatan = '';
-        if ($ortu->kecamatan) {
-            $id_kecamatan = District::where('name', '=', $ortu->kecamatan)->where('regency_id', '=', '3509')->first();
-            $id_kecamatan = $id_kecamatan->id;
-        }
         $id_desa = '';
-        if ($ortu->desa) {
-            $id_desa = Village::where('name', '=', $ortu->desa)->where('district_id', '=', $id_kecamatan)->first();
-            $id_desa = $id_desa->id;
+        if ($ortu) {
+            if ($ortu->kecamatan) {
+                $id_kecamatan = District::where('name', '=', $ortu->kecamatan)->where('regency_id', '=', '3509')->first();
+                $id_kecamatan = $id_kecamatan->id;
+            }
+            if ($ortu->desa) {
+                $id_desa = Village::where('name', '=', $ortu->desa)->where('district_id', '=', $id_kecamatan)->first();
+                $id_desa = $id_desa->id;
+            }
         }
 
         return view('dashboard-admin.edit-data', [
@@ -1249,6 +1251,7 @@ class DashboardAdminController extends Controller
         if (!$biodata) {
             $biodata = new Biodata;
         }
+        $biodata->users_id = $request->id;
         $biodata->gender = $gender;
         $biodata->birth_place = $birthplace;
         $biodata->birth_date = $birthdate;
@@ -1260,6 +1263,7 @@ class DashboardAdminController extends Controller
         if (!$ortu) {
             $ortu = new BiodataOrtu;
         }
+        $ortu->users_id = $request->id;
         $ortu->name_ortu = $name_ortu;
         $ortu->address = $address;
         $ortu->pendidikan_terakhir = $pendidikan_terakhir;

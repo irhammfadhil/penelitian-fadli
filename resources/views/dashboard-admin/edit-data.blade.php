@@ -65,6 +65,15 @@
                     <br>
                     <div class="card">
                         <div class="card-body">
+                            @if($message = Session::get('success'))
+                            <div class="alert alert-success" role="alert">
+                                <strong>{{$message}}</strong>
+                            </div>
+                            @elseif($message = Session::get('danger'))
+                            <div class="alert alert-danger" role="alert">
+                                <strong>{{$message}}</strong>
+                            </div>
+                            @endif
                             <form action="" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ app('request')->input('id') }}">
