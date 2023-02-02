@@ -71,7 +71,7 @@
                             </form>
                             <br>
                             @if($result == 1)
-                            <table class="table table-bordered">
+                            <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="text-center" style="width: 15%;">Jenis Kelamin</th>
@@ -140,11 +140,36 @@
                                         <td class="text-center"><b>0%</b></td>
                                         @endif
                                     </tr>
+                                    <tr>
+                                        <td class="text-center" colspan="1">Total</td>
+                                        @php $found = 0; @endphp
+                                        @foreach($query_total as $q)
+                                        <td class="text-center"><b>{{$q->jumlah}}</b></td>
+                                        <td class="text-center">{{$jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912}}/{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</td>
+                                        <td class="text-center">{{$jml_missing_lk_79 + $jml_missing_lk_912 + $jml_missing_pr_79 + $jml_missing_pr_912}}/{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</td>
+                                        <td class="text-center">{{$jml_filling_lk_79 + $jml_filling_lk_912 + $jml_filling_pr_79 + $jml_filling_pr_912}}/{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</td>
+                                        <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
+                                        <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
+                                        <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
+                                        <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                        @php $found = 1; @endphp
+                                        @endforeach
+                                        @if(!$found)
+                                        <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0/0</b></td>
+                                        <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0</b></td>
+                                        <td class="text-center"><b>0%</b></td>
+                                        <td class="text-center"><b>0%</b></td>
+                                        @endif
+                                    </tr>
                                 </tbody>
                             </table>
                             <h3>Berdasarkan Kelompok Usia</h3>
                             <hr>
-                            <table class="table table-bordered">
+                            {{--<table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="text-center" style="width: 15%;">Jenis Kelamin</th>
@@ -271,7 +296,7 @@
                                         @endif
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table>--}}
                             @endif
                         </div>
                     </div>

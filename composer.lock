@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80df7dc010859b03d2244305a3121f35",
+    "content-hash": "1b4f846a3e7073a92e127cd4503f5e19",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1706,6 +1706,47 @@
                 }
             ],
             "time": "2022-04-17T13:12:02+00:00"
+        },
+        {
+            "name": "maestroerror/php-heic-to-jpg",
+            "version": "v0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MaestroError/php-heic-to-jpg.git",
+                "reference": "416573e63d6e8f2636d7886f96190bb575b55551"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MaestroError/php-heic-to-jpg/zipball/416573e63d6e8f2636d7886f96190bb575b55551",
+                "reference": "416573e63d6e8f2636d7886f96190bb575b55551",
+                "shasum": ""
+            },
+            "bin": [
+                "bin/heicToJpg",
+                "bin/heicToJpgWin"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maestroerror\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "maestroerror",
+                    "email": "revaz.gh@gmail.com"
+                }
+            ],
+            "description": "Converts HEIC/HEIF image to JPG type, without any dependencies",
+            "support": {
+                "issues": "https://github.com/MaestroError/php-heic-to-jpg/issues",
+                "source": "https://github.com/MaestroError/php-heic-to-jpg/tree/v0.2"
+            },
+            "time": "2023-01-25T18:43:34+00:00"
         },
         {
             "name": "masterminds/html5",

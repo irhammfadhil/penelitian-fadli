@@ -192,6 +192,9 @@
 			}, {
 				name: 'Usia 10-12 th',
 				data: <?php echo json_encode($sum_912th) ?>
+			},{
+				name: 'Total',
+				data: <?php echo json_encode($sum_total_by_age) ?>
 			}]
 		});
 		Highcharts.chart('container-report-dmft', {

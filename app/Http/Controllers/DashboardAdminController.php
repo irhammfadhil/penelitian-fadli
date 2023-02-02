@@ -26,21 +26,21 @@ class DashboardAdminController extends Controller
         $gender = ['Laki-laki', 'Perempuan'];
         //Responden secara keseluruhan
         $jml_responden = DB::table('users')->select(DB::raw('b.gender as jenis_kelamin,count(b.id) as jumlah'))->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
-            ->where('users.is_deleted', '=', 0)->whereIn('b.gender', $gender)->whereRaw('(YEAR(users.created_at) - YEAR(b.birth_date)) between 7 and 12')->groupBy('b.gender')->get();
+            ->where('users.is_deleted', '=', 0)->whereIn('b.gender', $gender)->whereRaw('(YEAR(users.created_at) - YEAR(b.birth_date)) between 7 and 13')->groupBy('b.gender')->get();
         //Responden berdasarkan usia
         $query_79th = DB::table('users')->select(DB::raw('b.gender as jenis_kelamin,count(b.id) as jumlah'))->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
             ->where('users.is_deleted', '=', 0)->whereIn('b.gender', $gender)->whereRaw('(YEAR(users.created_at) - YEAR(b.birth_date)) >= 7 and (YEAR(users.created_at) - YEAR(b.birth_date)) < 10')->groupBy('b.gender')->get();
         $query_912th = DB::table('users')->select(DB::raw('b.gender as jenis_kelamin,count(b.id) as jumlah'))->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
-            ->where('users.is_deleted', '=', 0)->whereIn('b.gender', $gender)->whereRaw('(YEAR(users.created_at) - YEAR(b.birth_date)) >= 10 and (YEAR(users.created_at) - YEAR(b.birth_date)) <= 12')->groupBy('b.gender')->get();
+            ->where('users.is_deleted', '=', 0)->whereIn('b.gender', $gender)->whereRaw('(YEAR(users.created_at) - YEAR(b.birth_date)) >= 10 and (YEAR(users.created_at) - YEAR(b.birth_date)) <= 13')->groupBy('b.gender')->get();
         //persyaratan dmft dan rti
-        $users_count = Biodata::whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) between 7 and 12')->count();
+        $users_count = Biodata::whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) between 7 and 13')->count();
         $users_id_lk_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
             ->where('gender', '=', 'Laki-laki')->get();
         $users_id_pr_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
             ->where('gender', '=', 'Perempuan')->get();
-        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 12')
+        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 13')
             ->where('gender', '=', 'Laki-laki')->get();
-        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 12')
+        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 13')
             ->where('gender', '=', 'Perempuan')->get();
         //dmft dan rti
         $users_dmft_lk_79 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.deft_score) as rata_rata_rti_sulung'))
@@ -114,6 +114,7 @@ class DashboardAdminController extends Controller
         $gender_sum = [];
         $sum_79th = [0, 0];
         $sum_912th = [0, 0];
+        $sum_total_by_age = [0, 0];
         $array_dmft_79 = [];
         $array_dmft_912 = [];
         $array_deft_79 = [];
@@ -134,26 +135,44 @@ class DashboardAdminController extends Controller
         $array_rti_912 = [];
         $array_rti_sulung_79 = [];
         $array_rti_sulung_912 = [];
+        $sum_responden = 0;
+
         foreach ($jml_responden as $r) {
             array_push($gender_label, $r->jenis_kelamin);
             array_push($gender_sum, (int) $r->jumlah);
+            $sum_responden += $r->jumlah;
         }
+        //push total siswa/responden
+        array_push($gender_label, 'Total');
+        array_push($gender_sum, (int) $sum_responden);
+
+        $sum_laki_laki_by_age = 0;
+        $sum_perempuan_by_age = 0;
+
         //anak umur 7-9 thn
         foreach ($query_79th as $q) {
             if ($q->jenis_kelamin == 'Laki-laki') {
                 $sum_79th[0] = (int) $q->jumlah;
+                $sum_laki_laki_by_age += (int) $q->jumlah;
             } else if ($q->jenis_kelamin == 'Perempuan') {
                 $sum_79th[1] = (int) $q->jumlah;
+                $sum_perempuan_by_age += (int) $q->jumlah;
             }
         }
         //anak umur 9-12 thn
         foreach ($query_912th as $q) {
             if ($q->jenis_kelamin == 'Laki-laki') {
                 $sum_912th[0] = (int) $q->jumlah;
+                $sum_laki_laki_by_age += (int) $q->jumlah;
             } else if ($q->jenis_kelamin == 'Perempuan') {
                 $sum_912th[1] = (int) $q->jumlah;
+                $sum_perempuan_by_age += (int) $q->jumlah;
             }
         }
+        //assign to jml by gender by age
+        $sum_total_by_age[0] = $sum_laki_laki_by_age;
+        $sum_total_by_age[1] = $sum_perempuan_by_age;
+        
         //decay
         foreach ($users_dmf_lk_79_decay as $q) {
             if (!is_null($q->jml_decay)) {
@@ -422,6 +441,7 @@ class DashboardAdminController extends Controller
             'gender_sum' => $gender_sum,
             'sum_79th' => $sum_79th,
             'sum_912th' => $sum_912th,
+            'sum_total_by_age' => $sum_total_by_age,
             'array_dmft_79' => $array_dmft_79,
             'array_dmft_912' => $array_dmft_912,
             'array_deft_79' => $array_deft_79,
@@ -873,19 +893,22 @@ class DashboardAdminController extends Controller
     {
         $query_general = DB::table('users as u')->select(DB::raw('b.gender as jenis_kelamin, count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft,
         sum(u.num_decay)/sum(dmft_score) as rata_rata_rti, sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
-            ->where('u.is_deleted', '=', 0)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 12')->groupBy('b.gender')->get();
+            ->where('u.is_deleted', '=', 0)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 13')->groupBy('b.gender')->get();
         $query_klp_usia = DB::table('users as u')->select(DB::raw('b.gender as jenis_kelamin, case when (YEAR(u.created_at) - YEAR(b.birth_date)) >= 7 and (YEAR(u.created_at) - YEAR(b.birth_date)) < 10 then \'Usia 7-10 th\' 
-        when (YEAR(u.created_at) - YEAR(b.birth_date)) between 10 and 12 then \'Usia 10-12 th\' end as kategori_umur, 
+        when (YEAR(u.created_at) - YEAR(b.birth_date)) between 10 and 13 then \'Usia 10-12 th\' end as kategori_umur, 
         count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft, sum(u.num_decay)/sum(dmft_score) as rata_rata_rti,
         sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
             ->where('u.is_deleted', '=', 0)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 12')->groupBy('b.gender', 'kategori_umur')->get();
+        $query_total = DB::table('users as u')->select(DB::raw('count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft,
+            sum(u.num_decay)/sum(dmft_score) as rata_rata_rti, sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
+            ->where('u.is_deleted', '=', 0)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 13')->get();
         $users_id_lk_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
             ->where('gender', '=', 'Laki-laki')->get();
         $users_id_pr_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
             ->where('gender', '=', 'Perempuan')->get();
-        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 12')
+        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 13')
             ->where('gender', '=', 'Laki-laki')->get();
-        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 12')
+        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 13')
             ->where('gender', '=', 'Perempuan')->get();
         ##decay num.
         $jml_decay_lk_79 = Diagnosis::whereIn('users_id', $users_id_lk_79)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
@@ -945,6 +968,7 @@ class DashboardAdminController extends Controller
         return view('dashboard-admin.laporan.general', [
             'query_klp_usia' => $query_klp_usia,
             'query_general' => $query_general,
+            'query_total' => $query_total,
             'jml_decay_lk_79' => $jml_decay_lk_79,
             'jml_decay_pr_79' => $jml_decay_pr_79,
             'jml_decay_lk_912' => $jml_decay_lk_912,
@@ -985,20 +1009,22 @@ class DashboardAdminController extends Controller
 
         $query_general = DB::table('users as u')->select(DB::raw(' b.gender as jenis_kelamin, count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft,
         sum(u.num_decay)/sum(dmft_score) as rata_rata_rti, sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
-            ->where('b.id_sekolah', '=', $sekolah)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 12')->groupBy('b.gender')->get();
+            ->where('b.id_sekolah', '=', $sekolah)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 13')->groupBy('b.gender')->get();
         $query_klp_usia = DB::table('users as u')->select(DB::raw('b.gender as jenis_kelamin, case when (YEAR(u.created_at) - YEAR(b.birth_date)) >= 7 and (YEAR(u.created_at) - YEAR(b.birth_date)) < 10 then \'Usia 7-10 th\' 
-        when (YEAR(u.created_at) - YEAR(b.birth_date)) between 10 and 12 then \'Usia 10-12 th\' end as kategori_umur, 
+        when (YEAR(u.created_at) - YEAR(b.birth_date)) between 10 and 13 then \'Usia 10-12 th\' end as kategori_umur, 
         count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft, sum(u.num_decay)/sum(dmft_score) as rata_rata_rti,
         sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
-            ->where('u.is_deleted', '=', 0)->where('b.id_sekolah', '=', $sekolah)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 12')->groupBy('b.gender', 'kategori_umur')->get();
-
+            ->where('u.is_deleted', '=', 0)->where('b.id_sekolah', '=', $sekolah)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 13')->groupBy('b.gender', 'kategori_umur')->get();
+        $query_total = DB::table('users as u')->select(DB::raw('count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft,
+            sum(u.num_decay)/sum(dmft_score) as rata_rata_rti, sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
+            ->where('b.id_sekolah', '=', $sekolah)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 13')->get();
         $users_id_lk_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
             ->where('gender', '=', 'Laki-laki')->where('id_sekolah', '=', $sekolah)->get();
         $users_id_pr_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
             ->where('gender', '=', 'Perempuan')->where('id_sekolah', '=', $sekolah)->get();
-        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 12')
+        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 13')
             ->where('gender', '=', 'Laki-laki')->where('id_sekolah', '=', $sekolah)->get();
-        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 12')
+        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 13')
             ->where('gender', '=', 'Perempuan')->where('id_sekolah', '=', $sekolah)->get();
 
         ##decay num.
@@ -1060,6 +1086,7 @@ class DashboardAdminController extends Controller
         return view('dashboard-admin.laporan.by_school', [
             'query_klp_usia' => $query_klp_usia,
             'query_general' => $query_general,
+            'query_total' => $query_total,
             'result' => 1,
             'sekolah' => $sekolah,
             'sekolah_selected' => $request->sekolah,
@@ -1192,7 +1219,7 @@ class DashboardAdminController extends Controller
         }
         if ($gigi_depan) {
             $ext_gigi_depan = $gigi_depan->getClientOriginalExtension();
-            if ($ext_gigi_depan != 'jpg' && $ext_gigi_depan != 'jpeg' && $ext_gigi_depan != 'JPG' && $ext_gigi_depan != 'JPEG' && $ext_gigi_depan != 'heic'&& $ext_gigi_depan != 'HEIC') {
+            if ($ext_gigi_depan != 'jpg' && $ext_gigi_depan != 'jpeg' && $ext_gigi_depan != 'JPG' && $ext_gigi_depan != 'JPEG' && $ext_gigi_depan != 'heic' && $ext_gigi_depan != 'HEIC') {
                 return redirect()->back()->with(['danger' => 'File ekstensi foto yang diizinkan: JPG']);
             }
             $file_name_gigi_depan = $rand . '_' . $gigi_depan->getClientOriginalName();

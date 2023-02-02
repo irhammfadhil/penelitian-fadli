@@ -548,65 +548,65 @@
 												<td class="gigi" id="gigi55" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 55)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 												<td class="gigi" id="gigi54" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 54)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 												<td class="gigi" id="gigi53" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 53)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 												<td class="gigi" id="gigi52" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 52)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 												<td class="gigi" id="gigi51" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 51)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
@@ -629,65 +629,65 @@
 											<td class="gigi" id="gigi61" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 61)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 											<td class="gigi" id="gigi62" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 62)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 											<td class="gigi" id="gigi63" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 63)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 											<td class="gigi" id="gigi64" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 64)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 											<td class="gigi" id="gigi65" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 65)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
@@ -705,65 +705,65 @@
 											<td class="gigi" id="gigi85" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 85)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 											<td class="gigi" id="gigi84" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 84)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 											<td class="gigi" id="gigi83" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 83)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 											<td class="gigi" id="gigi82" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 82)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 											<td class="gigi" id="gigi81" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 81)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
@@ -785,65 +785,65 @@
 											<td class="gigi" id="gigi71" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 71)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 											<td class="gigi" id="gigi72" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 72)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 											<td class="gigi" id="gigi73" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 73)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 											<td class="gigi" id="gigi74" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 74)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
 											<td class="gigi" id="gigi75" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
 											@if($d->id_gigi == 75)
 											@if ($d->is_decay == 1)
-											D
+											d
 											@endif 
 											@if ($d->is_missing == 1)
-											M
+											e
 											@endif
 											@if ($d->is_filling == 1)
-											F
+											f
 											@endif 
 											@endif 
 											@endforeach</td></td>
@@ -1146,11 +1146,13 @@
 									<small>Masukkan ID Gigi, dipisahkan dengan tanda koma. Contoh: 11,12,13,14.</small>
 									<input type="text" class="form-control" name="decay" id="decay" placeholder="ID Gigi Decay">
 									</div>
+									<br>
 									<div class="form-group">
-									<label for="exampleInputEmail1" class="form-label">Missing</label><br>
+									<label for="exampleInputEmail1" class="form-label">Missing/Exfoliate</label><br>
 									<small>Masukkan ID Gigi, dipisahkan dengan tanda koma. Contoh: 11,12,13,14.</small>
 									<input type="text" class="form-control" name="missing" id="missing" placeholder="ID Gigi Missing">
 									</div>
+									<br>
 									<div class="form-group">
 									<label for="exampleInputEmail1" class="form-label">Filling</label><br>
 									<small>Masukkan ID Gigi, dipisahkan dengan tanda koma. Contoh: 11,12,13,14.</small>
