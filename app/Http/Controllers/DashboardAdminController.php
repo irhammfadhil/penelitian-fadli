@@ -33,14 +33,14 @@ class DashboardAdminController extends Controller
         $query_912th = DB::table('users')->select(DB::raw('b.gender as jenis_kelamin,count(b.id) as jumlah'))->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
             ->where('users.is_deleted', '=', 0)->whereIn('b.gender', $gender)->whereRaw('(YEAR(users.created_at) - YEAR(b.birth_date)) >= 10 and (YEAR(users.created_at) - YEAR(b.birth_date)) <= 13')->groupBy('b.gender')->get();
         //persyaratan dmft dan rti
-        $users_count = Biodata::whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) between 7 and 13')->count();
-        $users_id_lk_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
+        $users_count = Biodata::whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 between 7 and 13')->count();
+        $users_id_lk_79 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 10')
             ->where('gender', '=', 'Laki-laki')->get();
-        $users_id_pr_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
+        $users_id_pr_79 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 10')
             ->where('gender', '=', 'Perempuan')->get();
-        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 13')
+        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 <= 13')
             ->where('gender', '=', 'Laki-laki')->get();
-        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 13')
+        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 <= 13')
             ->where('gender', '=', 'Perempuan')->get();
         //dmft dan rti
         $users_dmft_lk_79 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.deft_score) as rata_rata_rti_sulung'))
@@ -172,7 +172,7 @@ class DashboardAdminController extends Controller
         //assign to jml by gender by age
         $sum_total_by_age[0] = $sum_laki_laki_by_age;
         $sum_total_by_age[1] = $sum_perempuan_by_age;
-        
+
         //decay
         foreach ($users_dmf_lk_79_decay as $q) {
             if (!is_null($q->jml_decay)) {
@@ -893,22 +893,33 @@ class DashboardAdminController extends Controller
     {
         $query_general = DB::table('users as u')->select(DB::raw('b.gender as jenis_kelamin, count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft,
         sum(u.num_decay)/sum(dmft_score) as rata_rata_rti, sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
-            ->where('u.is_deleted', '=', 0)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 13')->groupBy('b.gender')->get();
-        $query_klp_usia = DB::table('users as u')->select(DB::raw('b.gender as jenis_kelamin, case when (YEAR(u.created_at) - YEAR(b.birth_date)) >= 7 and (YEAR(u.created_at) - YEAR(b.birth_date)) < 10 then \'Usia 7-10 th\' 
-        when (YEAR(u.created_at) - YEAR(b.birth_date)) between 10 and 13 then \'Usia 10-12 th\' end as kategori_umur, 
+            ->where('u.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->groupBy('b.gender')->get();
+        $query_klp_usia = DB::table('users as u')->select(DB::raw('b.gender as jenis_kelamin, 
+        case when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 8 then \'Usia 7 th\'
+        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 8 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 9 then \'Usia 8 th\'
+        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 9 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 10 then \'Usia 9 th\'
+        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 11 then \'Usia 10 th\'
+        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 11 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 12 then \'Usia 11 th\'     
+        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 between 12 and 13 then \'Usia 12 th\' end as kategori_umur, 
         count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft, sum(u.num_decay)/sum(dmft_score) as rata_rata_rti,
         sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
-            ->where('u.is_deleted', '=', 0)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 12')->groupBy('b.gender', 'kategori_umur')->get();
+            ->where('u.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->groupBy('b.gender', 'kategori_umur')->get();
+
         $query_total = DB::table('users as u')->select(DB::raw('count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft,
             sum(u.num_decay)/sum(dmft_score) as rata_rata_rti, sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
-            ->where('u.is_deleted', '=', 0)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 13')->get();
-        $users_id_lk_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
+            ->where('u.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->get();
+
+        $query_total_by_age = DB::table('users as u')->select(DB::raw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 as age, count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft,
+            sum(u.num_decay)/sum(dmft_score) as rata_rata_rti, sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
+            ->where('u.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->groupByRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0')->get();
+
+        $users_id_lk_79 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 10')
             ->where('gender', '=', 'Laki-laki')->get();
-        $users_id_pr_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
+        $users_id_pr_79 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 10')
             ->where('gender', '=', 'Perempuan')->get();
-        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 13')
+        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 <= 13')
             ->where('gender', '=', 'Laki-laki')->get();
-        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 13')
+        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 <= 13')
             ->where('gender', '=', 'Perempuan')->get();
         ##decay num.
         $jml_decay_lk_79 = Diagnosis::whereIn('users_id', $users_id_lk_79)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
@@ -965,10 +976,194 @@ class DashboardAdminController extends Controller
         $jml_filling_pr_912_anak = Diagnosis::whereIn('users_id', $users_id_pr_912)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
             ->count();
 
+        //pengelompokan usia
+        $users_id_lk_7 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 8')
+            ->where('gender', '=', 'Laki-laki')->get();
+        $users_id_pr_7 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 8')
+            ->where('gender', '=', 'Perempuan')->get();
+        $users_id_lk_8 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 8 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 9')
+            ->where('gender', '=', 'Laki-laki')->get();
+        $users_id_pr_8 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 8 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 9')
+            ->where('gender', '=', 'Perempuan')->get();
+        $users_id_lk_9 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 9 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 10')
+            ->where('gender', '=', 'Laki-laki')->get();
+        $users_id_pr_9 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 9 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 10')
+            ->where('gender', '=', 'Perempuan')->get();
+        $users_id_lk_10 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 11')
+            ->where('gender', '=', 'Laki-laki')->get();
+        $users_id_pr_10 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 11')
+            ->where('gender', '=', 'Perempuan')->get();
+        $users_id_lk_11 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 11 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 12')
+            ->where('gender', '=', 'Laki-laki')->get();
+        $users_id_pr_11 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 11 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 12')
+            ->where('gender', '=', 'Perempuan')->get();
+        $users_id_lk_12 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 12 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 <= 13')
+            ->where('gender', '=', 'Laki-laki')->get();
+        $users_id_pr_12 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 12 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 <= 13')
+            ->where('gender', '=', 'Perempuan')->get();
+
+        ##decay num.
+        $jml_decay_lk_7 = Diagnosis::whereIn('users_id', $users_id_lk_7)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_7 = Diagnosis::whereIn('users_id', $users_id_pr_7)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_8 = Diagnosis::whereIn('users_id', $users_id_lk_8)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_8 = Diagnosis::whereIn('users_id', $users_id_pr_8)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_9 = Diagnosis::whereIn('users_id', $users_id_lk_9)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_9 = Diagnosis::whereIn('users_id', $users_id_pr_9)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_10 = Diagnosis::whereIn('users_id', $users_id_lk_10)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_10 = Diagnosis::whereIn('users_id', $users_id_pr_10)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_11 = Diagnosis::whereIn('users_id', $users_id_lk_11)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_11 = Diagnosis::whereIn('users_id', $users_id_pr_11)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_12 = Diagnosis::whereIn('users_id', $users_id_lk_12)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_12 = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+
+        ##decay num. (anak)
+        $jml_decay_lk_7_anak = Diagnosis::whereIn('users_id', $users_id_lk_7)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_7_anak = Diagnosis::whereIn('users_id', $users_id_pr_7)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_8_anak = Diagnosis::whereIn('users_id', $users_id_lk_8)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_8_anak = Diagnosis::whereIn('users_id', $users_id_pr_8)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_9_anak = Diagnosis::whereIn('users_id', $users_id_lk_9)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_9_anak = Diagnosis::whereIn('users_id', $users_id_pr_9)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_10_anak = Diagnosis::whereIn('users_id', $users_id_lk_10)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_10_anak = Diagnosis::whereIn('users_id', $users_id_pr_10)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_11_anak = Diagnosis::whereIn('users_id', $users_id_lk_11)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_11_anak = Diagnosis::whereIn('users_id', $users_id_pr_11)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_12_anak = Diagnosis::whereIn('users_id', $users_id_lk_12)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_12_anak = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+
+        ## missing
+        $jml_missing_lk_7 = Diagnosis::whereIn('users_id', $users_id_lk_7)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_7 = Diagnosis::whereIn('users_id', $users_id_pr_7)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_8 = Diagnosis::whereIn('users_id', $users_id_lk_8)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_8 = Diagnosis::whereIn('users_id', $users_id_pr_8)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_9 = Diagnosis::whereIn('users_id', $users_id_lk_9)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_9 = Diagnosis::whereIn('users_id', $users_id_pr_9)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_10 = Diagnosis::whereIn('users_id', $users_id_lk_10)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_10 = Diagnosis::whereIn('users_id', $users_id_pr_10)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_11 = Diagnosis::whereIn('users_id', $users_id_lk_11)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_11 = Diagnosis::whereIn('users_id', $users_id_pr_11)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_12 = Diagnosis::whereIn('users_id', $users_id_lk_12)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_12 = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+
+        ##missing num. (anak)
+        $jml_missing_lk_7_anak = Diagnosis::whereIn('users_id', $users_id_lk_7)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_7_anak = Diagnosis::whereIn('users_id', $users_id_pr_7)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_8_anak = Diagnosis::whereIn('users_id', $users_id_lk_8)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_8_anak = Diagnosis::whereIn('users_id', $users_id_pr_8)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_9_anak = Diagnosis::whereIn('users_id', $users_id_lk_9)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_9_anak = Diagnosis::whereIn('users_id', $users_id_pr_9)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_10_anak = Diagnosis::whereIn('users_id', $users_id_lk_10)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_10_anak = Diagnosis::whereIn('users_id', $users_id_pr_10)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_11_anak = Diagnosis::whereIn('users_id', $users_id_lk_11)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_11_anak = Diagnosis::whereIn('users_id', $users_id_pr_11)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_12_anak = Diagnosis::whereIn('users_id', $users_id_lk_12)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_12_anak = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+
+        ##filling
+        ##decay num.
+        $jml_filling_lk_7 = Diagnosis::whereIn('users_id', $users_id_lk_7)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_7 = Diagnosis::whereIn('users_id', $users_id_pr_7)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_8 = Diagnosis::whereIn('users_id', $users_id_lk_8)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_8 = Diagnosis::whereIn('users_id', $users_id_pr_8)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_9 = Diagnosis::whereIn('users_id', $users_id_lk_9)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_9 = Diagnosis::whereIn('users_id', $users_id_pr_9)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_10 = Diagnosis::whereIn('users_id', $users_id_lk_10)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_10 = Diagnosis::whereIn('users_id', $users_id_pr_10)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_11 = Diagnosis::whereIn('users_id', $users_id_lk_11)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_11 = Diagnosis::whereIn('users_id', $users_id_pr_11)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_12 = Diagnosis::whereIn('users_id', $users_id_lk_12)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_12 = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+
+        ##filling num. (anak)
+        $jml_filling_lk_7_anak = Diagnosis::whereIn('users_id', $users_id_lk_7)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_7_anak = Diagnosis::whereIn('users_id', $users_id_pr_7)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_8_anak = Diagnosis::whereIn('users_id', $users_id_lk_8)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_8_anak = Diagnosis::whereIn('users_id', $users_id_pr_8)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_9_anak = Diagnosis::whereIn('users_id', $users_id_lk_9)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_9_anak = Diagnosis::whereIn('users_id', $users_id_pr_9)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_10_anak = Diagnosis::whereIn('users_id', $users_id_lk_10)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_10_anak = Diagnosis::whereIn('users_id', $users_id_pr_10)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_11_anak = Diagnosis::whereIn('users_id', $users_id_lk_11)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_11_anak = Diagnosis::whereIn('users_id', $users_id_pr_11)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_12_anak = Diagnosis::whereIn('users_id', $users_id_lk_12)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_12_anak = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+
         return view('dashboard-admin.laporan.general', [
             'query_klp_usia' => $query_klp_usia,
             'query_general' => $query_general,
             'query_total' => $query_total,
+            'query_total_by_age' => $query_total_by_age,
             'jml_decay_lk_79' => $jml_decay_lk_79,
             'jml_decay_pr_79' => $jml_decay_pr_79,
             'jml_decay_lk_912' => $jml_decay_lk_912,
@@ -993,6 +1188,85 @@ class DashboardAdminController extends Controller
             'jml_filling_pr_79_anak' => $jml_filling_pr_79_anak,
             'jml_filling_lk_912_anak' => $jml_filling_lk_912_anak,
             'jml_filling_pr_912_anak' => $jml_filling_pr_912_anak,
+            #Decay
+            'jml_decay_lk_7' => $jml_decay_lk_7,
+            'jml_decay_pr_7' => $jml_decay_pr_7,
+            'jml_decay_lk_8' => $jml_decay_lk_8,
+            'jml_decay_pr_8' => $jml_decay_pr_8,
+            'jml_decay_lk_9' => $jml_decay_lk_9,
+            'jml_decay_pr_9' => $jml_decay_pr_9,
+            'jml_decay_lk_10' => $jml_decay_lk_10,
+            'jml_decay_pr_10' => $jml_decay_pr_10,
+            'jml_decay_lk_11' => $jml_decay_lk_11,
+            'jml_decay_pr_11' => $jml_decay_pr_11,
+            'jml_decay_lk_12' => $jml_decay_lk_12,
+            'jml_decay_pr_12' => $jml_decay_pr_12,
+            #Decay-anak
+            'jml_decay_lk_7_anak' => $jml_decay_lk_7_anak,
+            'jml_decay_pr_7_anak' => $jml_decay_pr_7_anak,
+            'jml_decay_lk_8_anak' => $jml_decay_lk_8_anak,
+            'jml_decay_pr_8_anak' => $jml_decay_pr_8_anak,
+            'jml_decay_lk_9_anak' => $jml_decay_lk_9_anak,
+            'jml_decay_pr_9_anak' => $jml_decay_pr_9_anak,
+            'jml_decay_lk_10_anak' => $jml_decay_lk_10_anak,
+            'jml_decay_pr_10_anak' => $jml_decay_pr_10_anak,
+            'jml_decay_lk_11_anak' => $jml_decay_lk_11_anak,
+            'jml_decay_pr_11_anak' => $jml_decay_pr_11_anak,
+            'jml_decay_lk_12_anak' => $jml_decay_lk_12_anak,
+            'jml_decay_pr_12_anak' => $jml_decay_pr_12_anak,
+            #Missing
+            'jml_missing_lk_7' => $jml_missing_lk_7,
+            'jml_missing_pr_7' => $jml_missing_pr_7,
+            'jml_missing_lk_8' => $jml_missing_lk_8,
+            'jml_missing_pr_8' => $jml_missing_pr_8,
+            'jml_missing_lk_9' => $jml_missing_lk_9,
+            'jml_missing_pr_9' => $jml_missing_pr_9,
+            'jml_missing_lk_10' => $jml_missing_lk_10,
+            'jml_missing_pr_10' => $jml_missing_pr_10,
+            'jml_missing_lk_11' => $jml_missing_lk_11,
+            'jml_missing_pr_11' => $jml_missing_pr_11,
+            'jml_missing_lk_12' => $jml_missing_lk_12,
+            'jml_missing_pr_12' => $jml_missing_pr_12,
+            #missing-anak
+            'jml_missing_lk_7_anak' => $jml_missing_lk_7_anak,
+            'jml_missing_pr_7_anak' => $jml_missing_pr_7_anak,
+            'jml_missing_lk_8_anak' => $jml_missing_lk_8_anak,
+            'jml_missing_pr_8_anak' => $jml_missing_pr_8_anak,
+            'jml_missing_lk_9_anak' => $jml_missing_lk_9_anak,
+            'jml_missing_pr_9_anak' => $jml_missing_pr_9_anak,
+            'jml_missing_lk_10_anak' => $jml_missing_lk_10_anak,
+            'jml_missing_pr_10_anak' => $jml_missing_pr_10_anak,
+            'jml_missing_lk_11_anak' => $jml_missing_lk_11_anak,
+            'jml_missing_pr_11_anak' => $jml_missing_pr_11_anak,
+            'jml_missing_lk_12_anak' => $jml_missing_lk_12_anak,
+            'jml_missing_pr_12_anak' => $jml_missing_pr_12_anak,
+            #filling
+            'jml_filling_lk_7' => $jml_filling_lk_7,
+            'jml_filling_pr_7' => $jml_filling_pr_7,
+            'jml_filling_lk_8' => $jml_filling_lk_8,
+            'jml_filling_pr_8' => $jml_filling_pr_8,
+            'jml_filling_lk_9' => $jml_filling_lk_9,
+            'jml_filling_pr_9' => $jml_filling_pr_9,
+            'jml_filling_lk_10' => $jml_filling_lk_10,
+            'jml_filling_pr_10' => $jml_filling_pr_10,
+            'jml_filling_lk_11' => $jml_filling_lk_11,
+            'jml_filling_pr_11' => $jml_filling_pr_11,
+            'jml_filling_lk_12' => $jml_filling_lk_12,
+            'jml_filling_pr_12' => $jml_filling_pr_12,
+            #filling-anak
+            'jml_filling_lk_7_anak' => $jml_filling_lk_7_anak,
+            'jml_filling_pr_7_anak' => $jml_filling_pr_7_anak,
+            'jml_filling_lk_8_anak' => $jml_filling_lk_8_anak,
+            'jml_filling_pr_8_anak' => $jml_filling_pr_8_anak,
+            'jml_filling_lk_9_anak' => $jml_filling_lk_9_anak,
+            'jml_filling_pr_9_anak' => $jml_filling_pr_9_anak,
+            'jml_filling_lk_10_anak' => $jml_filling_lk_10_anak,
+            'jml_filling_pr_10_anak' => $jml_filling_pr_10_anak,
+            'jml_filling_lk_11_anak' => $jml_filling_lk_11_anak,
+            'jml_filling_pr_11_anak' => $jml_filling_pr_11_anak,
+            'jml_filling_lk_12_anak' => $jml_filling_lk_12_anak,
+            'jml_filling_pr_12_anak' => $jml_filling_pr_12_anak,
+
         ]);
     }
     public function generateReportBySchool()
@@ -1009,22 +1283,58 @@ class DashboardAdminController extends Controller
 
         $query_general = DB::table('users as u')->select(DB::raw(' b.gender as jenis_kelamin, count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft,
         sum(u.num_decay)/sum(dmft_score) as rata_rata_rti, sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
-            ->where('b.id_sekolah', '=', $sekolah)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 13')->groupBy('b.gender')->get();
-        $query_klp_usia = DB::table('users as u')->select(DB::raw('b.gender as jenis_kelamin, case when (YEAR(u.created_at) - YEAR(b.birth_date)) >= 7 and (YEAR(u.created_at) - YEAR(b.birth_date)) < 10 then \'Usia 7-10 th\' 
-        when (YEAR(u.created_at) - YEAR(b.birth_date)) between 10 and 13 then \'Usia 10-12 th\' end as kategori_umur, 
-        count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft, sum(u.num_decay)/sum(dmft_score) as rata_rata_rti,
-        sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
-            ->where('u.is_deleted', '=', 0)->where('b.id_sekolah', '=', $sekolah)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 13')->groupBy('b.gender', 'kategori_umur')->get();
+            ->where('b.id_sekolah', '=', $sekolah)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->groupBy('b.gender')->get();
+        $query_klp_usia = DB::table('users as u')->select(DB::raw('b.gender as jenis_kelamin, 
+            case when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 8 then \'Usia 7 th\'
+            when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 8 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 9 then \'Usia 8 th\'
+            when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 9 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 10 then \'Usia 9 th\'
+            when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 11 then \'Usia 10 th\'
+            when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 11 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 12 then \'Usia 11 th\'     
+            when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 between 12 and 13 then \'Usia 12 th\' end as kategori_umur, 
+            count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft, sum(u.num_decay)/sum(dmft_score) as rata_rata_rti,
+            sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
+            ->where('u.is_deleted', '=', 0)->where('b.id_sekolah', '=', $sekolah)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->groupBy('b.gender', 'kategori_umur')->get();
         $query_total = DB::table('users as u')->select(DB::raw('count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft,
             sum(u.num_decay)/sum(dmft_score) as rata_rata_rti, sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
-            ->where('b.id_sekolah', '=', $sekolah)->whereRaw('(YEAR(u.created_at) - YEAR(b.birth_date)) between 7 and 13')->get();
-        $users_id_lk_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
+            ->where('b.id_sekolah', '=', $sekolah)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->get();
+
+        $query_total_by_age = DB::table('users as u')->select(DB::raw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 as age, count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft,
+            sum(u.num_decay)/sum(dmft_score) as rata_rata_rti, sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
+            ->where('u.is_deleted', '=', 0)->where('b.id_sekolah', '=', $sekolah)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->groupByRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0')->get();
+
+        $users_id_lk_79 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 10')
             ->where('gender', '=', 'Laki-laki')->where('id_sekolah', '=', $sekolah)->get();
-        $users_id_pr_79 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 7 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) < 10')
+        $users_id_pr_79 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 10')
             ->where('gender', '=', 'Perempuan')->where('id_sekolah', '=', $sekolah)->get();
-        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 13')
+        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 <= 13')
             ->where('gender', '=', 'Laki-laki')->where('id_sekolah', '=', $sekolah)->get();
-        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('(YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) >= 10 and (YEAR(users_biodata.created_at) - YEAR(users_biodata.birth_date)) <= 13')
+        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 <= 13')
+            ->where('gender', '=', 'Perempuan')->where('id_sekolah', '=', $sekolah)->get();
+
+        //pengelompokan usia
+        $users_id_lk_7 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 8')
+            ->where('gender', '=', 'Laki-laki')->where('id_sekolah', '=', $sekolah)->get();
+        $users_id_pr_7 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 8')
+            ->where('gender', '=', 'Perempuan')->where('id_sekolah', '=', $sekolah)->get();
+        $users_id_lk_8 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 8 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 9')
+            ->where('gender', '=', 'Laki-laki')->where('id_sekolah', '=', $sekolah)->get();
+        $users_id_pr_8 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 8 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 9')
+            ->where('gender', '=', 'Perempuan')->where('id_sekolah', '=', $sekolah)->get();
+        $users_id_lk_9 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 9 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 10')
+            ->where('gender', '=', 'Laki-laki')->where('id_sekolah', '=', $sekolah)->get();
+        $users_id_pr_9 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 9 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 10')
+            ->where('gender', '=', 'Perempuan')->where('id_sekolah', '=', $sekolah)->get();
+        $users_id_lk_10 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 11')
+            ->where('gender', '=', 'Laki-laki')->where('id_sekolah', '=', $sekolah)->get();
+        $users_id_pr_10 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 11')
+            ->where('gender', '=', 'Perempuan')->where('id_sekolah', '=', $sekolah)->get();
+        $users_id_lk_11 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 11 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 12')
+            ->where('gender', '=', 'Laki-laki')->where('id_sekolah', '=', $sekolah)->get();
+        $users_id_pr_11 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 11 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 12')
+            ->where('gender', '=', 'Perempuan')->where('id_sekolah', '=', $sekolah)->get();
+        $users_id_lk_12 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 12 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 <= 13')
+            ->where('gender', '=', 'Laki-laki')->where('id_sekolah', '=', $sekolah)->get();
+        $users_id_pr_12 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 12 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 <= 13')
             ->where('gender', '=', 'Perempuan')->where('id_sekolah', '=', $sekolah)->get();
 
         ##decay num.
@@ -1081,6 +1391,163 @@ class DashboardAdminController extends Controller
             ->count();
         $jml_filling_pr_912_anak = Diagnosis::whereIn('users_id', $users_id_pr_912)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
             ->count();
+            
+        ##decay num.
+        $jml_decay_lk_7 = Diagnosis::whereIn('users_id', $users_id_lk_7)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_7 = Diagnosis::whereIn('users_id', $users_id_pr_7)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_8 = Diagnosis::whereIn('users_id', $users_id_lk_8)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_8 = Diagnosis::whereIn('users_id', $users_id_pr_8)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_9 = Diagnosis::whereIn('users_id', $users_id_lk_9)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_9 = Diagnosis::whereIn('users_id', $users_id_pr_9)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_10 = Diagnosis::whereIn('users_id', $users_id_lk_10)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_10 = Diagnosis::whereIn('users_id', $users_id_pr_10)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_11 = Diagnosis::whereIn('users_id', $users_id_lk_11)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_11 = Diagnosis::whereIn('users_id', $users_id_pr_11)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_12 = Diagnosis::whereIn('users_id', $users_id_lk_12)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_12 = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
+            ->count();
+
+        ##decay num. (anak)
+        $jml_decay_lk_7_anak = Diagnosis::whereIn('users_id', $users_id_lk_7)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_7_anak = Diagnosis::whereIn('users_id', $users_id_pr_7)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_8_anak = Diagnosis::whereIn('users_id', $users_id_lk_8)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_8_anak = Diagnosis::whereIn('users_id', $users_id_pr_8)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_9_anak = Diagnosis::whereIn('users_id', $users_id_lk_9)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_9_anak = Diagnosis::whereIn('users_id', $users_id_pr_9)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_10_anak = Diagnosis::whereIn('users_id', $users_id_lk_10)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_10_anak = Diagnosis::whereIn('users_id', $users_id_pr_10)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_11_anak = Diagnosis::whereIn('users_id', $users_id_lk_11)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_11_anak = Diagnosis::whereIn('users_id', $users_id_pr_11)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_lk_12_anak = Diagnosis::whereIn('users_id', $users_id_lk_12)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+        $jml_decay_pr_12_anak = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
+            ->count();
+
+        ## missing
+        $jml_missing_lk_7 = Diagnosis::whereIn('users_id', $users_id_lk_7)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_7 = Diagnosis::whereIn('users_id', $users_id_pr_7)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_8 = Diagnosis::whereIn('users_id', $users_id_lk_8)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_8 = Diagnosis::whereIn('users_id', $users_id_pr_8)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_9 = Diagnosis::whereIn('users_id', $users_id_lk_9)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_9 = Diagnosis::whereIn('users_id', $users_id_pr_9)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_10 = Diagnosis::whereIn('users_id', $users_id_lk_10)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_10 = Diagnosis::whereIn('users_id', $users_id_pr_10)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_11 = Diagnosis::whereIn('users_id', $users_id_lk_11)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_11 = Diagnosis::whereIn('users_id', $users_id_pr_11)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_12 = Diagnosis::whereIn('users_id', $users_id_lk_12)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_12 = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
+            ->count();
+
+        ##missing num. (anak)
+        $jml_missing_lk_7_anak = Diagnosis::whereIn('users_id', $users_id_lk_7)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_7_anak = Diagnosis::whereIn('users_id', $users_id_pr_7)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_8_anak = Diagnosis::whereIn('users_id', $users_id_lk_8)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_8_anak = Diagnosis::whereIn('users_id', $users_id_pr_8)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_9_anak = Diagnosis::whereIn('users_id', $users_id_lk_9)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_9_anak = Diagnosis::whereIn('users_id', $users_id_pr_9)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_10_anak = Diagnosis::whereIn('users_id', $users_id_lk_10)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_10_anak = Diagnosis::whereIn('users_id', $users_id_pr_10)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_11_anak = Diagnosis::whereIn('users_id', $users_id_lk_11)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_11_anak = Diagnosis::whereIn('users_id', $users_id_pr_11)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_lk_12_anak = Diagnosis::whereIn('users_id', $users_id_lk_12)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+        $jml_missing_pr_12_anak = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
+            ->count();
+
+        ##filling
+        ##decay num.
+        $jml_filling_lk_7 = Diagnosis::whereIn('users_id', $users_id_lk_7)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_7 = Diagnosis::whereIn('users_id', $users_id_pr_7)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_8 = Diagnosis::whereIn('users_id', $users_id_lk_8)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_8 = Diagnosis::whereIn('users_id', $users_id_pr_8)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_9 = Diagnosis::whereIn('users_id', $users_id_lk_9)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_9 = Diagnosis::whereIn('users_id', $users_id_pr_9)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_10 = Diagnosis::whereIn('users_id', $users_id_lk_10)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_10 = Diagnosis::whereIn('users_id', $users_id_pr_10)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_11 = Diagnosis::whereIn('users_id', $users_id_lk_11)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_11 = Diagnosis::whereIn('users_id', $users_id_pr_11)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_12 = Diagnosis::whereIn('users_id', $users_id_lk_12)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_12 = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
+            ->count();
+
+        ##filling num. (anak)
+        $jml_filling_lk_7_anak = Diagnosis::whereIn('users_id', $users_id_lk_7)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_7_anak = Diagnosis::whereIn('users_id', $users_id_pr_7)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_8_anak = Diagnosis::whereIn('users_id', $users_id_lk_8)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_8_anak = Diagnosis::whereIn('users_id', $users_id_pr_8)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_9_anak = Diagnosis::whereIn('users_id', $users_id_lk_9)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_9_anak = Diagnosis::whereIn('users_id', $users_id_pr_9)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_10_anak = Diagnosis::whereIn('users_id', $users_id_lk_10)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_10_anak = Diagnosis::whereIn('users_id', $users_id_pr_10)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_11_anak = Diagnosis::whereIn('users_id', $users_id_lk_11)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_11_anak = Diagnosis::whereIn('users_id', $users_id_pr_11)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_lk_12_anak = Diagnosis::whereIn('users_id', $users_id_lk_12)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
+        $jml_filling_pr_12_anak = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
+            ->count();
 
         $sekolah = ['SDN Biting 04', 'SDN Candijati 01'];
         return view('dashboard-admin.laporan.by_school', [
@@ -1090,6 +1557,7 @@ class DashboardAdminController extends Controller
             'result' => 1,
             'sekolah' => $sekolah,
             'sekolah_selected' => $request->sekolah,
+            'query_total_by_age' => $query_total_by_age,
             'jml_decay_lk_79' => $jml_decay_lk_79,
             'jml_decay_pr_79' => $jml_decay_pr_79,
             'jml_decay_lk_912' => $jml_decay_lk_912,
@@ -1114,6 +1582,84 @@ class DashboardAdminController extends Controller
             'jml_filling_pr_79_anak' => $jml_filling_pr_79_anak,
             'jml_filling_lk_912_anak' => $jml_filling_lk_912_anak,
             'jml_filling_pr_912_anak' => $jml_filling_pr_912_anak,
+            #Decay
+            'jml_decay_lk_7' => $jml_decay_lk_7,
+            'jml_decay_pr_7' => $jml_decay_pr_7,
+            'jml_decay_lk_8' => $jml_decay_lk_8,
+            'jml_decay_pr_8' => $jml_decay_pr_8,
+            'jml_decay_lk_9' => $jml_decay_lk_9,
+            'jml_decay_pr_9' => $jml_decay_pr_9,
+            'jml_decay_lk_10' => $jml_decay_lk_10,
+            'jml_decay_pr_10' => $jml_decay_pr_10,
+            'jml_decay_lk_11' => $jml_decay_lk_11,
+            'jml_decay_pr_11' => $jml_decay_pr_11,
+            'jml_decay_lk_12' => $jml_decay_lk_12,
+            'jml_decay_pr_12' => $jml_decay_pr_12,
+            #Decay-anak
+            'jml_decay_lk_7_anak' => $jml_decay_lk_7_anak,
+            'jml_decay_pr_7_anak' => $jml_decay_pr_7_anak,
+            'jml_decay_lk_8_anak' => $jml_decay_lk_8_anak,
+            'jml_decay_pr_8_anak' => $jml_decay_pr_8_anak,
+            'jml_decay_lk_9_anak' => $jml_decay_lk_9_anak,
+            'jml_decay_pr_9_anak' => $jml_decay_pr_9_anak,
+            'jml_decay_lk_10_anak' => $jml_decay_lk_10_anak,
+            'jml_decay_pr_10_anak' => $jml_decay_pr_10_anak,
+            'jml_decay_lk_11_anak' => $jml_decay_lk_11_anak,
+            'jml_decay_pr_11_anak' => $jml_decay_pr_11_anak,
+            'jml_decay_lk_12_anak' => $jml_decay_lk_12_anak,
+            'jml_decay_pr_12_anak' => $jml_decay_pr_12_anak,
+            #Missing
+            'jml_missing_lk_7' => $jml_missing_lk_7,
+            'jml_missing_pr_7' => $jml_missing_pr_7,
+            'jml_missing_lk_8' => $jml_missing_lk_8,
+            'jml_missing_pr_8' => $jml_missing_pr_8,
+            'jml_missing_lk_9' => $jml_missing_lk_9,
+            'jml_missing_pr_9' => $jml_missing_pr_9,
+            'jml_missing_lk_10' => $jml_missing_lk_10,
+            'jml_missing_pr_10' => $jml_missing_pr_10,
+            'jml_missing_lk_11' => $jml_missing_lk_11,
+            'jml_missing_pr_11' => $jml_missing_pr_11,
+            'jml_missing_lk_12' => $jml_missing_lk_12,
+            'jml_missing_pr_12' => $jml_missing_pr_12,
+            #missing-anak
+            'jml_missing_lk_7_anak' => $jml_missing_lk_7_anak,
+            'jml_missing_pr_7_anak' => $jml_missing_pr_7_anak,
+            'jml_missing_lk_8_anak' => $jml_missing_lk_8_anak,
+            'jml_missing_pr_8_anak' => $jml_missing_pr_8_anak,
+            'jml_missing_lk_9_anak' => $jml_missing_lk_9_anak,
+            'jml_missing_pr_9_anak' => $jml_missing_pr_9_anak,
+            'jml_missing_lk_10_anak' => $jml_missing_lk_10_anak,
+            'jml_missing_pr_10_anak' => $jml_missing_pr_10_anak,
+            'jml_missing_lk_11_anak' => $jml_missing_lk_11_anak,
+            'jml_missing_pr_11_anak' => $jml_missing_pr_11_anak,
+            'jml_missing_lk_12_anak' => $jml_missing_lk_12_anak,
+            'jml_missing_pr_12_anak' => $jml_missing_pr_12_anak,
+            #filling
+            'jml_filling_lk_7' => $jml_filling_lk_7,
+            'jml_filling_pr_7' => $jml_filling_pr_7,
+            'jml_filling_lk_8' => $jml_filling_lk_8,
+            'jml_filling_pr_8' => $jml_filling_pr_8,
+            'jml_filling_lk_9' => $jml_filling_lk_9,
+            'jml_filling_pr_9' => $jml_filling_pr_9,
+            'jml_filling_lk_10' => $jml_filling_lk_10,
+            'jml_filling_pr_10' => $jml_filling_pr_10,
+            'jml_filling_lk_11' => $jml_filling_lk_11,
+            'jml_filling_pr_11' => $jml_filling_pr_11,
+            'jml_filling_lk_12' => $jml_filling_lk_12,
+            'jml_filling_pr_12' => $jml_filling_pr_12,
+            #filling-anak
+            'jml_filling_lk_7_anak' => $jml_filling_lk_7_anak,
+            'jml_filling_pr_7_anak' => $jml_filling_pr_7_anak,
+            'jml_filling_lk_8_anak' => $jml_filling_lk_8_anak,
+            'jml_filling_pr_8_anak' => $jml_filling_pr_8_anak,
+            'jml_filling_lk_9_anak' => $jml_filling_lk_9_anak,
+            'jml_filling_pr_9_anak' => $jml_filling_pr_9_anak,
+            'jml_filling_lk_10_anak' => $jml_filling_lk_10_anak,
+            'jml_filling_pr_10_anak' => $jml_filling_pr_10_anak,
+            'jml_filling_lk_11_anak' => $jml_filling_lk_11_anak,
+            'jml_filling_pr_11_anak' => $jml_filling_pr_11_anak,
+            'jml_filling_lk_12_anak' => $jml_filling_lk_12_anak,
+            'jml_filling_pr_12_anak' => $jml_filling_pr_12_anak,
         ]);
     }
     public function getEditData(Request $request)

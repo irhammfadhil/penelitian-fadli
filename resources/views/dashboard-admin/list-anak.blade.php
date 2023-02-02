@@ -47,7 +47,7 @@
 									<th scope="col" class="text-center">Tanggal Pendaftaran</th>
 									<th scope="col" class="text-center">Status Verifikasi Foto</th>
 									<th scope="col" class="text-center">Komentar Verifikasi Foto</th>
-									<th scope="col" class="text-center" style="width: 20%;">Tindakan</th>
+									<th scope="col" class="text-center" style="width: 10%;">Tindakan</th>
 									</tr>
 								</thead>
 								<tbody>

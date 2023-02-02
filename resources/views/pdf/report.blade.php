@@ -121,6 +121,8 @@
     }
     </style>
     <h3 class="text-center">Laporan Hasil Diagnosis</h3>
+    <h5 class="text-center">SIMETRI: Sistem Informasi Penilaian Required Treatment Index Gigi Anak</h5>
+    <h5 class="text-center">Fakultas Kedokteran Gigi, Universitas Jember</h5>
     <hr>
     <h5>Informasi Pribadi</h5>
     <div class="row">
@@ -221,7 +223,9 @@
             Foto Gigi Tampak Senyum Penuh
         </div>
         <div class="col-lg-9">
+            @if($foto->foto_senyum)
             : <img src="{{public_path($foto->foto_senyum)}}" style="width: 200px; height: auto;">
+            @endif
         </div>
     </div>
     <div class="row">
@@ -238,7 +242,9 @@
             Foto Gigi Tampak Depan
         </div>
         <div class="col-lg-9">
+            @if($foto->foto_depan)
             : <img src="{{public_path($foto->foto_depan)}}" style="width: 200px; height: auto;">
+            @endif
         </div>
     </div>
     <div class="row">
@@ -256,7 +262,9 @@
             Foto Gigi Tampak Kiri
         </div>
         <div class="col-lg-9">
+            @if($foto->foto_kiri)
             : <img src="{{public_path($foto->foto_kiri)}}" style="width: 200px; height: auto;">
+            @endif
         </div>
     </div>
     <div class="row">
@@ -273,7 +281,9 @@
             Foto Gigi Tampak Atas
         </div>
         <div class="col-lg-9">
+            @if($foto->foto_atas)
             : <img src="{{public_path($foto->foto_atas)}}" style="width: 200px; height: auto;">
+            @endif
         </div>
     </div>
     <div class="row">
@@ -290,7 +300,9 @@
             Foto Gigi Tampak Kanan
         </div>
         <div class="col-lg-9">
+            @if($foto->foto_kanan)
             : <img src="{{public_path($foto->foto_kanan)}}" style="width: 200px; height: auto;">
+            @endif
         </div>
     </div>
     <div class="row">
@@ -307,7 +319,9 @@
             Foto Gigi Tampak Bawah
         </div>
         <div class="col-lg-9">
+            @if($foto->foto_bawah)
             : <img src="{{public_path($foto->foto_bawah)}}" style="width: 200px; height: auto;">
+            @endif
         </div>
     </div>
     <div class="row">

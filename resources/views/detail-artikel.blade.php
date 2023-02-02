@@ -36,7 +36,26 @@
 </head>
 
 <body>
-
+@php
+function tanggal_indo($tanggal)
+{
+	$bulan = array (1 =>   'Januari',
+				'Februari',
+				'Maret',
+				'April',
+				'Mei',
+				'Juni',
+				'Juli',
+				'Agustus',
+				'September',
+				'Oktober',
+				'November',
+				'Desember'
+			);
+	$split = explode('-', $tanggal);
+	return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
+}
+@endphp
   @include('layouts.navbar')
 
   <!-- ======= Hero Section ======= -->
@@ -47,7 +66,7 @@
       <div class="container">
 
         <h1>{{$artikel->title}}</h1>
-        <p>Dibuat oleh admin tanggal {{date('Y-m-d', strtotime($artikel->created_at))}}</p>
+        <p>Dibuat oleh admin tanggal @php echo(tanggal_indo(date('Y-m-d', strtotime($artikel->created_at)))) @endphp</p>
         <hr>
         <div class="gambar text-center">
           <img src="{{asset($artikel->image)}}" class="img-fluid">
