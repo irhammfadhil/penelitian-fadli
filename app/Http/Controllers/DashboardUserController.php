@@ -20,7 +20,29 @@ class DashboardUserController extends Controller
 {
     public function index()
     {
-        return view('dashboard-user.index');
+        $sum_gigi_tetap = Diagnosis::where('users_id', '=', Auth::user()->id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+        $sum_gigi_sulung = Diagnosis::where('users_id', '=', Auth::user()->id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [51, 85])->count();
+
+        $rti_index = 0;
+        $rti_index_sulung = 0;
+
+        if(Auth::user()->dmft_score == 0 || !Auth::user()->dmft_score) {
+            $rti_index = 0;
+        }
+        else {
+            $rti_index = ($sum_gigi_tetap / Auth::user()->dmft_score)*100;
+        }
+        if(Auth::user()->deft_score == 0 || !Auth::user()->deft_score) {
+            $rti_index_sulung = 0;
+        }
+        else {
+            $rti_index_sulung = ($sum_gigi_sulung / Auth::user()->deft_score)*100;
+        }
+        
+        return view('dashboard-user.index', [
+            'rti_index' => $rti_index,
+            'rti_index_sulung' => $rti_index_sulung,
+        ]);
     }
     public function getBiodata()
     {
