@@ -1114,9 +1114,15 @@
 							def-t: <b>{{$user->deft_score}}</b>, Kriteria def-t: <b>{{$kriteria_deft}}</b>
 							<br>
 							@if($user->dmft_score == 0)
-							RTI: <b>0%</b>
+							RTI Dewasa: <b>0%</b>
 							@else
-							RTI: <b>{{number_format($sum_decay_tetap/$user->dmft_score, 2)*100}}%</b>
+							RTI Dewasa: <b>{{number_format($sum_decay_tetap/$user->dmft_score, 2)*100}}%</b>
+							@endif
+							<br>
+							@if($user->dmft_score == 0)
+							RTI Sulung: <b>0%</b>
+							@else
+							RTI Sulung: <b>{{number_format($sum_decay_susu/$user->deft_score, 2)*100}}%</b>
 							@endif
 							<hr>
 							<h4>Saran</h4>
