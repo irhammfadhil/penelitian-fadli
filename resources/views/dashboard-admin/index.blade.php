@@ -38,11 +38,11 @@
 					<br>
 					<div class="row">
 						<div class="col-lg-6">
-							<h4>Jumlah Responden</h4>
+							<h4>Rekapitulasi Responden</h4>
 							<div id="container-report-overall"></div>
 						</div>
 						<div class="col-lg-6">
-							<h4>Jumlah Responden Berdasarkan Usia</h4>
+							<h4>Rekapitulasi Responden Berdasarkan Usia</h4>
 							<div id="container-report-overall-by-age"></div>
 						</div>
 					</div>
@@ -53,7 +53,7 @@
 							<div id="container-report-dmft"></div>
 						</div>
 						<div class="col-lg-6">
-							<h4>Rekapitulasi Indeks DEF-T</h4>
+							<h4>Rekapitulasi Indeks def-t</h4>
 							<div id="container-report-deft"></div>
 						</div>
 					</div>
@@ -71,11 +71,11 @@
 					<br>
 					<div class="row">
 						<div class="col-lg-6">
-							<h4>Rekapitulasi Jumlah DEF usia 7-10 tahun</h4>
+							<h4>Rekapitulasi Jumlah def usia 7-10 tahun</h4>
 							<div id="container-report-dmf_7_anak"></div>
 						</div>
 						<div class="col-lg-6">
-							<h4>Rekapitulasi Jumlah DEF usia 10-12 tahun</h4>
+							<h4>Rekapitulasi Jumlah def usia 10-12 tahun</h4>
 							<div id="container-report-dmf_10_anak"></div>
 						</div>
 					</div>
@@ -118,7 +118,7 @@
 				type: 'column'
 			},
 			title: {
-				text: 'Jumlah Responden Keseluruhan'
+				text: 'Rekapitulasi Responden Keseluruhan'
 			},
 			subtitle: {
 				text: 'Sistem Informasi Penilaian Required Treatment Index Gigi Anak'
@@ -130,7 +130,7 @@
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Jumlah Responden'
+					text: 'Rekapitulasi Responden'
 				}
 			},
 			tooltip: {
@@ -157,7 +157,7 @@
 				type: 'column'
 			},
 			title: {
-				text: 'Jumlah Responden Berdasarkan Usia'
+				text: 'Rekapitulasi Responden Berdasarkan Usia'
 			},
 			subtitle: {
 				text: 'Sistem Informasi Penilaian Required Treatment Index Gigi Anak'
@@ -169,7 +169,7 @@
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Jumlah Responden'
+					text: 'Rekapitulasi Responden'
 				}
 			},
 			tooltip: {
@@ -334,7 +334,7 @@
 				type: 'column'
 			},
 			title: {
-				text: 'Rekapitulasi Jumlah DEF pada Anak Usia 7-10 Tahun'
+				text: 'Rekapitulasi Jumlah def pada Anak Usia 7-10 Tahun'
 			},
 			subtitle: {
 				text: 'Sistem Informasi Penilaian Required Treatment Index Gigi Anak'
@@ -379,7 +379,7 @@
 				type: 'column'
 			},
 			title: {
-				text: 'Rekapitulasi Jumlah DEF pada Anak Usia 10-12 Tahun'
+				text: 'Rekapitulasi Jumlah def pada Anak Usia 10-12 Tahun'
 			},
 			subtitle: {
 				text: 'Sistem Informasi Penilaian Required Treatment Index Gigi Anak'
@@ -424,7 +424,7 @@
 				type: 'column'
 			},
 			title: {
-				text: 'Rekapitulasi Indeks DEF-T Berdasarkan Usia'
+				text: 'Rekapitulasi Indeks def-t Berdasarkan Usia'
 			},
 			subtitle: {
 				text: 'Sistem Informasi Penilaian Required Treatment Index Gigi Anak'
@@ -436,7 +436,7 @@
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Indeks DEF-T'
+					text: 'Indeks def-t'
 				}
 			},
 			tooltip: {

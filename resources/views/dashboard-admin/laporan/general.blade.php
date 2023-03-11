@@ -51,7 +51,7 @@
                                             <th scope="col" class="text-center" style="width: 10%;">M/e</th>
                                             <th scope="col" class="text-center" style="width: 10%;">F/f</th>
                                             <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks DMF-T</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks DEF-T</th>
+                                            <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks def-t</th>
                                             <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks RTI Gigi Tetap</th>
                                             <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks RTI Gigi Sulung</th>
                                         </tr>
@@ -152,7 +152,7 @@
                                             <th scope="col" class="text-center" style="width: 10%;">M/e</th>
                                             <th scope="col" class="text-center" style="width: 10%;">F/f</th>
                                             <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks DMF-T</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks DEF-T</th>
+                                            <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks def-t</th>
                                             <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks RTI Gigi Tetap</th>
                                             <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks RTI Gigi Sulung</th>
                                         </tr>

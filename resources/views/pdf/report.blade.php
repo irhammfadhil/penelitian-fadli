@@ -146,7 +146,7 @@
             Waktu Pendaftaran
         </div>
         <div class="col-lg-9">
-            : {{$user->created_at}}
+            : {{$tanggal_daftar}}
         </div>
     </div>
     @if($biodata)
@@ -163,7 +163,7 @@
             Tempat dan Tanggal Lahir
         </div>
         <div class="col-lg-9">
-            : {{$biodata->birth_place}}, {{$biodata->birth_date}}
+            : {{$biodata->birth_place}}, {{$tanggal_lahir}}
         </div>
     </div>
     <div class="row">
@@ -198,7 +198,7 @@
     </div>
     <div class="row">
         <div class="col-lg-3">
-            Pendidikan Terakhir Orang Tua
+            Pendidikan Orang Tua
         </div>
         <div class="col-lg-9">
             : {{$ortu->pendidikan_terakhir}}
@@ -347,11 +347,17 @@
             def-t: <b>{{$user->deft_score}}</b>, Kriteria def-t: <b>{{$kriteria_deft}}</b>
             <br>
             @if($user->dmft_score == 0)
-            RTI: <b>0%</b>
+            RTI Gigi Tetap: <b>0%</b>
             @else
-            RTI: <b>{{number_format($sum_decay_tetap/$user->dmft_score, 2)*100}}%</b>
+            RTI Gigi Tetap: <b>{{number_format($sum_decay_tetap/$user->dmft_score, 2)*100}}%</b>
             @endif
             <br>
+            @if($user->deft_score == 0)
+            RTI Gigi Sulung: <b>0%</b>
+            @else
+            RTI Gigi Sulung: <b>{{number_format($sum_decay_susu/$user->deft_score, 2)*100}}%</b>
+            @endif
+            <br><br>
             Saran: <br>
             {{$user->comments}}
         </div>

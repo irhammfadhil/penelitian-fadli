@@ -122,13 +122,52 @@
 			@if(Route::is('report'))
 			<li class="sidebar-item active">
 				<a class="sidebar-link" href="/report">
-					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan</span>
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan Umum</span>
 				</a>
 			</li>
 			@else
 			<li class="sidebar-item">
 				<a class="sidebar-link" href="/report">
-					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan</span>
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan Umum</span>
+				</a>
+			</li>
+			@endif
+			@if(Route::is('report-dmft'))
+			<li class="sidebar-item active">
+				<a class="sidebar-link" href="/report/dmft">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan DMF-T</span>
+				</a>
+			</li>
+			@else
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="/report/dmft">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan DMF-T</span>
+				</a>
+			</li>
+			@endif
+			@if(Route::is('report-deft'))
+			<li class="sidebar-item active">
+				<a class="sidebar-link" href="/report/deft">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan def-t</span>
+				</a>
+			</li>
+			@else
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="/report/deft">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan def-t</span>
+				</a>
+			</li>
+			@endif
+			@if(Route::is('report-rti'))
+			<li class="sidebar-item active">
+				<a class="sidebar-link" href="/report/rti">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan RTI</span>
+				</a>
+			</li>
+			@else
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="/report/rti">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan RTI</span>
 				</a>
 			</li>
 			@endif
@@ -141,6 +180,19 @@
 			@else
 			<li class="sidebar-item">
 				<a class="sidebar-link" href="/report/bySchool">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan Berdasarkan Sekolah</span>
+				</a>
+			</li>
+			@endif
+			@if(Route::is('reportBySchool-dmft') || Route::is('reportBySchoolSubmit-dmft'))
+			<li class="sidebar-item active">
+				<a class="sidebar-link" href="/report/bySchool/dmft">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan Berdasarkan Sekolah</span>
+				</a>
+			</li>
+			@else
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="/report/bySchool/dmft">
 					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan Berdasarkan Sekolah</span>
 				</a>
 			</li>

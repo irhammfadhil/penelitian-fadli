@@ -74,3 +74,6 @@ Route::post('/admin/submitKomentar', [DashboardAdminController::class,'submitKom
 Route::get('/report', [DashboardAdminController::class,'generateReportGeneral'])->name('report')->middleware('auth');
 Route::get('/report/bySchool', [DashboardAdminController::class,'generateReportBySchool'])->name('reportBySchool')->middleware('auth');
 Route::post('/report/bySchool', [DashboardAdminController::class,'submitgenerateReportBySchool'])->name('reportBySchoolSubmit')->middleware('auth');
+Route::get('/report/dmft', [DashboardAdminController::class,'generateReportGeneral'])->name('report-dmft')->middleware('auth');
+Route::get('/report/deft', [DashboardAdminController::class,'generateReportGeneral'])->name('report-deft')->middleware('auth');
+Route::get('/report/rti', [DashboardAdminController::class,'generateReportGeneral'])->name('report-rti')->middleware('auth');
