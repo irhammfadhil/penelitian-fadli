@@ -187,13 +187,39 @@
 			@if(Route::is('reportBySchool-dmft') || Route::is('reportBySchoolSubmit-dmft'))
 			<li class="sidebar-item active">
 				<a class="sidebar-link" href="/report/bySchool/dmft">
-					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan Berdasarkan Sekolah</span>
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan DMF-T Berdasarkan Sekolah</span>
 				</a>
 			</li>
 			@else
 			<li class="sidebar-item">
 				<a class="sidebar-link" href="/report/bySchool/dmft">
-					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan Berdasarkan Sekolah</span>
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan DMF-T Berdasarkan Sekolah</span>
+				</a>
+			</li>
+			@endif
+			@if(Route::is('reportBySchool-deft') || Route::is('reportBySchoolSubmit-deft'))
+			<li class="sidebar-item active">
+				<a class="sidebar-link" href="/report/bySchool/deft">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan def-t Berdasarkan Sekolah</span>
+				</a>
+			</li>
+			@else
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="/report/bySchool/deft">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan def-t Berdasarkan Sekolah</span>
+				</a>
+			</li>
+			@endif
+			@if(Route::is('reportBySchool-rti') || Route::is('reportBySchoolSubmit-rti'))
+			<li class="sidebar-item active">
+				<a class="sidebar-link" href="/report/bySchool/rti">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan RTI Berdasarkan Sekolah</span>
+				</a>
+			</li>
+			@else
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="/report/bySchool/rti">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan RTI Berdasarkan Sekolah</span>
 				</a>
 			</li>
 			@endif

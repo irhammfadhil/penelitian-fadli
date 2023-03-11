@@ -42,6 +42,13 @@
                             <form action="/report/bySchool" method="post">
                                 @csrf
                                 @if($result == 0)
+                                @if(Route::is('reportBySchool-dmft') || Route::is('reportBySchoolSubmit-dmft'))
+                                <input type="hidden" name="type" value="dmft">
+                                @elseif(Route::is('reportBySchool-deft') || Route::is('reportBySchoolSubmit-deft'))
+                                <input type="hidden" name="type" value="deft">
+                                @elseif(Route::is('reportBySchool-rti') || Route::is('reportBySchoolSubmit-rti'))
+                                <input type="hidden" name="type" value="rti">
+                                @endif
                                 <div class="form-group">
                                     <label for="sekolah">Sekolah</label>
                                     <select class="form-control" id="sekolah" name="sekolah">
@@ -52,6 +59,13 @@
                                     </select>
                                 </div>
                                 @elseif($result == 1)
+                                @if(Route::is('reportBySchool-dmft') || Route::is('reportBySchoolSubmit-dmft'))
+                                <input type="hidden" name="type" value="dmft">
+                                @elseif(Route::is('reportBySchool-deft') || Route::is('reportBySchoolSubmit-deft'))
+                                <input type="hidden" name="type" value="deft">
+                                @elseif(Route::is('reportBySchool-rti') || Route::is('reportBySchoolSubmit-rti'))
+                                <input type="hidden" name="type" value="rti">
+                                @endif
                                 <div class="form-group">
                                     <label for="sekolah">Sekolah</label>
                                     <select class="form-control" id="sekolah" name="sekolah">
