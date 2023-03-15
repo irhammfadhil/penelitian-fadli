@@ -178,13 +178,25 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-									Indeks RTI
+									Indeks RTI Tetap
 								</div>
 								<div class="col-6">
 									: @if($user->dmft_score == 0)
                                     <b>0%</b>
                                     @else
                                     <b>{{number_format($sum_decay_tetap/$user->dmft_score, 2)*100}}%</b>
+                                    @endif
+								</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+									Indeks RTI Sulung
+								</div>
+								<div class="col-6">
+									: @if($user->deft_score == 0)
+                                    <b>0%</b>
+                                    @else
+                                    <b>{{number_format($sum_decay_susu/$user->deft_score, 2)*100}}%</b>
                                     @endif
 								</div>
                             </div>

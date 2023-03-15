@@ -3,126 +3,134 @@
 
 <head>
     <title>Laporan a.n. {{$user->name}}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
 
 <body>
     <style type="text/css">
-    table tr td,
-    table tr th {
-        font-size: 9pt;
-    }
+        table tr td,
+        table tr th {
+            font-size: 9pt;
+        }
 
-    .page_break {
-        page-break-before: always;
-    }
+        .page_break {
+            page-break-before: always;
+        }
 
-    .center {
-        text-align: center;
-    }
+        .center {
+            text-align: center;
+        }
 
-    .center img {
-        display: block;
-    }
+        .center img {
+            display: block;
+        }
     </style>
     <style>
-    #box {
-        box-sizing: content-box;
-        width: 600px;
-        height: 40px;
-        padding: 20px;
-        border: 3px solid black;
-    }
+        #box {
+            box-sizing: content-box;
+            width: 600px;
+            height: 40px;
+            padding: 20px;
+            border: 3px solid black;
+        }
     </style>
     <style type="text/css">
-    html,
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    p {
-        font-family: "Times New Roman", Times, serif;
-    }
+        html,
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        p {
+            font-family: "Times New Roman", Times, serif;
+        }
 
-    .row {
-        clear: both;
-    }
+        .row {
+            clear: both;
+        }
 
-    .col-lg-1 {
-        width: 8%;
-        float: left;
-    }
+        .col-lg-1 {
+            width: 8%;
+            float: left;
+        }
 
-    .col-lg-2 {
-        width: 16%;
-        float: left;
-    }
+        .col-lg-2 {
+            width: 16%;
+            float: left;
+        }
 
-    .col-lg-3 {
-        width: 25%;
-        float: left;
-    }
+        .col-lg-3 {
+            width: 25%;
+            float: left;
+        }
 
-    .col-lg-4 {
-        width: 33%;
-        float: left;
-    }
+        .col-lg-4 {
+            width: 33%;
+            float: left;
+        }
 
-    .col-lg-5 {
-        width: 42%;
-        float: left;
-    }
+        .col-lg-5 {
+            width: 42%;
+            float: left;
+        }
 
-    .col-lg-6 {
-        width: 50%;
-        float: left;
-    }
+        .col-lg-6 {
+            width: 50%;
+            float: left;
+        }
 
-    .col-lg-7 {
-        width: 58%;
-        float: left;
-    }
+        .col-lg-7 {
+            width: 58%;
+            float: left;
+        }
 
-    .col-lg-8 {
-        width: 66%;
-        float: left;
-    }
+        .col-lg-8 {
+            width: 66%;
+            float: left;
+        }
 
-    .col-lg-9 {
-        width: 75%;
-        float: left;
-    }
+        .col-lg-9 {
+            width: 75%;
+            float: left;
+        }
 
-    .col-lg-10 {
-        width: 83%;
-        float: left;
-    }
+        .col-lg-10 {
+            width: 83%;
+            float: left;
+        }
 
-    .col-lg-11 {
-        width: 92%;
-        float: left;
-    }
+        .col-lg-11 {
+            width: 92%;
+            float: left;
+        }
 
-    .col-lg-12 {
-        width: 100%;
-        float: left;
-    }
+        .col-lg-12 {
+            width: 100%;
+            float: left;
+        }
 
-    hr.new1 {
-        border-top: 1px solid black;
-    }
+        hr.new1 {
+            border-top: 1px solid black;
+        }
 
-    .page_break {
-        page-break-before: always;
-    }
+        .page_break {
+            page-break-before: always;
+        }
     </style>
-    <h3 class="text-center">Laporan Hasil Diagnosis</h3>
-    <h5 class="text-center">SIMETRI: Sistem Informasi Penilaian Required Treatment Index Gigi Anak</h5>
-    <h5 class="text-center">Fakultas Kedokteran Gigi, Universitas Jember</h5>
+    <div class="row">
+        <div class="col-lg-2">
+            <img src="{{public_path('logo-unej.png')}}" style="width: auto; height: 125px;">
+        </div>
+        <div class="col-lg-9">
+            <h3 class="text-center">Laporan Hasil Diagnosis</h3>
+            <h3 class="text-center">SIMETRI</h3>
+            <h5 class="text-center" style="font-size:18px;">Sistem Informasi Penilaian Required Treatment Index Gigi Anak</h5>
+            <h5 class="text-center" style="font-size:20px;">Fakultas Kedokteran Gigi Universitas Jember</h5>
+        </div>
+    </div>
+    <br><br><br><br><br><br>
     <hr>
     <h5>Informasi Pribadi</h5>
     <div class="row">
@@ -233,7 +241,7 @@
             Tanggal Pengambilan Foto
         </div>
         <div class="col-lg-9">
-            : {{$foto->date_taken_senyum}}
+            : {{$tanggal_foto_senyum}}
         </div>
     </div>
     <br><br><br>
@@ -252,7 +260,7 @@
             Tanggal Pengambilan Foto
         </div>
         <div class="col-lg-9">
-            : {{$foto->date_taken_depan}}
+            : {{$tanggal_foto_depan}}
         </div>
     </div>
     <br><br><br>
@@ -272,7 +280,7 @@
             Tanggal Pengambilan Foto
         </div>
         <div class="col-lg-9">
-            : {{$foto->date_taken_kiri}}
+            : {{$tanggal_foto_kiri}}
         </div>
     </div>
     <br><br><br>
@@ -291,7 +299,7 @@
             Tanggal Pengambilan Foto
         </div>
         <div class="col-lg-9">
-            : {{$foto->date_taken_atas}}
+            : {{$tanggal_foto_atas}}
         </div>
     </div>
     <br><br><br>
@@ -310,7 +318,7 @@
             Tanggal Pengambilan Foto
         </div>
         <div class="col-lg-9">
-            : {{$foto->date_taken_kanan}}
+            : {{$tanggal_foto_kanan}}
         </div>
     </div>
     <br><br><br>
@@ -329,7 +337,7 @@
             Tanggal Pengambilan Foto
         </div>
         <div class="col-lg-9">
-            : {{$foto->date_taken_bawah}}
+            : {{$tanggal_foto_bawah}}
         </div>
     </div>
     @endif
@@ -341,11 +349,20 @@
         <div class="col-lg-12">
             D/d: <b>{{$sum_decay_tetap}}/{{$sum_decay_susu}}</b> M/e:
             <b>{{$sum_missing_tetap}}/{{$sum_missing_susu}}</b> F/f: <b>{{$sum_filling_tetap}}/{{$sum_filling_susu}}</b>
-            <br>
-            DMFT: <b>{{$user->dmft_score}}</b>, Kriteria DMFT: <b>{{$kriteria_dmft}}</b>
-            <br>
-            def-t: <b>{{$user->deft_score}}</b>, Kriteria def-t: <b>{{$kriteria_deft}}</b>
-            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">DMFT: <b>{{$user->dmft_score}}</b></div>
+        <div class="col-lg-8">Kriteria DMFT: <b>{{$kriteria_dmft}}</b></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2">def-t: <b>{{$user->deft_score}}</b></div>
+        <div class="col-lg-8">Kriteria def-t: <b>{{$kriteria_deft}}</b></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
             @if($user->dmft_score == 0)
             RTI Gigi Tetap: <b>0%</b>
             @else
@@ -358,7 +375,12 @@
             RTI Gigi Sulung: <b>{{number_format($sum_decay_susu/$user->deft_score, 2)*100}}%</b>
             @endif
             <br><br>
-            Saran: <br>
+        </div>
+    </div>
+    <h5>Saran</h5>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
             {{$user->comments}}
         </div>
     </div>

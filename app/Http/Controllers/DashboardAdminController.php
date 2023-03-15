@@ -27,114 +27,53 @@ class DashboardAdminController extends Controller
         //Responden secara keseluruhan
         $jml_responden = DB::table('users')->select(DB::raw('b.gender as jenis_kelamin,count(b.id) as jumlah'))->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
             ->where('users.is_deleted', '=', 0)->whereIn('b.gender', $gender)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->groupBy('b.gender')->get();
-        //Responden berdasarkan usia
-        $query_79th = DB::table('users')->select(DB::raw('b.gender as jenis_kelamin,count(b.id) as jumlah'))->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
-            ->where('users.is_deleted', '=', 0)->whereIn('b.gender', $gender)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 < 10')->groupBy('b.gender')->get();
-        $query_912th = DB::table('users')->select(DB::raw('b.gender as jenis_kelamin,count(b.id) as jumlah'))->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
-            ->where('users.is_deleted', '=', 0)->whereIn('b.gender', $gender)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 <= 13')->groupBy('b.gender')->get();
-        //persyaratan dmft dan rti
-        $users_count = Biodata::whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 between 7 and 13')->count();
-        $users_id_lk_79 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 10')
-            ->where('gender', '=', 'Laki-laki')->get();
-        $users_id_pr_79 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 < 10')
-            ->where('gender', '=', 'Perempuan')->get();
-        $users_id_lk_912 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 <= 13')
-            ->where('gender', '=', 'Laki-laki')->get();
-        $users_id_pr_912 = Biodata::select('users_id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users_biodata.created_at, users_biodata.birth_date)), "%Y")+0 <= 13')
-            ->where('gender', '=', 'Perempuan')->get();
-        //dmft dan rti
-        $users_dmft_lk_79 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.deft_score) as rata_rata_rti_sulung'))
-            ->whereIn('id', $users_id_lk_79)->get();
-        $users_dmft_pr_79 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.deft_score) as rata_rata_rti_sulung'))
-            ->whereIn('id', $users_id_pr_79)->get();
-        $users_dmft_lk_912 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.deft_score) as rata_rata_rti_sulung'))
-            ->whereIn('id', $users_id_lk_912)->get();
-        $users_dmft_pr_912 = User::select(DB::raw('sum(users.dmft_score) as rata_rata_dmft, sum(users.deft_score) as rata_rata_deft, sum(users.num_decay)/sum(users.dmft_score) as rata_rata_rti_tetap, sum(users.num_decay_anak)/sum(users.deft_score) as rata_rata_rti_sulung'))
-            ->whereIn('id', $users_id_pr_912)->get();
-        #perhitungan dmf
-        ##decay
-        $users_dmf_lk_79_decay = Diagnosis::select(DB::raw('count(is_decay) as jml_decay'))->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
-            ->whereIn('users_id', $users_id_lk_79)->get();
-        $users_dmf_pr_79_decay = Diagnosis::select(DB::raw('count(is_decay) as jml_decay'))->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
-            ->whereIn('users_id', $users_id_pr_79)->get();
-        $users_dmf_lk_912_decay = Diagnosis::select(DB::raw('count(is_decay) as jml_decay'))->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
-            ->whereIn('users_id', $users_id_lk_912)->get();
-        $users_dmf_pr_912_decay = Diagnosis::select(DB::raw('count(is_decay) as jml_decay'))->whereBetween('id_gigi', [11, 48])->where('is_decay', '=', 1)
-            ->whereIn('users_id', $users_id_pr_912)->get();
-        ##missing
-        $users_dmf_lk_79_missing = Diagnosis::select(DB::raw('count(is_missing) as jml_missing'))->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
-            ->whereIn('users_id', $users_id_lk_79)->get();
-        $users_dmf_pr_79_missing = Diagnosis::select(DB::raw('count(is_missing) as jml_missing'))->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
-            ->whereIn('users_id', $users_id_pr_79)->get();
-        $users_dmf_lk_912_missing = Diagnosis::select(DB::raw('count(is_missing) as jml_missing'))->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
-            ->whereIn('users_id', $users_id_lk_912)->get();
-        $users_dmf_pr_912_missing = Diagnosis::select(DB::raw('count(is_missing) as jml_missing'))->whereBetween('id_gigi', [11, 48])->where('is_missing', '=', 1)
-            ->whereIn('users_id', $users_id_pr_912)->get();
-        ##filling
-        $users_dmf_lk_79_filling = Diagnosis::select(DB::raw('count(is_filling) as jml_filling'))->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
-            ->whereIn('users_id', $users_id_lk_79)->get();
-        $users_dmf_pr_79_filling = Diagnosis::select(DB::raw('count(is_filling) as jml_filling'))->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
-            ->whereIn('users_id', $users_id_pr_79)->get();
-        $users_dmf_lk_912_filling = Diagnosis::select(DB::raw('count(is_filling) as jml_filling'))->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
-            ->whereIn('users_id', $users_id_lk_912)->get();
-        $users_dmf_pr_912_filling = Diagnosis::select(DB::raw('count(is_filling) as jml_filling'))->whereBetween('id_gigi', [11, 48])->where('is_filling', '=', 1)
-            ->whereIn('users_id', $users_id_pr_912)->get();
+        $query_klp_usia = DB::table('users as u')->select(DB::raw(' 
+            case when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 8 then \'7\'
+            when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 8 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 9 then \'8\'
+            when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 9 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 10 then \'9\'
+            when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 11 then \'10\'
+            when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 11 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 12 then \'11\'     
+            when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 12 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 <= 13 then \'12\' end as kategori_umur, 
+            count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft, sum(u.num_decay)/sum(dmft_score) as rata_rata_rti,
+            sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
+            ->where('u.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 <= 13')->groupBy('kategori_umur')->get();
+        
+        $query_by_gender = DB::table('users as u')->select(DB::raw('b.gender as jenis_kelamin, 
+            count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft, sum(u.num_decay)/sum(dmft_score) as rata_rata_rti,
+            sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
+            ->where('u.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 <= 13')->groupBy('jenis_kelamin')->get();
+        $array_usia = [];
+        $array_dmft_by_gender = [];
+        $array_dmft_by_age = [];
+        $array_deft_by_gender = [];
+        $array_deft_by_age = [];
+        $array_rti_by_gender = [];
+        $array_rti_by_age = [];
+        $array_rti_anak_by_gender = [];
+        $array_rti_anak_by_age = [];
+        $age = 7;
+        for($i=7;$i<=12;$i++) {
+            foreach($query_klp_usia as $q) {
+                if($q->kategori_umur == $i) {
+                    array_push($array_usia, (int)$q->jumlah);
+                    array_push($array_dmft_by_age, (float)$q->rata_rata_dmft);
+                    array_push($array_deft_by_age, (float)$q->rata_rata_deft);
+                    array_push($array_rti_by_age, (float)$q->rata_rata_rti*100);
+                    array_push($array_rti_anak_by_age, (float)$q->rata_rata_rti_anak*100);
+                }
+            }
+        }
 
-        #perhitungan def
-        ##decay
-        $users_dmf_lk_79_decay_anak = Diagnosis::select(DB::raw('count(is_decay) as jml_decay'))->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
-            ->whereIn('users_id', $users_id_lk_79)->get();
-        $users_dmf_pr_79_decay_anak = Diagnosis::select(DB::raw('count(is_decay) as jml_decay'))->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
-            ->whereIn('users_id', $users_id_pr_79)->get();
-        $users_dmf_lk_912_decay_anak = Diagnosis::select(DB::raw('count(is_decay) as jml_decay'))->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
-            ->whereIn('users_id', $users_id_lk_912)->get();
-        $users_dmf_pr_912_decay_anak = Diagnosis::select(DB::raw('count(is_decay) as jml_decay'))->whereBetween('id_gigi', [51, 85])->where('is_decay', '=', 1)
-            ->whereIn('users_id', $users_id_pr_912)->get();
-        ##missing
-        $users_dmf_lk_79_missing_anak = Diagnosis::select(DB::raw('count(is_missing) as jml_missing'))->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
-            ->whereIn('users_id', $users_id_lk_79)->get();
-        $users_dmf_pr_79_missing_anak = Diagnosis::select(DB::raw('count(is_missing) as jml_missing'))->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
-            ->whereIn('users_id', $users_id_pr_79)->get();
-        $users_dmf_lk_912_missing_anak = Diagnosis::select(DB::raw('count(is_missing) as jml_missing'))->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
-            ->whereIn('users_id', $users_id_lk_912)->get();
-        $users_dmf_pr_912_missing_anak = Diagnosis::select(DB::raw('count(is_missing) as jml_missing'))->whereBetween('id_gigi', [51, 85])->where('is_missing', '=', 1)
-            ->whereIn('users_id', $users_id_pr_912)->get();
-        ##filling
-        $users_dmf_lk_79_filling_anak = Diagnosis::select(DB::raw('count(is_filling) as jml_filling'))->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
-            ->whereIn('users_id', $users_id_lk_79)->get();
-        $users_dmf_pr_79_filling_anak = Diagnosis::select(DB::raw('count(is_filling) as jml_filling'))->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
-            ->whereIn('users_id', $users_id_pr_79)->get();
-        $users_dmf_lk_912_filling_anak = Diagnosis::select(DB::raw('count(is_filling) as jml_filling'))->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
-            ->whereIn('users_id', $users_id_lk_912)->get();
-        $users_dmf_pr_912_filling_anak = Diagnosis::select(DB::raw('count(is_filling) as jml_filling'))->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
-            ->whereIn('users_id', $users_id_pr_912)->get();
+        foreach($query_by_gender as $qg) {
+            array_push($array_dmft_by_gender, (float)$qg->rata_rata_dmft);
+            array_push($array_deft_by_gender, (float)$qg->rata_rata_deft);
+            array_push($array_rti_by_gender, (float)$qg->rata_rata_rti*100);
+            array_push($array_rti_anak_by_gender, (float)$qg->rata_rata_rti_anak*100);
+        }
 
         //array push
         $gender_label = [];
         $gender_sum = [];
-        $sum_79th = [0, 0];
-        $sum_912th = [0, 0];
-        $sum_total_by_age = [0, 0];
-        $array_dmft_79 = [];
-        $array_dmft_912 = [];
-        $array_deft_79 = [];
-        $array_deft_912 = [];
-        $array_decay_79 = [];
-        $array_missing_79 = [];
-        $array_filling_79 = [];
-        $array_decay_912 = [];
-        $array_missing_912 = [];
-        $array_filling_912 = [];
-        $array_decay_79_anak = [];
-        $array_missing_79_anak = [];
-        $array_filling_79_anak = [];
-        $array_decay_912_anak = [];
-        $array_missing_912_anak = [];
-        $array_filling_912_anak = [];
-        $array_rti_79 = [];
-        $array_rti_912 = [];
-        $array_rti_sulung_79 = [];
-        $array_rti_sulung_912 = [];
         $sum_responden = 0;
 
         foreach ($jml_responden as $r) {
@@ -146,323 +85,19 @@ class DashboardAdminController extends Controller
         array_push($gender_label, 'Total');
         array_push($gender_sum, (int) $sum_responden);
 
-        $sum_laki_laki_by_age = 0;
-        $sum_perempuan_by_age = 0;
-
-        //anak umur 7-9 thn
-        foreach ($query_79th as $q) {
-            if ($q->jenis_kelamin == 'Laki-laki') {
-                $sum_79th[0] = (int) $q->jumlah;
-                $sum_laki_laki_by_age += (int) $q->jumlah;
-            } else if ($q->jenis_kelamin == 'Perempuan') {
-                $sum_79th[1] = (int) $q->jumlah;
-                $sum_perempuan_by_age += (int) $q->jumlah;
-            }
-        }
-        //anak umur 9-12 thn
-        foreach ($query_912th as $q) {
-            if ($q->jenis_kelamin == 'Laki-laki') {
-                $sum_912th[0] = (int) $q->jumlah;
-                $sum_laki_laki_by_age += (int) $q->jumlah;
-            } else if ($q->jenis_kelamin == 'Perempuan') {
-                $sum_912th[1] = (int) $q->jumlah;
-                $sum_perempuan_by_age += (int) $q->jumlah;
-            }
-        }
-        //assign to jml by gender by age
-        $sum_total_by_age[0] = $sum_laki_laki_by_age;
-        $sum_total_by_age[1] = $sum_perempuan_by_age;
-
-        //decay
-        foreach ($users_dmf_lk_79_decay as $q) {
-            if (!is_null($q->jml_decay)) {
-                array_push($array_decay_79, (int) $q->jml_decay);
-            } else {
-                array_push($array_decay_79, 0);
-            }
-        }
-        foreach ($users_dmf_pr_79_decay as $q) {
-            if (!is_null($q->jml_decay)) {
-                array_push($array_decay_79, (int) $q->jml_decay);
-            } else {
-                array_push($array_decay_79, 0);
-            }
-        }
-        foreach ($users_dmf_lk_912_decay as $q) {
-            if (!is_null($q->jml_decay)) {
-                array_push($array_decay_912, (int) $q->jml_decay);
-            } else {
-                array_push($array_decay_912, 0);
-            }
-        }
-        foreach ($users_dmf_pr_912_decay as $q) {
-            if (!is_null($q->jml_decay)) {
-                array_push($array_decay_912, (int) $q->jml_decay);
-            } else {
-                array_push($array_decay_912, 0);
-            }
-        }
-        //missing
-        foreach ($users_dmf_lk_79_missing as $q) {
-            if (!is_null($q->jml_missing)) {
-                array_push($array_missing_79, (int) $q->jml_missing);
-            } else {
-                array_push($array_missing_79, 0);
-            }
-        }
-        foreach ($users_dmf_pr_79_missing as $q) {
-            if (!is_null($q->jml_missing)) {
-                array_push($array_missing_79, (int) $q->jml_missing);
-            } else {
-                array_push($array_missing_79, 0);
-            }
-        }
-        foreach ($users_dmf_lk_912_missing as $q) {
-            if (!is_null($q->jml_missing)) {
-                array_push($array_missing_912, (int) $q->jml_missing);
-            } else {
-                array_push($array_missing_912, 0);
-            }
-        }
-        foreach ($users_dmf_pr_912_missing as $q) {
-            if (!is_null($q->jml_missing)) {
-                array_push($array_missing_912, (int) $q->jml_missing);
-            } else {
-                array_push($array_missing_912, 0);
-            }
-        }
-        //filing
-        foreach ($users_dmf_lk_79_filling as $q) {
-            if (!is_null($q->jml_filling)) {
-                array_push($array_filling_79, (int) $q->jml_filling);
-            } else {
-                array_push($array_filling_79, 0);
-            }
-        }
-        foreach ($users_dmf_pr_79_filling as $q) {
-            if (!is_null($q->jml_filling)) {
-                array_push($array_filling_79, (int) $q->jml_filling);
-            } else {
-                array_push($array_filling_79, 0);
-            }
-        }
-        foreach ($users_dmf_lk_912_filling as $q) {
-            if (!is_null($q->jml_filling)) {
-                array_push($array_filling_912, (int) $q->jml_filling);
-            } else {
-                array_push($array_filling_912, 0);
-            }
-        }
-        foreach ($users_dmf_pr_912_filling as $q) {
-            if (!is_null($q->jml_filling)) {
-                array_push($array_filling_912, (int) $q->jml_filling);
-            } else {
-                array_push($array_filling_912, 0);
-            }
-        }
-        //decay anak
-        foreach ($users_dmf_lk_79_decay_anak as $q) {
-            if (!is_null($q->jml_decay)) {
-                array_push($array_decay_79_anak, (int) $q->jml_decay);
-            } else {
-                array_push($array_decay_79_anak, 0);
-            }
-        }
-        foreach ($users_dmf_pr_79_decay_anak as $q) {
-            if (!is_null($q->jml_decay)) {
-                array_push($array_decay_79_anak, (int) $q->jml_decay);
-            } else {
-                array_push($array_decay_79_anak, 0);
-            }
-        }
-        foreach ($users_dmf_lk_912_decay_anak as $q) {
-            if (!is_null($q->jml_decay)) {
-                array_push($array_decay_912_anak, (int) $q->jml_decay);
-            } else {
-                array_push($array_decay_912_anak, 0);
-            }
-        }
-        foreach ($users_dmf_pr_912_decay_anak as $q) {
-            if (!is_null($q->jml_decay)) {
-                array_push($array_decay_912_anak, (int) $q->jml_decay);
-            } else {
-                array_push($array_decay_912_anak, 0);
-            }
-        }
-        //missing anak
-        foreach ($users_dmf_lk_79_missing_anak as $q) {
-            if (!is_null($q->jml_missing)) {
-                array_push($array_missing_79_anak, (int) $q->jml_missing);
-            } else {
-                array_push($array_missing_79_anak, 0);
-            }
-        }
-        foreach ($users_dmf_pr_79_missing_anak as $q) {
-            if (!is_null($q->jml_missing)) {
-                array_push($array_missing_79_anak, (int) $q->jml_missing);
-            } else {
-                array_push($array_missing_79_anak, 0);
-            }
-        }
-        foreach ($users_dmf_lk_912_missing_anak as $q) {
-            if (!is_null($q->jml_missing)) {
-                array_push($array_missing_912_anak, (int) $q->jml_missing);
-            } else {
-                array_push($array_missing_912_anak, 0);
-            }
-        }
-        foreach ($users_dmf_pr_912_missing_anak as $q) {
-            if (!is_null($q->jml_missing)) {
-                array_push($array_missing_912_anak, (int) $q->jml_missing);
-            } else {
-                array_push($array_missing_912_anak, 0);
-            }
-        }
-        //filing
-        foreach ($users_dmf_lk_79_filling_anak as $q) {
-            if (!is_null($q->jml_filling)) {
-                array_push($array_filling_79_anak, (int) $q->jml_filling);
-            } else {
-                array_push($array_filling_79_anak, 0);
-            }
-        }
-        foreach ($users_dmf_pr_79_filling_anak as $q) {
-            if (!is_null($q->jml_filling)) {
-                array_push($array_filling_79_anak, (int) $q->jml_filling);
-            } else {
-                array_push($array_filling_79_anak, 0);
-            }
-        }
-        foreach ($users_dmf_lk_912_filling_anak as $q) {
-            if (!is_null($q->jml_filling)) {
-                array_push($array_filling_912_anak, (int) $q->jml_filling);
-            } else {
-                array_push($array_filling_912_anak, 0);
-            }
-        }
-        foreach ($users_dmf_pr_912_filling_anak as $q) {
-            if (!is_null($q->jml_filling)) {
-                array_push($array_filling_912_anak, (int) $q->jml_filling);
-            } else {
-                array_push($array_filling_912_anak, 0);
-            }
-        }
-        //masukin ke array indek DMFT dan rti
-        foreach ($users_dmft_lk_79 as $u) {
-            if (!is_null($u->rata_rata_dmft)) {
-                array_push($array_dmft_79, (float) ($u->rata_rata_dmft / $users_count));
-            } else {
-                array_push($array_dmft_79, 0);
-            }
-            if (!is_null($u->rata_rata_deft)) {
-                array_push($array_deft_79, (float) $u->rata_rata_deft / $users_count);
-            } else {
-                array_push($array_deft_79, 0);
-            }
-            if (!is_null($u->rata_rata_rti_tetap)) {
-                array_push($array_rti_79, (float) $u->rata_rata_rti_tetap * 100);
-            } else {
-                array_push($array_rti_79, 0);
-            }
-            if (!is_null($u->rata_rata_rti_sulung)) {
-                array_push($array_rti_sulung_79, (float) $u->rata_rata_rti_sulung * 100);
-            } else {
-                array_push($array_rti_sulung_79, 0);
-            }
-        }
-        foreach ($users_dmft_pr_79 as $u) {
-            if (!is_null($u->rata_rata_dmft)) {
-                array_push($array_dmft_79, (float) $u->rata_rata_dmft / $users_count);
-            } else {
-                array_push($array_dmft_79, 0);
-            }
-            if (!is_null($u->rata_rata_deft)) {
-                array_push($array_deft_79, (float) $u->rata_rata_deft / $users_count);
-            } else {
-                array_push($array_deft_79, 0);
-            }
-            if (!is_null($u->rata_rata_rti_tetap)) {
-                array_push($array_rti_79, (float) $u->rata_rata_rti_tetap * 100);
-            } else {
-                array_push($array_rti_79, 0);
-            }
-            if (!is_null($u->rata_rata_rti_sulung)) {
-                array_push($array_rti_sulung_79, (float) $u->rata_rata_rti_sulung * 100);
-            } else {
-                array_push($array_rti_sulung_79, 0);
-            }
-        }
-        foreach ($users_dmft_lk_912 as $u) {
-            if (!is_null($u->rata_rata_dmft)) {
-                array_push($array_dmft_912, (float) $u->rata_rata_dmft / $users_count);
-            } else {
-                array_push($array_dmft_912, 0);
-            }
-            if (!is_null($u->rata_rata_deft)) {
-                array_push($array_deft_912, (float) $u->rata_rata_deft / $users_count);
-            } else {
-                array_push($array_deft_912, 0);
-            }
-            if (!is_null($u->rata_rata_rti_tetap)) {
-                array_push($array_rti_912, (float) $u->rata_rata_rti_tetap * 100);
-            } else {
-                array_push($array_rti_912, 0);
-            }
-            if (!is_null($u->rata_rata_rti_sulung)) {
-                array_push($array_rti_sulung_912, (float) $u->rata_rata_rti_sulung * 100);
-            } else {
-                array_push($array_rti_sulung_912, 0);
-            }
-        }
-        foreach ($users_dmft_pr_912 as $u) {
-            if (!is_null($u->rata_rata_dmft)) {
-                array_push($array_dmft_912, (float) $u->rata_rata_dmft / $users_count);
-            } else {
-                array_push($array_dmft_912, 0);
-            }
-            if (!is_null($u->rata_rata_deft)) {
-                array_push($array_deft_912, (float) $u->rata_rata_deft / $users_count);
-            } else {
-                array_push($array_deft_912, 0);
-            }
-            if (!is_null($u->rata_rata_rti_tetap)) {
-                array_push($array_rti_912, (float) $u->rata_rata_rti_tetap * 100);
-            } else {
-                array_push($array_rti_912, 0);
-            }
-            if (!is_null($u->rata_rata_rti_sulung)) {
-                array_push($array_rti_sulung_912, (float) $u->rata_rata_rti_sulung * 100);
-            } else {
-                array_push($array_rti_sulung_912, 0);
-            }
-        }
         return view('dashboard-admin.index', [
             'gender_label' => $gender_label,
             'gender_sum' => $gender_sum,
-            'sum_79th' => $sum_79th,
-            'sum_912th' => $sum_912th,
-            'sum_total_by_age' => $sum_total_by_age,
-            'array_dmft_79' => $array_dmft_79,
-            'array_dmft_912' => $array_dmft_912,
-            'array_deft_79' => $array_deft_79,
-            'array_deft_912' => $array_deft_912,
-            'array_rti_912' => $array_rti_912,
-            'array_rti_79' => $array_rti_79,
-            'array_rti_912' => $array_rti_912,
-            'array_rti_sulung_79' => $array_rti_sulung_79,
-            'array_rti_sulung_912' => $array_rti_sulung_912,
-            'array_decay_79' => $array_decay_79,
-            'array_missing_79' => $array_missing_79,
-            'array_filling_79' => $array_filling_79,
-            'array_decay_912' => $array_decay_912,
-            'array_missing_912' => $array_missing_912,
-            'array_filling_912' => $array_filling_912,
-            'array_decay_79_anak' => $array_decay_79_anak,
-            'array_missing_79_anak' => $array_missing_79_anak,
-            'array_filling_79_anak' => $array_filling_79_anak,
-            'array_decay_912_anak' => $array_decay_912_anak,
-            'array_missing_912_anak' => $array_missing_912_anak,
-            'array_filling_912_anak' => $array_filling_912_anak,
+            'array_usia' => $array_usia,
+            'label_usia' => ['7 tahun', '8 tahun', '9 tahun', '10 tahun', '11 tahun', '12 tahun'],
+            'array_dmft_by_gender' => $array_dmft_by_gender,
+            'array_dmft_by_age' => $array_dmft_by_age,
+            'array_deft_by_gender' => $array_deft_by_gender,
+            'array_deft_by_age' => $array_deft_by_age,
+            'array_rti_by_gender' => $array_rti_by_gender,
+            'array_rti_by_age' => $array_rti_by_age,
+            'array_rti_anak_by_gender' => $array_rti_anak_by_gender,
+            'array_rti_anak_by_age' => $array_rti_anak_by_age,
         ]);
     }
     public function getAllAnak()
@@ -576,6 +211,13 @@ class DashboardAdminController extends Controller
             'sum_filling_susu' => $sum_filling_susu,
             'kriteria_dmft' => $kriteria_dmft,
             'kriteria_deft' => $kriteria_deft,
+            'tanggal_lahir' => $this->tgl_indo($biodata->birth_date),
+            'tanggal_foto_senyum' => $this->tgl_indo($foto->date_taken_senyum),
+            'tanggal_foto_depan' => $this->tgl_indo($foto->date_taken_depan),
+            'tanggal_foto_kiri' => $this->tgl_indo($foto->date_taken_kiri),
+            'tanggal_foto_atas' => $this->tgl_indo($foto->date_taken_atas),
+            'tanggal_foto_kanan' => $this->tgl_indo($foto->date_taken_kanan),
+            'tanggal_foto_bawah' => $this->tgl_indo($foto->date_taken_bawah),
         ]);
     }
     public function submitOdontogram(Request $request)
@@ -888,6 +530,12 @@ class DashboardAdminController extends Controller
             'kriteria_deft' => $kriteria_deft,
             'tanggal_daftar' => $this->tgl_indo(date('Y-m-d', strtotime($user->created_at))),
             'tanggal_lahir' => $this->tgl_indo($biodata->birth_date),
+            'tanggal_foto_senyum' => $this->tgl_indo($foto->date_taken_senyum),
+            'tanggal_foto_depan' => $this->tgl_indo($foto->date_taken_depan),
+            'tanggal_foto_kiri' => $this->tgl_indo($foto->date_taken_kiri),
+            'tanggal_foto_atas' => $this->tgl_indo($foto->date_taken_atas),
+            'tanggal_foto_kanan' => $this->tgl_indo($foto->date_taken_kanan),
+            'tanggal_foto_bawah' => $this->tgl_indo($foto->date_taken_bawah),
         ];
 
         $pdf = PDF::loadView('pdf.report', $data);
@@ -1244,11 +892,11 @@ class DashboardAdminController extends Controller
                 $min_rti_label = $q->age;
             }
             if ($q->rata_rata_rti_anak >= $max_rti_anak) {
-                $max_rti_anak = $q->rata_rata_rti;
+                $max_rti_anak = $q->rata_rata_rti_anak;
                 $max_rti_anak_label = $q->age;
             }
             if ($q->rata_rata_rti <= $min_deft) {
-                $min_rti_anak = $q->rata_rata_rti;
+                $min_rti_anak = $q->rata_rata_rti_anak;
                 $min_rti_anak_label = $q->age;
             }
         }
@@ -2048,11 +1696,11 @@ class DashboardAdminController extends Controller
                 $min_rti_label = $q->age;
             }
             if ($q->rata_rata_rti_anak >= $max_rti_anak) {
-                $max_rti_anak = $q->rata_rata_rti;
+                $max_rti_anak = $q->rata_rata_rti_anak;
                 $max_rti_anak_label = $q->age;
             }
             if ($q->rata_rata_rti <= $min_deft) {
-                $min_rti_anak = $q->rata_rata_rti;
+                $min_rti_anak = $q->rata_rata_rti_anak;
                 $min_rti_anak_label = $q->age;
             }
         }

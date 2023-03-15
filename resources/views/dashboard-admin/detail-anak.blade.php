@@ -23,29 +23,36 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-	@php
-	function tanggal_indo($tanggal)
-	{
-	$bulan = array (1 => 'Januari',
-	'Februari',
-	'Maret',
-	'April',
-	'Mei',
-	'Juni',
-	'Juli',
-	'Agustus',
-	'September',
-	'Oktober',
-	'November',
-	'Desember'
-	);
-	$split = explode('-', $tanggal);
-	return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
-	}
-	@endphp
 </head>
 
 <body>
+	{{--@if($biodata)
+	@php
+		function tgl_indo($tanggal){
+		$bulan = array (
+		1 =>   'Januari',
+		'Februari',
+		'Maret',
+		'April',
+		'Mei',
+		'Juni',
+		'Juli',
+		'Agustus',
+		'September',
+		'Oktober',
+		'November',
+		'Desember'
+		);
+		$pecahkan = explode('-', $tanggal);
+		
+		// variabel pecahkan 0 = tanggal
+		// variabel pecahkan 1 = bulan
+		// variabel pecahkan 2 = tahun
+	
+		return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+	}
+	@endphp
+	@endif--}}
 	<div class="wrapper">
 		@include('layouts.sidebar')
 
@@ -56,30 +63,30 @@
 				<div class="container-fluid p-0">
 
 					<h1 class="h3 mb-3">Pemeriksaan Gigi</h1>
-
+					
 					<br>
 					<div class="card">
 						<div class="card-body">
 							<h3>Detail Anak (<a href="/daftar-anak/detail/edit?id={{$user->id}}">edit</a>)</h3>
 							<br>
 							<h4>Informasi Pribadi (<a href="#" id="biodata-toggle">tampilkan</a><a href="#" id="biodata-toggle-hide">sembunyikan</a>)</h4>
-							<div class="row">
-								<div class="col-4">Nama</div>
-								<div class="col-8">: {{$user->name}}</div>
-							</div>
-							@if($biodata)
-							<div class="row">
-								<div class="col-4">Jenis Kelamin</div>
-								<div class="col-8">: {{$biodata->gender}}</div>
-							</div>
-							<div class="row">
-								<div class="col-4">Tempat dan Tanggal Lahir</div>
-								@if($biodata->birth_date)
-								<div class="col-8">: {{$biodata->birth_place}}, @php echo(tanggal_indo(date('Y-m-d', strtotime($biodata->birth_date)))) @endphp</div>
-								@else
-								<div class="col-8">:</div>
-								@endif
-							</div>
+								<div class="row">
+									<div class="col-4">Nama</div>
+									<div class="col-8">: {{$user->name}}</div>
+								</div>
+								@if($biodata)
+								<div class="row">
+									<div class="col-4">Jenis Kelamin</div>
+									<div class="col-8">: {{$biodata->gender}}</div>
+								</div>
+								<div class="row">
+									<div class="col-4">Tempat dan Tanggal Lahir</div>
+									@if($biodata->birth_date)
+									<div class="col-8">: {{$biodata->birth_place}}, {{$tanggal_lahir}}</div>
+									@else
+									<div class="col-8">:</div>
+									@endif
+								</div>
 							<div id="biodata">
 								<hr>
 								@endif
@@ -107,7 +114,7 @@
 								</div>
 								<div class="row">
 									<div class="col-4">Daya Listrik</div>
-									<div class="col-8">: {{$ortu->daya_listrik}}</div>
+									<div class="col-8">: {{$ortu->daya_listrik}} VA</div>
 								</div>
 								{{--@if($screening)
 								<hr>
@@ -188,61 +195,61 @@
 									<div class="col-8">: {{$user->photo_comments}} </div>
 								</div>
 								<ul class="nav nav-tabs" id="myTab" role="tablist">
-									<li class="nav-item" role="presentation">
-										<button class="nav-link active" id="senyum-penuh-tab" data-bs-toggle="tab" data-bs-target="#senyum-penuh" type="button" role="tab" aria-controls="home" aria-selected="true">Senyum Penuh</button>
-									</li>
-									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="tampak-depan-tab" data-bs-toggle="tab" data-bs-target="#tampak-depan" type="button" role="tab" aria-controls="profile" aria-selected="false">Tampak Depan</button>
-									</li>
-									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="tampak-kiri-tab" data-bs-toggle="tab" data-bs-target="#tampak-kiri" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Kiri</button>
-									</li>
-									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="tampak-atas-tab" data-bs-toggle="tab" data-bs-target="#tampak-atas" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Atas</button>
-									</li>
-									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="tampak-kanan-tab" data-bs-toggle="tab" data-bs-target="#tampak-kanan" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Kanan</button>
-									</li>
-									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="tampak-bawah-tab" data-bs-toggle="tab" data-bs-target="#tampak-bawah" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Bawah</button>
-									</li>
+								<li class="nav-item" role="presentation">
+									<button class="nav-link active" id="senyum-penuh-tab" data-bs-toggle="tab" data-bs-target="#senyum-penuh" type="button" role="tab" aria-controls="home" aria-selected="true">Senyum Penuh</button>
+								</li>
+								<li class="nav-item" role="presentation">
+									<button class="nav-link" id="tampak-depan-tab" data-bs-toggle="tab" data-bs-target="#tampak-depan" type="button" role="tab" aria-controls="profile" aria-selected="false">Tampak Depan</button>
+								</li>
+								<li class="nav-item" role="presentation">
+									<button class="nav-link" id="tampak-kiri-tab" data-bs-toggle="tab" data-bs-target="#tampak-kiri" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Kiri</button>
+								</li>
+								<li class="nav-item" role="presentation">
+									<button class="nav-link" id="tampak-atas-tab" data-bs-toggle="tab" data-bs-target="#tampak-atas" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Atas</button>
+								</li>
+								<li class="nav-item" role="presentation">
+									<button class="nav-link" id="tampak-kanan-tab" data-bs-toggle="tab" data-bs-target="#tampak-kanan" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Kanan</button>
+								</li>
+								<li class="nav-item" role="presentation">
+									<button class="nav-link" id="tampak-bawah-tab" data-bs-toggle="tab" data-bs-target="#tampak-bawah" type="button" role="tab" aria-controls="contact" aria-selected="false">Tampak Bawah</button>
+								</li>
 								</ul>
 								<div class="tab-content" id="myTabContent">
 									<div class="tab-pane fade show active" id="senyum-penuh" role="tabpanel" aria-labelledby="senyum-penuh-tab">
 										<br>
 										<img src="{{asset($foto->foto_senyum)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: @php echo(tanggal_indo(date('Y-m-d', strtotime($foto->date_taken_senyum)))) @endphp</i>
+										<i>Tanggal Pengambilan: {{$tanggal_foto_senyum}}</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-depan" role="tabpanel" aria-labelledby="tampak-depan-tab">
 										<br>
 										<img src="{{asset($foto->foto_depan)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: @php echo(tanggal_indo(date('Y-m-d', strtotime($foto->date_taken_depan)))) @endphp</i>
+										<i>Tanggal Pengambilan: {{$tanggal_foto_depan}}</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-kiri" role="tabpanel" aria-labelledby="tampak-kiri-tab">
 										<br>
 										<img src="{{asset($foto->foto_kiri)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: @php echo(tanggal_indo(date('Y-m-d', strtotime($foto->date_taken_kiri)))) @endphp</i>
+										<i>Tanggal Pengambilan: {{$tanggal_foto_kiri}}</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-atas" role="tabpanel" aria-labelledby="tampak-atas-tab">
 										<br>
 										<img src="{{asset($foto->foto_atas)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: @php echo(tanggal_indo(date('Y-m-d', strtotime($foto->date_taken_atas)))) @endphp</i>
+										<i>Tanggal Pengambilan: {{$tanggal_foto_atas}}</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-kanan" role="tabpanel" aria-labelledby="tampak-kanan-tab">
 										<br>
 										<img src="{{asset($foto->foto_kanan)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: @php echo(tanggal_indo(date('Y-m-d', strtotime($foto->date_taken_kanan)))) @endphp</i>
+										<i>Tanggal Pengambilan: {{$tanggal_foto_kanan}}</i>
 									</div>
 									<div class="tab-pane fade" id="tampak-bawah" role="tabpanel" aria-labelledby="tampak-bawah-tab">
 										<br>
 										<img src="{{asset($foto->foto_bawah)}}" class="img-fluid">
 										<br>
-										<i>Tanggal Pengambilan: @php echo(tanggal_indo(date('Y-m-d', strtotime($foto->date_taken_bawah)))) @endphp</i>
+										<i>Tanggal Pengambilan: {{$tanggal_foto_bawah}}</i>
 									</div>
 								</div>
 								<form action="/admin/submitFoto" method="post">
@@ -272,7 +279,7 @@
 								<div class="col-6">
 									<!-- Button trigger modal -->
 									<button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
-										Diagnosis Baru
+									Diagnosis Baru
 									</button>
 								</div>
 							</div>
@@ -282,128 +289,121 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr class="text-center" style="border:none;">
-												<td class="" id="" style="border:none;">18</td>
-												<td class="" id="" style="border:none;">17</td>
-												<td class="" id="" style="border:none;">16</td>
-												<td class="" id="" style="border:none;">15</td>
-												<td class="" id="" style="border:none;">14</td>
-												<td class="" id="" style="border:none;">13</td>
-												<td class="" id="" style="border:none;">12</td>
-												<td class="" id="" style="border:none;">11</td>
+											<td class="" id="" style="border:none;">18</td>
+											<td class="" id="" style="border:none;">17</td>
+											<td class="" id="" style="border:none;">16</td>
+											<td class="" id="" style="border:none;">15</td>
+											<td class="" id="" style="border:none;">14</td>
+											<td class="" id="" style="border:none;">13</td>
+											<td class="" id="" style="border:none;">12</td>
+											<td class="" id="" style="border:none;">11</td>
 											</tr>
 											<tr class="text-center">
-												<td class="gigi" id="gigi18" style="height: 2.5rem; width: 2.5rem;">
-													@foreach($diagnosis as $d)
-													@if($d->id_gigi == 18)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												<td class="gigi" id="gigi17" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 17)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi16" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 16)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi15" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 15)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi14" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 14)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi13" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 13)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi12" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 12)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi11" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 11)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
+											<td class="gigi" id="gigi18" style="height: 2.5rem; width: 2.5rem;">
+											@foreach($diagnosis as $d)
+											@if($d->id_gigi == 18)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td>
+											<td class="gigi" id="gigi17" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 17)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi16" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 16)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi15" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 15)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi14" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 14)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi13" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 13)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi12" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 12)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi11" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 11)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 										</tbody>
 									</table>
@@ -412,128 +412,120 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr class="text-center" style="border:none;">
-												<td class="" id="" style="border:none;">21</td>
-												<td class="" id="" style="border:none;">22</td>
-												<td class="" id="" style="border:none;">23</td>
-												<td class="" id="" style="border:none;">24</td>
-												<td class="" id="" style="border:none;">25</td>
-												<td class="" id="" style="border:none;">26</td>
-												<td class="" id="" style="border:none;">27</td>
-												<td class="" id="" style="border:none;">28</td>
+											<td class="" id="" style="border:none;">21</td>
+											<td class="" id="" style="border:none;">22</td>
+											<td class="" id="" style="border:none;">23</td>
+											<td class="" id="" style="border:none;">24</td>
+											<td class="" id="" style="border:none;">25</td>
+											<td class="" id="" style="border:none;">26</td>
+											<td class="" id="" style="border:none;">27</td>
+											<td class="" id="" style="border:none;">28</td>
 											</tr>
 											<tr class="text-center">
-												<td class="gigi" id="gigi21" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 21)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi22" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 22)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi23" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 23)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi24" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 24)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi25" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 25)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi26" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 26)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi27" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 27)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi28" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 28)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
+											<td class="gigi" id="gigi21" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 21)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi22" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 22)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi23" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 23)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi24" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 24)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi25" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 25)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi26" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 26)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi27" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 27)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi28" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 28)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 										</tbody>
 									</table>
@@ -546,83 +538,78 @@
 										<table class="table table-bordered" style="width: 62.5%; float: right;">
 											<tbody>
 												<tr class="text-center" style="border:none;">
-													<td class="" id="" style="border:none;">55</td>
-													<td class="" id="" style="border:none;">54</td>
-													<td class="" id="" style="border:none;">53</td>
-													<td class="" id="" style="border:none;">52</td>
-													<td class="" id="" style="border:none;">51</td>
+												<td class="" id="" style="border:none;">55</td>
+												<td class="" id="" style="border:none;">54</td>
+												<td class="" id="" style="border:none;">53</td>
+												<td class="" id="" style="border:none;">52</td>
+												<td class="" id="" style="border:none;">51</td>
 												</tr>
 												<tr class="text-center">
-													<td class="gigi" id="gigi55" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-														@if($d->id_gigi == 55)
-														@if ($d->is_decay == 1)
-														d
-														@endif
-														@if ($d->is_missing == 1)
-														e
-														@endif
-														@if ($d->is_filling == 1)
-														f
-														@endif
-														@endif
-														@endforeach</td>
-													</td>
-													<td class="gigi" id="gigi54" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-														@if($d->id_gigi == 54)
-														@if ($d->is_decay == 1)
-														d
-														@endif
-														@if ($d->is_missing == 1)
-														e
-														@endif
-														@if ($d->is_filling == 1)
-														f
-														@endif
-														@endif
-														@endforeach</td>
-													</td>
-													<td class="gigi" id="gigi53" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-														@if($d->id_gigi == 53)
-														@if ($d->is_decay == 1)
-														d
-														@endif
-														@if ($d->is_missing == 1)
-														e
-														@endif
-														@if ($d->is_filling == 1)
-														f
-														@endif
-														@endif
-														@endforeach</td>
-													</td>
-													<td class="gigi" id="gigi52" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-														@if($d->id_gigi == 52)
-														@if ($d->is_decay == 1)
-														d
-														@endif
-														@if ($d->is_missing == 1)
-														e
-														@endif
-														@if ($d->is_filling == 1)
-														f
-														@endif
-														@endif
-														@endforeach</td>
-													</td>
-													<td class="gigi" id="gigi51" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-														@if($d->id_gigi == 51)
-														@if ($d->is_decay == 1)
-														d
-														@endif
-														@if ($d->is_missing == 1)
-														e
-														@endif
-														@if ($d->is_filling == 1)
-														f
-														@endif
-														@endif
-														@endforeach</td>
-													</td>
+												<td class="gigi" id="gigi55" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 55)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+												<td class="gigi" id="gigi54" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 54)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+												<td class="gigi" id="gigi53" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 53)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+												<td class="gigi" id="gigi52" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 52)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+												<td class="gigi" id="gigi51" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 51)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
 												</tr>
 											</tbody>
 										</table>
@@ -639,76 +626,71 @@
 												<td class="" id="" style="border:none;">65</td>
 											</tr>
 											<tr class="text-center">
-												<td class="gigi" id="gigi61" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 61)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi62" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 62)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi63" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 63)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi64" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 64)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi65" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 65)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
+											<td class="gigi" id="gigi61" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 61)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi62" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 62)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi63" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 63)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi64" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 64)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi65" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 65)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 										</tbody>
 									</table>
@@ -720,76 +702,71 @@
 									<table class="table table-bordered" style="width: 62.5%; float: right;">
 										<tbody>
 											<tr class="text-center">
-												<td class="gigi" id="gigi85" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 85)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi84" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 84)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi83" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 83)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi82" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 82)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi81" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 81)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
+											<td class="gigi" id="gigi85" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 85)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi84" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 84)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi83" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 83)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi82" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 82)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi81" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 81)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 											<tr class="text-center" style="border:none;">
 												<td class="" id="" style="border:none;">85</td>
@@ -805,76 +782,71 @@
 									<table class="table table-bordered" style="width: 62.5%; text-align: right;">
 										<tbody>
 											<tr class="text-center">
-												<td class="gigi" id="gigi71" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 71)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi72" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 72)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi73" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 73)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi74" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 74)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi75" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 75)
-													@if ($d->is_decay == 1)
-													d
-													@endif
-													@if ($d->is_missing == 1)
-													e
-													@endif
-													@if ($d->is_filling == 1)
-													f
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
+											<td class="gigi" id="gigi71" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 71)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi72" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 72)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi73" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 73)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi74" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 74)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi75" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 75)
+											@if ($d->is_decay == 1)
+											d
+											@endif 
+											@if ($d->is_missing == 1)
+											e
+											@endif
+											@if ($d->is_filling == 1)
+											f
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 											<tr class="text-center" style="border:none;">
 												<td class="" id="" style="border:none;">71</td>
@@ -893,118 +865,110 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr class="text-center">
-												<td class="gigi" id="gigi48" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 48)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi47" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 47)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi46" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 46)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi45" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 45)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi44" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 44)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi43" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 43)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi42" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 42)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi41" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 41)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
+											<td class="gigi" id="gigi48" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 48)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi47" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 47)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi46" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 46)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi45" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 45)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi44" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 44)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi43" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 43)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi42" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 42)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi41" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 41)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 											<tr class="text-center" style="border:none;">
 												<td class="" id="" style="border:none;">48</td>
@@ -1023,118 +987,110 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr class="text-center">
-												<td class="gigi" id="gigi31" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 31)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi32" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 32)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi33" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 33)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi34" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 34)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi35" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 35)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi36" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 36)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi37" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 37)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
-												<td class="gigi" id="gigi38" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
-													@if($d->id_gigi == 38)
-													@if ($d->is_decay == 1)
-													D
-													@endif
-													@if ($d->is_missing == 1)
-													M
-													@endif
-													@if ($d->is_filling == 1)
-													F
-													@endif
-													@endif
-													@endforeach</td>
-												</td>
+											<td class="gigi" id="gigi31" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 31)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi32" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 32)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi33" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 33)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi34" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 34)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi35" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 35)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi36" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 36)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi37" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 37)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
+											<td class="gigi" id="gigi38" style="height: 2.5rem; width: 2.5rem;">@foreach($diagnosis as $d)
+											@if($d->id_gigi == 38)
+											@if ($d->is_decay == 1)
+											D
+											@endif 
+											@if ($d->is_missing == 1)
+											M
+											@endif
+											@if ($d->is_filling == 1)
+											F
+											@endif 
+											@endif 
+											@endforeach</td></td>
 											</tr>
 											<tr class="text-center" style="border:none;">
 												<td class="" id="" style="border:none;">31</td>
@@ -1185,41 +1141,41 @@
 							</form>
 							<!-- Modal -->
 							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog modal-xl">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Diagnosis Baru</h5>
-											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-										</div>
-										<form action="/odontogram/submit" method="post">
-											<div class="modal-body">
-												@csrf
-												<input type="hidden" id="usersId" name="usersId" value="">
-												<div class="form-group">
-													<label for="exampleInputEmail1" class="form-label">Decay</label><br>
-													<small>Masukkan ID Gigi, dipisahkan dengan tanda koma. Contoh: 11,12,13,14.</small>
-													<input type="text" class="form-control" name="decay" id="decay" placeholder="ID Gigi Decay">
-												</div>
-												<br>
-												<div class="form-group">
-													<label for="exampleInputEmail1" class="form-label">Missing/Exfoliate</label><br>
-													<small>Masukkan ID Gigi, dipisahkan dengan tanda koma. Contoh: 11,12,13,14.</small>
-													<input type="text" class="form-control" name="missing" id="missing" placeholder="ID Gigi Missing">
-												</div>
-												<br>
-												<div class="form-group">
-													<label for="exampleInputEmail1" class="form-label">Filling</label><br>
-													<small>Masukkan ID Gigi, dipisahkan dengan tanda koma. Contoh: 11,12,13,14.</small>
-													<input type="text" class="form-control" name="filling" id="filling" placeholder="ID Gigi Filling">
-												</div>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-												<button type="submit" class="btn btn-primary">Submit</button>
-											</div>
-										</form>
+							<div class="modal-dialog modal-xl">
+								<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Diagnosis Baru</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<form action="/odontogram/submit" method="post">
+								<div class="modal-body">
+									@csrf
+									<input type="hidden" id="usersId" name="usersId" value="">
+									<div class="form-group">
+									<label for="exampleInputEmail1" class="form-label">Decay</label><br>
+									<small>Masukkan ID Gigi, dipisahkan dengan tanda koma. Contoh: 11,12,13,14.</small>
+									<input type="text" class="form-control" name="decay" id="decay" placeholder="ID Gigi Decay">
+									</div>
+									<br>
+									<div class="form-group">
+									<label for="exampleInputEmail1" class="form-label">Missing/Exfoliate</label><br>
+									<small>Masukkan ID Gigi, dipisahkan dengan tanda koma. Contoh: 11,12,13,14.</small>
+									<input type="text" class="form-control" name="missing" id="missing" placeholder="ID Gigi Missing">
+									</div>
+									<br>
+									<div class="form-group">
+									<label for="exampleInputEmail1" class="form-label">Filling</label><br>
+									<small>Masukkan ID Gigi, dipisahkan dengan tanda koma. Contoh: 11,12,13,14.</small>
+									<input type="text" class="form-control" name="filling" id="filling" placeholder="ID Gigi Filling">
 									</div>
 								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</div>
+								</form>
+								</div>
+							</div>
 							</div>
 						</div>
 					</div>
@@ -1235,7 +1191,7 @@
 							</p>
 						</div>
 						<div class="col-6 text-end">
-
+							
 						</div>
 					</div>
 				</div>
@@ -1245,162 +1201,162 @@
 
 	<script src="{{asset('static/js/app.js')}}"></script>
 	<script>
-		$(document).ready(function() {
+		$(document).ready( function () {
 			id_gigi = 0;
-			$("#gigi18").click(function() {
+			$("#gigi18").click(function(){
 				console.log($("#gigi18").text());
 			});
-			$("#gigi17").click(function() {
+			$("#gigi17").click(function(){
 				console.log($("#gigi17").text());
 			});
-			$("#gigi16").click(function() {
+			$("#gigi16").click(function(){
 				console.log($("#gigi16").text());
 			});
-			$("#gigi15").click(function() {
+			$("#gigi15").click(function(){
 				console.log($("#gigi15").text());
 			});
-			$("#gigi14").click(function() {
+			$("#gigi14").click(function(){
 				console.log($("#gigi14").text());
 			});
-			$("#gigi13").click(function() {
+			$("#gigi13").click(function(){
 				console.log($("#gigi13").text());
 			});
-			$("#gigi12").click(function() {
+			$("#gigi12").click(function(){
 				console.log($("#gigi12").text());
 			});
-			$("#gigi11").click(function() {
+			$("#gigi11").click(function(){
 				console.log($("#gigi11").text());
 			});
-			$("#gigi21").click(function() {
+			$("#gigi21").click(function(){
 				console.log($("#gigi21").text());
 			});
-			$("#gigi22").click(function() {
+			$("#gigi22").click(function(){
 				console.log($("#gigi22").text());
 			});
-			$("#gigi23").click(function() {
+			$("#gigi23").click(function(){
 				console.log($("#gigi23").text());
 			});
-			$("#gigi24").click(function() {
+			$("#gigi24").click(function(){
 				console.log($("#gigi24").text());
 			});
-			$("#gigi25").click(function() {
+			$("#gigi25").click(function(){
 				console.log($("#gigi25").text());
 			});
-			$("#gigi26").click(function() {
+			$("#gigi26").click(function(){
 				console.log($("#gigi26").text());
 			});
-			$("#gigi27").click(function() {
+			$("#gigi27").click(function(){
 				console.log($("#gigi27").text());
 			});
-			$("#gigi28").click(function() {
+			$("#gigi28").click(function(){
 				console.log($("#gigi28").text());
 			});
-			$("#gigi55").click(function() {
+			$("#gigi55").click(function(){
 				console.log($("#gigi55").text());
 			});
-			$("#gigi54").click(function() {
+			$("#gigi54").click(function(){
 				console.log($("#gigi54").text());
 			});
-			$("#gigi53").click(function() {
+			$("#gigi53").click(function(){
 				console.log($("#gigi53").text());
 			});
-			$("#gigi52").click(function() {
+			$("#gigi52").click(function(){
 				console.log($("#gigi52").text());
 			});
-			$("#gigi51").click(function() {
+			$("#gigi51").click(function(){
 				console.log($("#gigi51").text());
 			});
-			$("#gigi61").click(function() {
+			$("#gigi61").click(function(){
 				console.log($("#gigi61").text());
 			});
-			$("#gigi62").click(function() {
+			$("#gigi62").click(function(){
 				console.log($("#gigi62").text());
 			});
-			$("#gigi63").click(function() {
+			$("#gigi63").click(function(){
 				console.log($("#gigi63").text());
 			});
-			$("#gigi64").click(function() {
+			$("#gigi64").click(function(){
 				console.log($("#gigi64").text());
 			});
-			$("#gigi65").click(function() {
+			$("#gigi65").click(function(){
 				console.log($("#gigi65").text());
 			});
-			$("#gigi85").click(function() {
+			$("#gigi85").click(function(){
 				console.log($("#gigi85").text());
 			});
-			$("#gigi84").click(function() {
+			$("#gigi84").click(function(){
 				console.log($("#gigi84").text());
 			});
-			$("#gigi83").click(function() {
+			$("#gigi83").click(function(){
 				console.log($("#gigi83").text());
 			});
-			$("#gigi82").click(function() {
+			$("#gigi82").click(function(){
 				console.log($("#gigi82").text());
 			});
-			$("#gigi81").click(function() {
+			$("#gigi81").click(function(){
 				console.log($("#gigi81").text());
 			});
-			$("#gigi71").click(function() {
+			$("#gigi71").click(function(){
 				console.log($("#gigi71").text());
 			});
-			$("#gigi72").click(function() {
+			$("#gigi72").click(function(){
 				console.log($("#gigi72").text());
 			});
-			$("#gigi73").click(function() {
+			$("#gigi73").click(function(){
 				console.log($("#gigi73").text());
 			});
-			$("#gigi74").click(function() {
+			$("#gigi74").click(function(){
 				console.log($("#gigi74").text());
 			});
-			$("#gigi75").click(function() {
+			$("#gigi75").click(function(){
 				console.log($("#gigi75").text());
 			});
-			$("#gigi48").click(function() {
+			$("#gigi48").click(function(){
 				console.log($("#gigi48").text());
 			});
-			$("#gigi47").click(function() {
+			$("#gigi47").click(function(){
 				console.log($("#gigi47").text());
 			});
-			$("#gigi46").click(function() {
+			$("#gigi46").click(function(){
 				console.log($("#gigi46").text());
 			});
-			$("#gigi45").click(function() {
+			$("#gigi45").click(function(){
 				console.log($("#gigi45").text());
 			});
-			$("#gigi44").click(function() {
+			$("#gigi44").click(function(){
 				console.log($("#gigi44").text());
 			});
-			$("#gigi43").click(function() {
+			$("#gigi43").click(function(){
 				console.log($("#gigi43").text());
 			});
-			$("#gigi42").click(function() {
+			$("#gigi42").click(function(){
 				console.log($("#gigi42").text());
 			});
-			$("#gigi41").click(function() {
+			$("#gigi41").click(function(){
 				console.log($("#gigi41").text());
 			});
-			$("#gigi31").click(function() {
+			$("#gigi31").click(function(){
 				console.log($("#gigi31").text());
 			});
-			$("#gigi32").click(function() {
+			$("#gigi32").click(function(){
 				console.log($("#gigi32").text());
 			});
-			$("#gigi33").click(function() {
+			$("#gigi33").click(function(){
 				console.log($("#gigi33").text());
 			});
-			$("#gigi34").click(function() {
+			$("#gigi34").click(function(){
 				console.log($("#gigi34").text());
 			});
-			$("#gigi35").click(function() {
+			$("#gigi35").click(function(){
 				console.log($("#gigi35").text());
 			});
-			$("#gigi36").click(function() {
+			$("#gigi36").click(function(){
 				console.log($("#gigi36").text());
 			});
-			$("#gigi37").click(function() {
+			$("#gigi37").click(function(){
 				console.log($("#gigi37").text());
 			});
-			$("#gigi38").click(function() {
+			$("#gigi38").click(function(){
 				console.log($("#gigi38").text());
 			});
 			$('#listAnak').DataTable();
@@ -1430,11 +1386,7 @@
 			});
 			//triggered when modal is about to be shown
 			$('#exampleModal').on('show.bs.modal', function(e) {
-				$(".modal-body #usersId").val({
-					{
-						app('request') - > input('id')
-					}
-				});
+				$(".modal-body #usersId").val({{ app('request')->input('id') }});
 			});
 		});
 	</script>

@@ -298,8 +298,8 @@
                                             <td class="text-center" colspan="2"><b>Nilai RTI Rata-rata</b></td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}}%</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}}%</b></td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)
