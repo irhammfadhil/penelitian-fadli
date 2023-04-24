@@ -18,6 +18,8 @@ use App\Http\Controllers\DashboardUserController;
 |
 */
 
+Route::get('/dummy', [DashboardAdminController::class,'dummy']);
+
 Route::get('/', [HomeController::class,'index'])->name('index');
 Route::get('/cara-penggunaan', [HomeController::class,'getCaraPenggunaan']);
 Route::get('/article', [HomeController::class,'getArtikel']);

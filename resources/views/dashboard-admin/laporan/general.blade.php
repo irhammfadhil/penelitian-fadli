@@ -66,10 +66,10 @@
                                             <td class="text-center">{{$jml_decay_lk_79 + $jml_decay_lk_912}}/{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_79 + $jml_missing_lk_912}}/{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_79 + $jml_filling_lk_912}}/{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79+$jml_missing_lk_79+$jml_filling_lk_79 + $jml_decay_lk_912+$jml_missing_lk_912+$jml_filling_lk_912)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak+$jml_missing_lk_79_anak+$jml_filling_lk_79_anak + $jml_decay_lk_912_anak+$jml_missing_lk_912_anak+$jml_filling_lk_912_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -93,10 +93,10 @@
                                             <td class="text-center">{{$jml_decay_pr_79 + $jml_decay_pr_912}}/{{$jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_missing_pr_79 + $jml_missing_pr_912}}/{{$jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_filling_pr_79 + $jml_filling_pr_912}}/{{$jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_79+$jml_missing_pr_79+$jml_filling_pr_79 + $jml_decay_pr_912+$jml_missing_pr_912+$jml_filling_pr_912)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_79_anak+$jml_missing_pr_79_anak+$jml_filling_pr_79_anak + $jml_decay_pr_912_anak+$jml_missing_pr_912_anak+$jml_filling_pr_912_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -119,10 +119,10 @@
                                             <td class="text-center">{{$jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912}}/{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_79 + $jml_missing_lk_912 + $jml_missing_pr_79 + $jml_missing_pr_912}}/{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_79 + $jml_filling_lk_912 + $jml_filling_pr_79 + $jml_filling_pr_912}}/{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79+$jml_missing_lk_79+$jml_filling_lk_79 + $jml_decay_lk_912+$jml_missing_lk_912+$jml_filling_lk_912 + $jml_decay_pr_79+$jml_missing_pr_79+$jml_filling_pr_79 + $jml_decay_pr_912+$jml_missing_pr_912+$jml_filling_pr_912)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak+$jml_missing_lk_79_anak+$jml_filling_lk_79_anak + $jml_decay_lk_912_anak+$jml_missing_lk_912_anak+$jml_filling_lk_912_anak + $jml_decay_pr_79_anak+$jml_missing_pr_79_anak+$jml_filling_pr_79_anak + $jml_decay_pr_912_anak+$jml_missing_pr_912_anak+$jml_filling_pr_912_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)
@@ -168,10 +168,10 @@
                                             <td class="text-center">{{$jml_decay_lk_7}}/{{$jml_decay_lk_7_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_7}}/{{$jml_missing_lk_7_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_7}}/{{$jml_filling_lk_7_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_7+$jml_missing_lk_7+$jml_filling_lk_7)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_7_anak+$jml_missing_lk_7_anak+$jml_filling_lk_7_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -195,10 +195,10 @@
                                             <td class="text-center">{{$jml_decay_pr_7}}/{{$jml_decay_pr_7_anak}}</td>
                                             <td class="text-center">{{$jml_missing_pr_7}}/{{$jml_missing_pr_7_anak}}</td>
                                             <td class="text-center">{{$jml_filling_pr_7}}/{{$jml_filling_pr_7_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_7+$jml_missing_pr_7+$jml_filling_pr_7)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_7_anak+$jml_missing_pr_7_anak+$jml_filling_pr_7_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -222,10 +222,10 @@
                                             <td class="text-center">{{$jml_decay_lk_7 + $jml_decay_pr_7}}/{{$jml_decay_lk_7_anak + $jml_decay_pr_7_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_7 + $jml_missing_pr_7}}/{{$jml_missing_lk_7_anak + $jml_missing_pr_7_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_7 + $jml_filling_pr_7}}/{{$jml_filling_lk_7_anak + $jml_filling_pr_7_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_7+$jml_missing_lk_7+$jml_filling_lk_7+$jml_decay_pr_7+$jml_missing_pr_7+$jml_filling_pr_7)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_7_anak+$jml_missing_lk_7_anak+$jml_filling_lk_7_anak+$jml_decay_pr_7_anak+$jml_missing_pr_7_anak+$jml_filling_pr_7_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -250,10 +250,10 @@
                                             <td class="text-center">{{$jml_decay_lk_8}}/{{$jml_decay_lk_8_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_8}}/{{$jml_missing_lk_8_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_8}}/{{$jml_filling_lk_8_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_8+$jml_missing_lk_8+$jml_filling_lk_8)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_8_anak+$jml_missing_lk_8_anak+$jml_filling_lk_8_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -277,10 +277,10 @@
                                             <td class="text-center">{{$jml_decay_pr_8}}/{{$jml_decay_pr_8_anak}}</td>
                                             <td class="text-center">{{$jml_missing_pr_8}}/{{$jml_missing_pr_8_anak}}</td>
                                             <td class="text-center">{{$jml_filling_pr_8}}/{{$jml_filling_pr_8_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_8+$jml_missing_pr_8+$jml_filling_pr_8)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_8_anak+$jml_missing_pr_8_anak+$jml_filling_pr_8_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -304,10 +304,10 @@
                                             <td class="text-center">{{$jml_decay_lk_8 + $jml_decay_pr_8}}/{{$jml_decay_lk_8_anak + $jml_decay_pr_8_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_8 + $jml_missing_pr_8}}/{{$jml_missing_lk_8_anak + $jml_missing_pr_8_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_8 + $jml_filling_pr_8}}/{{$jml_filling_lk_8_anak + $jml_filling_pr_8_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_8+$jml_missing_lk_8+$jml_filling_lk_8+$jml_decay_pr_8+$jml_missing_pr_8+$jml_filling_pr_8)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_8_anak+$jml_missing_lk_8_anak+$jml_filling_lk_8_anak+$jml_decay_pr_8_anak+$jml_missing_pr_8_anak+$jml_filling_pr_8_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -332,10 +332,10 @@
                                             <td class="text-center">{{$jml_decay_lk_9}}/{{$jml_decay_lk_9_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_9}}/{{$jml_missing_lk_9_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_9}}/{{$jml_filling_lk_9_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_9+$jml_missing_lk_9+$jml_filling_lk_9)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_9_anak+$jml_missing_lk_9_anak+$jml_filling_lk_9_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -359,10 +359,10 @@
                                             <td class="text-center">{{$jml_decay_pr_9}}/{{$jml_decay_pr_9_anak}}</td>
                                             <td class="text-center">{{$jml_missing_pr_9}}/{{$jml_missing_pr_9_anak}}</td>
                                             <td class="text-center">{{$jml_filling_pr_9}}/{{$jml_filling_pr_9_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_9+$jml_missing_pr_9+$jml_filling_pr_9)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_9_anak+$jml_missing_pr_9_anak+$jml_filling_pr_9_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -386,10 +386,10 @@
                                             <td class="text-center">{{$jml_decay_lk_9 + $jml_decay_pr_9}}/{{$jml_decay_lk_9_anak + $jml_decay_pr_9_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_9 + $jml_missing_pr_9}}/{{$jml_missing_lk_9_anak + $jml_missing_pr_9_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_9 + $jml_filling_pr_9}}/{{$jml_filling_lk_9_anak + $jml_filling_pr_9_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_9+$jml_missing_lk_9+$jml_filling_lk_9+$jml_decay_pr_9+$jml_missing_pr_9+$jml_filling_pr_9)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_9_anak+$jml_missing_lk_9_anak+$jml_filling_lk_9_anak+$jml_decay_pr_9_anak+$jml_missing_pr_9_anak+$jml_filling_pr_9_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -414,10 +414,10 @@
                                             <td class="text-center">{{$jml_decay_lk_10}}/{{$jml_decay_lk_10_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_10}}/{{$jml_missing_lk_10_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_10}}/{{$jml_filling_lk_10_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_10+$jml_missing_lk_10+$jml_filling_lk_10)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_10_anak+$jml_missing_lk_10_anak+$jml_filling_lk_10_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -441,10 +441,10 @@
                                             <td class="text-center">{{$jml_decay_pr_10}}/{{$jml_decay_pr_10_anak}}</td>
                                             <td class="text-center">{{$jml_missing_pr_10}}/{{$jml_missing_pr_10_anak}}</td>
                                             <td class="text-center">{{$jml_filling_pr_10}}/{{$jml_filling_pr_10_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_10+$jml_missing_pr_10+$jml_filling_pr_10)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_10_anak+$jml_missing_pr_10_anak+$jml_filling_pr_10_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -468,10 +468,10 @@
                                             <td class="text-center">{{$jml_decay_lk_10 + $jml_decay_pr_10}}/{{$jml_decay_lk_10_anak + $jml_decay_pr_10_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_10 + $jml_missing_pr_10}}/{{$jml_missing_lk_10_anak + $jml_missing_pr_10_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_10 + $jml_filling_pr_10}}/{{$jml_filling_lk_10_anak + $jml_filling_pr_10_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_10+$jml_missing_lk_10+$jml_filling_lk_10+$jml_decay_pr_10+$jml_missing_pr_10+$jml_filling_pr_10)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_10_anak+$jml_missing_lk_10_anak+$jml_filling_lk_10_anak+$jml_decay_pr_10_anak+$jml_missing_pr_10_anak+$jml_filling_pr_10_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -496,10 +496,10 @@
                                             <td class="text-center">{{$jml_decay_lk_11}}/{{$jml_decay_lk_11_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_11}}/{{$jml_missing_lk_11_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_11}}/{{$jml_filling_lk_11_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_11+$jml_missing_lk_11+$jml_filling_lk_11)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_11_anak+$jml_missing_lk_11_anak+$jml_filling_lk_11_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -523,10 +523,10 @@
                                             <td class="text-center">{{$jml_decay_pr_11}}/{{$jml_decay_pr_11_anak}}</td>
                                             <td class="text-center">{{$jml_missing_pr_11}}/{{$jml_missing_pr_11_anak}}</td>
                                             <td class="text-center">{{$jml_filling_pr_11}}/{{$jml_filling_pr_11_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_11+$jml_missing_pr_11+$jml_filling_pr_11)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_11_anak+$jml_missing_pr_11_anak+$jml_filling_pr_11_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -550,10 +550,10 @@
                                             <td class="text-center">{{$jml_decay_lk_11 + $jml_decay_pr_11}}/{{$jml_decay_lk_11_anak + $jml_decay_pr_11_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_11 + $jml_missing_pr_11}}/{{$jml_missing_lk_11_anak + $jml_missing_pr_11_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_11 + $jml_filling_pr_11}}/{{$jml_filling_lk_11_anak + $jml_filling_pr_11_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_11+$jml_missing_lk_11+$jml_filling_lk_11+$jml_decay_pr_11+$jml_missing_pr_11+$jml_filling_pr_11)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_11_anak+$jml_missing_lk_11_anak+$jml_filling_lk_11_anak+$jml_decay_pr_11_anak+$jml_missing_pr_11_anak+$jml_filling_pr_11_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -578,10 +578,10 @@
                                             <td class="text-center">{{$jml_decay_lk_12}}/{{$jml_decay_lk_12_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_12}}/{{$jml_missing_lk_12_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_12}}/{{$jml_filling_lk_12_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_12+$jml_missing_lk_12+$jml_filling_lk_12)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_12_anak+$jml_missing_lk_12_anak+$jml_filling_lk_12_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -605,10 +605,10 @@
                                             <td class="text-center">{{$jml_decay_pr_12}}/{{$jml_decay_pr_12_anak}}</td>
                                             <td class="text-center">{{$jml_missing_pr_12}}/{{$jml_missing_pr_12_anak}}</td>
                                             <td class="text-center">{{$jml_filling_pr_12}}/{{$jml_filling_pr_12_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_12+$jml_missing_pr_12+$jml_filling_pr_12)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_12_anak+$jml_missing_pr_12_anak+$jml_filling_pr_12_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -632,10 +632,10 @@
                                             <td class="text-center">{{$jml_decay_lk_12 + $jml_decay_pr_12}}/{{$jml_decay_lk_12_anak + $jml_decay_pr_12_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_12 + $jml_missing_pr_12}}/{{$jml_missing_lk_12_anak + $jml_missing_pr_12_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_12 + $jml_filling_pr_12}}/{{$jml_filling_lk_12_anak + $jml_filling_pr_12_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_12+$jml_missing_lk_12+$jml_filling_lk_12+$jml_decay_pr_12+$jml_missing_pr_12+$jml_filling_pr_12)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_12_anak+$jml_missing_lk_12_anak+$jml_filling_lk_12_anak+$jml_decay_pr_12_anak+$jml_missing_pr_12_anak+$jml_filling_pr_12_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -658,10 +658,10 @@
                                             <td class="text-center">{{$jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912}}/{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_79 + $jml_missing_lk_912 + $jml_missing_pr_79 + $jml_missing_pr_912}}/{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_79 + $jml_filling_lk_912 + $jml_filling_pr_79 + $jml_filling_pr_912}}/{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}} %</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912+$jml_missing_lk_79 + $jml_missing_lk_912 + $jml_missing_pr_79 + $jml_missing_pr_912+$jml_filling_lk_79 + $jml_filling_lk_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak+$jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak+$jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}} %</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}} %</b></td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)

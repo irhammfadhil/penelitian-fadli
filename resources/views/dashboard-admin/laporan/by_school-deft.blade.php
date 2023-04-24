@@ -97,7 +97,7 @@
                                             <td class="text-center">{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak)/$q->jumlah,2)}}</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -118,7 +118,7 @@
                                             <td class="text-center">{{$jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah,2)}}</b></td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -138,7 +138,7 @@
                                             <td class="text-center">{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah,2)}}</b></td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)
@@ -176,7 +176,7 @@
                                             <td class="text-center">{{$jml_decay_lk_7_anak + $jml_decay_pr_7_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_7_anak + $jml_missing_pr_7_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_7_anak + $jml_filling_pr_7_anak}}</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_deft,1)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_7_anak + $jml_decay_pr_7_anak + $jml_missing_lk_7_anak + $jml_missing_pr_7_anak + $jml_filling_lk_7_anak + $jml_filling_pr_7_anak)/$q->jumlah,2)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -197,7 +197,7 @@
                                             <td class="text-center">{{$jml_decay_lk_8_anak + $jml_decay_pr_8_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_8_anak + $jml_missing_pr_8_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_8_anak + $jml_filling_pr_8_anak}}</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_deft,1)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_8_anak + $jml_decay_pr_8_anak + $jml_missing_lk_8_anak + $jml_missing_pr_8_anak + $jml_filling_lk_8_anak + $jml_filling_pr_8_anak)/$q->jumlah,2)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -218,7 +218,7 @@
                                             <td class="text-center">{{$jml_decay_lk_9_anak + $jml_decay_pr_9_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_9_anak + $jml_missing_pr_9_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_9_anak + $jml_filling_pr_9_anak}}</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_deft,1)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_9_anak + $jml_decay_pr_9_anak + $jml_missing_lk_9_anak + $jml_missing_pr_9_anak + $jml_filling_lk_9_anak + $jml_filling_pr_9_anak)/$q->jumlah,2)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -239,7 +239,7 @@
                                             <td class="text-center">{{$jml_decay_lk_10_anak + $jml_decay_pr_10_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_10_anak + $jml_missing_pr_10_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_10_anak + $jml_filling_pr_10_anak}}</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_deft,1)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_10_anak + $jml_decay_pr_10_anak + $jml_missing_lk_10_anak + $jml_missing_pr_10_anak + $jml_filling_lk_10_anak + $jml_filling_pr_10_anak)/$q->jumlah,2)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -260,7 +260,7 @@
                                             <td class="text-center">{{$jml_decay_lk_11_anak + $jml_decay_pr_11_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_11_anak + $jml_missing_pr_11_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_11_anak + $jml_filling_pr_11_anak}}</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_deft,1)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_11_anak + $jml_decay_pr_11_anak + $jml_missing_lk_11_anak + $jml_missing_pr_11_anak + $jml_filling_lk_11_anak + $jml_filling_pr_11_anak)/$q->jumlah,2)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -281,7 +281,7 @@
                                             <td class="text-center">{{$jml_decay_lk_12_anak + $jml_decay_pr_12_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_12_anak + $jml_missing_pr_12_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_12_anak + $jml_filling_pr_12_anak}}</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_deft,1)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_12_anak + $jml_decay_pr_12_anak + $jml_missing_lk_12_anak + $jml_missing_pr_12_anak + $jml_filling_lk_12_anak + $jml_filling_pr_12_anak)/$q->jumlah,2)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -301,7 +301,7 @@
                                             <td class="text-center">{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_deft,1)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah,2)}}</td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)
@@ -316,7 +316,7 @@
                                             <td class="text-center" colspan="5"><b>Indeks def-t Maksimum</b></td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{number_format($max_deft,1)}}</b> ({{$max_deft_label}} tahun)</td>
+                                            <td class="text-center"><b>{{number_format($max_deft,2)}}</b> ({{$max_deft_label}} tahun)</td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)
@@ -327,7 +327,7 @@
                                             <td class="text-center" colspan="5"><b>Indeks def-t Minimum</b></td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{number_format($min_deft,1)}}</b> ({{$min_deft_label}} tahun)</td>
+                                            <td class="text-center"><b>{{number_format($min_deft,2)}}</b> ({{$min_deft_label}} tahun)</td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)
@@ -338,7 +338,7 @@
                                             <td class="text-center" colspan="5"><b>Nilai def-t Rata-rata</b></td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,1)}}</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_deft,2)}}</b></td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)

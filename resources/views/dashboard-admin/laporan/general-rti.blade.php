@@ -58,8 +58,8 @@
                                             @foreach($query_general as $q)
                                             @if($q->jenis_kelamin == 'Laki-laki')
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,1)}} %</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,1)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,2)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,2)}} %</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -75,8 +75,8 @@
                                             @foreach($query_general as $q)
                                             @if($q->jenis_kelamin == 'Perempuan')
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,1)}} %</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,1)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,2)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,2)}} %</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -91,8 +91,8 @@
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,1)}} %</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,1)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,2)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,2)}} %</td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)
@@ -123,8 +123,8 @@
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 7)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,1)}} %</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,1)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,2)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,2)}} %</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -140,8 +140,8 @@
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 8)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,1)}} %</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,1)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,2)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,2)}} %</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -157,8 +157,8 @@
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 9)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,1)}} %</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,1)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,2)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,2)}} %</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -174,8 +174,8 @@
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 10)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,1)}} %</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,1)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,2)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,2)}} %</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -191,8 +191,8 @@
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 11)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,1)}} %</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,1)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,2)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,2)}} %</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -208,8 +208,8 @@
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 12)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,1)}} %</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,1)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,2)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,2)}} %</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -224,8 +224,8 @@
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,1)}} %</td>
-                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,1)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti*100,2)}} %</td>
+                                            <td class="text-center">{{number_format($q->rata_rata_rti_anak*100,2)}} %</td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)
@@ -238,8 +238,8 @@
                                             <td class="text-center" colspan="2"><b>Indeks RTI Maksimum</b></td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{number_format($max_rti*100,1)}}%</b> ({{$max_rti_label}} tahun)</td>
-                                            <td class="text-center"><b>{{number_format($max_rti_anak*100,1)}}%</b> ({{$max_rti_anak_label}} tahun)</td>
+                                            <td class="text-center"><b>{{number_format($max_rti*100,2)}}%</b> ({{$max_rti_label}} tahun)</td>
+                                            <td class="text-center"><b>{{number_format($max_rti_anak*100,2)}}%</b> ({{$max_rti_anak_label}} tahun)</td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)
@@ -251,8 +251,8 @@
                                             <td class="text-center" colspan="2"><b>Indeks RTI Minimum</b></td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{number_format($min_rti*100,1)}}%</b> ({{$min_rti_label}} tahun)</td>
-                                            <td class="text-center"><b>{{number_format($min_rti_anak*100,1)}}%</b> ({{$min_rti_anak_label}} tahun)</td>
+                                            <td class="text-center"><b>{{number_format($min_rti*100,2)}}%</b> ({{$min_rti_label}} tahun)</td>
+                                            <td class="text-center"><b>{{number_format($min_rti_anak*100,2)}}%</b> ({{$min_rti_anak_label}} tahun)</td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)
@@ -264,8 +264,8 @@
                                             <td class="text-center" colspan="2"><b>Nilai RTI Rata-rata</b></td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,1)}}%</b></td>
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,1)}}%</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti*100,2)}}%</b></td>
+                                            <td class="text-center"><b>{{number_format($q->rata_rata_rti_anak*100,2)}}%</b></td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)

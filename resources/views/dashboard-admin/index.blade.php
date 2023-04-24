@@ -178,11 +178,14 @@
 				column: {
 					pointPadding: 0.2,
 					borderWidth: 0,
-					colorByPoint: true
+					colorByPoint: true,
+					dataLabels: {
+						enabled: true
+					},
 				}
 			},
 			colors: [
-				'#3B97B2', '#67BC42', '#FF56DE', '#E6D605', '#BC36FE', '#000'
+				'#966102', '#919187', '#2C6700'
 			],
 			series: [{
 				name: 'Responden',
@@ -221,11 +224,14 @@
 				column: {
 					pointPadding: 0.2,
 					borderWidth: 0,
-					colorByPoint: true
+					colorByPoint: true,
+					dataLabels: {
+						enabled: true
+					},
 				}
 			},
 			colors: [
-				'#3B97B2', '#67BC42', '#FF56DE', '#E6D605', '#BC36FE', '#000'
+				'#FF9900', '#C0C0C0', '#336699', '#028482', '#032140', '#fff86b'
 			],
 			series: [{
 				name: 'Usia',
@@ -264,11 +270,14 @@
 				column: {
 					pointPadding: 0.2,
 					borderWidth: 0,
-					colorByPoint: true
+					colorByPoint: true,
+					dataLabels: {
+						enabled: true
+					},
 				}
 			},
 			colors: [
-				'#3B97B2', '#67BC42', '#FF56DE', '#E6D605', '#BC36FE', '#000'
+				'#966102', '#919187', '#2C6700'
 			],
 			series: [{
 				name: 'Nilai DMF-T',
@@ -307,11 +316,14 @@
 				column: {
 					pointPadding: 0.2,
 					borderWidth: 0,
-					colorByPoint: true
+					colorByPoint: true,
+					dataLabels: {
+						enabled: true
+					},
 				}
 			},
 			colors: [
-				'#3B97B2', '#67BC42', '#FF56DE', '#E6D605', '#BC36FE', '#000'
+				'#FF9900', '#C0C0C0', '#336699', '#028482', '#032140', '#fff86b'
 			],
 			series: [{
 				name: 'Nilai DMF-T',
@@ -350,11 +362,15 @@
 				column: {
 					pointPadding: 0.2,
 					borderWidth: 0,
-					colorByPoint: true
+					colorByPoint: true,
+					dataLabels: {
+						enabled: true,
+						format: '{point.y:,.2f}'
+					},
 				}
 			},
 			colors: [
-				'#3B97B2', '#67BC42', '#FF56DE', '#E6D605', '#BC36FE', '#000'
+				'#966102', '#919187', '#2C6700'
 			],
 			series: [{
 				name: 'Nilai def-t',
@@ -393,11 +409,14 @@
 				column: {
 					pointPadding: 0.2,
 					borderWidth: 0,
-					colorByPoint: true
+					colorByPoint: true,
+					dataLabels: {
+						enabled: true
+					},
 				}
 			},
 			colors: [
-				'#3B97B2', '#67BC42', '#FF56DE', '#E6D605', '#BC36FE', '#000'
+				'#FF9900', '#C0C0C0', '#336699', '#028482', '#032140', '#fff86b'
 			],
 			series: [{
 				name: 'Nilai def-t',
@@ -421,7 +440,7 @@
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Indeks RTI Gigi Tetap'
+					text: 'Indeks RTI Gigi Tetap (%)'
 				}
 			},
 			tooltip: {
@@ -436,11 +455,14 @@
 				column: {
 					pointPadding: 0.2,
 					borderWidth: 0,
-					colorByPoint: true
+					colorByPoint: true,
+					dataLabels: {
+						enabled: true
+					},
 				}
 			},
 			colors: [
-				'#3B97B2', '#67BC42', '#FF56DE', '#E6D605', '#BC36FE', '#000'
+				'#966102', '#919187', '#2C6700'
 			],
 			series: [{
 				name: 'Indeks RTI',
@@ -464,7 +486,7 @@
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Indeks RTI Gigi Tetap'
+					text: 'Indeks RTI Gigi Tetap (%)'
 				}
 			},
 			tooltip: {
@@ -479,11 +501,14 @@
 				column: {
 					pointPadding: 0.2,
 					borderWidth: 0,
-					colorByPoint: true
+					colorByPoint: true,
+					dataLabels: {
+						enabled: true
+					},
 				}
 			},
 			colors: [
-				'#3B97B2', '#67BC42', '#FF56DE', '#E6D605', '#BC36FE', '#000'
+				'#FF9900', '#C0C0C0', '#336699', '#028482', '#032140', '#fff86b'
 			],
 			series: [{
 				name: 'Indeks RTI',
@@ -522,11 +547,14 @@
 				column: {
 					pointPadding: 0.2,
 					borderWidth: 0,
-					colorByPoint: true
+					colorByPoint: true,
+					dataLabels: {
+						enabled: true
+					},
 				}
 			},
 			colors: [
-				'#3B97B2', '#67BC42', '#FF56DE', '#E6D605', '#BC36FE', '#000'
+				'#966102', '#919187', '#2C6700'
 			],
 			series: [{
 				name: 'Indeks RTI',
@@ -550,7 +578,7 @@
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Indeks RTI Gigi Sulung'
+					text: 'Indeks RTI Gigi Sulung (%)'
 				}
 			},
 			tooltip: {
@@ -565,11 +593,14 @@
 				column: {
 					pointPadding: 0.2,
 					borderWidth: 0,
-					colorByPoint: true
+					colorByPoint: true,
+					dataLabels: {
+						enabled: true
+					},
 				}
 			},
 			colors: [
-				'#3B97B2', '#67BC42', '#FF56DE', '#E6D605', '#BC36FE', '#000'
+				'#FF9900', '#C0C0C0', '#336699', '#028482', '#032140', '#fff86b'
 			],
 			series: [{
 				name: 'Indeks RTI (%)',

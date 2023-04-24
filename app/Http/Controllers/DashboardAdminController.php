@@ -56,19 +56,19 @@ class DashboardAdminController extends Controller
             foreach($query_klp_usia as $q) {
                 if($q->kategori_umur == $i) {
                     array_push($array_usia, (int)$q->jumlah);
-                    array_push($array_dmft_by_age, (float)$q->rata_rata_dmft);
-                    array_push($array_deft_by_age, (float)$q->rata_rata_deft);
-                    array_push($array_rti_by_age, (float)$q->rata_rata_rti*100);
-                    array_push($array_rti_anak_by_age, (float)$q->rata_rata_rti_anak*100);
+                    array_push($array_dmft_by_age, (float)number_format($q->rata_rata_dmft, 2, '.', ''));
+                    array_push($array_deft_by_age, (float)number_format($q->rata_rata_deft, 2, '.', ''));
+                    array_push($array_rti_by_age, (float)number_format($q->rata_rata_rti*100, 2, '.', ''));
+                    array_push($array_rti_anak_by_age, (float)number_format($q->rata_rata_rti_anak*100, 2, '.', ''));
                 }
             }
         }
 
         foreach($query_by_gender as $qg) {
-            array_push($array_dmft_by_gender, (float)$qg->rata_rata_dmft);
-            array_push($array_deft_by_gender, (float)$qg->rata_rata_deft);
-            array_push($array_rti_by_gender, (float)$qg->rata_rata_rti*100);
-            array_push($array_rti_anak_by_gender, (float)$qg->rata_rata_rti_anak*100);
+            array_push($array_dmft_by_gender, (float)number_format($qg->rata_rata_dmft, 2, '.', ''));
+            array_push($array_deft_by_gender, (float)number_format($qg->rata_rata_deft, 2, '.', ''));
+            array_push($array_rti_by_gender, (float)number_format($qg->rata_rata_rti*100, 2, '.', ''));
+            array_push($array_rti_anak_by_gender, (float)number_format($qg->rata_rata_rti_anak*100, 2, '.', ''));
         }
 
         //array push
@@ -187,6 +187,33 @@ class DashboardAdminController extends Controller
             $kriteria_deft = 'Sangat Tinggi';
         }
 
+        //handle tanggal foto jika null
+        $tanggal_foto_senyum = null;
+        $tanggal_foto_depan = null;
+        $tanggal_foto_kiri = null;
+        $tanggal_foto_atas = null;
+        $tanggal_foto_kanan = null;
+        $tanggal_foto_bawah = null;
+        if($tanggal_foto_senyum != null) {
+            $tanggal_foto_senyum = $this->tgl_indo($foto->date_taken_senyum);
+        }
+        if($tanggal_foto_depan != null) {
+            $tanggal_foto_depan = $this->tgl_indo($foto->date_taken_depan);
+        }
+        if($tanggal_foto_kiri != null) {
+            $tanggal_foto_kiri = $this->tgl_indo($foto->date_taken_kiri);
+        }
+        if($tanggal_foto_atas != null) {
+            $tanggal_foto_atas = $this->tgl_indo($foto->date_taken_atas);
+        }
+        if($tanggal_foto_kanan != null) {
+            $tanggal_foto_kanan = $this->tgl_indo($foto->date_taken_kanan);
+        }
+        if($tanggal_foto_bawah != null) {
+            $tanggal_foto_bawah = $this->tgl_indo($foto->date_taken_bawah);
+        }
+
+
         return view('dashboard-admin.detail-anak', [
             'user' => $user,
             'biodata' => $biodata,
@@ -212,12 +239,12 @@ class DashboardAdminController extends Controller
             'kriteria_dmft' => $kriteria_dmft,
             'kriteria_deft' => $kriteria_deft,
             'tanggal_lahir' => $this->tgl_indo($biodata->birth_date),
-            'tanggal_foto_senyum' => $this->tgl_indo($foto->date_taken_senyum),
-            'tanggal_foto_depan' => $this->tgl_indo($foto->date_taken_depan),
-            'tanggal_foto_kiri' => $this->tgl_indo($foto->date_taken_kiri),
-            'tanggal_foto_atas' => $this->tgl_indo($foto->date_taken_atas),
-            'tanggal_foto_kanan' => $this->tgl_indo($foto->date_taken_kanan),
-            'tanggal_foto_bawah' => $this->tgl_indo($foto->date_taken_bawah),
+            'tanggal_foto_senyum' => $tanggal_foto_senyum,
+            'tanggal_foto_depan' => $tanggal_foto_depan,
+            'tanggal_foto_kiri' => $tanggal_foto_kiri,
+            'tanggal_foto_atas' => $tanggal_foto_atas,
+            'tanggal_foto_kanan' => $tanggal_foto_kanan,
+            'tanggal_foto_bawah' => $tanggal_foto_bawah,
         ]);
     }
     public function submitOdontogram(Request $request)
@@ -2405,5 +2432,19 @@ class DashboardAdminController extends Controller
         $url = '/daftar-anak/detail?id=' . $request->id;
 
         return redirect($url);
+    }
+    public function dummy() {
+        $query_klp_usia = DB::table('users as u')->select(DB::raw('b.gender as jenis_kelamin, 
+        case when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 8 then \'Usia 7 th\'
+        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 8 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 9 then \'Usia 8 th\'
+        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 9 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 10 then \'Usia 9 th\'
+        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 11 then \'Usia 10 th\'
+        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 11 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 12 then \'Usia 11 th\'     
+        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 12 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 <= 13 then \'Usia 12 th\' end as kategori_umur, 
+        count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft, sum(u.num_decay)/sum(dmft_score) as rata_rata_rti,
+        sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
+            ->where('u.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 <= 13')->groupBy('b.gender', 'kategori_umur')->toSql();
+        
+        return $query_klp_usia;
     }
 }
