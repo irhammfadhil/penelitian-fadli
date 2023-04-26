@@ -37,11 +37,64 @@ class DashboardAdminController extends Controller
             count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft, sum(u.num_decay)/sum(dmft_score) as rata_rata_rti,
             sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
             ->where('u.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 <= 13')->groupBy('kategori_umur')->get();
-        
+
         $query_by_gender = DB::table('users as u')->select(DB::raw('b.gender as jenis_kelamin, 
             count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft, sum(u.num_decay)/sum(dmft_score) as rata_rata_rti,
             sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
             ->where('u.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 <= 13')->groupBy('jenis_kelamin')->get();
+        //array num decay missing filling - by gender
+        $num_decay = [];
+        $num_missing = [];
+        $num_filling = [];
+        $num_decay_anak = [];
+        $num_missing_anak = [];
+        $num_filling_anak = [];
+
+        foreach ($gender as $g) {
+            $users_id = User::select('users.id')->join('users_biodata as b', 'b.users_id', '=', 'users.id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 <= 13')->where('b.gender', $g)->get();
+            $diagnosis_decay = Diagnosis::whereIn('users_id', $users_id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+            array_push($num_decay, $diagnosis_decay);
+            $diagnosis_missing = Diagnosis::whereIn('users_id', $users_id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+            array_push($num_missing, $diagnosis_missing);
+            $diagnosis_filling = Diagnosis::whereIn('users_id', $users_id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+            array_push($num_filling, $diagnosis_filling);
+            $diagnosis_decay = Diagnosis::whereIn('users_id', $users_id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [51, 85])->count();
+            array_push($num_decay_anak, $diagnosis_decay);
+            $diagnosis_missing = Diagnosis::whereIn('users_id', $users_id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [51, 85])->count();
+            array_push($num_missing_anak, $diagnosis_missing);
+            $diagnosis_filling = Diagnosis::whereIn('users_id', $users_id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [51, 85])->count();
+            array_push($num_filling_anak, $diagnosis_filling);
+        }
+
+        //array num decay missing filing - by age
+        $num_decay_age = [];
+        $num_missing_age = [];
+        $num_filling_age = [];
+        $num_decay_anak_age = [];
+        $num_missing_anak_age = [];
+        $num_filling_anak_age = [];
+
+        for ($i = 7; $i < 13; $i++) {
+            $users_id = '';
+            if ($i != 12) {
+                $users_id = User::select('users.id')->join('users_biodata as b', 'b.users_id', '=', 'users.id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 >=' . $i . ' and DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 <' . $i + 1)->get();
+            } else {
+                $users_id = User::select('users.id')->join('users_biodata as b', 'b.users_id', '=', 'users.id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 >=' . $i . ' and DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 <=' . $i + 1)->get();
+            }
+            $diagnosis_decay = Diagnosis::whereIn('users_id', $users_id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+            array_push($num_decay_age, $diagnosis_decay);
+            $diagnosis_missing = Diagnosis::whereIn('users_id', $users_id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+            array_push($num_missing_age, $diagnosis_missing);
+            $diagnosis_filling = Diagnosis::whereIn('users_id', $users_id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+            array_push($num_filling_age, $diagnosis_filling);
+            $diagnosis_decay = Diagnosis::whereIn('users_id', $users_id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [51, 85])->count();
+            array_push($num_decay_anak_age, $diagnosis_decay);
+            $diagnosis_missing = Diagnosis::whereIn('users_id', $users_id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [51, 85])->count();
+            array_push($num_missing_anak_age, $diagnosis_missing);
+            $diagnosis_filling = Diagnosis::whereIn('users_id', $users_id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [51, 85])->count();
+            array_push($num_filling_anak_age, $diagnosis_filling);
+        }
+
         $array_usia = [];
         $array_dmft_by_gender = [];
         $array_dmft_by_age = [];
@@ -52,23 +105,26 @@ class DashboardAdminController extends Controller
         $array_rti_anak_by_gender = [];
         $array_rti_anak_by_age = [];
         $age = 7;
-        for($i=7;$i<=12;$i++) {
-            foreach($query_klp_usia as $q) {
-                if($q->kategori_umur == $i) {
+        $j = 0;
+        for ($i = 7; $i <= 12; $i++) {
+            foreach ($query_klp_usia as $q) {
+                if ($q->kategori_umur == $i) {
                     array_push($array_usia, (int)$q->jumlah);
-                    array_push($array_dmft_by_age, (float)number_format($q->rata_rata_dmft, 2, '.', ''));
-                    array_push($array_deft_by_age, (float)number_format($q->rata_rata_deft, 2, '.', ''));
-                    array_push($array_rti_by_age, (float)number_format($q->rata_rata_rti*100, 2, '.', ''));
-                    array_push($array_rti_anak_by_age, (float)number_format($q->rata_rata_rti_anak*100, 2, '.', ''));
+                    array_push($array_dmft_by_age, (float)number_format(($num_decay_age[$j] + $num_missing_age[$j] + $num_filling_age[$j]) / $q->jumlah, 2, '.', ''));
+                    array_push($array_deft_by_age, (float)number_format(($num_decay_anak_age[$j] + $num_missing_anak_age[$j] + $num_filling_anak_age[$j]) / $q->jumlah, 2, '.', ''));
+                    array_push($array_rti_by_age, (float)number_format($num_decay_age[$j] / ($num_decay_age[$j] + $num_missing_age[$j] + $num_filling_age[$j]) * 100, 2, '.', ''));
+                    array_push($array_rti_anak_by_age, (float)number_format($num_decay_anak_age[$j] / ($num_decay_anak_age[$j] + $num_missing_anak_age[$j] + $num_filling_anak_age[$j]) * 100, 2, '.', ''));
                 }
             }
+            $j++;
         }
-
-        foreach($query_by_gender as $qg) {
-            array_push($array_dmft_by_gender, (float)number_format($qg->rata_rata_dmft, 2, '.', ''));
-            array_push($array_deft_by_gender, (float)number_format($qg->rata_rata_deft, 2, '.', ''));
-            array_push($array_rti_by_gender, (float)number_format($qg->rata_rata_rti*100, 2, '.', ''));
-            array_push($array_rti_anak_by_gender, (float)number_format($qg->rata_rata_rti_anak*100, 2, '.', ''));
+        $i = 0;
+        foreach ($query_by_gender as $qg) {
+            array_push($array_dmft_by_gender, (float)number_format(($num_decay[$i] + $num_missing[$i] + $num_filling[$i]) / $qg->jumlah, 2, '.', ''));
+            array_push($array_deft_by_gender, (float)number_format(($num_decay_anak[$i] + $num_missing_anak[$i] + $num_filling_anak[$i]) / $qg->jumlah, 2, '.', ''));
+            array_push($array_rti_by_gender, (float)number_format($num_decay[$i] / ($num_decay[$i] + $num_missing[$i] + $num_filling[$i]) * 100, 2, '.', ''));
+            array_push($array_rti_anak_by_gender, (float)number_format($num_decay_anak[$i] / ($num_decay_anak[$i] + $num_missing_anak[$i] + $num_filling_anak[$i]) * 100, 2, '.', ''));
+            $i++;
         }
 
         //array push
@@ -194,22 +250,22 @@ class DashboardAdminController extends Controller
         $tanggal_foto_atas = null;
         $tanggal_foto_kanan = null;
         $tanggal_foto_bawah = null;
-        if($tanggal_foto_senyum != null) {
+        if ($tanggal_foto_senyum != null) {
             $tanggal_foto_senyum = $this->tgl_indo($foto->date_taken_senyum);
         }
-        if($tanggal_foto_depan != null) {
+        if ($tanggal_foto_depan != null) {
             $tanggal_foto_depan = $this->tgl_indo($foto->date_taken_depan);
         }
-        if($tanggal_foto_kiri != null) {
+        if ($tanggal_foto_kiri != null) {
             $tanggal_foto_kiri = $this->tgl_indo($foto->date_taken_kiri);
         }
-        if($tanggal_foto_atas != null) {
+        if ($tanggal_foto_atas != null) {
             $tanggal_foto_atas = $this->tgl_indo($foto->date_taken_atas);
         }
-        if($tanggal_foto_kanan != null) {
+        if ($tanggal_foto_kanan != null) {
             $tanggal_foto_kanan = $this->tgl_indo($foto->date_taken_kanan);
         }
-        if($tanggal_foto_bawah != null) {
+        if ($tanggal_foto_bawah != null) {
             $tanggal_foto_bawah = $this->tgl_indo($foto->date_taken_bawah);
         }
 
@@ -877,6 +933,36 @@ class DashboardAdminController extends Controller
             ->count();
         $jml_filling_pr_12_anak = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
             ->count();
+
+        //array num decay missing filing - by age
+        $num_decay_age = [];
+        $num_missing_age = [];
+        $num_filling_age = [];
+        $num_decay_anak_age = [];
+        $num_missing_anak_age = [];
+        $num_filling_anak_age = [];
+
+        for ($i = 7; $i < 13; $i++) {
+            $users_id = '';
+            if ($i != 12) {
+                $users_id = User::select('users.id')->join('users_biodata as b', 'b.users_id', '=', 'users.id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 >=' . $i . ' and DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 <' . $i + 1)->get();
+            } else {
+                $users_id = User::select('users.id')->join('users_biodata as b', 'b.users_id', '=', 'users.id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 >=' . $i . ' and DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 <=' . $i + 1)->get();
+            }
+            $diagnosis_decay = Diagnosis::whereIn('users_id', $users_id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+            array_push($num_decay_age, $diagnosis_decay);
+            $diagnosis_missing = Diagnosis::whereIn('users_id', $users_id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+            array_push($num_missing_age, $diagnosis_missing);
+            $diagnosis_filling = Diagnosis::whereIn('users_id', $users_id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+            array_push($num_filling_age, $diagnosis_filling);
+            $diagnosis_decay = Diagnosis::whereIn('users_id', $users_id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [51, 85])->count();
+            array_push($num_decay_anak_age, $diagnosis_decay);
+            $diagnosis_missing = Diagnosis::whereIn('users_id', $users_id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [51, 85])->count();
+            array_push($num_missing_anak_age, $diagnosis_missing);
+            $diagnosis_filling = Diagnosis::whereIn('users_id', $users_id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [51, 85])->count();
+            array_push($num_filling_anak_age, $diagnosis_filling);
+        }
+
         $min_dmft = 999999;
         $min_dmft_label = '';
         $max_dmft = 0;
@@ -910,22 +996,26 @@ class DashboardAdminController extends Controller
                 $min_deft = $q->rata_rata_deft;
                 $min_deft_label = $q->age;
             }
-            if ($q->rata_rata_rti >= $max_rti) {
-                $max_rti = $q->rata_rata_rti;
-                $max_rti_label = $q->age;
+        }
+        $j = 0;
+        for ($i = 7; $i < 13; $i++) {
+            if ($num_decay_age[$j] / ($num_decay_age[$j] + $num_missing_age[$j] + $num_filling_age[$j]) >= $max_rti) {
+                $max_rti = $num_decay_age[$j] / ($num_decay_age[$j] + $num_missing_age[$j] + $num_filling_age[$j]);
+                $max_rti_label = $i;
             }
-            if ($q->rata_rata_rti <= $min_deft) {
-                $min_rti = $q->rata_rata_rti;
-                $min_rti_label = $q->age;
+            if ($num_decay_age[$j] / ($num_decay_age[$j] + $num_missing_age[$j] + $num_filling_age[$j]) <= $min_rti) {
+                $min_rti = $num_decay_age[$j] / ($num_decay_age[$j] + $num_missing_age[$j] + $num_filling_age[$j]);
+                $min_rti_label = $i;
             }
-            if ($q->rata_rata_rti_anak >= $max_rti_anak) {
-                $max_rti_anak = $q->rata_rata_rti_anak;
-                $max_rti_anak_label = $q->age;
+            if ($num_decay_anak_age[$j] / ($num_decay_anak_age[$j] + $num_missing_anak_age[$j] + $num_filling_anak_age[$j]) >= $max_rti_anak) {
+                $max_rti_anak = $num_decay_anak_age[$j] / ($num_decay_anak_age[$j] + $num_missing_anak_age[$j] + $num_filling_anak_age[$j]);
+                $max_rti_anak_label = $i;
             }
-            if ($q->rata_rata_rti <= $min_deft) {
-                $min_rti_anak = $q->rata_rata_rti_anak;
-                $min_rti_anak_label = $q->age;
+            if ($num_decay_anak_age[$j] / ($num_decay_anak_age[$j] + $num_missing_anak_age[$j] + $num_filling_anak_age[$j]) <= $min_rti_anak) {
+                $min_rti_anak = $num_decay_anak_age[$j] / ($num_decay_anak_age[$j] + $num_missing_anak_age[$j] + $num_filling_anak_age[$j]);
+                $min_rti_anak_label = $i;
             }
+            $j++;
         }
 
         if (request()->is('report')) {
@@ -1681,6 +1771,35 @@ class DashboardAdminController extends Controller
         $jml_filling_pr_12_anak = Diagnosis::whereIn('users_id', $users_id_pr_12)->whereBetween('id_gigi', [51, 85])->where('is_filling', '=', 1)
             ->count();
 
+        //array num decay missing filing - by age
+        $num_decay_age = [];
+        $num_missing_age = [];
+        $num_filling_age = [];
+        $num_decay_anak_age = [];
+        $num_missing_anak_age = [];
+        $num_filling_anak_age = [];
+
+        for ($i = 7; $i < 13; $i++) {
+            $users_id = '';
+            if ($i != 12) {
+                $users_id = User::select('users.id')->join('users_biodata as b', 'b.users_id', '=', 'users.id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 >=' . $i . ' and DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 <' . $i + 1)->where('b.id_sekolah', '=', $sekolah)->get();
+            } else {
+                $users_id = User::select('users.id')->join('users_biodata as b', 'b.users_id', '=', 'users.id')->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 >=' . $i . ' and DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 <=' . $i + 1)->where('b.id_sekolah', '=', $sekolah)->get();
+            }
+            $diagnosis_decay = Diagnosis::whereIn('users_id', $users_id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+            array_push($num_decay_age, $diagnosis_decay);
+            $diagnosis_missing = Diagnosis::whereIn('users_id', $users_id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+            array_push($num_missing_age, $diagnosis_missing);
+            $diagnosis_filling = Diagnosis::whereIn('users_id', $users_id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [11, 48])->count();
+            array_push($num_filling_age, $diagnosis_filling);
+            $diagnosis_decay = Diagnosis::whereIn('users_id', $users_id)->where('is_decay', '=', 1)->whereBetween('id_gigi', [51, 85])->count();
+            array_push($num_decay_anak_age, $diagnosis_decay);
+            $diagnosis_missing = Diagnosis::whereIn('users_id', $users_id)->where('is_missing', '=', 1)->whereBetween('id_gigi', [51, 85])->count();
+            array_push($num_missing_anak_age, $diagnosis_missing);
+            $diagnosis_filling = Diagnosis::whereIn('users_id', $users_id)->where('is_filling', '=', 1)->whereBetween('id_gigi', [51, 85])->count();
+            array_push($num_filling_anak_age, $diagnosis_filling);
+        }
+
         $min_dmft = 999999;
         $min_dmft_label = '';
         $max_dmft = 0;
@@ -1714,22 +1833,26 @@ class DashboardAdminController extends Controller
                 $min_deft = $q->rata_rata_deft;
                 $min_deft_label = $q->age;
             }
-            if ($q->rata_rata_rti >= $max_rti) {
-                $max_rti = $q->rata_rata_rti;
-                $max_rti_label = $q->age;
+        }
+        $j = 0;
+        for ($i = 7; $i < 13; $i++) {
+            if ($num_decay_age[$j] / ($num_decay_age[$j] + $num_missing_age[$j] + $num_filling_age[$j]) >= $max_rti) {
+                $max_rti = $num_decay_age[$j] / ($num_decay_age[$j] + $num_missing_age[$j] + $num_filling_age[$j]);
+                $max_rti_label = $i;
             }
-            if ($q->rata_rata_rti <= $min_deft) {
-                $min_rti = $q->rata_rata_rti;
-                $min_rti_label = $q->age;
+            if ($num_decay_age[$j] / ($num_decay_age[$j] + $num_missing_age[$j] + $num_filling_age[$j]) <= $min_rti) {
+                $min_rti = $num_decay_age[$j] / ($num_decay_age[$j] + $num_missing_age[$j] + $num_filling_age[$j]);
+                $min_rti_label = $i;
             }
-            if ($q->rata_rata_rti_anak >= $max_rti_anak) {
-                $max_rti_anak = $q->rata_rata_rti_anak;
-                $max_rti_anak_label = $q->age;
+            if ($num_decay_anak_age[$j] / ($num_decay_anak_age[$j] + $num_missing_anak_age[$j] + $num_filling_anak_age[$j]) >= $max_rti_anak) {
+                $max_rti_anak = $num_decay_anak_age[$j] / ($num_decay_anak_age[$j] + $num_missing_anak_age[$j] + $num_filling_anak_age[$j]);
+                $max_rti_anak_label = $i;
             }
-            if ($q->rata_rata_rti <= $min_deft) {
-                $min_rti_anak = $q->rata_rata_rti_anak;
-                $min_rti_anak_label = $q->age;
+            if ($num_decay_anak_age[$j] / ($num_decay_anak_age[$j] + $num_missing_anak_age[$j] + $num_filling_anak_age[$j]) <= $min_rti_anak) {
+                $min_rti_anak = $num_decay_anak_age[$j] / ($num_decay_anak_age[$j] + $num_missing_anak_age[$j] + $num_filling_anak_age[$j]);
+                $min_rti_anak_label = $i;
             }
+            $j++;
         }
 
         $sekolah = ['SDN Biting 04', 'SDN Candijati 01'];
@@ -1962,8 +2085,7 @@ class DashboardAdminController extends Controller
                 'max_dmft_label' => $max_dmft_label,
                 'min_dmft_label' => $min_dmft_label,
             ]);
-        }
-        else if ($type == 'deft') {
+        } else if ($type == 'deft') {
             return view('dashboard-admin.laporan.by_school-deft', [
                 'query_klp_usia' => $query_klp_usia,
                 'query_general' => $query_general,
@@ -2080,8 +2202,7 @@ class DashboardAdminController extends Controller
                 'max_deft_label' => $max_deft_label,
                 'min_deft_label' => $min_deft_label,
             ]);
-        }
-        else if ($type == 'rti') {
+        } else if ($type == 'rti') {
             return view('dashboard-admin.laporan.by_school-rti', [
                 'query_klp_usia' => $query_klp_usia,
                 'query_general' => $query_general,
@@ -2432,19 +2553,5 @@ class DashboardAdminController extends Controller
         $url = '/daftar-anak/detail?id=' . $request->id;
 
         return redirect($url);
-    }
-    public function dummy() {
-        $query_klp_usia = DB::table('users as u')->select(DB::raw('b.gender as jenis_kelamin, 
-        case when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 8 then \'Usia 7 th\'
-        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 8 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 9 then \'Usia 8 th\'
-        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 9 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 10 then \'Usia 9 th\'
-        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 10 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 11 then \'Usia 10 th\'
-        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 11 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 < 12 then \'Usia 11 th\'     
-        when DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 12 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 <= 13 then \'Usia 12 th\' end as kategori_umur, 
-        count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft, sum(u.num_decay)/sum(dmft_score) as rata_rata_rti,
-        sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
-            ->where('u.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 <= 13')->groupBy('b.gender', 'kategori_umur')->toSql();
-        
-        return $query_klp_usia;
     }
 }
