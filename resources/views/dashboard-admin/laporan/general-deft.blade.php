@@ -134,15 +134,15 @@
                                             @foreach($query_total as $q)
                                             @php $total_deft = ($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah; @endphp
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</td>
-                                            <td class="text-center">{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</td>
-                                            <td class="text-center">{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak)/$total_responden,2)}}</td>
-                                            <td class="text-center">{{number_format(($jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak)/$total_responden,2)}}</td>
-                                            <td class="text-center">{{number_format(($jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$total_responden,2)}}</td>
+                                            <td class="text-center"><b>{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</b></td>
+                                            <td class="text-center"><b>{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</b></td>
+                                            <td class="text-center"><b>{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak)/$total_responden,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak)/$total_responden,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$total_responden,2)}}</b></td>
                                             <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah,2)}}</b></td>
                                             <td class="text-center">
-                                                @if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
+                                            <b>@if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
                                                                 @php $found = 1; @endphp
                                                                 @endforeach
                                                                 @if(!$found)
@@ -380,15 +380,15 @@
                                             @foreach($query_total as $q)
                                             @php $total_deft = ($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah; @endphp
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</td>
-                                            <td class="text-center">{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</td>
-                                            <td class="text-center">{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak)/$q->jumlah,2)}}</td>
-                                            <td class="text-center">{{number_format(($jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak)/$q->jumlah,2)}}</td>
-                                            <td class="text-center">{{number_format(($jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah,2)}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah,2)}}</td>
+                                            <td class="text-center"><b>{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</b></td>
+                                            <td class="text-center"><b>{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</b></td>
+                                            <td class="text-center"><b>{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah,2)}}</b></td>
                                             <td class="text-center">
-                                            @if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif
+                                            <b>@if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif</b>
                                             </td>
                                             @php $found = 1; @endphp
                                             @endforeach
