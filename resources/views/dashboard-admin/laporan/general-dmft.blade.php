@@ -128,7 +128,7 @@
                                             <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
-                                        <tr>
+                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
@@ -368,7 +368,7 @@
                                             <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
-                                        <tr>
+                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
