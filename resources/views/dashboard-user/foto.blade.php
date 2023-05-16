@@ -304,7 +304,7 @@
 					<div class="row text-muted">
 						<div class="col-lg-6 text-start">
 							<p class="mb-0">
-								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Simetri</strong></a> &copy;
+								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Simetri</strong></a> &copy; {{date('Y')}}. All rights reserved.
 							</p>
 						</div>
 						<div class="col-lg-6 text-end">

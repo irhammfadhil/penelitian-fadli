@@ -78,6 +78,7 @@
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                             <br>
+                            <p class="text-right">Data sampai dengan: {{date('Y-m-d H:i:s')}} WIB.</p>
                             @if($result == 1)
                             <h3>Berdasarkan Jenis Kelamin</h3>
                             <hr>
@@ -451,7 +452,7 @@
                     <div class="row text-muted">
                         <div class="col-6 text-start">
                             <p class="mb-0">
-                                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Simetri</strong></a> &copy;
+                                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Simetri</strong></a> &copy; {{date('Y')}}. All rights reserved.
                             </p>
                         </div>
                         <div class="col-6 text-end">

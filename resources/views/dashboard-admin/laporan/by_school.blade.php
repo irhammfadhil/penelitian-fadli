@@ -91,6 +91,7 @@
                             </form>
                             <br>
                             @if($result == 1)
+                            <p class="text-right">Data sampai dengan: {{date('Y-m-d H:i:s')}} WIB.</p>
                             <h3>General</h3>
                             <hr>
                             <div class="table-responsive">
@@ -133,7 +134,7 @@
                                             <td class="text-center"><b>0.0</b></td>
                                             @endif
                                         </tr>
-                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
+                                        <tr>
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
@@ -251,7 +252,7 @@
                                             <td class="text-center"><b>0%</b></td>
                                             @endif
                                         </tr>
-                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
+                                        <tr>
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
@@ -278,7 +279,7 @@
                     <div class="row text-muted">
                         <div class="col-6 text-start">
                             <p class="mb-0">
-                                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Simetri</strong></a> &copy;
+                                <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Simetri</strong></a> &copy; {{date('Y')}}. All rights reserved.
                             </p>
                         </div>
                         <div class="col-6 text-end">
