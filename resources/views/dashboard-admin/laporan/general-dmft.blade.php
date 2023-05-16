@@ -42,15 +42,22 @@
                             <h3>Berdasarkan Jenis Kelamin</h3>
                             <hr>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover">
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-center" style="width: 7.5%;">Jenis Kelamin</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">Jumlah Responden</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">D (decay)</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">M (missing)</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">F (filling)</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks DMF-T</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Jenis Kelamin</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Jumlah Responden</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D (decay)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">M (missing)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">F (filling)</th>
+                                            <th scope="col" class="text-center" colspan="4">Rata-rata</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori WHO</th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col" class="text-center align-middle" style="width: 5%;">D</th>
+                                            <th scope="col" class="text-center align-middle" style="width: 5%;">M</th>
+                                            <th scope="col" class="text-center align-middle" style="width: 5%;">F</th>
+                                            <th scope="col" class="text-center align-middle" style="width: 5%;">DMF-T</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -63,16 +70,25 @@
                                             <td class="text-center">{{$jml_decay_lk_79 + $jml_decay_lk_912}}</td>
                                             <td class="text-center">{{$jml_missing_lk_79 + $jml_missing_lk_912}}</td>
                                             <td class="text-center">{{$jml_filling_lk_79 + $jml_filling_lk_912}}</td>
-                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79+$jml_missing_lk_79+$jml_filling_lk_79 + $jml_decay_lk_912+$jml_missing_lk_912+$jml_filling_lk_912)/$q->jumlah,2)}}</b></td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
+                                            <td class="text-center">{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912)/$total_responden, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_lk_79 + $jml_missing_lk_912)/$total_responden, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_lk_79 + $jml_filling_lk_912)/$total_responden, 2)}}</td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center">
+                                                @if(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah <= 1.1) Sangat Rendah @elseif(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah > 1.1 && ($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah <= 2.6) Rendah @elseif(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah > 2.6 && ($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah <= 4.4) Sedang @elseif(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah > 4.4 && ($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
+                                                                @php $found = 1; @endphp
+                                                                @endif
+                                                                @endforeach
+                                                                @if(!$found)
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
                                         <tr>
@@ -84,35 +100,54 @@
                                             <td class="text-center">{{$jml_decay_pr_79 + $jml_decay_pr_912}}</td>
                                             <td class="text-center">{{$jml_missing_pr_79 + $jml_missing_pr_912}}</td>
                                             <td class="text-center">{{$jml_filling_pr_79 + $jml_filling_pr_912}}</td>
-                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_79+$jml_missing_pr_79+$jml_filling_pr_79 + $jml_decay_pr_912+$jml_missing_pr_912+$jml_filling_pr_912)/$q->jumlah,2)}}</b></td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
+                                            <td class="text-center">{{number_format(($jml_decay_pr_79 + $jml_decay_pr_912)/$total_responden, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_pr_79 + $jml_missing_pr_912)/$total_responden, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_pr_79 + $jml_filling_pr_912)/$total_responden, 2)}}</td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center">
+                                                @if(($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah <= 1.1) Sangat Rendah @elseif(($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah > 1.1 && ($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah <= 2.6) Rendah @elseif(($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah > 2.6 && ($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah <= 4.4) Sedang @elseif(($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah > 4.4 && ($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
+                                                                @php $found = 1; @endphp
+                                                                @endif
+                                                                @endforeach
+                                                                @if(!$found)
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
                                         <tr>
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
+                                            @php $total_deft = ($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah; @endphp
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                             <td class="text-center">{{$jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912}}</td>
                                             <td class="text-center">{{$jml_missing_lk_79 + $jml_missing_lk_912 + $jml_missing_pr_79 + $jml_missing_pr_912}}</td>
                                             <td class="text-center">{{$jml_filling_lk_79 + $jml_filling_lk_912 + $jml_filling_pr_79 + $jml_filling_pr_912}}</td>
-                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79+$jml_missing_lk_79+$jml_filling_lk_79 + $jml_decay_lk_912+$jml_missing_lk_912+$jml_filling_lk_912 + $jml_decay_pr_79+$jml_missing_pr_79+$jml_filling_pr_79 + $jml_decay_pr_912+$jml_missing_pr_912+$jml_filling_pr_912)/$q->jumlah,2)}}</b></td>
-                                            @php $found = 1; @endphp
-                                            @endforeach
-                                            @if(!$found)
+                                            <td class="text-center">{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912)/$total_responden,2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_lk_79 + $jml_missing_lk_912 + $jml_missing_pr_79 + $jml_missing_pr_912)/$total_responden,2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_lk_79 + $jml_filling_lk_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$total_responden,2)}}</td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center">
+                                                @if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
+                                                                @php $found = 1; @endphp
+                                                                @endforeach
+                                                                @if(!$found)
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
                                     </tbody>
@@ -121,15 +156,22 @@
                             <h3>Berdasarkan Kelompok Usia</h3>
                             <hr>
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-center" style="width: 7.5%;">Kelompok Usia</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">Jumlah Responden</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">D (decay)</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">M (missing)</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">F (filling)</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">Rata-rata Indeks DMF-T</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Jenis Kelamin</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Jumlah Responden</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D (decay)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">M (missing)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">F (filling)</th>
+                                            <th scope="col" class="text-center" colspan="4">Rata-rata</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori WHO</th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col" class="text-center align-middle" style="width: 5%;">D</th>
+                                            <th scope="col" class="text-center align-middle" style="width: 5%;">M</th>
+                                            <th scope="col" class="text-center align-middle" style="width: 5%;">F</th>
+                                            <th scope="col" class="text-center align-middle" style="width: 5%;">DMF-T</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -137,63 +179,93 @@
                                             <td rowspan="1" class="text-center">7 tahun</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
+                                            @php $total_deft = ($jml_decay_lk_7 + $jml_decay_pr_7 + $jml_missing_lk_7 + $jml_missing_pr_7 + $jml_filling_lk_7 + $jml_filling_pr_7)/$q->jumlah; @endphp
                                             @if($q->age == 7)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                             <td class="text-center">{{$jml_decay_lk_7 + $jml_decay_pr_7}}</td>
                                             <td class="text-center">{{$jml_missing_lk_7 + $jml_missing_pr_7}}</td>
                                             <td class="text-center">{{$jml_filling_lk_7 + $jml_filling_pr_7}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_lk_7 + $jml_decay_pr_7+$jml_missing_lk_7 + $jml_missing_pr_7 + $jml_filling_lk_7 + $jml_filling_pr_7)/$q->jumlah,2)}}</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
+                                            <td class="text-center">{{number_format(($jml_decay_lk_7 + $jml_decay_pr_7)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_lk_7 + $jml_missing_pr_7)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_lk_7 + $jml_filling_pr_7)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_7 + $jml_decay_pr_7 + $jml_missing_lk_7 + $jml_missing_pr_7 + $jml_filling_lk_7 + $jml_filling_pr_7)/$q->jumlah,2)}}</td>
+                                            <td class="text-center">
+                                                @if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
+                                                                @php $found = 1; @endphp
+                                                                @endif
+                                                                @endforeach
+                                                                @if(!$found)
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
                                         <tr>
                                             <td rowspan="1" class="text-center">8 tahun</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
+                                            @php $total_deft = ($jml_decay_lk_8 + $jml_decay_pr_8 + $jml_missing_lk_8 + $jml_missing_pr_8 + $jml_filling_lk_8 + $jml_filling_pr_8)/$q->jumlah; @endphp
                                             @if($q->age == 8)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                             <td class="text-center">{{$jml_decay_lk_8 + $jml_decay_pr_8}}</td>
                                             <td class="text-center">{{$jml_missing_lk_8 + $jml_missing_pr_8}}</td>
                                             <td class="text-center">{{$jml_filling_lk_8 + $jml_filling_pr_8}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_lk_8 + $jml_decay_pr_8+$jml_missing_lk_8 + $jml_missing_pr_8 + $jml_filling_lk_8 + $jml_filling_pr_8)/$q->jumlah,2)}}</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
+                                            <td class="text-center">{{number_format(($jml_decay_lk_8 + $jml_decay_pr_8)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_lk_8 + $jml_missing_pr_8)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_lk_8 + $jml_filling_pr_8)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_8 + $jml_decay_pr_8 + $jml_missing_lk_8 + $jml_missing_pr_8 + $jml_filling_lk_8 + $jml_filling_pr_8)/$q->jumlah,2)}}</td>
+                                            <td class="text-center">
+                                                @if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
+                                                                @php $found = 1; @endphp
+                                                                @endif
+                                                                @endforeach
+                                                                @if(!$found)
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
                                         <tr>
                                             <td rowspan="1" class="text-center">9 tahun</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
+                                            @php $total_deft = ($jml_decay_lk_9 + $jml_decay_pr_9 + $jml_missing_lk_9 + $jml_missing_pr_9 + $jml_filling_lk_9 + $jml_filling_pr_9)/$q->jumlah; @endphp
                                             @if($q->age == 9)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                             <td class="text-center">{{$jml_decay_lk_9 + $jml_decay_pr_9}}</td>
                                             <td class="text-center">{{$jml_missing_lk_9 + $jml_missing_pr_9}}</td>
                                             <td class="text-center">{{$jml_filling_lk_9 + $jml_filling_pr_9}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_lk_9 + $jml_decay_pr_9+$jml_missing_lk_9 + $jml_missing_pr_9 + $jml_filling_lk_9 + $jml_filling_pr_9)/$q->jumlah,2)}}</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
+                                            <td class="text-center">{{number_format(($jml_decay_lk_9 + $jml_decay_pr_9)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_lk_9 + $jml_missing_pr_9)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_lk_9 + $jml_filling_pr_9)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_9 + $jml_decay_pr_9 + $jml_missing_lk_9 + $jml_missing_pr_9 + $jml_filling_lk_9 + $jml_filling_pr_9)/$q->jumlah,2)}}</td>
+                                            <td class="text-center">
+                                                @if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
+                                                                @php $found = 1; @endphp
+                                                                @endif
+                                                                @endforeach
+                                                                @if(!$found)
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
                                         <tr>
@@ -201,85 +273,125 @@
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 10)
+                                            @php $total_deft = ($jml_decay_lk_10 + $jml_decay_pr_10 + $jml_missing_lk_10 + $jml_missing_pr_10 + $jml_filling_lk_10 + $jml_filling_pr_10)/$q->jumlah; @endphp
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                             <td class="text-center">{{$jml_decay_lk_10 + $jml_decay_pr_10}}</td>
                                             <td class="text-center">{{$jml_missing_lk_10 + $jml_missing_pr_10}}</td>
                                             <td class="text-center">{{$jml_filling_lk_10 + $jml_filling_pr_10}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_lk_10 + $jml_decay_pr_10+$jml_missing_lk_10 + $jml_missing_pr_10 + $jml_filling_lk_10 + $jml_filling_pr_10)/$q->jumlah,2)}}</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
+                                            <td class="text-center">{{number_format(($jml_decay_lk_10 + $jml_decay_pr_10)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_lk_10 + $jml_missing_pr_10)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_lk_10 + $jml_filling_pr_10)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_10 + $jml_decay_pr_10 + $jml_missing_lk_10 + $jml_missing_pr_10 + $jml_filling_lk_10 + $jml_filling_pr_10)/$q->jumlah,2)}}</td>
+                                            <td class="text-center">
+                                                @if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
+                                                                @php $found = 1; @endphp
+                                                                @endif
+                                                                @endforeach
+                                                                @if(!$found)
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
                                         <tr>
                                             <td rowspan="1" class="text-center">11 tahun</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
+                                            @php $total_deft = ($jml_decay_lk_11 + $jml_decay_pr_11 + $jml_missing_lk_11 + $jml_missing_pr_11 + $jml_filling_lk_11 + $jml_filling_pr_11)/$q->jumlah; @endphp
                                             @if($q->age == 11)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                             <td class="text-center">{{$jml_decay_lk_11 + $jml_decay_pr_11}}</td>
                                             <td class="text-center">{{$jml_missing_lk_11 + $jml_missing_pr_11}}</td>
                                             <td class="text-center">{{$jml_filling_lk_11 + $jml_filling_pr_11}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_lk_11 + $jml_decay_pr_11+$jml_missing_lk_11 + $jml_missing_pr_11 + $jml_filling_lk_11 + $jml_filling_pr_11)/$q->jumlah,2)}}</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
+                                            <td class="text-center">{{number_format(($jml_decay_lk_11 + $jml_decay_pr_11)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_lk_11 + $jml_missing_pr_11)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_lk_11 + $jml_filling_pr_11)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_11 + $jml_decay_pr_11 + $jml_missing_lk_11 + $jml_missing_pr_11 + $jml_filling_lk_11 + $jml_filling_pr_11)/$q->jumlah,2)}}</td>
+                                            <td class="text-center">
+                                                @if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
+                                                                @php $found = 1; @endphp
+                                                                @endif
+                                                                @endforeach
+                                                                @if(!$found)
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
                                         <tr>
                                             <td rowspan="1" class="text-center">12 tahun</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
+                                            @php $total_deft = ($jml_decay_lk_12 + $jml_decay_pr_12 + $jml_missing_lk_12 + $jml_missing_pr_12 + $jml_filling_lk_12 + $jml_filling_pr_12)/$q->jumlah; @endphp
                                             @if($q->age == 12)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                             <td class="text-center">{{$jml_decay_lk_12 + $jml_decay_pr_12}}</td>
                                             <td class="text-center">{{$jml_missing_lk_12 + $jml_missing_pr_12}}</td>
                                             <td class="text-center">{{$jml_filling_lk_12 + $jml_filling_pr_12}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_lk_12 + $jml_decay_pr_12+$jml_missing_lk_12 + $jml_missing_pr_12 + $jml_filling_lk_12 + $jml_filling_pr_12)/$q->jumlah,2)}}</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
+                                            <td class="text-center">{{number_format(($jml_decay_lk_12 + $jml_decay_pr_12)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_lk_12 + $jml_missing_pr_12)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_lk_12 + $jml_filling_pr_12)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_12 + $jml_decay_pr_12 + $jml_missing_lk_12 + $jml_missing_pr_12 + $jml_filling_lk_12 + $jml_filling_pr_12)/$q->jumlah,2)}}</td>
+                                            <td class="text-center">
+                                                @if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
+                                                                @php $found = 1; @endphp
+                                                                @endif
+                                                                @endforeach
+                                                                @if(!$found)
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
                                         <tr>
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
+                                            @php $total_deft = ($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah; @endphp
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                             <td class="text-center">{{$jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912}}</td>
                                             <td class="text-center">{{$jml_missing_lk_79 + $jml_missing_lk_912 + $jml_missing_pr_79 + $jml_missing_pr_912}}</td>
                                             <td class="text-center">{{$jml_filling_lk_79 + $jml_filling_lk_912 + $jml_filling_pr_79 + $jml_filling_pr_912}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_lk_79+$jml_missing_lk_79+$jml_filling_lk_79 + $jml_decay_lk_912+$jml_missing_lk_912+$jml_filling_lk_912 + $jml_decay_pr_79+$jml_missing_pr_79+$jml_filling_pr_79 + $jml_decay_pr_912+$jml_missing_pr_912+$jml_filling_pr_912)/$q->jumlah,2)}}</td>
-                                            @php $found = 1; @endphp
-                                            @endforeach
-                                            @if(!$found)
+                                            <td class="text-center">{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912)/$q->jumlah,2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_lk_79 + $jml_missing_lk_912 + $jml_missing_pr_79 + $jml_missing_pr_912)/$q->jumlah,2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_lk_79 + $jml_filling_lk_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah,2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah,2)}}</td>
+                                            <td class="text-center">
+                                                @if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
+                                                                @php $found = 1; @endphp
+                                                                @endforeach
+                                                                @if(!$found)
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            <td class="text-center" colspan="5"><b>Indeks DMF-T Maksimum</b></td>
+                                            <td class="text-center" colspan="9"><b>Indeks DMF-T Maksimum</b></td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
                                             <td class="text-center"><b>{{number_format($max_dmft,2)}}</b> ({{$max_dmft_label}} tahun)</td>
@@ -290,7 +402,7 @@
                                             @endif
                                         </tr>
                                         <tr>
-                                            <td class="text-center" colspan="5"><b>Indeks DMF-T Minimum</b></td>
+                                            <td class="text-center" colspan="9"><b>Indeks DMF-T Minimum</b></td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
                                             <td class="text-center"><b>{{number_format($min_dmft,2)}}</b> ({{$min_dmft_label}} tahun)</td>
@@ -301,7 +413,7 @@
                                             @endif
                                         </tr>
                                         <tr>
-                                            <td class="text-center" colspan="5"><b>Nilai DMF-T Rata-rata</b></td>
+                                            <td class="text-center" colspan="9"><b>Nilai DMF-T Rata-rata</b></td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
                                             <td class="text-center"><b>{{number_format($q->rata_rata_dmft,2)}}</b></td>
