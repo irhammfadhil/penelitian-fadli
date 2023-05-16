@@ -22,6 +22,12 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        thead {
+            border-top: 3px solid;
+            border-bottom: 3px solid;
+        }
+    </style>
 </head>
 
 <body>
@@ -80,7 +86,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Jenis Kelamin</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Jumlah Responden</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Subjek Penelitian</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">d</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">def-t</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D</th>
@@ -176,7 +182,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Jenis Kelamin</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Jumlah Responden</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Subjek Penelitian</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">d</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">def-t</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D</th>
@@ -360,45 +366,6 @@
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0%</b></td>
                                             <td class="text-center"><b>0%</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" colspan="6"><b>Indeks RTI Maksimum</b></td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{number_format($max_rti*100,2)}}%</b> ({{$max_rti_label}} tahun)</td>
-                                            <td class="text-center"><b>{{number_format($max_rti_anak*100,2)}}%</b> ({{$max_rti_anak_label}} tahun)</td>
-                                            @php $found = 1; @endphp
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" colspan="6"><b>Indeks RTI Minimum</b></td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{number_format($min_rti*100,2)}}%</b> ({{$min_rti_label}} tahun)</td>
-                                            <td class="text-center"><b>{{number_format($min_rti_anak*100,2)}}%</b> ({{$min_rti_anak_label}} tahun)</td>
-                                            @php $found = 1; @endphp
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" colspan="6"><b>Nilai RTI Rata-rata</b></td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912)/($jml_decay_lk_79+$jml_missing_lk_79+$jml_filling_lk_79 + $jml_decay_lk_912+$jml_missing_lk_912+$jml_filling_lk_912 + $jml_decay_pr_79+$jml_missing_pr_79+$jml_filling_lk_79 + $jml_decay_pr_912+$jml_missing_pr_912+$jml_filling_pr_912)*100,2)}}%</b></td>
-                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak)/($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)*100,2)}}%</b></td>
-                                            @php $found = 1; @endphp
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0</b></td>
                                             @endif
                                         </tr>
                                     </tbody>

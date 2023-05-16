@@ -80,17 +80,6 @@
 						</div>
 					</div>
 					<br>
-					<div class="row">
-						<div class="col-lg-6">
-							<h4>Rekapitulasi Indeks RTI Sulung berdasarkan jenis kelamin</h4>
-							<div id="container-report-rti-anak-gender"></div>
-						</div>
-						<div class="col-lg-6">
-							<h4>Rekapitulasi Indeks RTI Sulung berdasarkan usia</h4>
-							<div id="container-report-rti-anak-age"></div>
-						</div>
-					</div>
-					<br>
 					{{--<div class="row">
 						<div class="col-lg-6">
 							<h4>Rekapitulasi Jumlah DMF usia 7-10 tahun</h4>
@@ -428,7 +417,7 @@
 				type: 'column'
 			},
 			title: {
-				text: 'Rekapitulasi Indeks RTI Gigi Tetap Berdasarkan Jenis Kelamin'
+				text: 'Rekapitulasi Indeks RTI Berdasarkan Jenis Kelamin'
 			},
 			subtitle: {
 				text: 'Sistem Informasi Penilaian Required Treatment Index Gigi Anak'
@@ -455,19 +444,19 @@
 				column: {
 					pointPadding: 0.2,
 					borderWidth: 0,
-					colorByPoint: true,
 					dataLabels: {
 						enabled: true
 					},
 				}
 			},
-			colors: [
-				'#966102', '#919187', '#2C6700'
-			],
 			series: [{
-				name: 'Indeks RTI',
+				name: 'Indeks RTI Gigi Tetap',
 				data: <?php echo json_encode($array_rti_by_gender) ?>
-			}]
+			},{
+				name: 'Indeks RTI Gigi Sulung',
+				data: <?php echo json_encode($array_rti_anak_by_gender) ?>
+			}
+		]
 		});
 		Highcharts.chart('container-report-rti-age', {
 			chart: {
@@ -501,111 +490,19 @@
 				column: {
 					pointPadding: 0.2,
 					borderWidth: 0,
-					colorByPoint: true,
 					dataLabels: {
 						enabled: true
 					},
 				}
 			},
-			colors: [
-				'#FF9900', '#C0C0C0', '#336699', '#028482', '#032140', '#fff86b'
-			],
 			series: [{
-				name: 'Indeks RTI',
+				name: 'Indeks RTI Gigi Tetap',
 				data: <?php echo json_encode($array_rti_by_age) ?>
-			}]
-		});
-		Highcharts.chart('container-report-rti-anak-gender', {
-			chart: {
-				type: 'column'
-			},
-			title: {
-				text: 'Rekapitulasi Indeks RTI Gigi Sulung Berdasarkan Jenis Kelamin'
-			},
-			subtitle: {
-				text: 'Sistem Informasi Penilaian Required Treatment Index Gigi Anak'
-			},
-			xAxis: {
-				categories: <?php echo json_encode($gender_label) ?>,
-				crosshair: true
-			},
-			yAxis: {
-				min: 0,
-				title: {
-					text: 'Indeks RTI Gigi Sulung (%)'
-				}
-			},
-			tooltip: {
-				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-					'<td style="padding:0"><b>{point.y:.1f}%</b></td></tr>',
-				footerFormat: '</table>',
-				shared: true,
-				useHTML: true
-			},
-			plotOptions: {
-				column: {
-					pointPadding: 0.2,
-					borderWidth: 0,
-					colorByPoint: true,
-					dataLabels: {
-						enabled: true
-					},
-				}
-			},
-			colors: [
-				'#966102', '#919187', '#2C6700'
-			],
-			series: [{
-				name: 'Indeks RTI',
-				data: <?php echo json_encode($array_rti_anak_by_gender) ?>
-			}]
-		});
-		Highcharts.chart('container-report-rti-anak-age', {
-			chart: {
-				type: 'column'
-			},
-			title: {
-				text: 'Rekapitulasi Indeks RTI Gigi Sulung Berdasarkan Usia'
-			},
-			subtitle: {
-				text: 'Sistem Informasi Penilaian Required Treatment Index Gigi Anak'
-			},
-			xAxis: {
-				categories: <?php echo json_encode($label_usia) ?>,
-				crosshair: true
-			},
-			yAxis: {
-				min: 0,
-				title: {
-					text: 'Indeks RTI Gigi Sulung (%)'
-				}
-			},
-			tooltip: {
-				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-					'<td style="padding:0"><b>{point.y:.1f}%</b></td></tr>',
-				footerFormat: '</table>',
-				shared: true,
-				useHTML: true
-			},
-			plotOptions: {
-				column: {
-					pointPadding: 0.2,
-					borderWidth: 0,
-					colorByPoint: true,
-					dataLabels: {
-						enabled: true
-					},
-				}
-			},
-			colors: [
-				'#FF9900', '#C0C0C0', '#336699', '#028482', '#032140', '#fff86b'
-			],
-			series: [{
-				name: 'Indeks RTI (%)',
+			},{
+				name: 'Indeks RTI Gigi Sulung',
 				data: <?php echo json_encode($array_rti_anak_by_age) ?>
-			}]
+			}
+		]
 		});
 	</script>
 

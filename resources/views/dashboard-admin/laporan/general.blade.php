@@ -22,6 +22,12 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        thead {
+            border-top: 3px solid;
+            border-bottom: 3px solid;
+        }
+    </style>
 </head>
 
 <body>
@@ -45,9 +51,9 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-center" style="width: 15%;">Jenis Kelamin</th>
-                                            <th scope="col" class="text-center" style="width: 15%;">N</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">%</th>
+                                            <th scope="col" class="text-center" style="width: 50%;">Jenis Kelamin</th>
+                                            <th scope="col" class="text-center" style="width: 25%;">N</th>
+                                            <th scope="col" class="text-center" style="width: 25%;">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -81,7 +87,7 @@
                                             <td class="text-center"><b>0.0</b></td>
                                             @endif
                                         </tr>
-                                        <tr>
+                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
@@ -103,46 +109,14 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-center" style="width: 7.5%;">Kelompok Usia</th>
-                                            <th scope="col" class="text-center" style="width: 7.5%;">Jenis Kelamin</th>
-                                            <th scope="col" class="text-center" style="width: 15%;">N</th>
-                                            <th scope="col" class="text-center" style="width: 10%;">%</th>
+                                            <th scope="col" class="text-center" style="width: 50%;">Kelompok Usia</th>
+                                            <th scope="col" class="text-center" style="width: 25%;">N</th>
+                                            <th scope="col" class="text-center" style="width: 25%;">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td rowspan="3" class="text-center">7 tahun</td>
-                                            <td class="text-center">Laki-laki</td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_klp_usia as $q)
-                                            @if($q->jenis_kelamin == 'Laki-laki' && $q->kategori_umur == 'Usia 7 th')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0%</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">Perempuan</td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_klp_usia as $q)
-                                            @if($q->jenis_kelamin == 'Perempuan' && $q->kategori_umur == 'Usia 7 th')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0%</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">Total</td>
+                                            <td class="text-center">7 tahun</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 7)
@@ -157,38 +131,7 @@
                                             @endif
                                         </tr>
                                         <tr>
-                                            <td rowspan="3" class="text-center">8 tahun</td>
-                                            <td class="text-center">Laki-laki</td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_klp_usia as $q)
-                                            @if($q->jenis_kelamin == 'Laki-laki' && $q->kategori_umur == 'Usia 8 th')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0%</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">Perempuan</td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_klp_usia as $q)
-                                            @if($q->jenis_kelamin == 'Perempuan' && $q->kategori_umur == 'Usia 8 th')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0%</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">Total</td>
+                                            <td class="text-center">8 tahun</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 8)
@@ -203,38 +146,7 @@
                                             @endif
                                         </tr>
                                         <tr>
-                                            <td rowspan="3" class="text-center">9 tahun</td>
-                                            <td class="text-center">Laki-laki</td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_klp_usia as $q)
-                                            @if($q->jenis_kelamin == 'Laki-laki' && $q->kategori_umur == 'Usia 9 th')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0%</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">Perempuan</td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_klp_usia as $q)
-                                            @if($q->jenis_kelamin == 'Perempuan' && $q->kategori_umur == 'Usia 9 th')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0%</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">Total</td>
+                                            <td class="text-center">9 tahun</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 9)
@@ -249,38 +161,7 @@
                                             @endif
                                         </tr>
                                         <tr>
-                                            <td rowspan="3" class="text-center">10 tahun</td>
-                                            <td class="text-center">Laki-laki</td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_klp_usia as $q)
-                                            @if($q->jenis_kelamin == 'Laki-laki' && $q->kategori_umur == 'Usia 10 th')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0%</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">Perempuan</td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_klp_usia as $q)
-                                            @if($q->jenis_kelamin == 'Perempuan' && $q->kategori_umur == 'Usia 10 th')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0%</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">Total</td>
+                                            <td class="text-center">10 tahun</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 10)
@@ -295,38 +176,7 @@
                                             @endif
                                         </tr>
                                         <tr>
-                                            <td rowspan="3" class="text-center">11 tahun</td>
-                                            <td class="text-center">Laki-laki</td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_klp_usia as $q)
-                                            @if($q->jenis_kelamin == 'Laki-laki' && $q->kategori_umur == 'Usia 11 th')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0%</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">Perempuan</td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_klp_usia as $q)
-                                            @if($q->jenis_kelamin == 'Perempuan' && $q->kategori_umur == 'Usia 11 th')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0%</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">Total</td>
+                                            <td class="text-center">11 tahun</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 11)
@@ -341,38 +191,7 @@
                                             @endif
                                         </tr>
                                         <tr>
-                                            <td rowspan="3" class="text-center">12 tahun</td>
-                                            <td class="text-center">Laki-laki</td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_klp_usia as $q)
-                                            @if($q->jenis_kelamin == 'Laki-laki' && $q->kategori_umur == 'Usia 12 th')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0%</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">Perempuan</td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_klp_usia as $q)
-                                            @if($q->jenis_kelamin == 'Perempuan' && $q->kategori_umur == 'Usia 12 th')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
-                                            @php $found = 1; @endphp
-                                            @endif
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0%</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">Total</td>
+                                            <td class="text-center">12 tahun</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 12)
@@ -384,16 +203,10 @@
                                             @if(!$found)
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0%</b></td>
-                                            <td class="text-center"><b>0/0</b></td>
-                                            <td class="text-center"><b>0/0</b></td>
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0%</b></td>
-                                            <td class="text-center"><b>0%</b></td>
                                             @endif
                                         </tr>
-                                        <tr>
-                                            <td class="text-center" colspan="2">Total</td>
+                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
+                                            <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>

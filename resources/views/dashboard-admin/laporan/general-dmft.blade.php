@@ -22,6 +22,12 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        thead {
+            border-top: 3px solid;
+            border-bottom: 3px solid;
+        }
+    </style>
 </head>
 
 <body>
@@ -46,10 +52,10 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Jenis Kelamin</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Jumlah Responden</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D (decay)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">M (missing)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">F (filling)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Subjek Penelitian</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D (<i>Decay</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">M (<i>Missing</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">F (<i>Filling</i>)</th>
                                             <th scope="col" class="text-center" colspan="4">Rata-rata</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori WHO</th>
                                         </tr>
@@ -159,11 +165,11 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Jenis Kelamin</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Jumlah Responden</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D (decay)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">M (missing)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">F (filling)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Kelompok Usia</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Subjek Penelitian</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D (<i>Decay</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">M (<i>Missing</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">F (<i>Filling</i>)</th>
                                             <th scope="col" class="text-center" colspan="4">Rata-rata</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori WHO</th>
                                         </tr>
@@ -388,39 +394,6 @@
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>Sangat Rendah</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" colspan="9"><b>Indeks DMF-T Maksimum</b></td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{number_format($max_dmft,2)}}</b> ({{$max_dmft_label}} tahun)</td>
-                                            @php $found = 1; @endphp
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" colspan="9"><b>Indeks DMF-T Minimum</b></td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{number_format($min_dmft,2)}}</b> ({{$min_dmft_label}} tahun)</td>
-                                            @php $found = 1; @endphp
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
-                                            @endif
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" colspan="9"><b>Nilai DMF-T Rata-rata</b></td>
-                                            @php $found = 0; @endphp
-                                            @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{number_format($q->rata_rata_dmft,2)}}</b></td>
-                                            @php $found = 1; @endphp
-                                            @endforeach
-                                            @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
                                             @endif
                                         </tr>
                                     </tbody>
