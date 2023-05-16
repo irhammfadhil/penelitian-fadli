@@ -175,7 +175,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <h3>Berdasarkan Kelompok Usia</h3>
+                            <h3>Berdasarkan Usia</h3>
                             <hr>
                             <div class="table-responsive">
                                 <table class="table table-hover">

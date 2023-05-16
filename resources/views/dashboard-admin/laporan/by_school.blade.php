@@ -149,13 +149,13 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <h3>Berdasarkan Kelompok Usia</h3>
+                            <h3>Berdasarkan Usia</h3>
                             <hr>
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-center" style="width: 50%;">Kelompok Usia</th>
+                                            <th scope="col" class="text-center" style="width: 50%;">Usia</th>
                                             <th scope="col" class="text-center" style="width: 25%;">N</th>
                                             <th scope="col" class="text-center" style="width: 25%;">%</th>
                                         </tr>

@@ -159,13 +159,13 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <h3>Berdasarkan Kelompok Usia</h3>
+                            <h3>Berdasarkan Usia</h3>
                             <hr>
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Kelompok Usia</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Usia</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Subjek Penelitian</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D (<i>Decay</i>)</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">M (<i>Missing</i>)</th>
