@@ -45,7 +45,7 @@
                     <br>
                     <div class="card">
                         <div class="card-body">
-                            <p class="text-right">Data sampai dengan: {{date('Y-m-d H:i:s')}} WIB.</p>
+                            
                             <h3>General</h3>
                             <hr>
                             <div class="table-responsive">

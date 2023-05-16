@@ -179,7 +179,10 @@
 			series: [{
 				name: 'Responden',
 				data: <?php echo json_encode($gender_sum) ?>
-			}]
+			}],
+			credits: {
+				text: 'Copyright (C) 2023 Simetri',
+			}
 		});
 		Highcharts.chart('container-report-overall-by-age', {
 			chart: {
@@ -225,7 +228,10 @@
 			series: [{
 				name: 'Usia',
 				data: <?php echo json_encode($array_usia) ?>
-			}]
+			}],
+			credits: {
+				text: 'Copyright (C) 2023 Simetri',
+			}
 		});
 		Highcharts.chart('container-report-dmft-gender', {
 			chart: {
@@ -271,7 +277,10 @@
 			series: [{
 				name: 'Nilai DMF-T',
 				data: <?php echo json_encode($array_dmft_by_gender) ?>
-			}]
+			}],
+			credits: {
+				text: 'Copyright (C) 2023 Simetri',
+			}
 		});
 		Highcharts.chart('container-report-dmft-age', {
 			chart: {
@@ -317,7 +326,10 @@
 			series: [{
 				name: 'Nilai DMF-T',
 				data: <?php echo json_encode($array_dmft_by_age) ?>
-			}]
+			}],
+			credits: {
+				text: 'Copyright (C) 2023 Simetri',
+			}
 		});
 		Highcharts.chart('container-report-deft-gender', {
 			chart: {
@@ -364,7 +376,10 @@
 			series: [{
 				name: 'Nilai def-t',
 				data: <?php echo json_encode($array_deft_by_gender) ?>
-			}]
+			}],
+			credits: {
+				text: 'Copyright (C) 2023 Simetri',
+			}
 		});
 		Highcharts.chart('container-report-deft-age', {
 			chart: {
@@ -410,7 +425,10 @@
 			series: [{
 				name: 'Nilai def-t',
 				data: <?php echo json_encode($array_deft_by_age) ?>
-			}]
+			}],
+			credits: {
+				text: 'Copyright (C) 2023 Simetri',
+			}
 		});
 		Highcharts.chart('container-report-rti-gender', {
 			chart: {
@@ -450,13 +468,15 @@
 				}
 			},
 			series: [{
-				name: 'Indeks RTI Gigi Tetap',
-				data: <?php echo json_encode($array_rti_by_gender) ?>
-			},{
 				name: 'Indeks RTI Gigi Sulung',
 				data: <?php echo json_encode($array_rti_anak_by_gender) ?>
+			}, {
+				name: 'Indeks RTI Gigi Tetap',
+				data: <?php echo json_encode($array_rti_by_gender) ?>
+			}],
+			credits: {
+				text: 'Copyright (C) 2023 Simetri',
 			}
-		]
 		});
 		Highcharts.chart('container-report-rti-age', {
 			chart: {
@@ -496,13 +516,15 @@
 				}
 			},
 			series: [{
-				name: 'Indeks RTI Gigi Tetap',
-				data: <?php echo json_encode($array_rti_by_age) ?>
-			},{
 				name: 'Indeks RTI Gigi Sulung',
 				data: <?php echo json_encode($array_rti_anak_by_age) ?>
+			}, {
+				name: 'Indeks RTI Gigi Tetap',
+				data: <?php echo json_encode($array_rti_by_age) ?>
+			}],
+			credits: {
+				text: 'Copyright (C) 2023 Simetri',
 			}
-		]
 		});
 	</script>
 

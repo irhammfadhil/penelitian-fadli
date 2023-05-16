@@ -78,7 +78,7 @@
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                             <br>
-                            <p class="text-right">Data sampai dengan: {{date('Y-m-d H:i:s')}} WIB.</p>
+                            
                             @if($result == 1)
                             <h3>Berdasarkan Jenis Kelamin</h3>
                             <hr>
