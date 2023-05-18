@@ -119,6 +119,11 @@
 				</a>
 			</li>
 			@endif
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="/report/responden">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Jumlah Responden</span>
+				</a>
+			</li>
 			@if(Route::is('report'))
 			<li class="sidebar-item active">
 				<a class="sidebar-link" href="/report">
@@ -171,6 +176,11 @@
 				</a>
 			</li>
 			@endif
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="/report/bySchool/responden">
+					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Jumlah Responden Berdasarkan Sekolah</span>
+				</a>
+			</li>
 			@if(Route::is('reportBySchool') || Route::is('reportBySchoolSubmit'))
 			<li class="sidebar-item active">
 				<a class="sidebar-link" href="/report/bySchool">

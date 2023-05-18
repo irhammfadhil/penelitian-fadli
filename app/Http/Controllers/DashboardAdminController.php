@@ -42,9 +42,9 @@ class DashboardAdminController extends Controller
             count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft, sum(u.num_decay)/sum(dmft_score) as rata_rata_rti,
             sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
             ->where('u.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 <= 13')->groupBy('jenis_kelamin')->get();
-        $q->jumlah = DB::table('users')->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
-        ->where('users.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->count();
-       //array num decay missing filling - by gender
+        $total_responden = DB::table('users')->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
+            ->where('users.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->count();
+        //array num decay missing filling - by gender
         $num_decay = [];
         $num_missing = [];
         $num_filling = [];
@@ -156,7 +156,7 @@ class DashboardAdminController extends Controller
             'array_rti_by_age' => $array_rti_by_age,
             'array_rti_anak_by_gender' => $array_rti_anak_by_gender,
             'array_rti_anak_by_age' => $array_rti_anak_by_age,
-            'total_responden' => $q->jumlah,
+            'total_responden' => $total_responden
         ]);
     }
     public function getAllAnak()
@@ -1020,8 +1020,8 @@ class DashboardAdminController extends Controller
             }
             $j++;
         }
-        $q->jumlah = DB::table('users')->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
-        ->where('users.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->count();
+        $total_responden = DB::table('users')->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
+            ->where('users.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->count();
 
         if (request()->is('report')) {
             return view('dashboard-admin.laporan.general', [
@@ -1131,10 +1131,121 @@ class DashboardAdminController extends Controller
                 'jml_filling_pr_11_anak' => $jml_filling_pr_11_anak,
                 'jml_filling_lk_12_anak' => $jml_filling_lk_12_anak,
                 'jml_filling_pr_12_anak' => $jml_filling_pr_12_anak,
-                'total_responden' => $q->jumlah,
+                'total_responden' => $total_responden
             ]);
-        } else if (request()->is('report/dmft')) {
-            return view('dashboard-admin.laporan.general-dmft', [
+        }
+        if (request()->is('report')) {
+            return view('dashboard-admin.laporan.general', [
+                'query_klp_usia' => $query_klp_usia,
+                'query_general' => $query_general,
+                'query_total' => $query_total,
+                'query_total_by_age' => $query_total_by_age,
+                'jml_decay_lk_79' => $jml_decay_lk_79,
+                'jml_decay_pr_79' => $jml_decay_pr_79,
+                'jml_decay_lk_912' => $jml_decay_lk_912,
+                'jml_decay_pr_912' => $jml_decay_pr_912,
+                'jml_decay_lk_79_anak' => $jml_decay_lk_79_anak,
+                'jml_decay_pr_79_anak' => $jml_decay_pr_79_anak,
+                'jml_decay_lk_912_anak' => $jml_decay_lk_912_anak,
+                'jml_decay_pr_912_anak' => $jml_decay_pr_912_anak,
+                'jml_missing_lk_79' => $jml_missing_lk_79,
+                'jml_missing_pr_79' => $jml_missing_pr_79,
+                'jml_missing_lk_912' => $jml_missing_lk_912,
+                'jml_missing_pr_912' => $jml_missing_pr_912,
+                'jml_missing_lk_79_anak' => $jml_missing_lk_79_anak,
+                'jml_missing_pr_79_anak' => $jml_missing_pr_79_anak,
+                'jml_missing_lk_912_anak' => $jml_missing_lk_912_anak,
+                'jml_missing_pr_912_anak' => $jml_missing_pr_912_anak,
+                'jml_filling_lk_79' => $jml_filling_lk_79,
+                'jml_filling_pr_79' => $jml_filling_pr_79,
+                'jml_filling_lk_912' => $jml_filling_lk_912,
+                'jml_filling_pr_912' => $jml_filling_pr_912,
+                'jml_filling_lk_79_anak' => $jml_filling_lk_79_anak,
+                'jml_filling_pr_79_anak' => $jml_filling_pr_79_anak,
+                'jml_filling_lk_912_anak' => $jml_filling_lk_912_anak,
+                'jml_filling_pr_912_anak' => $jml_filling_pr_912_anak,
+                #Decay
+                'jml_decay_lk_7' => $jml_decay_lk_7,
+                'jml_decay_pr_7' => $jml_decay_pr_7,
+                'jml_decay_lk_8' => $jml_decay_lk_8,
+                'jml_decay_pr_8' => $jml_decay_pr_8,
+                'jml_decay_lk_9' => $jml_decay_lk_9,
+                'jml_decay_pr_9' => $jml_decay_pr_9,
+                'jml_decay_lk_10' => $jml_decay_lk_10,
+                'jml_decay_pr_10' => $jml_decay_pr_10,
+                'jml_decay_lk_11' => $jml_decay_lk_11,
+                'jml_decay_pr_11' => $jml_decay_pr_11,
+                'jml_decay_lk_12' => $jml_decay_lk_12,
+                'jml_decay_pr_12' => $jml_decay_pr_12,
+                #Decay-anak
+                'jml_decay_lk_7_anak' => $jml_decay_lk_7_anak,
+                'jml_decay_pr_7_anak' => $jml_decay_pr_7_anak,
+                'jml_decay_lk_8_anak' => $jml_decay_lk_8_anak,
+                'jml_decay_pr_8_anak' => $jml_decay_pr_8_anak,
+                'jml_decay_lk_9_anak' => $jml_decay_lk_9_anak,
+                'jml_decay_pr_9_anak' => $jml_decay_pr_9_anak,
+                'jml_decay_lk_10_anak' => $jml_decay_lk_10_anak,
+                'jml_decay_pr_10_anak' => $jml_decay_pr_10_anak,
+                'jml_decay_lk_11_anak' => $jml_decay_lk_11_anak,
+                'jml_decay_pr_11_anak' => $jml_decay_pr_11_anak,
+                'jml_decay_lk_12_anak' => $jml_decay_lk_12_anak,
+                'jml_decay_pr_12_anak' => $jml_decay_pr_12_anak,
+                #Missing
+                'jml_missing_lk_7' => $jml_missing_lk_7,
+                'jml_missing_pr_7' => $jml_missing_pr_7,
+                'jml_missing_lk_8' => $jml_missing_lk_8,
+                'jml_missing_pr_8' => $jml_missing_pr_8,
+                'jml_missing_lk_9' => $jml_missing_lk_9,
+                'jml_missing_pr_9' => $jml_missing_pr_9,
+                'jml_missing_lk_10' => $jml_missing_lk_10,
+                'jml_missing_pr_10' => $jml_missing_pr_10,
+                'jml_missing_lk_11' => $jml_missing_lk_11,
+                'jml_missing_pr_11' => $jml_missing_pr_11,
+                'jml_missing_lk_12' => $jml_missing_lk_12,
+                'jml_missing_pr_12' => $jml_missing_pr_12,
+                #missing-anak
+                'jml_missing_lk_7_anak' => $jml_missing_lk_7_anak,
+                'jml_missing_pr_7_anak' => $jml_missing_pr_7_anak,
+                'jml_missing_lk_8_anak' => $jml_missing_lk_8_anak,
+                'jml_missing_pr_8_anak' => $jml_missing_pr_8_anak,
+                'jml_missing_lk_9_anak' => $jml_missing_lk_9_anak,
+                'jml_missing_pr_9_anak' => $jml_missing_pr_9_anak,
+                'jml_missing_lk_10_anak' => $jml_missing_lk_10_anak,
+                'jml_missing_pr_10_anak' => $jml_missing_pr_10_anak,
+                'jml_missing_lk_11_anak' => $jml_missing_lk_11_anak,
+                'jml_missing_pr_11_anak' => $jml_missing_pr_11_anak,
+                'jml_missing_lk_12_anak' => $jml_missing_lk_12_anak,
+                'jml_missing_pr_12_anak' => $jml_missing_pr_12_anak,
+                #filling
+                'jml_filling_lk_7' => $jml_filling_lk_7,
+                'jml_filling_pr_7' => $jml_filling_pr_7,
+                'jml_filling_lk_8' => $jml_filling_lk_8,
+                'jml_filling_pr_8' => $jml_filling_pr_8,
+                'jml_filling_lk_9' => $jml_filling_lk_9,
+                'jml_filling_pr_9' => $jml_filling_pr_9,
+                'jml_filling_lk_10' => $jml_filling_lk_10,
+                'jml_filling_pr_10' => $jml_filling_pr_10,
+                'jml_filling_lk_11' => $jml_filling_lk_11,
+                'jml_filling_pr_11' => $jml_filling_pr_11,
+                'jml_filling_lk_12' => $jml_filling_lk_12,
+                'jml_filling_pr_12' => $jml_filling_pr_12,
+                #filling-anak
+                'jml_filling_lk_7_anak' => $jml_filling_lk_7_anak,
+                'jml_filling_pr_7_anak' => $jml_filling_pr_7_anak,
+                'jml_filling_lk_8_anak' => $jml_filling_lk_8_anak,
+                'jml_filling_pr_8_anak' => $jml_filling_pr_8_anak,
+                'jml_filling_lk_9_anak' => $jml_filling_lk_9_anak,
+                'jml_filling_pr_9_anak' => $jml_filling_pr_9_anak,
+                'jml_filling_lk_10_anak' => $jml_filling_lk_10_anak,
+                'jml_filling_pr_10_anak' => $jml_filling_pr_10_anak,
+                'jml_filling_lk_11_anak' => $jml_filling_lk_11_anak,
+                'jml_filling_pr_11_anak' => $jml_filling_pr_11_anak,
+                'jml_filling_lk_12_anak' => $jml_filling_lk_12_anak,
+                'jml_filling_pr_12_anak' => $jml_filling_pr_12_anak,
+                'total_responden' => $total_responden
+            ]);
+        } else if (request()->is('report/responden')) {
+            return view('dashboard-admin.laporan.responden', [
                 'query_klp_usia' => $query_klp_usia,
                 'query_general' => $query_general,
                 'query_total' => $query_total,
@@ -1250,7 +1361,7 @@ class DashboardAdminController extends Controller
                 'min_dmft' => $min_dmft,
                 'max_dmft_label' => $max_dmft_label,
                 'min_dmft_label' => $min_dmft_label,
-                'total_responden' => $q->jumlah,
+                'total_responden' => $total_responden
             ]);
         } else if (request()->is('report/deft')) {
             return view('dashboard-admin.laporan.general-deft', [
@@ -1369,7 +1480,7 @@ class DashboardAdminController extends Controller
                 'min_deft' => $min_deft,
                 'max_deft_label' => $max_deft_label,
                 'min_deft_label' => $min_deft_label,
-                'total_responden' => $q->jumlah,
+                'total_responden' => $total_responden
             ]);
         } else if (request()->is('report/rti')) {
             return view('dashboard-admin.laporan.general-rti', [
@@ -1492,7 +1603,7 @@ class DashboardAdminController extends Controller
                 'min_rti_anak' => $min_rti_anak,
                 'max_rti_anak_label' => $max_rti_anak_label,
                 'min_rti_anak_label' => $min_rti_anak_label,
-                'total_responden' => $q->jumlah,
+                'total_responden' => $total_responden
             ]);
         }
     }
@@ -1864,8 +1975,8 @@ class DashboardAdminController extends Controller
             $j++;
         }
 
-        $q->jumlah = DB::table('users')->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
-        ->where('users.is_deleted', '=', 0)->where('b.id_sekolah', '=', $sekolah)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->count();
+        $total_responden = DB::table('users')->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
+            ->where('users.is_deleted', '=', 0)->where('b.id_sekolah', '=', $sekolah)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->count();
 
         $sekolah = ['SDN Biting 04', 'SDN Candijati 01'];
         if ($type == null) {
@@ -1979,7 +2090,126 @@ class DashboardAdminController extends Controller
                 'jml_filling_pr_11_anak' => $jml_filling_pr_11_anak,
                 'jml_filling_lk_12_anak' => $jml_filling_lk_12_anak,
                 'jml_filling_pr_12_anak' => $jml_filling_pr_12_anak,
-                'total_responden' => $q->jumlah
+                'total_responden' => $total_responden
+            ]);
+        } else if ($type == 'responden') {
+            return view('dashboard-admin.laporan.responden-by_school', [
+                'type' => 'responden',
+                'query_klp_usia' => $query_klp_usia,
+                'query_general' => $query_general,
+                'query_total' => $query_total,
+                'result' => 1,
+                'sekolah' => $sekolah,
+                'sekolah_selected' => $request->sekolah,
+                'query_total_by_age' => $query_total_by_age,
+                'jml_decay_lk_79' => $jml_decay_lk_79,
+                'jml_decay_pr_79' => $jml_decay_pr_79,
+                'jml_decay_lk_912' => $jml_decay_lk_912,
+                'jml_decay_pr_912' => $jml_decay_pr_912,
+                'jml_decay_lk_79_anak' => $jml_decay_lk_79_anak,
+                'jml_decay_pr_79_anak' => $jml_decay_pr_79_anak,
+                'jml_decay_lk_912_anak' => $jml_decay_lk_912_anak,
+                'jml_decay_pr_912_anak' => $jml_decay_pr_912_anak,
+                'jml_missing_lk_79' => $jml_missing_lk_79,
+                'jml_missing_pr_79' => $jml_missing_pr_79,
+                'jml_missing_lk_912' => $jml_missing_lk_912,
+                'jml_missing_pr_912' => $jml_missing_pr_912,
+                'jml_missing_lk_79_anak' => $jml_missing_lk_79_anak,
+                'jml_missing_pr_79_anak' => $jml_missing_pr_79_anak,
+                'jml_missing_lk_912_anak' => $jml_missing_lk_912_anak,
+                'jml_missing_pr_912_anak' => $jml_missing_pr_912_anak,
+                'jml_filling_lk_79' => $jml_filling_lk_79,
+                'jml_filling_pr_79' => $jml_filling_pr_79,
+                'jml_filling_lk_912' => $jml_filling_lk_912,
+                'jml_filling_pr_912' => $jml_filling_pr_912,
+                'jml_filling_lk_79_anak' => $jml_filling_lk_79_anak,
+                'jml_filling_pr_79_anak' => $jml_filling_pr_79_anak,
+                'jml_filling_lk_912_anak' => $jml_filling_lk_912_anak,
+                'jml_filling_pr_912_anak' => $jml_filling_pr_912_anak,
+                #Decay
+                'jml_decay_lk_7' => $jml_decay_lk_7,
+                'jml_decay_pr_7' => $jml_decay_pr_7,
+                'jml_decay_lk_8' => $jml_decay_lk_8,
+                'jml_decay_pr_8' => $jml_decay_pr_8,
+                'jml_decay_lk_9' => $jml_decay_lk_9,
+                'jml_decay_pr_9' => $jml_decay_pr_9,
+                'jml_decay_lk_10' => $jml_decay_lk_10,
+                'jml_decay_pr_10' => $jml_decay_pr_10,
+                'jml_decay_lk_11' => $jml_decay_lk_11,
+                'jml_decay_pr_11' => $jml_decay_pr_11,
+                'jml_decay_lk_12' => $jml_decay_lk_12,
+                'jml_decay_pr_12' => $jml_decay_pr_12,
+                #Decay-anak
+                'jml_decay_lk_7_anak' => $jml_decay_lk_7_anak,
+                'jml_decay_pr_7_anak' => $jml_decay_pr_7_anak,
+                'jml_decay_lk_8_anak' => $jml_decay_lk_8_anak,
+                'jml_decay_pr_8_anak' => $jml_decay_pr_8_anak,
+                'jml_decay_lk_9_anak' => $jml_decay_lk_9_anak,
+                'jml_decay_pr_9_anak' => $jml_decay_pr_9_anak,
+                'jml_decay_lk_10_anak' => $jml_decay_lk_10_anak,
+                'jml_decay_pr_10_anak' => $jml_decay_pr_10_anak,
+                'jml_decay_lk_11_anak' => $jml_decay_lk_11_anak,
+                'jml_decay_pr_11_anak' => $jml_decay_pr_11_anak,
+                'jml_decay_lk_12_anak' => $jml_decay_lk_12_anak,
+                'jml_decay_pr_12_anak' => $jml_decay_pr_12_anak,
+                #Missing
+                'jml_missing_lk_7' => $jml_missing_lk_7,
+                'jml_missing_pr_7' => $jml_missing_pr_7,
+                'jml_missing_lk_8' => $jml_missing_lk_8,
+                'jml_missing_pr_8' => $jml_missing_pr_8,
+                'jml_missing_lk_9' => $jml_missing_lk_9,
+                'jml_missing_pr_9' => $jml_missing_pr_9,
+                'jml_missing_lk_10' => $jml_missing_lk_10,
+                'jml_missing_pr_10' => $jml_missing_pr_10,
+                'jml_missing_lk_11' => $jml_missing_lk_11,
+                'jml_missing_pr_11' => $jml_missing_pr_11,
+                'jml_missing_lk_12' => $jml_missing_lk_12,
+                'jml_missing_pr_12' => $jml_missing_pr_12,
+                #missing-anak
+                'jml_missing_lk_7_anak' => $jml_missing_lk_7_anak,
+                'jml_missing_pr_7_anak' => $jml_missing_pr_7_anak,
+                'jml_missing_lk_8_anak' => $jml_missing_lk_8_anak,
+                'jml_missing_pr_8_anak' => $jml_missing_pr_8_anak,
+                'jml_missing_lk_9_anak' => $jml_missing_lk_9_anak,
+                'jml_missing_pr_9_anak' => $jml_missing_pr_9_anak,
+                'jml_missing_lk_10_anak' => $jml_missing_lk_10_anak,
+                'jml_missing_pr_10_anak' => $jml_missing_pr_10_anak,
+                'jml_missing_lk_11_anak' => $jml_missing_lk_11_anak,
+                'jml_missing_pr_11_anak' => $jml_missing_pr_11_anak,
+                'jml_missing_lk_12_anak' => $jml_missing_lk_12_anak,
+                'jml_missing_pr_12_anak' => $jml_missing_pr_12_anak,
+                #filling
+                'jml_filling_lk_7' => $jml_filling_lk_7,
+                'jml_filling_pr_7' => $jml_filling_pr_7,
+                'jml_filling_lk_8' => $jml_filling_lk_8,
+                'jml_filling_pr_8' => $jml_filling_pr_8,
+                'jml_filling_lk_9' => $jml_filling_lk_9,
+                'jml_filling_pr_9' => $jml_filling_pr_9,
+                'jml_filling_lk_10' => $jml_filling_lk_10,
+                'jml_filling_pr_10' => $jml_filling_pr_10,
+                'jml_filling_lk_11' => $jml_filling_lk_11,
+                'jml_filling_pr_11' => $jml_filling_pr_11,
+                'jml_filling_lk_12' => $jml_filling_lk_12,
+                'jml_filling_pr_12' => $jml_filling_pr_12,
+                #filling-anak
+                'jml_filling_lk_7_anak' => $jml_filling_lk_7_anak,
+                'jml_filling_pr_7_anak' => $jml_filling_pr_7_anak,
+                'jml_filling_lk_8_anak' => $jml_filling_lk_8_anak,
+                'jml_filling_pr_8_anak' => $jml_filling_pr_8_anak,
+                'jml_filling_lk_9_anak' => $jml_filling_lk_9_anak,
+                'jml_filling_pr_9_anak' => $jml_filling_pr_9_anak,
+                'jml_filling_lk_10_anak' => $jml_filling_lk_10_anak,
+                'jml_filling_pr_10_anak' => $jml_filling_pr_10_anak,
+                'jml_filling_lk_11_anak' => $jml_filling_lk_11_anak,
+                'jml_filling_pr_11_anak' => $jml_filling_pr_11_anak,
+                'jml_filling_lk_12_anak' => $jml_filling_lk_12_anak,
+                'jml_filling_pr_12_anak' => $jml_filling_pr_12_anak,
+                #label
+                'max_dmft' => $max_dmft,
+                'min_dmft' => $min_dmft,
+                'max_dmft_label' => $max_dmft_label,
+                'min_dmft_label' => $min_dmft_label,
+                'total_responden' => $total_responden
             ]);
         } else if ($type == 'dmft') {
             return view('dashboard-admin.laporan.by_school-dmft', [
@@ -2097,7 +2327,7 @@ class DashboardAdminController extends Controller
                 'min_dmft' => $min_dmft,
                 'max_dmft_label' => $max_dmft_label,
                 'min_dmft_label' => $min_dmft_label,
-                'total_responden' => $q->jumlah
+                'total_responden' => $total_responden
             ]);
         } else if ($type == 'deft') {
             return view('dashboard-admin.laporan.by_school-deft', [
@@ -2215,7 +2445,7 @@ class DashboardAdminController extends Controller
                 'min_deft' => $min_deft,
                 'max_deft_label' => $max_deft_label,
                 'min_deft_label' => $min_deft_label,
-                'total_responden' => $q->jumlah
+                'total_responden' => $total_responden
             ]);
         } else if ($type == 'rti') {
             return view('dashboard-admin.laporan.by_school-rti', [
@@ -2337,7 +2567,7 @@ class DashboardAdminController extends Controller
                 'min_rti_anak' => $min_rti_anak,
                 'max_rti_anak_label' => $max_rti_anak_label,
                 'min_rti_anak_label' => $min_rti_anak_label,
-                'total_responden' => $q->jumlah
+                'total_responden' => $total_responden
             ]);
         }
     }
