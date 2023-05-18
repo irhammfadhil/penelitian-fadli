@@ -42,7 +42,7 @@ class DashboardAdminController extends Controller
             count(u.id) as jumlah, sum(dmft_score)/count(u.id) as rata_rata_dmft, sum(deft_score)/count(u.id) as rata_rata_deft, sum(u.num_decay)/sum(dmft_score) as rata_rata_rti,
             sum(u.num_decay_anak)/sum(deft_score) as rata_rata_rti_anak'))->leftJoin('users_biodata as b', 'b.users_id', '=', 'u.id')->where('u.is_admin', '=', 0)
             ->where('u.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 >= 7 and DATE_FORMAT(FROM_DAYS(DATEDIFF(u.created_at, b.birth_date)), "%Y")+0 <= 13')->groupBy('jenis_kelamin')->get();
-        $total_responden = DB::table('users')->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
+        $q->jumlah = DB::table('users')->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
         ->where('users.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->count();
        //array num decay missing filling - by gender
         $num_decay = [];
@@ -156,7 +156,7 @@ class DashboardAdminController extends Controller
             'array_rti_by_age' => $array_rti_by_age,
             'array_rti_anak_by_gender' => $array_rti_anak_by_gender,
             'array_rti_anak_by_age' => $array_rti_anak_by_age,
-            'total_responden' => $total_responden,
+            'total_responden' => $q->jumlah,
         ]);
     }
     public function getAllAnak()
@@ -1020,7 +1020,7 @@ class DashboardAdminController extends Controller
             }
             $j++;
         }
-        $total_responden = DB::table('users')->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
+        $q->jumlah = DB::table('users')->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
         ->where('users.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->count();
 
         if (request()->is('report')) {
@@ -1131,7 +1131,7 @@ class DashboardAdminController extends Controller
                 'jml_filling_pr_11_anak' => $jml_filling_pr_11_anak,
                 'jml_filling_lk_12_anak' => $jml_filling_lk_12_anak,
                 'jml_filling_pr_12_anak' => $jml_filling_pr_12_anak,
-                'total_responden' => $total_responden,
+                'total_responden' => $q->jumlah,
             ]);
         } else if (request()->is('report/dmft')) {
             return view('dashboard-admin.laporan.general-dmft', [
@@ -1250,7 +1250,7 @@ class DashboardAdminController extends Controller
                 'min_dmft' => $min_dmft,
                 'max_dmft_label' => $max_dmft_label,
                 'min_dmft_label' => $min_dmft_label,
-                'total_responden' => $total_responden,
+                'total_responden' => $q->jumlah,
             ]);
         } else if (request()->is('report/deft')) {
             return view('dashboard-admin.laporan.general-deft', [
@@ -1369,7 +1369,7 @@ class DashboardAdminController extends Controller
                 'min_deft' => $min_deft,
                 'max_deft_label' => $max_deft_label,
                 'min_deft_label' => $min_deft_label,
-                'total_responden' => $total_responden,
+                'total_responden' => $q->jumlah,
             ]);
         } else if (request()->is('report/rti')) {
             return view('dashboard-admin.laporan.general-rti', [
@@ -1492,7 +1492,7 @@ class DashboardAdminController extends Controller
                 'min_rti_anak' => $min_rti_anak,
                 'max_rti_anak_label' => $max_rti_anak_label,
                 'min_rti_anak_label' => $min_rti_anak_label,
-                'total_responden' => $total_responden,
+                'total_responden' => $q->jumlah,
             ]);
         }
     }
@@ -1864,7 +1864,7 @@ class DashboardAdminController extends Controller
             $j++;
         }
 
-        $total_responden = DB::table('users')->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
+        $q->jumlah = DB::table('users')->join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
         ->where('users.is_deleted', '=', 0)->where('b.id_sekolah', '=', $sekolah)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->count();
 
         $sekolah = ['SDN Biting 04', 'SDN Candijati 01'];
@@ -1979,7 +1979,7 @@ class DashboardAdminController extends Controller
                 'jml_filling_pr_11_anak' => $jml_filling_pr_11_anak,
                 'jml_filling_lk_12_anak' => $jml_filling_lk_12_anak,
                 'jml_filling_pr_12_anak' => $jml_filling_pr_12_anak,
-                'total_responden' => $total_responden
+                'total_responden' => $q->jumlah
             ]);
         } else if ($type == 'dmft') {
             return view('dashboard-admin.laporan.by_school-dmft', [
@@ -2097,7 +2097,7 @@ class DashboardAdminController extends Controller
                 'min_dmft' => $min_dmft,
                 'max_dmft_label' => $max_dmft_label,
                 'min_dmft_label' => $min_dmft_label,
-                'total_responden' => $total_responden
+                'total_responden' => $q->jumlah
             ]);
         } else if ($type == 'deft') {
             return view('dashboard-admin.laporan.by_school-deft', [
@@ -2215,7 +2215,7 @@ class DashboardAdminController extends Controller
                 'min_deft' => $min_deft,
                 'max_deft_label' => $max_deft_label,
                 'min_deft_label' => $min_deft_label,
-                'total_responden' => $total_responden
+                'total_responden' => $q->jumlah
             ]);
         } else if ($type == 'rti') {
             return view('dashboard-admin.laporan.by_school-rti', [
@@ -2337,7 +2337,7 @@ class DashboardAdminController extends Controller
                 'min_rti_anak' => $min_rti_anak,
                 'max_rti_anak_label' => $max_rti_anak_label,
                 'min_rti_anak_label' => $min_rti_anak_label,
-                'total_responden' => $total_responden
+                'total_responden' => $q->jumlah
             ]);
         }
     }

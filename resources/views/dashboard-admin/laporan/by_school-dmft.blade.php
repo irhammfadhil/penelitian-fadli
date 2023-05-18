@@ -87,9 +87,9 @@
                                         <tr>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Jenis Kelamin</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Subjek Penelitian</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D (<i>Decay</i>)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">M (<i>Missing</i>)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">F (<i>Filling</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 5%;">D (<i>Decay</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 5%;">M (<i>Missing</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 5%;">F (<i>Filling</i>)</th>
                                             <th scope="col" class="text-center" colspan="4">Rata-rata</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori (WHO)</th>
                                         </tr>
@@ -110,9 +110,9 @@
                                             <td class="text-center">{{$jml_decay_lk_79 + $jml_decay_lk_912}}</td>
                                             <td class="text-center">{{$jml_missing_lk_79 + $jml_missing_lk_912}}</td>
                                             <td class="text-center">{{$jml_filling_lk_79 + $jml_filling_lk_912}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912)/$total_responden, 2)}}</td>
-                                            <td class="text-center">{{number_format(($jml_missing_lk_79 + $jml_missing_lk_912)/$total_responden, 2)}}</td>
-                                            <td class="text-center">{{number_format(($jml_filling_lk_79 + $jml_filling_lk_912)/$total_responden, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_lk_79 + $jml_missing_lk_912)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah, 2)}}</td>
                                             <td class="text-center"><b>{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah,2)}}</b></td>
                                             <td class="text-center">
                                                 @if(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah <= 1.1) Sangat Rendah @elseif(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah > 1.1 && ($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah <= 2.6) Rendah @elseif(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah > 2.6 && ($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah <= 4.4) Sedang @elseif(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah > 4.4 && ($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
@@ -140,9 +140,9 @@
                                             <td class="text-center">{{$jml_decay_pr_79 + $jml_decay_pr_912}}</td>
                                             <td class="text-center">{{$jml_missing_pr_79 + $jml_missing_pr_912}}</td>
                                             <td class="text-center">{{$jml_filling_pr_79 + $jml_filling_pr_912}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_pr_79 + $jml_decay_pr_912)/$total_responden, 2)}}</td>
-                                            <td class="text-center">{{number_format(($jml_missing_pr_79 + $jml_missing_pr_912)/$total_responden, 2)}}</td>
-                                            <td class="text-center">{{number_format(($jml_filling_pr_79 + $jml_filling_pr_912)/$total_responden, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_pr_79 + $jml_decay_pr_912)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_pr_79 + $jml_missing_pr_912)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah, 2)}}</td>
                                             <td class="text-center"><b>{{number_format(($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah,2)}}</b></td>
                                             <td class="text-center">
                                                 @if(($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah <= 1.1) Sangat Rendah @elseif(($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah > 1.1 && ($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah <= 2.6) Rendah @elseif(($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah > 2.6 && ($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah <= 4.4) Sedang @elseif(($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah > 4.4 && ($jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
@@ -170,9 +170,9 @@
                                             <td class="text-center"><b>{{$jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912}}</b></td>
                                             <td class="text-center"><b>{{$jml_missing_lk_79 + $jml_missing_lk_912 + $jml_missing_pr_79 + $jml_missing_pr_912}}</b></td>
                                             <td class="text-center"><b>{{$jml_filling_lk_79 + $jml_filling_lk_912 + $jml_filling_pr_79 + $jml_filling_pr_912}}</b></td>
-                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912)/$total_responden,2)}}</b></td>
-                                            <td class="text-center"><b>{{number_format(($jml_missing_lk_79 + $jml_missing_lk_912 + $jml_missing_pr_79 + $jml_missing_pr_912)/$total_responden,2)}}</b></td>
-                                            <td class="text-center"><b>{{number_format(($jml_filling_lk_79 + $jml_filling_lk_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$total_responden,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_missing_lk_79 + $jml_missing_lk_912 + $jml_missing_pr_79 + $jml_missing_pr_912)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_filling_lk_79 + $jml_filling_lk_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah,2)}}</b></td>
                                             <td class="text-center"><b>{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912 + $jml_missing_pr_79 + $jml_missing_pr_912 + $jml_filling_pr_79 + $jml_filling_pr_912)/$q->jumlah,2)}}</b></td>
                                             <td class="text-center">
                                             <b>@if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif </b></td>
@@ -202,9 +202,9 @@
                                         <tr>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Usia</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Subjek Penelitian</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D (<i>Decay</i>)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">M (<i>Missing</i>)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">F (<i>Filling</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 5%;">D (<i>Decay</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 5%;">M (<i>Missing</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 5%;">F (<i>Filling</i>)</th>
                                             <th scope="col" class="text-center" colspan="4">Rata-rata</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori (WHO)</th>
                                         </tr>

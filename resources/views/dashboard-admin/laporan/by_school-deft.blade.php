@@ -88,9 +88,9 @@
                                         <tr>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Jenis Kelamin</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Subjek Penelitian</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">d (<i>decay</i>)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">e (<i>exfoliate</i>)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">f (<i>filling</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 5%;">d (<i>decay</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 5%;">e (<i>exfoliate</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 5%;">f (<i>filling</i>)</th>
                                             <th scope="col" class="text-center" colspan="4">Rata-rata</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori (WHO)</th>
                                         </tr>
@@ -203,9 +203,9 @@
                                         <tr>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Usia</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Subjek Penelitian</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">d (<i>decay</i>)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">e (<i>exfoliate</i>)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">f (<i>filling</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 5%;">d (<i>decay</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 5%;">e (<i>exfoliate</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 5%;">f (<i>filling</i>)</th>
                                             <th scope="col" class="text-center" colspan="4">Rata-rata</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori (WHO)</th>
                                         </tr>

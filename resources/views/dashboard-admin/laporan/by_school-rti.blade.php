@@ -85,7 +85,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" rowspan="2" colspan="2" class="text-center align-middle" style="width: 7.5%;">Jenis Kelamin</th>
+                                            <th scope="col" rowspan="2" colspan="1" class="text-center align-middle" style="width: 7.5%;">Jenis Kelamin</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">d</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">def-t</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D</th>
@@ -103,7 +103,6 @@
                                             @php $found = 0; @endphp
                                             @foreach($query_general as $q)
                                             @if($q->jenis_kelamin == 'Laki-laki')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                             <td class="text-center">{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_79 + $jml_decay_lk_912}}</td>
@@ -118,7 +117,6 @@
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0%</b></td>
                                             <td class="text-center"><b>0%</b></td>
                                             @endif
@@ -128,7 +126,6 @@
                                             @php $found = 0; @endphp
                                             @foreach($query_general as $q)
                                             @if($q->jenis_kelamin == 'Perempuan')
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                             <td class="text-center">{{$jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_decay_pr_79 + $jml_decay_pr_912}}</td>
@@ -143,7 +140,6 @@
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0%</b></td>
                                             <td class="text-center"><b>0%</b></td>
                                             @endif
@@ -152,7 +148,6 @@
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
                                             <td class="text-center"><b>{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</b></td>
                                             <td class="text-center"><b>{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</b></td>
                                             <td class="text-center"><b>{{$jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912}}</b></td>
@@ -162,7 +157,6 @@
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)
-                                            <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
                                             <td class="text-center"><b>0</b></td>
@@ -181,7 +175,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" rowspan="2" colspan="2" class="text-center align-middle" style="width: 7.5%;">Kelompok Usia</th>
+                                            <th scope="col" rowspan="2" colspan="1" class="text-center align-middle" style="width: 7.5%;">Kelompok Usia</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">d</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">def-t</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D</th>
@@ -199,7 +193,7 @@
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 7)
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
+
                                             <td class="text-center">{{$jml_decay_lk_7_anak + $jml_decay_pr_7_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_7_anak + $jml_decay_pr_7_anak + $jml_missing_lk_7_anak + $jml_missing_pr_7_anak + $jml_filling_lk_7_anak + $jml_filling_pr_7_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_7 + $jml_decay_pr_7}}</td>
@@ -224,7 +218,7 @@
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 8)
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
+
                                             <td class="text-center">{{$jml_decay_lk_8_anak + $jml_decay_pr_8_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_8_anak + $jml_decay_pr_8_anak + $jml_missing_lk_8_anak + $jml_missing_pr_8_anak + $jml_filling_lk_8_anak + $jml_filling_pr_8_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_8 + $jml_decay_pr_8}}</td>
@@ -249,7 +243,7 @@
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 9)
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
+
                                             <td class="text-center">{{$jml_decay_lk_9_anak + $jml_decay_pr_9_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_9_anak + $jml_decay_pr_9_anak + $jml_missing_lk_9_anak + $jml_missing_pr_9_anak + $jml_filling_lk_9_anak + $jml_filling_pr_9_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_9 + $jml_decay_pr_9}}</td>
@@ -274,7 +268,7 @@
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 10)
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
+
                                             <td class="text-center">{{$jml_decay_lk_10_anak + $jml_decay_pr_10_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_10_anak + $jml_decay_pr_10_anak + $jml_missing_lk_10_anak + $jml_missing_pr_10_anak + $jml_filling_lk_10_anak + $jml_filling_pr_10_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_10 + $jml_decay_pr_10}}</td>
@@ -299,7 +293,7 @@
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 11)
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
+
                                             <td class="text-center">{{$jml_decay_lk_11_anak + $jml_decay_pr_11_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_11_anak + $jml_decay_pr_11_anak + $jml_missing_lk_11_anak + $jml_missing_pr_11_anak + $jml_filling_lk_11_anak + $jml_filling_pr_11_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_11 + $jml_decay_pr_11}}</td>
@@ -324,7 +318,7 @@
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 12)
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
+
                                             <td class="text-center">{{$jml_decay_lk_12_anak + $jml_decay_pr_12_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_12_anak + $jml_decay_pr_12_anak + $jml_missing_lk_12_anak + $jml_missing_pr_12_anak + $jml_filling_lk_12_anak + $jml_filling_pr_12_anak}}</td>
                                             <td class="text-center">{{$jml_decay_lk_12 + $jml_decay_pr_12}}</td>
@@ -348,7 +342,7 @@
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
-                                            <td class="text-center"><b>{{$q->jumlah}}</b></td>
+
                                             <td class="text-center"><b>{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</b></td>
                                             <td class="text-center"><b>{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</b></td>
                                             <td class="text-center"><b>{{$jml_decay_lk_79 + $jml_decay_lk_912 + $jml_decay_pr_79 + $jml_decay_pr_912}}</b></td>
