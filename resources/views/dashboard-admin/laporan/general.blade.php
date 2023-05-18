@@ -24,8 +24,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         thead {
-            border-top: 3px solid;
-            border-bottom: 3px solid;
+            border-top: 2px solid;
+            border-bottom: 2px solid;
         }
     </style>
 </head>
@@ -88,7 +88,7 @@
                                             <td class="text-center"><b>0.0</b></td>
                                             @endif
                                         </tr>
-                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
+                                        <tr style="border-top: 2px solid; border-bottom: 2px solid;">
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
@@ -104,7 +104,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p style="text-align: right;">Copyright (C) {{date('Y')}} Simetri. All rights reserved</p>
                             <h3>Berdasarkan Usia</h3>
                             <hr>
                             <div class="table-responsive">
@@ -207,7 +206,7 @@
                                             <td class="text-center"><b>0%</b></td>
                                             @endif
                                         </tr>
-                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
+                                        <tr style="border-top: 2px solid; border-bottom: 2px solid;">
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
@@ -222,7 +221,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <p style="text-align: right;">Copyright (C) {{date('Y')}} Simetri. All rights reserved</p>
                             </div>
                         </div>
                     </div>

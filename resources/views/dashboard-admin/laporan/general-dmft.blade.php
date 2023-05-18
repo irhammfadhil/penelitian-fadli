@@ -24,8 +24,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         thead {
-            border-top: 3px solid;
-            border-bottom: 3px solid;
+            border-top: 2px solid;
+            border-bottom: 2px solid;
         }
     </style>
 </head>
@@ -58,7 +58,7 @@
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">M (<i>Missing</i>)</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">F (<i>Filling</i>)</th>
                                             <th scope="col" class="text-center" colspan="4">Rata-rata</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori WHO</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori (WHO)</th>
                                         </tr>
                                         <tr>
                                             <th scope="col" class="text-center align-middle" style="width: 5%;">D</th>
@@ -80,7 +80,7 @@
                                             <td class="text-center">{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912)/$total_responden, 2)}}</td>
                                             <td class="text-center">{{number_format(($jml_missing_lk_79 + $jml_missing_lk_912)/$total_responden, 2)}}</td>
                                             <td class="text-center">{{number_format(($jml_filling_lk_79 + $jml_filling_lk_912)/$total_responden, 2)}}</td>
-                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{$jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912}}</b></td>
                                             <td class="text-center">
                                                 @if(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah <= 1.1) Sangat Rendah @elseif(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah > 1.1 && ($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah <= 2.6) Rendah @elseif(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah > 2.6 && ($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah <= 4.4) Sedang @elseif(($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah > 4.4 && ($jml_decay_lk_79 + $jml_decay_lk_912 + $jml_missing_lk_79 + $jml_missing_lk_912 + $jml_filling_lk_79 + $jml_filling_lk_912)/$q->jumlah <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
                                                                 @php $found = 1; @endphp
@@ -128,7 +128,7 @@
                                             <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
-                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
+                                        <tr style="border-top: 2px solid; border-bottom: 2px solid;">
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
@@ -160,7 +160,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p style="text-align: right;">Copyright (C) {{date('Y')}} Simetri. All rights reserved</p>
+                            <p style="text-align: right;"><i>Copyright</i> (C) {{date('Y')}} Simetri. <i>All rights reserved</i></p>
                             <h3>Berdasarkan Usia</h3>
                             <hr>
                             <div class="table-responsive">
@@ -173,7 +173,7 @@
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">M (<i>Missing</i>)</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">F (<i>Filling</i>)</th>
                                             <th scope="col" class="text-center" colspan="4">Rata-rata</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori WHO</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori (WHO)</th>
                                         </tr>
                                         <tr>
                                             <th scope="col" class="text-center align-middle" style="width: 5%;">D</th>
@@ -369,7 +369,7 @@
                                             <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
-                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
+                                        <tr style="border-top: 2px solid; border-bottom: 2px solid;">
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
@@ -401,7 +401,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p style="text-align: right;">Copyright (C) {{date('Y')}} Simetri. All rights reserved</p>
+                            <p style="text-align: right;"><i>Copyright</i> (C) {{date('Y')}} Simetri. <i>All rights reserved</i></p>
                         </div>
                     </div>
                 </div>

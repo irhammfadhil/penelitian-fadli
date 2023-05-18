@@ -24,8 +24,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         thead {
-            border-top: 3px solid;
-            border-bottom: 3px solid;
+            border-top: 2px solid;
+            border-bottom: 2px solid;
         }
     </style>
 </head>
@@ -98,19 +98,20 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-center" style="width: 50%;">Jenis Kelamin</th>
+                                            <th scope="col" class="text-center" style="width: 50%;" colspan="2">Distribusi Jumlah Siswa</th>
                                             <th scope="col" class="text-center" style="width: 25%;">N</th>
                                             <th scope="col" class="text-center" style="width: 25%;">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td rowspan="2">Jenis Kelamin</td>
                                             <td class="text-center">Laki-laki</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_general as $q)
                                             @if($q->jenis_kelamin == 'Laki-laki')
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
+                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -125,7 +126,7 @@
                                             @foreach($query_general as $q)
                                             @if($q->jenis_kelamin == 'Perempuan')
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
+                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -134,12 +135,12 @@
                                             <td class="text-center"><b>0.0</b></td>
                                             @endif
                                         </tr>
-                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
-                                            <td class="text-center" colspan="1">Total</td>
+                                        <tr style="border-top: 2px solid; border-bottom: 2px solid;">
+                                            <td class="text-center" colspan="2">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">100.0%</td>
+                                            <td class="text-center"><b>100.0</b></td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)
@@ -147,29 +148,14 @@
                                             <td class="text-center"><b>100.0</b></td>
                                             @endif
                                         </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <p style="text-align: right;">Copyright (C) {{date('Y')}} Simetri. All rights reserved</p>
-                            <h3>Berdasarkan Usia</h3>
-                            <hr>
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
                                         <tr>
-                                            <th scope="col" class="text-center" style="width: 50%;">Usia</th>
-                                            <th scope="col" class="text-center" style="width: 25%;">N</th>
-                                            <th scope="col" class="text-center" style="width: 25%;">%</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
+                                            <td rowspan="6">Usia</td>
                                             <td class="text-center">7 tahun</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 7)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
+                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -184,7 +170,7 @@
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 8)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
+                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -199,7 +185,7 @@
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 9)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
+                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -214,7 +200,7 @@
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 10)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
+                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -229,7 +215,7 @@
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 11)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
+                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -244,7 +230,7 @@
                                             @foreach($query_total_by_age as $q)
                                             @if($q->age == 12)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
+                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}</td>
                                             @php $found = 1; @endphp
                                             @endif
                                             @endforeach
@@ -253,23 +239,23 @@
                                             <td class="text-center"><b>0%</b></td>
                                             @endif
                                         </tr>
-                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
-                                            <td class="text-center" colspan="1">Total</td>
+                                        <tr style="border-top: 2px solid; border-bottom: 2px solid;">
+                                            <td class="text-center" colspan="2">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
-                                            <td class="text-center">{{number_format(($q->jumlah/$total_responden)*100,1)}}%</td>
+                                            <td class="text-center"><b>{{number_format(($q->jumlah/$total_responden)*100,1)}}</b></td>
                                             @php $found = 1; @endphp
                                             @endforeach
                                             @if(!$found)
                                             <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>100%</b></td>
+                                            <td class="text-center"><b>100</b></td>
                                             @endif
                                         </tr>
                                     </tbody>
                                 </table>
+                                <p style="text-align: right;"><i>Copyright</i> (C) {{date('Y')}} Simetri. <i>All rights reserved</i></p>
                             </div>
-                            <p style="text-align: right;">Copyright (C) {{date('Y')}} Simetri. All rights reserved</p>
                             @endif
                         </div>
                     </div>

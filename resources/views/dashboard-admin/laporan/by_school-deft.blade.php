@@ -24,8 +24,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         thead {
-            border-top: 3px solid;
-            border-bottom: 3px solid;
+            border-top: 2px solid;
+            border-bottom: 2px solid;
         }
     </style>
 </head>
@@ -88,11 +88,11 @@
                                         <tr>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Jenis Kelamin</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Subjek Penelitian</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">d (<i>Decay</i>)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">e (<i>Exfoliate</i>)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">f (<i>Filling</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">d (<i>decay</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">e (<i>exfoliate</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">f (<i>filling</i>)</th>
                                             <th scope="col" class="text-center" colspan="4">Rata-rata</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori WHO</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori (WHO)</th>
                                         </tr>
                                         <tr>
                                             <th scope="col" class="text-center align-middle" style="width: 5%;">d</th>
@@ -111,10 +111,10 @@
                                             <td class="text-center">{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak}}</td>
                                             <td class="text-center">{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak}}</td>
                                             <td class="text-center">{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak)/$total_responden, 2)}}</td>
-                                            <td class="text-center">{{number_format(($jml_missing_lk_79_anak + $jml_missing_lk_912_anak)/$total_responden, 2)}}</td>
-                                            <td class="text-center">{{number_format(($jml_filling_lk_79_anak + $jml_filling_lk_912_anak)/$total_responden, 2)}}</td>
-                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center">{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_lk_79_anak + $jml_missing_lk_912_anak)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_lk_79_anak + $jml_filling_lk_912_anak)/$q->jumlah, 2)}}</td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak)/$q->jumlah, 2)}}</b></td>
                                             <td class="text-center">
                                                 @if(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak)/$q->jumlah <= 1.1) Sangat Rendah @elseif(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak)/$q->jumlah > 1.1 && ($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak)/$q->jumlah <= 2.6) Rendah @elseif(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak)/$q->jumlah > 2.6 && ($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak)/$q->jumlah <= 4.4) Sedang @elseif(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak)/$q->jumlah > 4.4 && ($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak)/$q->jumlah <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
                                                                 @php $found = 1; @endphp
@@ -141,9 +141,9 @@
                                             <td class="text-center">{{$jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</td>
                                             <td class="text-center">{{$jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</td>
-                                            <td class="text-center">{{number_format(($jml_decay_pr_79_anak + $jml_decay_pr_912_anak)/$total_responden, 2)}}</td>
-                                            <td class="text-center">{{number_format(($jml_missing_pr_79_anak + $jml_missing_pr_912_anak)/$total_responden, 2)}}</td>
-                                            <td class="text-center">{{number_format(($jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$total_responden, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_decay_pr_79_anak + $jml_decay_pr_912_anak)//$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_missing_pr_79_anak + $jml_missing_pr_912_anak)//$q->jumlah, 2)}}</td>
+                                            <td class="text-center">{{number_format(($jml_filling_pr_79_anak + $jml_filling_pr_912_anak)//$q->jumlah, 2)}}</td>
                                             <td class="text-center"><b>{{number_format(($jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah,2)}}</b></td>
                                             <td class="text-center">
                                                 @if(($jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah <= 1.1) Sangat Rendah @elseif(($jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah > 1.1 && ($jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah <= 2.6) Rendah @elseif(($jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah > 2.6 && ($jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah <= 4.4) Sedang @elseif(($jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah > 4.4 && ($jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
@@ -162,7 +162,7 @@
                                             <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
-                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
+                                        <tr style="border-top: 2px solid; border-bottom: 2px solid;">
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
@@ -171,9 +171,9 @@
                                             <td class="text-center"><b>{{$jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak}}</b></td>
                                             <td class="text-center"><b>{{$jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak}}</b></td>
                                             <td class="text-center"><b>{{$jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak}}</b></td>
-                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak)/$total_responden,2)}}</b></td>
-                                            <td class="text-center"><b>{{number_format(($jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak)/$total_responden,2)}}</b></td>
-                                            <td class="text-center"><b>{{number_format(($jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$total_responden,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak)/$q->jumlah,2)}}</b></td>
+                                            <td class="text-center"><b>{{number_format(($jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah,2)}}</b></td>
                                             <td class="text-center"><b>{{number_format(($jml_decay_lk_79_anak + $jml_decay_lk_912_anak + $jml_missing_lk_79_anak + $jml_missing_lk_912_anak + $jml_filling_lk_79_anak + $jml_filling_lk_912_anak + $jml_decay_pr_79_anak + $jml_decay_pr_912_anak + $jml_missing_pr_79_anak + $jml_missing_pr_912_anak + $jml_filling_pr_79_anak + $jml_filling_pr_912_anak)/$q->jumlah,2)}}</b></td>
                                             <td class="text-center">
                                             <b>@if($total_deft <= 1.1) Sangat Rendah @elseif($total_deft> 1.1 && $total_deft <= 2.6) Rendah @elseif($total_deft> 2.6 && $total_deft <= 4.4) Sedang @elseif($total_deft> 4.4 && $total_deft <= 6.5) Tinggi @else Sangat Tinggi @endif </td>
@@ -194,7 +194,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p style="text-align: right;">Copyright (C) {{date('Y')}} Simetri. All rights reserved</p>
+                            <p style="text-align: right;"><i>Copyright</i> (C) {{date('Y')}} Simetri. <i>All rights reserved</i></p>
                             <h3>Berdasarkan Usia</h3>
                             <hr>
                             <div class="table-responsive">
@@ -203,11 +203,11 @@
                                         <tr>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 7.5%;">Usia</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Subjek Penelitian</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">d (<i>Decay</i>)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">e (<i>Exfoliate</i>)</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">f (<i>Filling</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">d (<i>decay</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">e (<i>exfoliate</i>)</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">f (<i>filling</i>)</th>
                                             <th scope="col" class="text-center" colspan="4">Rata-rata</th>
-                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori WHO</th>
+                                            <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">Kategori (WHO)</th>
                                         </tr>
                                         <tr>
                                             <th scope="col" class="text-center align-middle" style="width: 5%;">d</th>
@@ -409,7 +409,7 @@
                                             <td class="text-center"><b>Sangat Rendah</b></td>
                                             @endif
                                         </tr>
-                                        <tr style="border-top: 3px solid; border-bottom: 3px solid;">
+                                        <tr style="border-top: 2px solid; border-bottom: 2px solid;">
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
@@ -442,7 +442,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p style="text-align: right;">Copyright (C) {{date('Y')}} Simetri. All rights reserved</p>
+                            <p style="text-align: right;"><i>Copyright</i> (C) {{date('Y')}} Simetri. <i>All rights reserved</i></p>
                             @endif
                         </div>
                     </div>
