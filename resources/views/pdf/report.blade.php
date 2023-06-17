@@ -222,7 +222,7 @@
     </div>
     <br>
     @endif
-    @if($foto)
+    {{--@if($foto)
     <hr>
     <h5>Foto Gigi</h5>
     <br>
@@ -340,9 +340,8 @@
             : {{$tanggal_foto_bawah}}
         </div>
     </div>
-    @endif
+    @endif--}}
     @if($diagnosis)
-    <div class="page_break"></div>
     <h5>Diagnosis</h5>
     <hr>
     <div class="row">

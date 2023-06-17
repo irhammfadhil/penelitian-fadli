@@ -183,7 +183,7 @@
 							</div>
 							<hr>
 							@endif
-							@if($foto)
+							{{--@if($foto)
 							<h4>Foto Gigi (<a href="#" id="foto-toggle">tampilkan</a><a href="#" id="foto-toggle-hide">sembunyikan</a>)</h4>
 							<div id="foto">
 								<div class="row">
@@ -270,7 +270,7 @@
 									</div>
 								</form>
 							</div>
-							@endif
+							@endif--}}
 							<hr>
 							<div class="row">
 								<div class="col-6">
