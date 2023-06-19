@@ -447,7 +447,7 @@
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Indeks RTI Gigi Tetap (%)'
+					text: '<i>Required Treatment Index</i> (%)'
 				}
 			},
 			tooltip: {
@@ -483,7 +483,7 @@
 				type: 'column'
 			},
 			title: {
-				text: 'Rekapitulasi Indeks RTI Gigi Tetap Berdasarkan Usia'
+				text: 'Rekapitulasi Indeks RTI Berdasarkan Usia'
 			},
 			subtitle: {
 				text: 'Sistem Informasi Penilaian Required Treatment Index Gigi Anak'
@@ -495,7 +495,7 @@
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Indeks RTI Gigi Tetap (%)'
+					text: '<i>Required Treatment Index</i> (%)'
 				}
 			},
 			tooltip: {

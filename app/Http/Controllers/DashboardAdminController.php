@@ -161,7 +161,8 @@ class DashboardAdminController extends Controller
     }
     public function getAllAnak()
     {
-        $anak = User::where('is_admin', '=', 0)->where('is_deleted', '=', 0)->get();
+        $anak = User::join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
+        ->where('users.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->where('is_admin', '=', 0)->where('is_deleted', '=', 0)->get();
         return view('dashboard-admin.list-anak', ['anak' => $anak]);
     }
     public function getAllUsers()

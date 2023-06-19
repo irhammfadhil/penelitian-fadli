@@ -52,7 +52,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" rowspan="2" colspan="2" class="text-center align-middle" style="width: 7.5%;">Jenis Kelamin</th>
+                                            <th scope="col" rowspan="2" colspan="1" class="text-center align-middle" style="width: 7.5%;">Jenis Kelamin</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">d</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">def-t</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D</th>
@@ -148,7 +148,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" rowspan="2" colspan="2" class="text-center align-middle" style="width: 7.5%;">Kelompok Usia</th>
+                                            <th scope="col" rowspan="2" colspan="1" class="text-center align-middle" style="width: 7.5%;">Kelompok Usia</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">d</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">def-t</th>
                                             <th scope="col" rowspan="2" class="text-center align-middle" style="width: 10%;">D</th>
