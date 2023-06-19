@@ -190,6 +190,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <p style="text-align: right;"><i>Copyright</i> (C) {{date('Y')}} Simetri. <i>All rights reserved</i></p>
                             </div>
                             <h3>Berdasarkan Kelompok Usia</h3>
                             <hr>
@@ -729,6 +730,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <p style="text-align: right;"><i>Copyright</i> (C) {{date('Y')}} Simetri. <i>All rights reserved</i></p>
                             </div>
                             @endif
                         </div>

@@ -117,7 +117,7 @@
                                             <td class="text-center"><b>0%</b></td>
                                             @endif
                                         </tr>
-                                        <tr style="border-top: 2px solid; border-bottom: 2px solid;">
+                                        <tr>
                                             <td class="text-center" colspan="1">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
@@ -144,7 +144,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <p style="text-align: right;"><i>Copyright</i> (C) {{date('Y')}} Simetri. <i>All rights reserved</i></p>
                             </div>
                             <h3>Berdasarkan Kelompok Usia</h3>
                             <hr>
@@ -657,7 +656,7 @@
                                             <td class="text-center"><b>0%</b></td>
                                             @endif
                                         </tr>
-                                        <tr style="border-top: 2px solid; border-bottom: 2px solid;">
+                                        <tr>
                                             <td class="text-center" colspan="2">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
@@ -684,7 +683,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <p style="text-align: right;"><i>Copyright</i> (C) {{date('Y')}} Simetri. <i>All rights reserved</i></p>
                             </div>
                         </div>
                     </div>

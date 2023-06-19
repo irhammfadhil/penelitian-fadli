@@ -40,25 +40,73 @@
             <main class="content">
                 <div class="container-fluid p-0">
 
-                    <h1 class="h3 mb-3">Jumlah Responden</h1>
+                    <h1 class="h3 mb-3">Jumlah Responden Berdasarkan Sekolah</h1>
 
                     <br>
                     <div class="card">
                         <div class="card-body">
-                            
+                            <form action="/report/bySchool" method="post">
+                                @csrf
+                                @if($result == 0)
+                                @if(Route::is('reportBySchool-dmft') || Route::is('reportBySchoolSubmit-dmft'))
+                                <input type="hidden" name="type" value="dmft">
+                                @elseif(Route::is('reportBySchool-deft') || Route::is('reportBySchoolSubmit-deft'))
+                                <input type="hidden" name="type" value="deft">
+                                @elseif(Route::is('reportBySchool-rti') || Route::is('reportBySchoolSubmit-rti'))
+                                <input type="hidden" name="type" value="rti">
+                                @elseif(Route::is('reportBySchool-responden') || Route::is('reportBySchoolSubmit-responden') || $type == 'responden')
+                                <input type="hidden" name="type" value="responden">
+                                @endif
+                                <div class="form-group">
+                                    <label for="sekolah">Sekolah</label>
+                                    <select class="form-control" id="sekolah" name="sekolah">
+                                        <option value="">Pilih...</option>
+                                        @foreach($sekolah as $s)
+                                        <option value="{{$s}}">{{$s}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @elseif($result == 1)
+                                @if(Route::is('reportBySchool-dmft') || Route::is('reportBySchoolSubmit-dmft'))
+                                <input type="hidden" name="type" value="dmft">
+                                @elseif(Route::is('reportBySchool-deft') || Route::is('reportBySchoolSubmit-deft'))
+                                <input type="hidden" name="type" value="deft">
+                                @elseif(Route::is('reportBySchool-rti') || Route::is('reportBySchoolSubmit-rti'))
+                                <input type="hidden" name="type" value="rti">
+                                @endif
+                                <div class="form-group">
+                                    <label for="sekolah">Sekolah</label>
+                                    <select class="form-control" id="sekolah" name="sekolah">
+                                        <option value="">Pilih...</option>
+                                        @foreach($sekolah as $s)
+                                        @if($s == $sekolah_selected)
+                                        <option value="{{$s}}" selected>{{$s}}</option>
+                                        @else
+                                        <option value="{{$s}}">{{$s}}</option>
+                                        @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @endif
+                                <br>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                            <br>
+                            @if($result == 1)
                             <h3>General</h3>
                             <hr>
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-center" style="width: 50%;">Jenis Kelamin</th>
+                                            <th scope="col" class="text-center" style="width: 50%;" colspan="2">Distribusi Jumlah Siswa</th>
                                             <th scope="col" class="text-center" style="width: 25%;">N</th>
                                             <th scope="col" class="text-center" style="width: 25%;">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td rowspan="2">Jenis Kelamin</td>
                                             <td class="text-center">Laki-laki</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_general as $q)
@@ -89,7 +137,7 @@
                                             @endif
                                         </tr>
                                         <tr style="border-top: 2px solid; border-bottom: 2px solid;">
-                                            <td class="text-center" colspan="1">Total</td>
+                                            <td class="text-center" colspan="2">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
@@ -101,23 +149,8 @@
                                             <td class="text-center"><b>100.0</b></td>
                                             @endif
                                         </tr>
-                                    </tbody>
-                                </table>
-                                <p style="text-align: right;"><i>Copyright</i> (C) {{date('Y')}} Simetri. <i>All rights reserved</i></p>
-                            </div>
-                            <h3>Berdasarkan Usia</h3>
-                            <hr>
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
                                         <tr>
-                                            <th scope="col" class="text-center" style="width: 50%;">Usia</th>
-                                            <th scope="col" class="text-center" style="width: 25%;">N</th>
-                                            <th scope="col" class="text-center" style="width: 25%;">%</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
+                                            <td rowspan="6">Usia</td>
                                             <td class="text-center">7 tahun</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total_by_age as $q)
@@ -129,7 +162,7 @@
                                             @endforeach
                                             @if(!$found)
                                             <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0%</b></td>
                                             @endif
                                         </tr>
                                         <tr>
@@ -144,7 +177,7 @@
                                             @endforeach
                                             @if(!$found)
                                             <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0%</b></td>
                                             @endif
                                         </tr>
                                         <tr>
@@ -159,7 +192,7 @@
                                             @endforeach
                                             @if(!$found)
                                             <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0%</b></td>
                                             @endif
                                         </tr>
                                         <tr>
@@ -174,7 +207,7 @@
                                             @endforeach
                                             @if(!$found)
                                             <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0%</b></td>
                                             @endif
                                         </tr>
                                         <tr>
@@ -189,7 +222,7 @@
                                             @endforeach
                                             @if(!$found)
                                             <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0%</b></td>
                                             @endif
                                         </tr>
                                         <tr>
@@ -204,11 +237,11 @@
                                             @endforeach
                                             @if(!$found)
                                             <td class="text-center"><b>0</b></td>
-                                            <td class="text-center"><b>0</b></td>
+                                            <td class="text-center"><b>0%</b></td>
                                             @endif
                                         </tr>
                                         <tr style="border-top: 2px solid; border-bottom: 2px solid;">
-                                            <td class="text-center" colspan="1">Total</td>
+                                            <td class="text-center" colspan="2">Total</td>
                                             @php $found = 0; @endphp
                                             @foreach($query_total as $q)
                                             <td class="text-center"><b>{{$q->jumlah}}</b></td>
@@ -224,6 +257,7 @@
                                 </table>
                                 <p style="text-align: right;"><i>Copyright</i> (C) {{date('Y')}} Simetri. <i>All rights reserved</i></p>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
