@@ -48,13 +48,13 @@
 							<div class="md-step-title">Informed Consent</div>
 							<div class="md-step-bar-left"></div>
 							<div class="md-step-bar-right"></div>
-						</div>--}}
+						</div>
 						<div class="md-step col-lg-1 col-md-1" onclick="location.href='/foto-gigi';" style="cursor: pointer;">
 							<div class="md-step-circle"><span>2</span></div>
 							<div class="md-step-title">Foto Gigi</div>
 							<div class="md-step-bar-left"></div>
 							<div class="md-step-bar-right"></div>
-						</div>
+						</div>--}}
 						<div class="md-step col-lg-1 col-md-1" onclick="location.href='/finalisasi';" style="cursor: pointer;">
 							<div class="md-step-circle"><span>3</span></div>
 							<div class="md-step-title">Finalisasi Data</div>
@@ -132,15 +132,7 @@
 								</div>--}}
 								<br>
 								<label for="exampleInputEmail1">Sekolah</label>
-								<select class="form-select" name="sekolah" id="sekolah" aria-label="Default select example">
-									@foreach($sekolah as $s)
-									@if($s == $biodata->id_sekolah)
-									<option value="{{$s}}" selected>{{$s}}</option>
-									@else
-									<option value="{{$s}}">{{$s}}</option>
-									@endif
-									@endforeach
-								</select>
+								<input type="text" class="form-control" id="sekolah" name="sekolah" aria-describedby="emailHelp" value="{{$biodata->id_sekolah}}" placeholder="Sekolah">
 								@else
 								<div class="row">
 									<div class="col-lg-6">
@@ -194,11 +186,7 @@
 								</div>--}}
 								<br>
 								<label for="exampleInputEmail1">Sekolah</label>
-								<select class="form-select" name="sekolah" id="sekolah" aria-label="Default select example">
-									<option>Pilih...</option>
-									<option value="SDN Biting 04">SDN Biting 04</option>
-									<option value="SDN Candijati 01">SDN Candijati 01</option>
-								</select>
+								<input type="text" class="form-control" id="sekolah" name="sekolah" aria-describedby="emailHelp" placeholder="Sekolah">
 								@endif
 								<hr>
 								<h3 class="card-title mb-0">Biodata Orang Tua</h3>

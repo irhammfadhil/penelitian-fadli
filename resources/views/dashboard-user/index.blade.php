@@ -121,6 +121,16 @@
 				plotShadow: false,
 				type: 'pie'
 			},
+			exporting: {
+				enabled: true, // Enable exporting
+				buttons: {
+					contextButton: {
+						menuItems: ['downloadPNG'], // Enable PNG download only
+						symbol: 'download', // Customize the export button symbol
+						text: 'Export as PNG', // Button text
+					},
+				},
+			},
 			title: {
 				text: 'Kesimpulan Indeks RTI (Required Treatment Index) Gigi Tetap',
 				align: 'left'
@@ -163,6 +173,16 @@
 				plotBorderWidth: null,
 				plotShadow: false,
 				type: 'pie'
+			},
+			exporting: {
+				enabled: true, // Enable exporting
+				buttons: {
+					contextButton: {
+						menuItems: ['downloadPNG'], // Enable PNG download only
+						symbol: 'download', // Customize the export button symbol
+						text: 'Export as PNG', // Button text
+					},
+				},
 			},
 			title: {
 				text: 'Kesimpulan Indeks RTI (Required Treatment Index) Gigi Sulung',

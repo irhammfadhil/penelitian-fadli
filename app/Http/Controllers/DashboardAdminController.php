@@ -18,9 +18,14 @@ use App\Models\Village;
 use PDF;
 use DateTime;
 use Illuminate\Support\Facades\DB;
+use App\Services\ExportGraphService;
 
 class DashboardAdminController extends Controller
 {
+    protected $exportGraphService;
+    public function __construct(ExportGraphService $exportGraphService){
+        $this->exportGraphService = $exportGraphService;
+    }
     public function index()
     {
         $gender = ['Laki-laki', 'Perempuan'];
@@ -162,7 +167,7 @@ class DashboardAdminController extends Controller
     public function getAllAnak()
     {
         $anak = User::join('users_biodata as b', 'users.id', '=', 'b.users_id')->where('users.is_admin', '=', 0)
-        ->where('users.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 between 7 and 13')->where('is_admin', '=', 0)->where('is_deleted', '=', 0)->get();
+        ->where('users.is_deleted', '=', 0)->whereRaw('DATE_FORMAT(FROM_DAYS(DATEDIFF(users.created_at, b.birth_date)), "%Y")+0 between 4 and 13')->where('is_admin', '=', 0)->where('is_deleted', '=', 0)->get();
         return view('dashboard-admin.list-anak', ['anak' => $anak]);
     }
     public function getAllUsers()
@@ -600,7 +605,7 @@ class DashboardAdminController extends Controller
         } else if ($user->deft_score > 6.5) {
             $kriteria_deft = 'Sangat Tinggi';
         }
-
+        
         $data = [
             'user' => $user,
             'biodata' => $biodata,
@@ -615,33 +620,15 @@ class DashboardAdminController extends Controller
             'sum_filling_susu' => $sum_filling_susu,
             'kriteria_dmft' => $kriteria_dmft,
             'kriteria_deft' => $kriteria_deft,
-            'tanggal_daftar' => $this->tgl_indo(date('Y-m-d', strtotime($user->created_at))),
-            'tanggal_lahir' => $this->tgl_indo($biodata->birth_date),
-            'tanggal_foto_senyum' => $this->tgl_indo($foto->date_taken_senyum),
-            'tanggal_foto_depan' => $this->tgl_indo($foto->date_taken_depan),
-            'tanggal_foto_kiri' => $this->tgl_indo($foto->date_taken_kiri),
-            'tanggal_foto_atas' => $this->tgl_indo($foto->date_taken_atas),
-            'tanggal_foto_kanan' => $this->tgl_indo($foto->date_taken_kanan),
-            'tanggal_foto_bawah' => $this->tgl_indo($foto->date_taken_bawah),
+            'tanggal_daftar' => $user->created_at,
+            'tanggal_lahir' => $biodata->birth_date
         ];
 
         $pdf = PDF::loadView('pdf.report', $data);
 
         $fileName = 'Laporan ' . $user->name . '.pdf';
 
-        $output = $pdf->output();
-        if (file_exists($fileName)) {
-            unlink($fileName);
-        }
-        file_put_contents($fileName, $output);
-
-        $data = User::find($id);
-        $data->report_filename = $fileName;
-        $data->save();
-
-        return view('dashboard-admin.cetak-laporan', [
-            'data' => $data,
-        ]);
+        return $pdf->download($fileName);
     }
     public function generateReportGeneral()
     {
@@ -1364,7 +1351,128 @@ class DashboardAdminController extends Controller
                 'min_dmft_label' => $min_dmft_label,
                 'total_responden' => $total_responden
             ]);
-        } else if (request()->is('report/deft')) {
+        }
+        else if (request()->is('report/dmft')) {
+            return view('dashboard-admin.laporan.general-dmft', [
+                'query_klp_usia' => $query_klp_usia,
+                'query_general' => $query_general,
+                'query_total' => $query_total,
+                'query_total_by_age' => $query_total_by_age,
+                'jml_decay_lk_79' => $jml_decay_lk_79,
+                'jml_decay_pr_79' => $jml_decay_pr_79,
+                'jml_decay_lk_912' => $jml_decay_lk_912,
+                'jml_decay_pr_912' => $jml_decay_pr_912,
+                'jml_decay_lk_79_anak' => $jml_decay_lk_79_anak,
+                'jml_decay_pr_79_anak' => $jml_decay_pr_79_anak,
+                'jml_decay_lk_912_anak' => $jml_decay_lk_912_anak,
+                'jml_decay_pr_912_anak' => $jml_decay_pr_912_anak,
+                'jml_missing_lk_79' => $jml_missing_lk_79,
+                'jml_missing_pr_79' => $jml_missing_pr_79,
+                'jml_missing_lk_912' => $jml_missing_lk_912,
+                'jml_missing_pr_912' => $jml_missing_pr_912,
+                'jml_missing_lk_79_anak' => $jml_missing_lk_79_anak,
+                'jml_missing_pr_79_anak' => $jml_missing_pr_79_anak,
+                'jml_missing_lk_912_anak' => $jml_missing_lk_912_anak,
+                'jml_missing_pr_912_anak' => $jml_missing_pr_912_anak,
+                'jml_filling_lk_79' => $jml_filling_lk_79,
+                'jml_filling_pr_79' => $jml_filling_pr_79,
+                'jml_filling_lk_912' => $jml_filling_lk_912,
+                'jml_filling_pr_912' => $jml_filling_pr_912,
+                'jml_filling_lk_79_anak' => $jml_filling_lk_79_anak,
+                'jml_filling_pr_79_anak' => $jml_filling_pr_79_anak,
+                'jml_filling_lk_912_anak' => $jml_filling_lk_912_anak,
+                'jml_filling_pr_912_anak' => $jml_filling_pr_912_anak,
+                #Decay
+                'jml_decay_lk_7' => $jml_decay_lk_7,
+                'jml_decay_pr_7' => $jml_decay_pr_7,
+                'jml_decay_lk_8' => $jml_decay_lk_8,
+                'jml_decay_pr_8' => $jml_decay_pr_8,
+                'jml_decay_lk_9' => $jml_decay_lk_9,
+                'jml_decay_pr_9' => $jml_decay_pr_9,
+                'jml_decay_lk_10' => $jml_decay_lk_10,
+                'jml_decay_pr_10' => $jml_decay_pr_10,
+                'jml_decay_lk_11' => $jml_decay_lk_11,
+                'jml_decay_pr_11' => $jml_decay_pr_11,
+                'jml_decay_lk_12' => $jml_decay_lk_12,
+                'jml_decay_pr_12' => $jml_decay_pr_12,
+                #Decay-anak
+                'jml_decay_lk_7_anak' => $jml_decay_lk_7_anak,
+                'jml_decay_pr_7_anak' => $jml_decay_pr_7_anak,
+                'jml_decay_lk_8_anak' => $jml_decay_lk_8_anak,
+                'jml_decay_pr_8_anak' => $jml_decay_pr_8_anak,
+                'jml_decay_lk_9_anak' => $jml_decay_lk_9_anak,
+                'jml_decay_pr_9_anak' => $jml_decay_pr_9_anak,
+                'jml_decay_lk_10_anak' => $jml_decay_lk_10_anak,
+                'jml_decay_pr_10_anak' => $jml_decay_pr_10_anak,
+                'jml_decay_lk_11_anak' => $jml_decay_lk_11_anak,
+                'jml_decay_pr_11_anak' => $jml_decay_pr_11_anak,
+                'jml_decay_lk_12_anak' => $jml_decay_lk_12_anak,
+                'jml_decay_pr_12_anak' => $jml_decay_pr_12_anak,
+                #Missing
+                'jml_missing_lk_7' => $jml_missing_lk_7,
+                'jml_missing_pr_7' => $jml_missing_pr_7,
+                'jml_missing_lk_8' => $jml_missing_lk_8,
+                'jml_missing_pr_8' => $jml_missing_pr_8,
+                'jml_missing_lk_9' => $jml_missing_lk_9,
+                'jml_missing_pr_9' => $jml_missing_pr_9,
+                'jml_missing_lk_10' => $jml_missing_lk_10,
+                'jml_missing_pr_10' => $jml_missing_pr_10,
+                'jml_missing_lk_11' => $jml_missing_lk_11,
+                'jml_missing_pr_11' => $jml_missing_pr_11,
+                'jml_missing_lk_12' => $jml_missing_lk_12,
+                'jml_missing_pr_12' => $jml_missing_pr_12,
+                #missing-anak
+                'jml_missing_lk_7_anak' => $jml_missing_lk_7_anak,
+                'jml_missing_pr_7_anak' => $jml_missing_pr_7_anak,
+                'jml_missing_lk_8_anak' => $jml_missing_lk_8_anak,
+                'jml_missing_pr_8_anak' => $jml_missing_pr_8_anak,
+                'jml_missing_lk_9_anak' => $jml_missing_lk_9_anak,
+                'jml_missing_pr_9_anak' => $jml_missing_pr_9_anak,
+                'jml_missing_lk_10_anak' => $jml_missing_lk_10_anak,
+                'jml_missing_pr_10_anak' => $jml_missing_pr_10_anak,
+                'jml_missing_lk_11_anak' => $jml_missing_lk_11_anak,
+                'jml_missing_pr_11_anak' => $jml_missing_pr_11_anak,
+                'jml_missing_lk_12_anak' => $jml_missing_lk_12_anak,
+                'jml_missing_pr_12_anak' => $jml_missing_pr_12_anak,
+                #filling
+                'jml_filling_lk_7' => $jml_filling_lk_7,
+                'jml_filling_pr_7' => $jml_filling_pr_7,
+                'jml_filling_lk_8' => $jml_filling_lk_8,
+                'jml_filling_pr_8' => $jml_filling_pr_8,
+                'jml_filling_lk_9' => $jml_filling_lk_9,
+                'jml_filling_pr_9' => $jml_filling_pr_9,
+                'jml_filling_lk_10' => $jml_filling_lk_10,
+                'jml_filling_pr_10' => $jml_filling_pr_10,
+                'jml_filling_lk_11' => $jml_filling_lk_11,
+                'jml_filling_pr_11' => $jml_filling_pr_11,
+                'jml_filling_lk_12' => $jml_filling_lk_12,
+                'jml_filling_pr_12' => $jml_filling_pr_12,
+                #filling-anak
+                'jml_filling_lk_7_anak' => $jml_filling_lk_7_anak,
+                'jml_filling_pr_7_anak' => $jml_filling_pr_7_anak,
+                'jml_filling_lk_8_anak' => $jml_filling_lk_8_anak,
+                'jml_filling_pr_8_anak' => $jml_filling_pr_8_anak,
+                'jml_filling_lk_9_anak' => $jml_filling_lk_9_anak,
+                'jml_filling_pr_9_anak' => $jml_filling_pr_9_anak,
+                'jml_filling_lk_10_anak' => $jml_filling_lk_10_anak,
+                'jml_filling_pr_10_anak' => $jml_filling_pr_10_anak,
+                'jml_filling_lk_11_anak' => $jml_filling_lk_11_anak,
+                'jml_filling_pr_11_anak' => $jml_filling_pr_11_anak,
+                'jml_filling_lk_12_anak' => $jml_filling_lk_12_anak,
+                'jml_filling_pr_12_anak' => $jml_filling_pr_12_anak,
+                #array
+                'array_decay' => $array_decay,
+                'array_missing' => $array_missing,
+                'array_filling' => $array_filling,
+                #label
+                'max_dmft' => $max_dmft,
+                'min_dmft' => $min_dmft,
+                'max_dmft_label' => $max_dmft_label,
+                'min_dmft_label' => $min_dmft_label,
+                'total_responden' => $total_responden
+            ]);
+        } 
+        else if (request()->is('report/deft')) {
             return view('dashboard-admin.laporan.general-deft', [
                 'query_klp_usia' => $query_klp_usia,
                 'query_general' => $query_general,

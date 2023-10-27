@@ -28,13 +28,13 @@
 			@if(str_contains(url()->current(), '/biodata') || str_contains(url()->current(), '/informed-consent') || str_contains(url()->current(), '/foto-gigi') || str_contains(url()->current(), '/finalisasi'))
 			<li class="sidebar-item active">
 				<a class="sidebar-link" href="/biodata">
-					<i class="align-middle" data-feather="user"></i> <span class="align-middle">Biodata dan Foto Gigi</span>
+					<i class="align-middle" data-feather="user"></i> <span class="align-middle">Biodata</span>
 				</a>
 			</li>
 			@else
 			<li class="sidebar-item">
 				<a class="sidebar-link" href="/biodata">
-					<i class="align-middle" data-feather="user"></i> <span class="align-middle">Biodata dan Foto Gigi</span>
+					<i class="align-middle" data-feather="user"></i> <span class="align-middle">Biodata</span>
 				</a>
 			</li>
 			@endif
@@ -176,7 +176,7 @@
 				</a>
 			</li>
 			@endif
-			<li class="sidebar-item">
+			{{--<li class="sidebar-item">
 				<a class="sidebar-link" href="/report/bySchool/responden">
 					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Jumlah Responden Berdasarkan Sekolah</span>
 				</a>
@@ -232,7 +232,7 @@
 					<i class="align-middle" data-feather="file"></i> <span class="align-middle">Laporan RTI Berdasarkan Sekolah</span>
 				</a>
 			</li>
-			@endif
+			@endif--}}
 		@endif
 	</div>
 </nav>
